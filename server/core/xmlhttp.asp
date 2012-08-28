@@ -59,10 +59,22 @@ define(function(require, exports, module){
 		return (new Function('return ' + str))();
 	}
 	
+	exports.isJSONP = function(str, callStr){
+		return (new RegExp(callStr + "\((.+?)\)")).test(str);
+	}
+	
 	exports.parseJSONP = function(str, callStr){
 		var exps = new RegExp(callStr + "\((.+?)\)");
 		str = str.replace(exps, "$1").trim();
 		return this.parseJSON(str);
+	}
+	
+	exports.compentJSON = function(str, callStr){
+		if ( this.isJSONP(str, callStr) ){
+			return this.parseJSONP(str, callStr);
+		}else{
+			return this.parseJSON(str);
+		}
 	}
 	
 	exports.bin = function(text){

@@ -17,7 +17,22 @@ define(function(require, exports, module){
 					redirect_uri : escape(website + '/server/oauth.asp?type=qq')
 				}
 			
-			qqObject.get(url, data, function(text){ ret = qqObject.unParam(text); });
+			qqObject.get(url, data, function(text){ ret = text; });
+			
+			if ( qqObject.isJSONP(ret) ){
+				var t = qqObject.parseJSONP(ret);
+				
+				ret = {
+					success : false,
+					error : t.error,
+					msg : t.error_description
+				}
+			}else{
+				ret = {
+					success : true,
+					data : qqObject.unParam(ret)
+				};
+			}
 			
 			return ret;
 		},
@@ -29,7 +44,17 @@ define(function(require, exports, module){
 				},
 				ret;
 			
-			qqObject.get(url, data, function(text){ ret = qqObject.parseJSONP(text, "callback"); });
+			qqObject.get(url, data, function(text){ ret = qqObject.compentJSON(text, "callback"); });
+			
+			if ( ret.error === undefined ){
+				ret = {
+					success : true,
+					data : ret
+				}
+			}else{
+				ret.success = false;
+				ret.msg = ret.error_description;
+			}
 			
 			return ret;
 				
@@ -45,7 +70,20 @@ define(function(require, exports, module){
 				},
 				ret;
 				
-			qqObject.get(url, data, function(text){ ret = qqObject.parseJSON(text); });
+			qqObject.get(url, data, function(text){ ret = qqObject.compentJSON(text); });
+			
+			if ( ret.ret === 0 ){
+				ret = {
+					success : true,
+					data : ret
+				}
+			}else{
+				ret = {
+					success : false,
+					error : ret.ret,
+					msg : ret.msg
+				}
+			}
 			
 			return ret;
 		}
