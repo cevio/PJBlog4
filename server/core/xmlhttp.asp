@@ -60,11 +60,11 @@ define(function(require, exports, module){
 	}
 	
 	exports.isJSONP = function(str, callStr){
-		return (new RegExp(callStr + "\((.+?)\)")).test(str);
+		return (new RegExp(callStr + "\\((.+?)\\)\\;?")).test(str);
 	}
 	
 	exports.parseJSONP = function(str, callStr){
-		var exps = new RegExp(callStr + "\((.+?)\)");
+		var exps = new RegExp(callStr + "\\((.+?)\\)\\;?");
 		str = str.replace(exps, "$1").trim();
 		return this.parseJSON(str);
 	}

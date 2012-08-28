@@ -19,9 +19,8 @@ define(function(require, exports, module){
 			
 			qqObject.get(url, data, function(text){ ret = text; });
 			
-			if ( qqObject.isJSONP(ret) ){
-				var t = qqObject.parseJSONP(ret);
-				
+			if ( qqObject.isJSONP(ret, "callback") ){
+				var t = qqObject.parseJSONP(ret, "callback");
 				ret = {
 					success : false,
 					error : t.error,
