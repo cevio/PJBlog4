@@ -32,8 +32,11 @@
 	map["OAUTH"] = "server/core/oAuth";
 	map["COOKIE"] = "server/core/cookie";
 	map["DATE"] = "server/core/date";
+	map["MD5"] = "server/core/md5";
+	map["SHA1"] = "server/core/sha1";
 	
 	// 逻辑模块映射
+	map["fn"] = "server/fn";
 	map["openDataBase"] = "server/dataBaseOperation";
 	map["cache"] = "server/cache";
 	map["member"] = "server/member";
