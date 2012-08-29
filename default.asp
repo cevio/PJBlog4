@@ -9,12 +9,15 @@
 
 <body>
 <%
-var url = null;
+var url = null, d;
 
-	require("OAUTH", function(oauth){
+	require(["OAUTH", "COOKIE"], function(oauth, cookie){
 		url = oauth.qq.url("100299901", "http://lols.cc/server/oauth.asp?type=qq");
+		//cookie.set("a", "b", "e");
+		//cookie.expire("a", 30 * 1000);
+		d = cookie.get("a", "b");
 	});
 %>
-<a href="<%=url%>">登入</a>
+<a href="<%=url%>">登入</a><%=d%>
 </body>
 </html>

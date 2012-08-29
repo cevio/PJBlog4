@@ -30,6 +30,8 @@
 	map["WINHTTP"] = "server/core/winhttp";
 	map["UPLOAD"] = "server/core/upload";
 	map["OAUTH"] = "server/core/oAuth";
+	map["COOKIE"] = "server/core/cookie";
+	map["DATE"] = "server/core/date";
 	
 	// 逻辑模块映射
 	map["openDataBase"] = "server/dataBaseOperation";
@@ -41,12 +43,17 @@
 	map["theme"] = "server/theme";
 	map["plugin"] = "server/plugin";
 	
+	map["status"] = "server/status";
+	
 /*
  * 系统默认变量
  * 不允许修改和赋值
  * 改动可能引起系统异常
  */
  	config.conn = null;
+	config.user = {
+		login : false
+	}
  
 /*
  * 全局ASA文件加载
