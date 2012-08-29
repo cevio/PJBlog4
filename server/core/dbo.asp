@@ -76,7 +76,7 @@ define(function( require, exports, module ){
 	}
 
 	// 添加数据
-	// 数据结构 data{json}(true) table{string}(true) conn{object}(true) rs{object}(false)
+	// 数据结构 data{json}(true) table{string}(true) conn{object}(true) rs{object}(false) callback
 	exports.add = function( options ){
 
 		if ( options === undefined ){ options = {} };
@@ -89,6 +89,7 @@ define(function( require, exports, module ){
 				options.rs(items) = options.data[items];
 			}
 			options.rs.Update();
+			(typeof callback === "function") && callback.call(options.rs);
 			options.rs.Close();
 		}catch(e){
 			console.push(e.message);
