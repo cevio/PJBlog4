@@ -9,7 +9,7 @@ define(["openDataBase"], function(require, exports, module){
 	
 	if ( config.conn === null ){
 		if ( id && (id.length > 0) ){
-			dbo.select({
+			dbo.traverse({
 				conn : config.conn,
 				sql : "Select * From blog_member Where id=" + id,
 				callback : function(rs, conn){

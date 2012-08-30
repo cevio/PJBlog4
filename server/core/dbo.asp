@@ -141,7 +141,7 @@ define(function( require, exports, module ){
 
 	// 删除数据
 	// 数据结构 type{number}(false) sql{string}(true) conn{object}(true) rs{object}(false) callback{function}(false)
-	exports.select = function( options ){
+	exports.trave = function( options ){
 		if ( options === undefined ){ options = {} };
 		if ( options.rs === undefined ){ options.rs = this.createRecordSet(); }
 		if ( options.type === undefined ){ options.type = 1; }

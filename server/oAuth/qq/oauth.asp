@@ -14,7 +14,7 @@ define(function(require, exports, module){
 					client_secret : APPKEY,
 					code : code,
 					state : ( new Date().getTime() ),
-					redirect_uri : escape(website + '/server/oauth.asp?type=qq')
+					redirect_uri : escape(website + '/server/oauth.asp?type=qq&times=' + (new Date()).getTime())
 				}
 			
 		qqObject.get(url, data, function(text){ ret = text; });

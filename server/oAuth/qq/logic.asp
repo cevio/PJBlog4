@@ -11,7 +11,7 @@ define(["openDataBase"], function(require, exports, module){
 		
 	var getInfoFromDBO = function(){
 		if ( config.conn !== null ){
-			dbo.select({
+			dbo.trave({
 				conn : config.conn,
 				sql : "Select * From blog_global Where id=1",
 				callback : function( rs ){
@@ -20,7 +20,6 @@ define(["openDataBase"], function(require, exports, module){
 					WEBSITE = rs("website").value;
 				}
 			});
-			
 			return true;
 		}else{
 			console.push("Open DataBase Error!");
@@ -41,9 +40,9 @@ define(["openDataBase"], function(require, exports, module){
 						try{
 							var sha1 = require.async("SHA1"),
 								iddbo = openid.data.openid;
-							dbo.select({
+							dbo.trave({
 								conn : config.conn,
-								sql : "Select * From blog_member Where qq_openid=" + openid.data.openid,
+								sql : "Select * From blog_member Where qq_openid='" + openid.data.openid + "'",
 								callback : function(rs){
 									if ( rs.Bof || rs.Eof ){
 										dbo.add({
@@ -52,7 +51,7 @@ define(["openDataBase"], function(require, exports, module){
 											data : {
 												isAdmin : false,
 												adminPass : sha1("admin888"),
-												sex : info.data.gender === "男",
+												sex : info.data.gender === "男" ? 1 : 2,
 												photo : info.data.figureurl.split("/").slice(0, -1).join("/"),
 												nickname : info.data.nickname,
 												oauth : "qq",
@@ -65,14 +64,14 @@ define(["openDataBase"], function(require, exports, module){
 											conn : config.conn,
 											table : "blog_member",
 											data : {
-												sex : info.data.gender === "男",
+												sex : info.data.gender === "男" ? 1 : 2,
 												photo : info.data.figureurl.split("/").slice(0, -1).join("/"),
 												nickname : info.data.nickname,
 												qq_token : token.data.access_token
 											},
 											key : "qq_openid",
-											keyValue : openid.data.openid
-										})
+											keyValue : "'" + openid.data.openid + "'"
+										});
 									}
 								}
 							});
@@ -113,6 +112,11 @@ define(["openDataBase"], function(require, exports, module){
 					success : false,
 					error : "token error"
 				}
+			}
+		}else{
+			ret = {
+				success : false,
+				error : "dbo error"
 			}
 		}
 		

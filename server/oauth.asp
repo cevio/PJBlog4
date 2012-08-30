@@ -12,10 +12,10 @@
 			if ( ret.success === true ){
 				ResponseText = '<img src="' + ret.photo + '" />' + ret.nickname + ' 登入成功.';
 			}else{
-				ResponseText = ret.error;
+				ResponseText = ret.error + "(7)";
 			}
 		}catch(e){
-			ResponseText = e.message;
+			ResponseText = e.message + "(6)";
 		}
 		
 		return ResponseText;
