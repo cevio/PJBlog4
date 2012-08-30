@@ -10,5 +10,9 @@ define(function(require, exports, module){
 		
 		return tmp;
 	}
+	
+	exports.localSite = function(){
+		return "http://" + Request.ServerVariables("Http_Host") + Request.ServerVariables("Url") + "?" + Request.ServerVariables("Query_String");
+	}
 });
 %>

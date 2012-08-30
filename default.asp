@@ -10,9 +10,8 @@
 <body>
 <%
 var url = null, d;
-
-	require(["server/oAuth/qq/oauth", "COOKIE"], function(oauth, cookie){
-		url = oauth.url("100299901", "http://lols.cc/server/oauth.asp?type=qq&times=" + (new Date().getTime()));
+	require(["server/oAuth/qq/oauth", "COOKIE", "fn"], function(oauth, cookie, fn){
+		url = oauth.url("100299901", "http://lols.cc/server/oauth.asp?type=qq&dir=" + escape(fn.localSite()));
 		//cookie.set("a", "b", "e");
 		//cookie.expire("a", 30 * 1000);
 		d = cookie.get("a", "b");

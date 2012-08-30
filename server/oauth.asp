@@ -3,6 +3,7 @@
 	http.write(function(req){
 		var type = req.query.type,
 			code = req.query.code,
+			dirs = req.query.dir,
 			ResponseText;
 			
 		try{
@@ -10,7 +11,7 @@
 				ret = oauth(code);
 				
 			if ( ret.success === true ){
-				ResponseText = '<img src="' + ret.photo + '" />' + ret.nickname + ' 登入成功.';
+				Response.Redirect(unescape(dirs));
 			}else{
 				ResponseText = ret.error + "(7)";
 			}
