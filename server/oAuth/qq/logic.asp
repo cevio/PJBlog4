@@ -80,6 +80,7 @@ define(["openDataBase"], function(require, exports, module){
 								
 								cookie.set(config.cookie + "_user", "id", openid.data.openid);
 								cookie.set(config.cookie + "_user", "token", token.data.access_token);
+								cookie.set(config.cookie + "_user", "oauth", "qq");
 								
 								cookie.expire(config.cookie + "_user", 30 * 24 * 60 * 60 * 1000);
 							

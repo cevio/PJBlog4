@@ -9,14 +9,16 @@
 
 <body>
 <%
-var url = null, d;
-	require(["server/oAuth/qq/oauth", "COOKIE", "fn"], function(oauth, cookie, fn){
-		url = oauth.url("100299901", "http://lols.cc/server/oauth.asp?type=qq&dir=" + escape(fn.localSite()));
-		//cookie.set("a", "b", "e");
-		//cookie.expire("a", 30 * 1000);
-		d = cookie.get("a", "b");
-	});
+require("status");
+
+if ( config.user.login === true ){
+	console.log("您已登入");
+}else{
+	var oauth = require("server/oAuth/qq/oauth"),
+		fn = require("fn");
+		
+	console.log('<a href="' + oauth.url("100299901", "http://lols.cc/server/oauth.asp?type=qq&dir=" + escape( fn.localSite() )) + '">登入</a>');
+}
 %>
-<a href="<%=url%>">登入</a><%=d%>
 </body>
 </html>

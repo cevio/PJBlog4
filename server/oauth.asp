@@ -13,10 +13,10 @@
 			if ( ret.success === true ){
 				Response.Redirect(unescape(dirs));
 			}else{
-				ResponseText = ret.error + "(7)";
+				ResponseText = ret.error;
 			}
 		}catch(e){
-			ResponseText = e.message + "(6)";
+			ResponseText = e.message;
 		}
 		
 		return ResponseText;
