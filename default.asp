@@ -12,7 +12,7 @@
 require("status");
 
 if ( config.user.login === true ){
-	console.log("您已登入");
+	console.log('您已登入 <a href="server/logout.asp">退出登入</a>');
 }else{
 	var oauth = require("server/oAuth/qq/oauth"),
 		fn = require("fn");
