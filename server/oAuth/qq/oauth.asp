@@ -1,7 +1,7 @@
 <%
 define(function(require, exports, module){
 	exports.url = function(APPID, url){
-		return 'https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=' + APPID + '&redirect_uri=' + escape(url) + '&times=' + (new Date()).getTime();
+		return 'https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=' + APPID + '&redirect_uri=' + escape(url);
 	}
 	
 	exports.token = function(APPID, APPKEY, code, website){
@@ -14,7 +14,7 @@ define(function(require, exports, module){
 					client_secret : APPKEY,
 					code : code,
 					state : ( new Date().getTime() ),
-					redirect_uri : escape(website + '/server/oauth.asp?type=qq&times=' + (new Date()).getTime())
+					redirect_uri : escape(website + '/server/oauth.asp?type=qq')
 				}
 			
 		qqObject.get(url, data, function(text){ ret = text; });
