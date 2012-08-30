@@ -29,7 +29,6 @@
 	map["XMLHTTP"] = "server/core/xmlhttp";
 	map["WINHTTP"] = "server/core/winhttp";
 	map["UPLOAD"] = "server/core/upload";
-	map["OAUTH"] = "server/core/oAuth";
 	map["COOKIE"] = "server/core/cookie";
 	map["DATE"] = "server/core/date";
 	map["MD5"] = "server/core/md5";

@@ -3,9 +3,9 @@ define(["openDataBase"], function(require, exports, module){
 	var cookie = require.async("COOKIE"),
 		dbo = require.async("DBO"),
 		sha1 = require.async("SHA1"),
-		id = cookie.get(config.cookie + "user", "id"),
-		hashkey = cookie.get(config.cookie + "user", "hashkey"),
-		token = cookie.get(config.cookie + "user", "token");
+		id = cookie.get(config.cookie + "_user", "id"),
+		hashkey = cookie.get(config.cookie + "_user", "hashkey"),
+		token = cookie.get(config.cookie + "_user", "token");
 	
 	if ( config.conn === null ){
 		if ( id && (id.length > 0) ){
@@ -25,7 +25,7 @@ define(["openDataBase"], function(require, exports, module){
 			});
 		}
 	}else{
-		config.push("Open DataBase Error!");
+		console.push("Open DataBase Error!");
 	}
 	
 });

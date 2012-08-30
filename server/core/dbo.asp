@@ -89,7 +89,7 @@ define(function( require, exports, module ){
 				options.rs(items) = options.data[items];
 			}
 			options.rs.Update();
-			(typeof callback === "function") && callback.call(options.rs);
+			(typeof options.callback === "function") && options.callback.call(options.rs);
 			options.rs.Close();
 		}catch(e){
 			console.push(e.message);
@@ -111,6 +111,7 @@ define(function( require, exports, module ){
 				options.rs(items) = options.data[items];
 			}
 			options.rs.Update();
+			(typeof options.callback === "function") && options.callback.call(options.rs);
 			options.rs.Close();
 		}catch(e){
 			console.push(e.message);

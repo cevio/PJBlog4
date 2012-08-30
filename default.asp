@@ -11,8 +11,8 @@
 <%
 var url = null, d;
 
-	require(["OAUTH", "COOKIE"], function(oauth, cookie){
-		url = oauth.qq.url("100299901", "http://lols.cc/server/oauth.asp?type=qq");
+	require(["server/oAuth/qq/oauth", "COOKIE"], function(oauth, cookie){
+		url = oauth.url("100299901", "http://lols.cc/server/oauth.asp?type=qq&times=" + (new Date().getTime()));
 		//cookie.set("a", "b", "e");
 		//cookie.expire("a", 30 * 1000);
 		d = cookie.get("a", "b");
