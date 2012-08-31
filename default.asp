@@ -20,5 +20,11 @@ if ( config.user.login === true ){
 	console.log('<a href="' + oauth.url("100299901", "http://lols.cc/server/oauth.asp?type=qq&dir=" + escape( fn.localSite() )) + '">登入</a>');
 }
 %>
+<form action="server/upload.asp" method="post" enctype="multipart/form-data">
+<input type="file" name="file" value="" />
+<input type="file" name="file2" value="" />
+<input type="text" name="file3" value="dddsss" />
+<input type="submit" value="submit" />
+</form>
 </body>
 </html>
