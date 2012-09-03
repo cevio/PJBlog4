@@ -217,7 +217,7 @@ define(function(require, exports, module){
 					}
 				}
 			}else{
-				reture[items]["value"] = custom.binaryToText(ascObject, reture[items]["binaryStart"], reture[items]["binaryEnd"]);
+				reture[items]["value"] = ascText.substring(reture[items]["binaryStart"], reture[items]["binaryEnd"]);
 			}
 		}
 		
