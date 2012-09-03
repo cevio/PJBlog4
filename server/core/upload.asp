@@ -1,4 +1,8 @@
 <%
+/*
+ * Notice : 
+ *		accept-charset="ascii" onsubmit="document.charset='ascii';"
+ */
 define(function(require, exports, module){
 	var custom = {
 		readBinary : function(speed){
@@ -68,20 +72,85 @@ define(function(require, exports, module){
 				obj.Close();
 				obj = null;
 		},
-		selectorPath : function(){
+		randoms : function(l){
+			var Str = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 
+				tmp = "";
+				
+			for( var i = 0 ; i < l ; i++ ) { 
+				tmp += Str.charAt( Math.ceil(Math.random() * 100000000) % Str.length ); 
+			}
 			
+			return tmp;
+		},
+		selectPath : function(filename, folder, exts){
+
+			function checkExt(_ext){
+				if ( exts === "*" ){
+					return true;
+				}else{
+					var x = false;
+					if ( typeof exts === "string" ){
+						exts = [exts];	
+					}
+					
+					for ( var i = 0 ; i < exts.length ; i++ ){
+						if ( exts.toLowerCase() === _ext.toLowerCase() ){
+							x = true;
+							break;
+						}
+					}
+					
+					return x;
+				}
+			}
+			
+			function checkName(folder){
+				if ( folder === "" ){
+					return folder;
+				}else{
+					return folder.replace(/\/$/, "") + "/";
+				}
+			}
+
+			var ext = filename.split(".").slice(-1).join("."),
+				ret = { allow : false, ext : ext };
+
+			if ( checkExt(ext) ){
+				ret.name = checkName(folder) + this.randoms(16) + "." + ext;
+				ret.path = selector.lock(ret.name);
+				ret.allow = true;
+			}else{
+				ret.error = "不符合上传类型";
+			}
+			
+			return ret;
+		},
+		binaryToText : function(object, start, end){
+			var obj = new ActiveXObject(config.nameSpace.stream), ret;
+				obj.Type = 2;
+				obj.Open();
+				object.Position = start + 2;
+				object.CopyTo(obj, end - start);
+				obj.Position = 2;
+				ret = obj.ReadText();
+				obj.Close();
+				obj = null;
+			
+			return ret;
 		}
 	}
 	
 	var upload = function(options){
 		options = custom.extend({
 			speed : 1000,
-			saveTo : "profile/uploads"
+			saveTo : "profile/uploads",
+			allowExt : "*",
+			error : null
 		}, options);
-		
+
 		var binary = custom.readBinary(options.speed),
 			ascObject = new ActiveXObject(config.nameSpace.stream);
-			ascObject.Type = 2
+			ascObject.Type = 2;
 			ascObject.Open();
 			ascObject.WriteText(binary);
 			ascObject.Position = 0;
@@ -91,9 +160,7 @@ define(function(require, exports, module){
 		var ascText = ascObject.ReadText,
 			line = custom.spliteLine(ascText),
 			lineLength = line.length + 2;
-			
-		console.log(ascText)
-			
+		
 		var resetChunkData = ascText.substring(lineLength),
 			currentChunkData, 
 			index,
@@ -101,7 +168,7 @@ define(function(require, exports, module){
 			binaryChunkData,
 			start = lineLength,
 			reture = {};
-		
+
 		while ( (index = resetChunkData.indexOf(line)) > -1 ){
 			var tmp = 0,
 				name;
@@ -123,13 +190,6 @@ define(function(require, exports, module){
 			if ( /\sfilename=\"([^\"]+?)\"/.test(ContentDispositionChunkData) ){
 				reture[name]["isFile"] = true;
 				reture[name]["fileName"] = (/\sfilename=\"([^\"]+?)\"/.exec(ContentDispositionChunkData))[1];
-
-				var tmpText = ascText,
-					filenameStart = start + ContentDispositionChunkData.indexOf("filename=\"") + 10,
-					filenameEnd = filenameStart + tmpText.substring(filenameStart).indexOf("\"");
-				
-				reture[name]["fileNameStart"] = filenameStart;
-				reture[name]["fileNameEnd"] = filenameEnd;
 			}else{
 				reture[name]["isFile"] = false;
 			}
@@ -138,24 +198,35 @@ define(function(require, exports, module){
 			start = start + index + lineLength;
 		}
 		
-		console.log(JSON.stringify(reture));
-		
 		for ( var items in reture ){
 			if ( reture[items]["isFile"] === true ){
-				var path = custom.selectorPath(options.saveTo);
-				custom.saveFile(ascObject, reture[items]["binaryStart"], reture[items]["binaryEnd"], path);
+				var thisFilename = reture[items]["fileName"];
+				if ( thisFilename.length > 0 ){
+					var	thisFilepath = custom.selectPath(thisFilename, options.saveTo, options.allowExt);
+						
+					if ( thisFilepath.allow === true ){
+						custom.saveFile(ascObject, reture[items]["binaryStart"], reture[items]["binaryEnd"], thisFilepath.path);
+						reture[items]["fileSize"] = reture[items]["binaryEnd"] - reture[items]["binaryStart"];
+						reture[items]["fileExt"] = thisFilepath.ext;
+						reture[items]["savePath"] = thisFilepath.path;
+						reture[name]["saveName"] = thisFilepath.name;
+						reture[items]["success"] = true;
+					}else{
+						reture[items]["success"] = false;
+						(typeof options.error === "function") && options.error.call(reture[items], thisFilepath.error);
+					}
+				}
+			}else{
+				reture[items]["value"] = custom.binaryToText(ascObject, reture[items]["binaryStart"], reture[items]["binaryEnd"]);
 			}
 		}
 		
 		ascObject.Close();
 		ascObject = null;
+		
+		return reture;
 	}
 	
 	return upload;
 });
-/*------WebKitFormBoundary5TEhDhkkvNohxkoc\r\n
-Content-Disposition: form-data; name="file"; filename="f0e;:ff,ff!#.txt"\r\n
-Content-Type: text/plain\r\n\r\n
-chat.53kf.com/webCompany.php?arg=\r\ndf\r\na\r\nfsd\r\nf\r\nsf\r\nsadfdsfsdf\r\nsd\r\nfsad\r\nf\r\nsad\r\nf\r\nsad\r\n
-------WebKitFormBoundary5TEhDhkkvNohxkoc--\r\n*/
 %>
