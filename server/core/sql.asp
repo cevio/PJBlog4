@@ -133,6 +133,8 @@ define(function(require, exports, module){
 				tpl = tpl.replace("$setValue", setValue.join(", ")).replace("$condition", condition.join(" AND "));
 				this.object.Execute(tpl);
 			});
+			
+			return this;
 		},
 		destory : function(options){
 			this.resetError(function(){
@@ -158,6 +160,8 @@ define(function(require, exports, module){
 				tpl = tpl.replace("$condition", condition.join(" AND "));
 				this.object.Execute(tpl);
 			});
+			
+			return this;
 		},
 		resetError : function(callback){
 			try{
