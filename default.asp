@@ -19,6 +19,17 @@ if ( config.user.login === true ){
 		
 	console.log('<a href="' + oauth.url("100299901", "http://lols.cc/server/oauth.asp?type=qq&dir=" + escape( fn.localSite() )) + '">登入</a>');
 }
+
+require(["XML"], function(xml){
+	var _object = xml.load("1.xml");
+	var x = xml("s c ds[class='222']", _object);
+
+	for ( var i = 0 ; i < x.length ; i++ ){
+		console.push(xml.type(x[i]) + "<br />");
+	}
+	console.debug();
+});
+
 %>
 <form action="server/upload.asp" method="post" enctype="multipart/form-data" accept-charset="ascii" onsubmit="document.charset='ascii';">
 <input type="file" name="file" value="" />
