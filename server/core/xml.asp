@@ -4,9 +4,10 @@ define(function(require, exports, module){
 		return new xml.init(selectExp, context);
 	}
 	
-	var core_push = Array.prototype.push;
+	var core_push = Array.prototype.push,
+		core_slice = Array.prototype.slice;
 	
-	xml.init = function(selectExp, context){
+	xml.init = function(selectExp, context, object){
 		if ( context === undefined ){
 			context = selectExp;
 			selectExp = "";
@@ -16,6 +17,7 @@ define(function(require, exports, module){
 		
 		this.length = 0;
 		this.constructor = xml;
+		this.object = object;
 		xml.makeArray(context, this);
 
 		return selectExp === "" ? this : this.find(selectExp);
@@ -45,8 +47,6 @@ define(function(require, exports, module){
 			ret = results || [];
 
 		if ( arr != null ) {
-			// The window, strings (and functions) also have 'length'
-			// Tweaked logic slightly to handle Blackberry 4.7 RegExp issues #6930
 			type = xml.type( arr );
 
 			if ( arr.length == null || type === "string" || type === "function" || type === "regexp" || type === "object" ) {
@@ -100,10 +100,8 @@ define(function(require, exports, module){
 			ret = [],
 			i = 0,
 			length = elems.length,
-			// jquery objects are treated as arrays
 			isArray = elems instanceof xml || length !== undefined && typeof length === "number" && ( ( length > 0 && elems[ 0 ] && elems[ length -1 ] ) || length === 0 || (xml.type(elems) === "array") ) ;
 
-		// Go through the array, translating each of the items to their
 		if ( isArray ) {
 			for ( ; i < length; i++ ) {
 				value = callback( elems[ i ], i, arg );
@@ -113,7 +111,6 @@ define(function(require, exports, module){
 				}
 			}
 
-		// Go through every key on the object,
 		} else {
 			for ( key in elems ) {
 				value = callback( elems[ key ], key, arg );
@@ -124,7 +121,6 @@ define(function(require, exports, module){
 			}
 		}
 
-		// Flatten any nested arrays
 		return ret.concat.apply( [], ret );
 	}
 	
@@ -134,7 +130,7 @@ define(function(require, exports, module){
 				i = 0,
 				obj = this,
 				length = this.length,
-				isObj = length === undefined || ( typeof obj === "function" );
+				isObj = length === undefined || ( xml.type(obj) === "function" );
 				
 	
 			if ( args ) {
@@ -151,8 +147,7 @@ define(function(require, exports, module){
 						}
 					}
 				}
-	
-			// A special, fast, case for the most common use of each
+
 			} else {
 				if ( isObj ) {
 					for ( name in this ) {
@@ -203,12 +198,6 @@ define(function(require, exports, module){
 						var e = [];
 						for ( var j = 0 ; j < d.length ; j++ ){
 							var elemetns = getExpElementsForArray(d[j], selectExpSplitArray[i]);
-//							console.log("<ul>" + d[j].getAttribute("class") + "&gt;" + selectExpSplitArray[i] + "(" + elemetns.length +")");
-//							if (elemetns.length > 0){
-//							for ( var k = 0 ; k < elemetns.length ; k++ ){
-//								console.log("<li>" + elemetns[k].getAttribute("class") + "</li>");
-//							}}else{console.log("<li>none</li>")}
-//							console.log("</ul>");
 							e = e.concat(elemetns);
 						}
 						d = e;
@@ -219,10 +208,6 @@ define(function(require, exports, module){
 					return this;
 				}
 			});
-		},
-		
-		slice : function(){
-			return Array.prototype.slice.apply(this, arguments);
 		},
 		
 		merge: function( first, second ) {
@@ -244,6 +229,103 @@ define(function(require, exports, module){
 			first.length = i;
 	
 			return first;
+		},
+		
+		eq : function(i){
+			i = +i;
+			return i === -1 ?
+				this.slice( i ) :
+				this.slice( i, i + 1 );
+		},
+		
+		first: function() {
+			return this.eq( 0 );
+		},
+	
+		last: function() {
+			return this.eq( -1 );
+		},
+		
+		slice: function() {
+			return this.pushStack( core_slice.apply( this, arguments ),
+				"slice", core_slice.call(arguments).join(",") );
+		},
+		
+		end: function() {
+			return this.prevObject || this.constructor(null);
+		},
+		
+		toArray : function(){
+			return core_slice.call( this );
+		},
+		
+		get: function( num ) {
+			return num == null ?
+				this.toArray() :
+				( num < 0 ? this[ this.length + num ] : this[ num ] );
+		},
+		size : function(){
+			return this.length;
+		},
+		
+		text : function(value){
+			if ( value === undefined ){
+				return this[0].text;			
+			}else{
+				var _this = this;
+				this.empty().each(function(){
+					this.appendChild(_this.object.createTextNode(value));
+				});
+				return this;
+			}
+		},
+		
+		html: function(value){
+			if ( value === undefined ){
+				return this[0].xml;
+			}else{
+				var _this = this;
+				this.empty().each(function(){					
+					this.appendChild( _this.object.createCDATASection(value) );
+				});
+				return this;
+			}
+		},
+		
+		attr: function(attrName, attrValue){
+			if ( attrValue === undefined ){
+				if ( xml.type(attrName) === "string" ){
+					return this[0].getAttribute(attrName);
+				} else {
+					for ( var items in attrName ){
+						this.attr(items, attrName[items]);
+					}
+				}
+			}else{
+				this.each(function(){
+					this.setAttribute( attrName, attrValue + "" );
+				});
+			}
+			
+			return this;
+		},
+		
+		empty: function(){
+			for ( var i = 0, elem ; (elem = this[i]) != (null || undefined); i++ ) {
+				// Remove any remaining nodes
+				while ( elem.firstChild ) {
+					elem.removeChild( elem.firstChild );
+				}
+			}
+			return this;
+		},
+		
+		create: function(tagname){
+			return this.map(function(){
+				var _element = this.object.createElement( tagname );
+				this.appendChild(_element);
+				return _element;
+			});
 		}
 	}
 	
@@ -271,7 +353,7 @@ define(function(require, exports, module){
 		}
 		
 		if ( openStatus !== false ){
-			return object.documentElement;
+			return {root: object.documentElement, object: object};
 		}else{
 			return null;
 		}

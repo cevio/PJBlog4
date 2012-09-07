@@ -22,7 +22,7 @@ if ( config.user.login === true ){
 
 require(["XML"], function(xml){
 	var _object = xml.load("1.xml");
-	var x = xml("s c ds[class='222']", _object);
+	var x = xml("s c ds[class='222']", _object.root, _object.object);
 
 	for ( var i = 0 ; i < x.length ; i++ ){
 		console.push(xml.type(x[i]) + "<br />");
