@@ -34,6 +34,13 @@ if ( config.user.login === true ){
 //	//console.debug();
 //});
 
+require(["PACKAGE"], function(package){
+//	package.merge(".", "3.xml", function(name){
+//		return name.replace(/^\.\//, "");
+//	});
+	package.separate("3.xml", "test");
+});
+
 %>
 <form action="server/upload.asp" method="post" enctype="multipart/form-data" accept-charset="ascii" onsubmit="document.charset='ascii';">
 <input type="file" name="file" value="" />

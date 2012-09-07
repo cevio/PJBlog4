@@ -33,6 +33,7 @@
 	map["DATE"] = "server/core/date";
 	map["MD5"] = "server/core/md5";
 	map["SHA1"] = "server/core/sha1";
+	map["PACKAGE"] = "server/core/package";
 	
 	// 逻辑模块映射
 	map["fn"] = "server/fn";

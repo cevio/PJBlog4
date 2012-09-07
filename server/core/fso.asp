@@ -87,8 +87,13 @@ define(function( require, exports, module ){
 				var name = _emtor.item().Name;
 				if ( typeof callback === "function" ){
 					name = callback(name);
+					if ( name !== null ){
+						_arr.push(name);
+					}
+				}else{
+					_arr.push(name);
 				}
-				_arr.push(name);
+				
 			}
 
 			return _arr;
@@ -270,7 +275,11 @@ define(function( require, exports, module ){
 
 	exports.getAllFolders = function(path, object){
 		var arr = this.collect(path, true, function(name){
-			return path === "/" ? "/" + name : path + "/" + name;
+			if ( /^\./.test(name) ){
+				return null;
+			}else{
+				return path === "/" ? "/" + name : path + "/" + name;
+			}
 		}, object);
 
 		for ( var i = 0 ; i < arr.length ; i++ ){
