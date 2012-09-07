@@ -1,24 +1,21 @@
 <%
 define(function(require, exports, module){
-	var xml = function(selectExp, context){
-		return new xml.init(selectExp, context);
+	var xml = function(selectExp, context, object){
+		return new xml.init(selectExp, context, object);
 	}
 	
 	var core_push = Array.prototype.push,
 		core_slice = Array.prototype.slice;
 	
 	xml.init = function(selectExp, context, object){
-		if ( context === undefined ){
-			context = selectExp;
-			selectExp = "";
-		}else if ( selectExp === undefined ){
-			selectExp = "";
-		}
-		
-		this.length = 0;
-		this.constructor = xml;
-		this.object = object;
-		xml.makeArray(context, this);
+			if ( selectExp === undefined ){
+				selectExp = "";
+			}
+			
+			this.length = 0;
+			this.constructor = xml;
+			this.object = object;
+			xml.makeArray(context, this);
 
 		return selectExp === "" ? this : this.find(selectExp);
 	}
@@ -177,6 +174,7 @@ define(function(require, exports, module){
 			var ret = xml.merge( this.constructor(), elems );
 			ret.prevObject = this;
 			ret.context = this.context;
+			ret.object = this.object;
 	
 			if ( name === "find" ) {
 				ret.selector = this.selector + ( this.selector ? " " : "" ) + selector;
@@ -196,9 +194,9 @@ define(function(require, exports, module){
 						
 					for ( var i = 0 ; i < selectExpSplitArray.length ; i++ ){
 						var e = [];
-						for ( var j = 0 ; j < d.length ; j++ ){
-							var elemetns = getExpElementsForArray(d[j], selectExpSplitArray[i]);
-							e = e.concat(elemetns);
+						for ( var j = 0 ; j < d.length ; j++ )
+						{
+							e = e.concat(getExpElementsForArray(d[j], selectExpSplitArray[i]));
 						}
 						d = e;
 					}
@@ -282,7 +280,7 @@ define(function(require, exports, module){
 		
 		html: function(value){
 			if ( value === undefined ){
-				return this[0].xml;
+				return this[0].firstChild.text;
 			}else{
 				var _this = this;
 				this.empty().each(function(){					
@@ -321,20 +319,21 @@ define(function(require, exports, module){
 		},
 		
 		create: function(tagname){
+			var _this = this;
 			return this.map(function(){
-				var _element = this.object.createElement( tagname );
+				var _element = _this.object.createElement( tagname );
 				this.appendChild(_element);
 				return _element;
 			});
+		},
+		
+		save: function(path){
+			this.object.save(selector.lock(path));
 		}
 	}
 	
 	xml.createXml = function(){
 		return new ActiveXObject(config.nameSpace.xml);
-	}
-	
-	xml.save = function(path, object){
-		object.save(selector.lock(path));
 	}
 	
 	xml.load = function( loadXmlMessage, object ){
