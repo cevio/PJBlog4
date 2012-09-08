@@ -1,0 +1,45 @@
+﻿// var glob = require('glob')
+//   , compressTool = 'yuicompressor-2.4.2.jar'
+//   , charset = 'utf-8';
+
+// desc('压缩ASP文件');
+// task('sync-asp',function(){
+//     // glob('../core/Lessfile.json', function(er,files){
+//     //     var cmds = [];
+        
+//     //     files.forEach(function(file){
+//     //         var root = file.replace('Lessfile.json','');
+//     //         var mappers = require('./'+file);
+    	
+//     //         for(outfile in mappers){
+//     //             cmds.push('lessc "'+ mappers[outfile] +'" > "'+ root + outfile +'"');
+//     //         }
+//     //     });
+
+//     //     jake.exec(cmds, function(){
+//     //         console.log('less文件编译完毕');
+//     //         complete();
+//     //     },{stdout:true});
+//     // });
+    
+// }, {async: true});
+
+var compressTool = 'yuicompressor-2.4.2.jar',
+    charset = 'utf-8',
+    fs = require('fs');
+
+desc('start pack asp module files..');
+
+task('sync-asp', function(){
+    fs.readdir('../core', function(er, files){
+        for ( var i in files ){
+            var file = files[i];
+            
+            if ( files[i].indexOf('obay') === -1 ){
+               var cdata = fs.readFileSync('../core/' + file, 'utf-8').replace(/^\<\%/, '').replace(/\%\>$/, '');
+                fs.writeFileSync('../core/' + file.split(".")[0] + ".js", cdata, "utf-8");
+                console.log(file + " pack to js complete.");
+            }
+        }
+    });
+});
