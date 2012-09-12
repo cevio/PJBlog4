@@ -13,6 +13,7 @@
 	config.appName = "PJBlog4"; // APP 统一名称
 	config.access = "profile/PBlog4/PJBlog4.asp"; // 数据库路径
 	config.cookie = "PJBlog4"; // cookie 名称
+	config.cacheAccess = "profile/cache"; // 缓存文件夹名
 	
 /*
  * 网站模块映射
@@ -47,6 +48,9 @@
 	map["plugin"] = "server/plugin";
 	
 	map["status"] = "server/status";
+	
+	// handler处理模块映射
+	masp["cacheHandle"] = "profile/handler/cache";
 	
 /*
  * 系统默认变量
