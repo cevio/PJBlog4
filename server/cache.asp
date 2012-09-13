@@ -48,9 +48,9 @@ define(function(require){
 			}
 			
 			function getFromFiles(appKeyName, appKeyID){
-				var file = createAppFile(appKeyName, appKeyID);
+				var file = config.cacheAccess + "/" + createAppFile(appKeyName, appKeyID);
 				if ( fso.exsit(file) ){
-					var arr = new Function("return " + stream.load(config.cacheAccess + "/" + file))();
+					var arr = new Function("return " + stream.load(file))();
 					return arr;
 				}else{
 					return null;
@@ -61,7 +61,7 @@ define(function(require){
 				try{
 					var dbo = require.async("DBO"),
 						arr;
-					
+
 					dbo.trave({
 						sql: appSQL,
 						conn: config.conn,
@@ -78,7 +78,7 @@ define(function(require){
 			
 			function setFile(dataArray, appKeyName, appKeyID){
 				try{
-					stream.save(JSON.stringify(dataArray), createAppFile(appKeyName, appKeyID));
+					stream.save(JSON.stringify(dataArray), config.cacheAccess + "/" + createAppFile(appKeyName, appKeyID));
 					return true;
 				}catch(e){
 					return false;
@@ -119,11 +119,11 @@ define(function(require){
 					console.push("cache[" + appKeyName + "] 不存在，请检查配置缓存文件。");
 					return null;
 				}else{
-					var appMode = datas[appKeyName](appKeyID),
+					var appMode = datas(appKeyID),
 						dataCache = getFromDataBase(appMode);
 						
-					if ( setFile(dataArray, appKeyName, appKeyID) ){
-						if ( setApplication(dataArray, appKeyName, appKeyID) ){
+					if ( setFile(dataCache, appKeyName, appKeyID) ){
+						if ( setApplication(dataCache, appKeyName, appKeyID) ){
 							return dataCache;
 						}else{
 							return null;
@@ -141,8 +141,9 @@ define(function(require){
 					console.push("cache[" + appKeyName + "] 不存在，请检查配置缓存文件。");
 					return null;
 				}else{
-					var appMode = datas[appKeyName](appKeyID),
+					var appMode = datas(appKeyID),
 						appCache = getFromApplication(appKeyName, appKeyID);
+						
 					if ( appCache === null ){
 						var fileCache = getFromFiles(appKeyName, appKeyID);
 						if ( fileCache === null ){
@@ -152,13 +153,16 @@ define(function(require){
 							}else{
 								setFile(dataCache, appKeyName, appKeyID);
 								setApplication(dataCache, appKeyName, appKeyID);
+								console.push("cache[" + appKeyName + "] from database.");
 								return dataCache;
 							}
 						}else{
 							setApplication(fileCache, appKeyName, appKeyID);
+							console.push("cache[" + appKeyName + "] from file.");
 							return fileCache;	
 						}	
 					}else{
+						console.push("cache[" + appKeyName + "] from app.");
 						return appCache;
 					}
 				}

@@ -34,11 +34,22 @@ if ( config.user.login === true ){
 //	//console.debug();
 //});
 
-require(["PACKAGE"], function(package){
+//require(["PACKAGE"], function(package){
 //	package.merge(".", "3.xml", function(name){
 //		return name.replace(/^\.\//, "");
 //	});
-	package.separate("3.xml", "test");
+//	package.separate("3.xml", "test");
+//});
+
+require(["openDataBase", "cache"], function(base, cache){
+	if (base === true && cache !== null){
+		var arr = cache.load("global");
+		console.push(arr);
+		console.debug();
+	}else{
+		console.push("cache handle file not be ready.");
+		console.debug();
+	}
 });
 
 %>
