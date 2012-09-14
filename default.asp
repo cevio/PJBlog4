@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta property="qc:admins" content="04426474743633" />
+<script language="javascript" src="assets/js/core/sizzle-min.js"></script>
 <title>无标题文档</title>
 </head>
 
@@ -28,36 +28,44 @@ if ( config.user.login === true ){
 //
 //	x.save("2.xml");
 //
-////	for ( var i = 0 ; i < x.length ; i++ ){
-////		console.push(xml.type(x[i]) + "<br />");
-////	}
-//	//console.debug();
+//	for ( var i = 0 ; i < x.length ; i++ ){
+//		console.push(xml.type(x[i]) + "<br />");
+//	}
+//	console.debug();
 //});
-
+//
 //require(["PACKAGE"], function(package){
 //	package.merge(".", "3.xml", function(name){
 //		return name.replace(/^\.\//, "");
 //	});
 //	package.separate("3.xml", "test");
 //});
-
-require(["openDataBase", "cache"], function(base, cache){
-	if (base === true && cache !== null){
-		var arr = cache.load("global");
-		console.push(arr);
-		console.debug();
-	}else{
-		console.push("cache handle file not be ready.");
-		console.debug();
-	}
-});
+//
+//require(["openDataBase", "cache"], function(base, cache){
+//	if (base === true && cache !== null){
+//		var arr = cache.load("global");
+//		console.push(arr);
+//		console.debug();
+//	}else{
+//		console.push("cache handle file not be ready.");
+//		console.debug();
+//	}
+//});
 
 %>
-<form action="server/upload.asp" method="post" enctype="multipart/form-data" accept-charset="ascii" onsubmit="document.charset='ascii';">
+<!--<form action="server/upload.asp" method="post" enctype="multipart/form-data" accept-charset="ascii" onsubmit="document.charset='ascii';">
 <input type="file" name="file" value="" />
 <input type="file" name="file2" value="" />
 <input type="text" name="file3" value="沈赟杰" />
 <input type="submit" value="submit" />
-</form>
+</form>-->
+<button id="click">click</button>
+<script language="javascript">
+require("assets/js/config", function(c){
+	require.async("upload", function(){
+		$("#click").upload("click");
+	});
+});
+</script>
 </body>
 </html>
