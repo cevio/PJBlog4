@@ -117,6 +117,12 @@
 		return selector;
 	};
 	
+	window.selector = S.lib.fetch;
+	
+	selector.lock = function( sec ){
+		return selector( sec, false );
+	}
+	
 	function fetch_uri_decode(uri){
 		return uri.replace( /\/+$/, "" );
 	}

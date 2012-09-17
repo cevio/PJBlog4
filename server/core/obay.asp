@@ -239,9 +239,21 @@ var JSON = !JSON ? {} : JSON;
 	
 	function GrepSytax(context){
 		context = context.replace(regExpress.includeContentForLeftExp, "").replace(regExpress.includeContentForRightExp, "");
+		
+		function customReplace(data){
+			return data.replace(/\b/g, '\\b')
+						.replace(/\\/g, '\\\\')
+						.replace(/\"/g, '\\"')
+						.replace(/\r/g, '\\r')
+						.replace(/\f/g, '\\f')
+						.replace(/\n/g, '\\n')
+						.replace(/\s/g, ' ')
+						.replace(/\t/g, '\\t');
+		}
+		
 		function textformat(t){
 			if ( t.length > 0 ){
-				return ";Response.Write(\"" + t.replace(/\\/g, "\\\\").replace(/\"/g, "\\\"").replace(/\r/g, "\\r").replace(/\n/g, "\\n").replace(/\s/g, " ").replace(/\t/g, "\\t") + "\");";
+				return ";Response.Write(\"" + customReplace(t) + "\");";
 			}else{
 				return "";
 			}
