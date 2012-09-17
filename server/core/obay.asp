@@ -241,7 +241,7 @@ var JSON = !JSON ? {} : JSON;
 		context = context.replace(regExpress.includeContentForLeftExp, "").replace(regExpress.includeContentForRightExp, "");
 		
 		function customReplace(data){
-			return data.replace(/\b/g, '\\b')
+			return data
 						.replace(/\\/g, '\\\\')
 						.replace(/\"/g, '\\"')
 						.replace(/\r/g, '\\r')
@@ -434,7 +434,7 @@ var JSON = !JSON ? {} : JSON;
 		
 		return _ret;
 	}
-	
+
 	http = function( callback ){
 		var Req = { query : {}, form : {} }, 
 			i = 0,
@@ -457,6 +457,16 @@ var JSON = !JSON ? {} : JSON;
 		Res = callback( Req );
 
 		return Res;
+	}
+	
+	http.get = function( params ){
+		var queryEmtor = emtor(Request.QueryString(params));
+		return queryEmtor.length === 1 ? queryEmtor[0] : queryEmtor;
+	}
+	
+	http.form = function( params ){
+		var formEmtor = emtor(Request.Form(params));
+		return formEmtor.length === 1 ? formEmtor[0] : formEmtor;
 	}
 
 

@@ -1,4 +1,4 @@
-<!--#include file="server/core/obay-min.asp" -->
+<!--#include file="server/core/obay.asp" -->
 <%
 /* 
  * version V4.0 ( 2012-08-10 )

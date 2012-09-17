@@ -1,0 +1,381 @@
+@charset "utf-8";
+/* CSS Document */
+/* 防止用户自定义背景颜色对网页的影响，添加让用户可以自定义字体 */
+html {
+	color: #000;
+	background: #fff;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+/* 内外边距通常让各个浏览器样式的表现位置不同 */
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td,
+hr,
+button,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	margin: 0;
+	padding: 0;
+	font-family:microsoft yahei;
+}
+/* 重设 HTML5 标签, IE 需要在 js 中 createElement(TAG) */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+  font-family:microsoft yahei;
+}
+/* HTML5 媒体文件跟 img 保持一致 */
+audio,
+canvas,
+video {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+}
+/* 要注意表单元素并不继承父级 font 的问题 */
+body,
+button,
+input,
+select,
+textarea {
+	font: 12px/1.5 microsoft yahei, "\5b8b\4f53", sans-serif;
+}
+input,
+select,
+textarea {
+	font-size: 100%;
+}
+/* 去掉各Table  cell 的边距并让其边重合 */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* IE bug fixed: th 不继承 text-align*/
+th {
+	text-align: inherit;
+}
+/* 去除默认边框 */
+fieldset,
+img {
+	border: 0;
+}
+/* ie6 7 8(q) bug 显示为行内表现 */
+iframe {
+	display: block;
+}
+/* 去掉 firefox 下此元素的边框 */
+abbr,
+acronym {
+	border: 0;
+	font-variant: normal;
+}
+/* 一致的 del 样式 */
+del {
+	text-decoration: line-through;
+}
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+th,
+var {
+	font-style: normal;
+	font-weight: 500;
+}
+/* 去掉列表前的标识, li 会继承 */
+ol,
+ul {
+	list-style: none;
+}
+/* 对齐是排版最重要的因素, 别让什么都居中 */
+caption,
+th {
+	text-align: left;
+}
+/* 来自yahoo, 让标题都自定义, 适应多个系统应用 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: 100%;
+	font-weight: 500;
+}
+q:before,
+q:after {
+	content: '';
+}
+/* 统一上标和下标 */
+sub,
+sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+sup {
+	top: -0.5em;
+}
+sub {
+	bottom: -0.25em;
+}
+/* 让链接在 hover 状态下显示下划线 */
+a:hover {
+	text-decoration: underline;
+}
+/* 默认不显示下划线，保持页面简洁 */
+ins,
+a {
+	text-decoration: none;
+	outline:none;
+}
+/* 清理浮动 */
+.fn-clear:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+.fn-clear {
+	zoom: 1;
+  /* for IE6 IE7 */
+
+}
+/* 隐藏, 通常用来与 JS 配合 */
+body .fn-hide {
+	display: none;
+}
+/* 设置内联, 减少浮动带来的bug */
+.fn-left,
+.fn-right {
+	display: inline;
+}
+.fn-left {
+	float: left;
+}
+.fn-right {
+	float: right;
+}
+/* 设置元素为内联*/
+.fn-lump {
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+}
+/* 设置元素可见 */
+.fn-visible {
+	visibility: visible;
+}
+/* 设置元素不可见 */
+.fn-invisible {
+	visibility: hidden;
+}
+/* 文本强制断行 */
+.fn-brk {
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.fn-opacity-8 {
+	opacity: .8;
+	filter: alpha(opacity=80);
+}
+
+.fn-opacity-9 {
+	opacity: .9;
+	filter: alpha(opacity=90);
+}
+
+.fn-opacity-5 {
+	opacity: .5;
+	filter: alpha(opacity=50);
+}
+
+.fn-black-opacity {
+	background: #131313;
+	background: rgba(0, 0, 0, .8);
+	filter: alpha(opacity=80);
+}
+
+.tpl-wrapper {
+	max-width:1280px;
+	_width: 1280px;
+	margin:0px auto;
+}
+
+.tpl-navtion {
+	height: 35px;
+	line-height: 35px;
+	color:#fff;
+}
+
+.tpl-space {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+html, body {
+	background:#E3E3E3 ;
+}
+
+a:link, a:visited{
+	color:#888;
+	text-decoration:none;
+}
+
+a:hover{
+	color:#333;
+}
+
+/*#navtion a, #navtion span{
+	text-shadow:0px 1px 1px #555;
+}*/
+
+#navtion .tpl-wrapper .logo{
+	float:left;
+	width:300px;
+	height:35px;
+}
+
+#navtion .tpl-wrapper .nav-list{
+	float:left;
+	margin-right:20px;
+}
+
+#navtion .tpl-wrapper .nav-list li{
+	 float:left;
+}
+
+#navtion .tpl-wrapper .nav-list li a{
+	display:block;
+	padding:0px 20px;
+	height:26px;
+	line-height:26px;
+	margin-top:5px;
+}
+
+#navtion .tpl-wrapper .nav-list li a:link, #navtion .tpl-wrapper .nav-list li a:visited{
+	color:#fff;
+}
+
+#navtion .tpl-wrapper .nav-list li a:hover{
+	background: #000;
+	border-radius:3px;
+}
+
+#navtion .tpl-wrapper .nav-user{
+	float:right;
+	height:35px;
+	display:block;
+}
+
+#navtion .tpl-wrapper .nav-user span.name{
+	 float:left;
+	 padding:0px 10px;
+}
+
+#navtion .tpl-wrapper .nav-user a{
+	float:left;
+	padding:0px 10px;
+	height:32px;
+	color:#fff;
+	position:relative;
+	margin-top:3px;
+	line-height:30px;
+}
+
+#navtion .tpl-wrapper .nav-user a ul{
+	display:none;
+	position:absolute;
+	top:32px;
+	right:0px;
+}
+
+#navtion .tpl-wrapper .nav-user a.item:hover{
+	background:#fff;
+	color:#666;
+	border-radius:4px 4px 0px 0px;
+}
+
+#navtion .tpl-wrapper .nav-user a.item:hover ul{
+	display:block;
+	background:#fff;
+	padding:3px 5px;
+	border-radius:0px 0px 4px 4px;
+}
+
+#navtion .tpl-wrapper .nav-user a.item:hover ul li{
+	color:#000;
+	width:80px;
+	text-align:center;
+}
+
+#footer .foot-zone{
+	background:#d3d3d3;
+	margin-top:20px;
+	border-radius:8px;
+	padding:5px 0px;
+}
+
+#footer .foot-zone .one{
+	line-height:30px;
+	padding:0px 20px;
+	color:#888;
+}
+
+#footer .foot-zone .two{
+	margin:0px 20px;
+	line-height:30px;
+	border-top:1px dotted #A19892;
+	color:#888;
+}
+
+#content{
+	margin-top:20px;
+}
