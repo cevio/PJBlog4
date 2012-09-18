@@ -337,7 +337,7 @@ body .fn-hide {
 }
 
 html, body {
-	background:#E3E3E3 ;
+	background:/*#E3E3E3*/#FFFCF0 url("http://appres.itugo.com/lib/tpl/3.0/images/bg-body.gif") top left ;
 }
 
 a:link, a:visited{
@@ -441,7 +441,7 @@ textarea{
 
 #footer .foot-zone{
 	background:#ddd;
-	border-radius:8px;
+	border-radius:8px 8px 0 0;
 	padding:5px 0px;
 }
 

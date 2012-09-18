@@ -116,5 +116,15 @@ textarea{
 .tabs .tabs-navs{ height:31px; line-height:30px; border-bottom:1px solid #5FBE5F;}
 .tabs .tabs-navs .fn-left{line-height:30px; padding:0px 10px; margin-right:5px; display:block; height:30px; border:1px solid #dedede; border-radius:3px 3px 0 0; border-bottom-color:#5FBE5F;}
 .tabs .tabs-navs .current{ border-color:#5FBE5F; border-bottom-color:#fff;}
-.tabs-content-html{ padding:10px;}
-.tabs-content-html .unicon{}
+.tabs-content-html{ padding:20px;}
+
+
+.tabs-content-weibo-list{}
+.tabs-content-weibo-list .tabs-content-weibo-item{ border-bottom:1px dotted #ddd; padding-bottom:20px; margin-bottom:20px;}
+.tabs-content-weibo-list .tabs-content-weibo-item .tabs-content-weibo-item-img{ margin-right:20px;}
+.tabs-content-weibo-list .tabs-content-weibo-item .tabs-content-weibo-item-img img{ width:45px; height:45px; border-radius:4px;}
+.tabs-content-weibo-list .tabs-content-weibo-item .tabs-content-weibo-item-info{ width:720px; color:#666;}
+.tabs-content-weibo-list .tabs-content-weibo-item .tabs-content-weibo-item-info .attemds{ margin-top:20px;}
+.tabs-content-weibo-list .tabs-content-weibo-item .tabs-content-weibo-item-info .tools{ margin-top:20px;}
+.tabs-content-weibo-list .tabs-content-weibo-item .tabs-content-weibo-item-info .tools .time{ color:#ccc; font-size:11px;}
+.tabs-content-weibo-list .tabs-content-weibo-item .tabs-content-weibo-item-info .tools .action a{ margin-right:5px; }
