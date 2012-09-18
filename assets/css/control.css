@@ -1,5 +1,18 @@
 @charset "utf-8";
 /* CSS Document */
+
+@font-face {
+	font-family: 'uxiconfont';
+	font-weight: normal;
+    font-style: normal;
+	src: 	url('uxiconfont.eot'); /* IE9*/
+	src: 	url('uxiconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+			url('uxiconfont.woff') format('woff'), /* chrome、firefox */
+			url('uxiconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+			url('uxiconfont.svg#svgFontName') format('svg'); /* iOS 4.1- */
+}
+
+
 /* 防止用户自定义背景颜色对网页的影响，添加让用户可以自定义字体 */
 html {
 	color: #000;
@@ -80,6 +93,7 @@ input,
 select,
 textarea {
 	font: 12px/1.5 microsoft yahei, "\5b8b\4f53", sans-serif;
+	outline:none;
 }
 input,
 select,
@@ -258,6 +272,68 @@ body .fn-hide {
 .tpl-space {
 	margin-top: 20px;
 	margin-bottom: 20px;
+	border:1px solid #cecece;
+	background:#fff;
+	box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.05);
+	border-radius:6px;
+}
+
+.tpl-padSpace{
+	padding: 20px 30px;
+}
+
+.tpl-side{
+	width: 400px;
+}
+
+.tpl-side .tpl-size-zone, .tpl-content .tpl-content-zone{
+	padding:10px 15px;
+}
+
+.tpl-content{
+	width: 860px;
+}
+
+.tpl-sidebar{
+	margin-bottom:20px;
+}
+
+.tpl-photo{
+	border-radius:4px;
+}
+
+.tpl-button-blue{
+	border: none;
+	background-color: #1E7BB3;
+	background-image: -webkit-linear-gradient(top,#3999D2,#1E7BB3);
+	background-image: -moz-linear-gradient(top,#3999D2,#1E7BB3);
+	background-image: -ms-linear-gradient(top,#3999D2,#1E7BB3);
+	border-bottom: 1px solid #02598E;
+	box-shadow: #BBB 0 1px 2px;
+	text-shadow: #1E7BB3 0 -1px 0;
+	border-radius:3px;
+}
+
+.tpl-button-green{
+	border: none;
+	background-color: #52A152;
+	background-image: -webkit-linear-gradient(top,#5FBE5F,#52A152);
+	background-image: -moz-linear-gradient(top,#5FBE5F,#52A152);
+	background-image: -ms-linear-gradient(top,#5FBE5F,#52A152);
+	border-bottom: 1px solid #417F41;
+	text-shadow: #52A152 0 -1px 0;
+	border-radius:3px;
+}
+
+.tpl-button-gray{
+	border: none;
+	background-color: #ccc;
+	background-image: -webkit-linear-gradient(top,#ddd,#ccc);
+	background-image: -moz-linear-gradient(top,#ddd,#ccc);
+	background-image: -ms-linear-gradient(top,#ddd,#ccc);
+	border-bottom: 1px solid #bbb;
+	text-shadow: #ccc 0 -1px 0;
+	border-radius:3px;
 }
 
 html, body {
@@ -265,12 +341,19 @@ html, body {
 }
 
 a:link, a:visited{
-	color:#888;
+	color:#3B8DD1;
 	text-decoration:none;
 }
 
 a:hover{
-	color:#333;
+	color:#8CAC52;
+}
+
+textarea{
+	border:1px solid #dedede;
+	border-radius:3px;
+	width:100%;
+	height:100%;
 }
 
 /*#navtion a, #navtion span{
@@ -338,27 +421,26 @@ a:hover{
 }
 
 #navtion .tpl-wrapper .nav-user a.item:hover{
-	background:#fff;
-	color:#666;
+	background:#000;
+	color:#fff;
 	border-radius:4px 4px 0px 0px;
 }
 
 #navtion .tpl-wrapper .nav-user a.item:hover ul{
 	display:block;
-	background:#fff;
+	background:#000;
 	padding:3px 5px;
 	border-radius:0px 0px 4px 4px;
 }
 
 #navtion .tpl-wrapper .nav-user a.item:hover ul li{
-	color:#000;
+	color:#fff;
 	width:80px;
 	text-align:center;
 }
 
 #footer .foot-zone{
-	background:#d3d3d3;
-	margin-top:20px;
+	background:#ddd;
 	border-radius:8px;
 	padding:5px 0px;
 }
@@ -376,6 +458,4 @@ a:hover{
 	color:#888;
 }
 
-#content{
-	margin-top:20px;
-}
+.iconfont{font-family:"uxiconfont";font-size:14px;font-style:normal;}

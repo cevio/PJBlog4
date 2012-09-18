@@ -1,11 +1,21 @@
 <!--#include file="config.asp" --><%
 	var page = http.get("p");
+	Session("admin") = true;
+	function checkStatusAndCustomPage(){
+		if ( Session("admin") !== true ){
+			return "login";
+		}else if ( page.length === 0 ){
+			return "index";
+		}else{
+			return page;
+		}
+	}
 %><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="assets/css/control.css" media="all" />
-<link rel="stylesheet" href="assets/css/page-<%=( page.length === 0 ? "index" : page )%>.css" media="all" />
+<link rel="stylesheet" href="assets/css/page-<%=checkStatusAndCustomPage()%>.css" media="all" />
 <script language="javascript" src="assets/js/core/sizzle.js"></script>
 <title>PJBlog4 管理后台</title>
 </head>
@@ -35,7 +45,7 @@
 <div id="content" class="tpl-wrapper">
 	<%
 		try{
-			include("server/web/page-" + (page.length === 0 ? "index" : page));
+			include("server/web/page-" + checkStatusAndCustomPage());
 		}catch(e){
 			console.log("未找到模板。")
 		}
