@@ -41,7 +41,10 @@
         </div>
     </div>   
 </div>
-
+<div id="slogen" class="tpl-wrapper">
+	<div class="Alogo">创新技术、创新架构、创新分享<div class="Blogo">不能承受的重博客之轻！</div></div>
+    <div class="update">发现新版本 请点击升级</div>
+</div>
 <div id="content" class="tpl-wrapper">
 	<%
 		try{
@@ -54,8 +57,7 @@
 
 <div id="footer" class="tpl-wrapper">
 	<div class="foot-zone fn-clear">
-    	<div class="one">微博帮助　意见反馈　开放平台　微博招聘　新浪网导航　社区管理中心　微博社区<br />
-的撒即可发货，的撒谎发客户阿萨德否决了安乐死叫饭了爱的叫饭了。</div>
+    	<div class="one">微博帮助　意见反馈　开放平台　微博招聘　新浪网导航　社区管理中心　微博社区</div>
         <div class="two fn-clear"><div class="fn-left">北京微梦创科网络技术有限公司 京网文[2011]0398-130号 京ICP证100780号</div><div class="fn-right">Copyright © 1996-2012 SINA</div></div>
     </div>
 </div>
