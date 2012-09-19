@@ -8,6 +8,16 @@ define(["assets/js/core/jQuery"], function(){
 	
 	// map modules
 	config.map("upload", "assets/js/upload");
+	config.map("form", "assets/js/core/form");
 	
-	return true;
+	return {
+		status : true,
+		load : function( args ){
+			require.async(args, function( customs ){
+				if ( customs.init !== undefined ){
+					customs.init();
+				}
+			});
+		}
+	};
 });

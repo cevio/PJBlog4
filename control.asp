@@ -50,7 +50,7 @@
 		try{
 			include("server/web/page-" + checkStatusAndCustomPage());
 		}catch(e){
-			console.log("未找到模板。")
+			console.log("未找到模板。");
 		}
 	%>
 </div>
@@ -62,11 +62,15 @@
     </div>
 </div>
 <script language="javascript">
-require(['assets/js/config'], function(status){
-	if ( status === true ){
-		console.log("Getting Success.");
+require(['assets/js/config'], function( custom ){
+	if ( custom.status === true ){
+		custom.load('assets/js/page-<%=checkStatusAndCustomPage()%>');
 	}else{
-		console.log("Getting Config File Error.");
+		if ( $.browser.msie ){
+			alert("Getting Config File Error.");
+		} else {
+			console.log("Getting Config File Error.");
+		}
 	}
 });
 </script>
