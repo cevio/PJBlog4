@@ -3,6 +3,7 @@
 
 PJBLOG4轻博客系统
 
+
 ----
 <%
 require("status");
