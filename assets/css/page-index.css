@@ -27,7 +27,7 @@ textarea{border-width:0px;color:#666;}
 .write-article-form{height:100px;padding:5px 10px;border:1px solid #dedede;border-radius:3px 3px 0px 3px;}
 .write-article-form:focus, .write-article-form:hover{border-color:#3999D2;}
 .write-tools{}
-.write-tools .write-tools-list{height:30px;line-height:30px;color:#666;}
+.write-tools .write-tools-list{height:30px;line-height:30px;color:#999;}
 .write-tools .write-tools-list span{ margin-left:10px;}
 .write-article-submit{width:120px;height:30px;font-size:14px;color:#fff;border-radius:0 0 3px 3px;cursor:pointer;}
 
