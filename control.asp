@@ -24,8 +24,8 @@
     	<div class="logo"></div>
         <div class="nav-list">
         	<ul>
-            	<li><a href="">首页</a></li>
-                <li><a href="">分类</a></li>
+            	<li><a href="control.asp">首页</a></li>
+                <li><a href="?p=category">分类</a></li>
                 <li><a href="">日志</a></li>
                 <li><a href="">主题</a></li>
                 <li><a href="">插件</a></li>

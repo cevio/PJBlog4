@@ -1,0 +1,21 @@
+@charset "utf-8";
+/* CSS Document */
+
+.cate-zone{ padding:30px 20px;}
+.list{ color:#888; padding:5px 15px;}
+.list .one{ height:30px; line-height:30px; margin-bottom:10px; cursor:pointer; margin-top:10px;}
+.list .two{ height:30px; line-height:30px; margin-bottom:10px; margin-left:150px; cursor:pointer;}
+.label{ display:block; float:left; color:#fff; width:150px; height:30px;}
+.list .action{ float:right; display:none;}
+.current{ background:#efefef; height:30px; border-radius:0 6px 6px 0;}
+.current .action{ display:block; margin-right:10px;}
+.label .box{ padding:0px 10px;}
+.label .box i{ float:left; display:block; width:24px; height:30px;}
+.label .box span{ float:left; display:block; width: 100px; height:30px; overflow: hidden;white-space: nowrap;text-overflow: ellipsis; text-align:center;}
+.one .label{ }
+.two .label{}
+.tools{ padding:10px 30px; line-height:30px; color:#666;}
+.tools a{ margin-left:10px;}
+.edit-info{ float:left; margin-left:20px;height:30px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; color:#ccc;}
+.one .edit-info{ width:620px; }
+.two .edit-info{ width:470px; }

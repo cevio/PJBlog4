@@ -13,7 +13,7 @@
                 	<a href=""><span class="iconfont">&#336;</span> 主页</a>
                 	<a href=""><span class="iconfont">&#355;</span> 设置</a>
                 	<a href=""><span class="iconfont">&#291;</span> 日志</a>
-                    <a href=""><span class="iconfont">&#388;</span> 分类</a>
+                    <a href="?p=category"><span class="iconfont">&#388;</span> 分类</a>
                     <a href=""><span class="iconfont">&#343;</span> 评论</a>
                     <a href=""><span class="iconfont">&#359;</span> 留言</a>
                     <a href=""><span class="iconfont">&#249;</span> 主题</a>
