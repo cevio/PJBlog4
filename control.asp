@@ -1,6 +1,5 @@
 <!--#include file="config.asp" --><%
 	var page = http.get("p");
-	Session("admin") = true;
 	function checkStatusAndCustomPage(){
 		if ( Session("admin") !== true ){
 			return "login";

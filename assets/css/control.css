@@ -538,7 +538,7 @@ input[type="color"],
           border-radius: 3px;
 }
 
-input[type="text"]{ padding:4px 6px;}
+input[type="text"],input[type="password"]{ padding:4px 6px;}
 
 textarea,
 input[type="text"],

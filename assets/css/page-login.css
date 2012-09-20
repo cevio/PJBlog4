@@ -12,6 +12,8 @@
 .login-area ul li.login-form .password-area .word-tip{height:30px; line-height:30px; color:#999;}
 .login-area ul li.login-form .password-area input{ width:400px; height:30px;}
 .login-area ul li.login-form .password-area .iconfont{ color:#F90}
+.login-area ul li.login-form .password-area .red{ color:#ff0000;}
+.login-area ul li.login-form .password-area .green{ color: #0F0;}
 .plaim-zone{ width: 100%; height: 100%; position:relative;}
 .login-area ul li.login-form .password-area .submit{ width:100px; color:#fff;}
 .login-area ul li.login-form .password-area .login-submit{ text-align:left; margin-top:20px;}
