@@ -16,7 +16,7 @@
                         <div class="edit-info">返回主页的链式标签</div>
                         <div class="action"><a href="javascript:;" class="action-edit" data-id="2"><span class="iconfont">&#355;</span>编辑</a>  <a href="javascript:;" class="action-del"><span class="iconfont">&#356;</span>删除</a></div>
                     </div>
-                    <div class="editzone">df</div>
+                    <div class="editzone fn-clear"></div>
                 </div>
             </div>
             <div class="one items">
@@ -26,7 +26,7 @@
                         <div class="edit-info">返回主页的链式标签</div>
                         <div class="action"><a href="javascript:;" class="action-edit"><span class="iconfont">&#355;</span>编辑</a>  <a href="javascript:;" class="action-del"><span class="iconfont">&#356;</span>删除</a></div>
                     </div>
-                    <div class="editzone">df</div>
+                    <div class="editzone fn-clear"></div>
                 </div>
             </div>
             <div class="two items">
@@ -36,7 +36,7 @@
                         <div class="edit-info">返回主页的链式标签</div>
                         <div class="action"><a href="javascript:;" class="action-edit"><span class="iconfont">&#355;</span>编辑</a>  <a href="javascript:;" class="action-del"><span class="iconfont">&#356;</span>删除</a></div>
                     </div>
-                    <div class="editzone">df</div>
+                    <div class="editzone fn-clear"></div>
                 </div>
             </div>
             <div class="two items">
@@ -46,7 +46,7 @@
                         <div class="edit-info">返回主页的链式标签</div>
                         <div class="action"><a href="javascript:;" class="action-edit"><span class="iconfont">&#355;</span>编辑</a>  <a href="javascript:;" class="action-del"><span class="iconfont">&#356;</span>删除</a></div>
                     </div>
-                    <div class="editzone">df</div>
+                    <div class="editzone fn-clear"></div>
                 </div>
             </div>
             <div class="two items">
@@ -56,7 +56,7 @@
                         <div class="edit-info">返回主页的链式标签</div>
                         <div class="action"><a href="javascript:;" class="action-edit"><span class="iconfont">&#355;</span>编辑</a>  <a href="javascript:;" class="action-del"><span class="iconfont">&#356;</span>删除</a></div>
                     </div>
-                    <div class="editzone">df</div>
+                    <div class="editzone fn-clear"></div>
                 </div>
             </div>
             <div class="one items">
@@ -66,7 +66,7 @@
                         <div class="edit-info">返回主页的链式标签</div>
                         <div class="action"><a href="javascript:;" class="action-edit"><span class="iconfont">&#355;</span>编辑</a>  <a href="javascript:;" class="action-del"><span class="iconfont">&#356;</span>删除</a></div>
                     </div>
-                    <div class="editzone">df</div>
+                    <div class="editzone fn-clear"></div>
                 </div>
             </div>
             <div class="two items">
@@ -76,7 +76,7 @@
                         <div class="edit-info">返回主页的链式标签</div>
                         <div class="action"><a href="javascript:;" class="action-edit"><span class="iconfont">&#355;</span>编辑</a>  <a href="javascript:;" class="action-del"><span class="iconfont">&#356;</span>删除</a></div>
                     </div>
-                    <div class="editzone">df</div>
+                    <div class="editzone fn-clear"></div>
                 </div>
             </div>
             <div class="one items">
@@ -86,7 +86,7 @@
                         <div class="edit-info">返回主页的链式标签</div>
                         <div class="action"><a href="javascript:;" class="action-edit"><span class="iconfont">&#355;</span>编辑</a>  <a href="javascript:;" class="action-del"><span class="iconfont">&#356;</span>删除</a></div>
                     </div>
-                    <div class="editzone">df</div>
+                    <div class="editzone fn-clear"></div>
                 </div>
             </div>
             <div class="two items">
@@ -96,7 +96,7 @@
                         <div class="edit-info">返回主页的链式标签</div>
                         <div class="action"><a href="javascript:;" class="action-edit"><span class="iconfont">&#355;</span>编辑</a>  <a href="javascript:;" class="action-del"><span class="iconfont">&#356;</span>删除</a></div>
                     </div>
-                    <div class="editzone">df</div>
+                    <div class="editzone fn-clear"></div>
                 </div>
             </div>
             <div class="one items">
@@ -106,7 +106,7 @@
                         <div class="edit-info">返回主页的链式标签</div>
                         <div class="action"><a href="javascript:;" class="action-edit"><span class="iconfont">&#355;</span>编辑</a>  <a href="javascript:;" class="action-del"><span class="iconfont">&#356;</span>删除</a></div>
                     </div>
-                    <div class="editzone">df</div>
+                    <div class="editzone fn-clear"></div>
                 </div>
             </div>
             

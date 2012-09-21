@@ -9,10 +9,12 @@ define(["assets/js/core/jQuery"], function(){
 	// map modules
 	config.map("upload", "assets/js/upload");
 	config.map("form", "assets/js/core/form");
+	config.map("tpl-category", "assets/js/tpl/tpl-category");
 	
 	config.ajaxUrl = { assets: {}, server: {} }
 	
 	config.ajaxUrl.server.getCateInfo = "server/category.asp?j=getcateinfo";
+	config.ajaxUrl.server.updateCate = "server/category.asp?j=updatecate"
 	
 	return {
 		status : true,

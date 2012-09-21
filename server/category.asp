@@ -15,7 +15,7 @@
 		
 		callbacks.addcates = function(){
 			var cate_name = req.form.cateName,
-				cate_info = req.form.cateInfo
+				cate_info = req.form.cateInfo;
 		}
 		
 		if ( Session("admin") === true ){

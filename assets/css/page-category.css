@@ -36,6 +36,14 @@
 
 
 .list .items .editzone{}
+.list .items .editzone form{ margin:0; padding:0;}
+.list .items .editzone .cateName{ width:150px; float:left;}
+.list .items .editzone .cateName input{ width:136px;}
+.list .items .editzone .cateInfo{ margin-left:20px; float:left}
+.list .one .editzone .cateInfo input{ width:600px;}
+.list .two .editzone .cateInfo input{ width:450px;}
+.list .items .editzone .cateMore{ margin-left:20px; float:left;}
+.list .items .editzone .cateMore input{ color:#fff; padding:5px 18px;}
 
 .label .box{ padding:0px 10px;}
 .label .box i{ float:left; display:block; width:24px; height:31px;}
@@ -45,3 +53,17 @@
 .tools{ padding:0px 20px; line-height:30px; color:#666; height:30px; border-bottom:1px solid #efefef; padding-bottom:5px;}
 .tools a{ margin-left:5px;}
 .tools .fn-left{ color:#999;}
+
+#updateCategoryInfo{ 
+	position:absolute; background:#fff;
+  	border:1px solid #ccc;
+	box-shadow:1px 1px 3px #aaa;
+}
+
+#updateCategoryInfo .close{ height:30px; line-height:30px; text-align:right; padding:0px 10px; color:#ddd;}
+#updateCategoryInfo a.updateCategoryInfoClose:link, #updateCategoryInfo a.updateCategoryInfoClose:visited{ color:#ddd;}
+#updateCategoryInfo a.updateCategoryInfoClose:hover{ color:#ff5577;}
+#updateCategoryInfo .app{ padding: 5px 10px 10px 10px; color:#666;}
+#updateCategoryInfo .app td{ padding:5px 10px;}
+#updateCategoryInfo .app td.name{ text-align:right;}
+#updateCategoryInfo .app h1{ height:30px; line-height:30px; border-bottom:1px solid #ddd; margin-bottom:10px;}
