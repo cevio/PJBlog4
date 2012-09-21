@@ -10,6 +10,10 @@ define(["assets/js/core/jQuery"], function(){
 	config.map("upload", "assets/js/upload");
 	config.map("form", "assets/js/core/form");
 	
+	config.ajaxUrl = { assets: {}, server: {} }
+	
+	config.ajaxUrl.server.getCateInfo = "server/category.asp?j=getcateinfo";
+	
 	return {
 		status : true,
 		load : function( args ){

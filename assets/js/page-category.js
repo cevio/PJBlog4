@@ -2,7 +2,7 @@
 define(['form'], function(require, exports, module){
 	
 	function init_tpl_cateEdition(jsons){
-		
+		return jsons.data.id;
 	}
 	
 	function init_bindEvents(){
@@ -16,13 +16,14 @@ define(['form'], function(require, exports, module){
 		
 		$("body").on("cate.edit", ".items", function(event, id){
 			var _this = this;
-			$.getJSON("?j=getid", { id: id }, function(jsons){
+			$.getJSON(config.ajaxUrl.server.getCateInfo, { id: id }, function(jsons){
+				console.log(jsons);
 				if ( jsons && jsons.success ){
 					$(_this).trigger("cate.scrollTop", function(){
 						$(this).find(".editzone").html(init_tpl_cateEdition(jsons));
 					});
 				}else{
-					// todo error layer.
+					alert(jsons.error);
 				}
 			});
 		});
