@@ -32,6 +32,7 @@ define(['form'], function(require, exports, module){
 						$(_this).find("input[name='cateIcon']").val(jsons.data.cateIcon);
 						$(_this).find("input[name='cateIsShow'][value='" + (jsons.data.cateIsShow === true ? "1" : "0") + "']").attr("checked", true);
 						$(_this).find("input[name='cateOutLink'][value='" + (jsons.data.cateIsShow === true ? "1" : "0") + "']").attr("checked", true);
+						$(_this).find("input[name='id']").val(id);
 						
 						$(_this).trigger("cate.scrollTop", function(){
 							$(_this).addClass("actived");

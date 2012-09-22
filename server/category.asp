@@ -95,6 +95,49 @@
 			return id;
 		};
 		
+		callbacks.updateCategory = function(id, options){
+			var dbo = require("DBO"),
+				connecte = require("openDataBase");
+				
+			if ( connecte === true ){
+				dbo.update({
+					data: options,
+					table: "blog_category",
+					conn: config.conn,
+					key: "id",
+					keyValue: id
+				});
+			}
+			
+			return true;
+		};
+		
+		callbacks.updatecate = function(){
+			var id = req.form.id,
+				cate_name = req.form.cateName,
+				cate_info = req.form.cateInfo,
+				cate_order = req.form.cateOrder,
+				cate_root = req.form.cateRoot,
+				cate_count = req.form.cateCount,
+				cate_icon = req.form.cateIcon,
+				cate_isshow = req.form.cateIsShow,
+				cate_outlink = req.form.cateOutLink;
+			
+			var status = this.updateCategory(id, {
+				cate_name: cate_name,
+				cate_info: cate_info,
+				cate_order: Number(cate_order) || 0,
+				cate_root: Number(cate_root) || 0,
+				cate_count: Number(cate_count) || 0,
+				cate_icon: cate_icon,
+				cate_show: cate_isshow === "1" ? true : false,
+				cate_outlink: cate_outlink === "1" ? true : false
+			});
+			
+			return { success: status }
+				
+		}
+		
 		if ( Session("admin") === true ){
 			if ( callbacks[j] !== undefined ){
 				return callbacks[j]();

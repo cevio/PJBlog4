@@ -3,7 +3,7 @@ define(function(require, exports){
 	exports.editCategorySimple = function(){
 		return '<form action="' + config.ajaxUrl.server.updateCate + '" method="post"><div class="custom fn-clear">'
 			+		'<div class="cateName"><input type="text" value="" name="cateName" placeholder="分类名.." /></div>'
-			+		'<div class="cateInfo"><input type="text" value="" name="cateInfo" placeholder="分类说明.." /><input type="hidden" name="cateRoot" value="" /></div>'
+			+		'<div class="cateInfo"><input type="text" value="" name="cateInfo" placeholder="分类说明.." /><input type="hidden" name="cateRoot" value="" /><input type="hidden" name="id" value="0" /></div>'
 			+		'<div class="cateMore"><input type="submit" value="提交保存" class="tpl-button-gray" /></div>'
 			+ 		'</div>'
 			+		'<div class="updateCategoryInfo">'
