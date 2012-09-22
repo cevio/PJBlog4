@@ -85,11 +85,12 @@ define(function( require, exports, module ){
 		try{
 			options.rs.Open( "Select * From " + options.table, options.conn, 3, 2 );
 			options.rs.AddNew();
+			(typeof options.callback === "function") && options.callback.call(options.rs);
 			for ( var items in options.data ){
+				console.push(items + ": " + options.data[items]);
 				options.rs(items) = options.data[items];
 			}
 			options.rs.Update();
-			(typeof options.callback === "function") && options.callback.call(options.rs);
 			options.rs.Close();
 		}catch(e){
 			console.push(e.message);

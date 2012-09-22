@@ -3,11 +3,11 @@
 
 .cate-zone{ padding:30px 20px;}
 .list{ color:#888; padding:5px 15px;}
-.list .items{ height:31px; overflow:hidden;}
-.list .items .scroll-wrap{ height:62px; display:block; overflow:hidden;}
-.list .one{ height:31px; line-height:31px; margin-bottom:10px; margin-top:10px; }
-.list .two{ height:31px; line-height:31px; margin-bottom:10px; margin-left:150px; }
-.list .items .view, .list .items .editzone{ height:31px; overflow:hidden;}
+.list .items{ overflow:hidden;}
+.list .items .scroll-wrap{display:block;}
+.list .one{ line-height:31px; margin-bottom:10px; }
+.list .two{ line-height:31px; margin-left:150px; margin-bottom:10px; }
+.list .items .view, .list .items .editzone{ }
 
 .list .one .view{ background:#eee; border-radius:3px; }
 .list .two .view{ background:#EDF9D7; border-radius:3px; }
@@ -31,8 +31,8 @@
 }
 
 .list .items .view .edit-info{ float:left; margin-left:20px;height:31px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; color:#eee; text-shadow:0px 1px 1px #ddd;}
-.list .one .view .edit-info{ width:615px; color:#999; }
-.list .two .view .edit-info{ width:465px; color:#7BAB2E; }
+.list .one .view .edit-info{ width:580px; color:#999; }
+.list .two .view .edit-info{ width:430px; color:#7BAB2E; }
 
 
 .list .items .editzone{}
@@ -50,20 +50,22 @@
 .label .box span{ float:left; display:block; width: 100px; height:31px; overflow: hidden;white-space: nowrap;text-overflow: ellipsis; text-align:center;}
 
 
-.tools{ padding:0px 20px; line-height:30px; color:#666; height:30px; border-bottom:1px solid #efefef; padding-bottom:5px;}
+.tools{ padding:0px 20px; line-height:30px; color:#666; height:30px; border-bottom:1px solid #efefef; margin-bottom:10px;}
 .tools a{ margin-left:5px;}
 .tools .fn-left{ color:#999;}
 
-#updateCategoryInfo{ 
-	position:absolute; background:#fff;
-  	border:1px solid #ccc;
-	box-shadow:1px 1px 3px #aaa;
-}
+.updateCategoryInfo{ background:#fff;border:1px solid #ccc;box-shadow:1px 1px 5px #ccc; margin-bottom:10px; margin-top:2px;}
+.updateCategoryInfo .close{ height:30px; line-height:30px; text-align:right; padding:0px 10px; color:#ddd;}
+.updateCategoryInfo a.updateCategoryInfoClose:link, .updateCategoryInfo a.updateCategoryInfoClose:visited{ color:#ddd;}
+.updateCategoryInfo a.updateCategoryInfoClose:hover{ color:#ff5577;}
+.updateCategoryInfo .app{ padding: 5px 10px 10px 10px; color:#666;}
+.updateCategoryInfo .app td{ padding:5px 10px;}
+.updateCategoryInfo .app td.name{ text-align:right;}
+.updateCategoryInfo .app h1{ height:30px; line-height:30px; border-bottom:1px solid #ddd; margin-bottom:10px;}
+.infoTwo{ margin-left:150px;}
 
-#updateCategoryInfo .close{ height:30px; line-height:30px; text-align:right; padding:0px 10px; color:#ddd;}
-#updateCategoryInfo a.updateCategoryInfoClose:link, #updateCategoryInfo a.updateCategoryInfoClose:visited{ color:#ddd;}
-#updateCategoryInfo a.updateCategoryInfoClose:hover{ color:#ff5577;}
-#updateCategoryInfo .app{ padding: 5px 10px 10px 10px; color:#666;}
-#updateCategoryInfo .app td{ padding:5px 10px;}
-#updateCategoryInfo .app td.name{ text-align:right;}
-#updateCategoryInfo .app h1{ height:30px; line-height:30px; border-bottom:1px solid #ddd; margin-bottom:10px;}
+.cate-add-button{ padding:5px 20px; margin:10px 15px;}
+.cate-add-button:link, .cate-add-button:visited{ color:#fff;}
+.cate-add-button:hover{ color:#fff;}
+
+.action-tools{ clear:both; *zoom:1; padding:30px 0px 10px 0px; border-top:1px solid #eee;}

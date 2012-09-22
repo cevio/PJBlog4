@@ -14,7 +14,8 @@ define(["assets/js/core/jQuery"], function(){
 	config.ajaxUrl = { assets: {}, server: {} }
 	
 	config.ajaxUrl.server.getCateInfo = "server/category.asp?j=getcateinfo";
-	config.ajaxUrl.server.updateCate = "server/category.asp?j=updatecate"
+	config.ajaxUrl.server.updateCate = "server/category.asp?j=updatecate";
+	config.ajaxUrl.server.addCate = "server/category.asp?j=addcates";
 	
 	return {
 		status : true,
