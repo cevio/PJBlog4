@@ -10,6 +10,7 @@ define(["assets/js/core/jQuery"], function(){
 	config.map("upload", "assets/js/upload");
 	config.map("form", "assets/js/core/form");
 	config.map("tpl-category", "assets/js/tpl/tpl-category");
+	config.map("overlay", "assets/js/core/overlay");
 	
 	config.ajaxUrl = { assets: {}, server: {} }
 	

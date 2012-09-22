@@ -147,6 +147,19 @@ define(['form'], function(require, exports, module){
 						
 					parent.trigger("cate.edit", id);
 				});
+				
+//				require.async("overlay", function(){
+//					var el = $.overlay({
+//						content: "大环境看地方哈开发和框架萨丹哈付款静安寺话费卡死话费卡死打诨发科,答复"
+//					});
+//					
+//					el.trigger("overlay.popup");
+//					
+//					el.on("click", function(){
+//						el.trigger("overlay.drop");
+//					});
+//				});
+				
 			});
 		}
 	}
