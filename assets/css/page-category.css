@@ -12,6 +12,10 @@
 .list .one .view{ background:#eee; border-radius:3px; }
 .list .two .view{ background:#EDF9D7; border-radius:3px; }
 
+.list .items .view .action a:link, .list .items .view .action a:visited{ color:#ccc;}
+.list .items .view .action a:hover{ color:#8CAC52;}
+.list .items .view .action .action-del:hover{ color:#ff0000;}
+
 .label{ display:block; float:left; color:#fff; width:150px; height:30px; border-radius:4px 0px 0px 4px;}
 .list .items .view .action{ float:right; margin-right:10px; opacity:0;}
 .list .items:hover .view .action{
@@ -54,6 +58,9 @@
 .tools a{ margin-left:5px;}
 .tools .fn-left{ color:#999;}
 
+.updateCategoryInfo .chooseIconImg, .updateCategoryInfo .iconChooseItem{ width:16px; height:16px; padding:5px; border:1px solid #ddd; border-radius:3px; overflow:hidden;}
+.updateCategoryInfo .iconChooseArea{ width:590px;}
+.updateCategoryInfo .iconChooseArea .iconChooseItem{ display:block; padding:5px; border:1px solid #ddd; margin-right:5px; border-radius:3px; overflow:hidden; width:16px; height:16px; margin-bottom:5px;}
 .updateCategoryInfo{ background:#fff;border:1px solid #ccc;box-shadow:1px 1px 5px #ccc; margin-bottom:10px; margin-top:2px;}
 .updateCategoryInfo .close{ height:30px; line-height:30px; text-align:right; padding:0px 10px; color:#ddd;}
 .updateCategoryInfo a.updateCategoryInfoClose:link, .updateCategoryInfo a.updateCategoryInfoClose:visited{ color:#ddd;}

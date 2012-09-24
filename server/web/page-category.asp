@@ -21,8 +21,8 @@
 			<div class="one items">
             	<div class="scroll-wrap">
                     <div class="view fn-clear">
-                        <div class="label tpl-button-gray"><div class="box"><i></i> <span><%=this("cate_name").value%></span></div></div>
-                        <div class="edit-info"><%=this("cate_info").value%></div>
+                        <div class="label tpl-button-gray"><div class="box"><i></i> <span title="<%=this("cate_name").value%>"><%=this("cate_name").value%></span></div></div>
+                        <div class="edit-info" title="<%=this("cate_info").value%>"><%=this("cate_info").value%></div>
                         <div class="action"><a href="javascript:;" class="action-add" data-id="<%=this("id").value%>"><span class="iconfont">&#410;</span>添加</a> <a href="javascript:;" class="action-edit" data-id="<%=this("id").value%>"><span class="iconfont">&#355;</span>编辑</a>  <a href="javascript:;" class="action-del" data-id="<%=this("id").value%>"><span class="iconfont">&#356;</span>删除</a></div>
                     </div>
                     <div class="editzone fn-clear"></div>
@@ -39,8 +39,8 @@
 			            <div class="two items">
             	<div class="scroll-wrap">
                     <div class="view fn-clear">
-                        <div class="label tpl-button-green"><div class="box"><i></i> <span><%=this("cate_name").value%></span></div></div>
-                        <div class="edit-info"><%=this("cate_info").value%></div>
+                        <div class="label tpl-button-green"><div class="box"><i></i> <span title="<%=this("cate_name").value%>"><%=this("cate_name").value%></span></div></div>
+                        <div class="edit-info" title="<%=this("cate_info").value%>"><%=this("cate_info").value%></div>
                         <div class="action"><a href="javascript:;" class="action-edit" data-id="<%=this("id").value%>"><span class="iconfont">&#355;</span>编辑</a>  <a href="javascript:;" class="action-del" data-id="<%=this("id").value%>"><span class="iconfont">&#356;</span>删除</a></div>
                     </div>
                     <div class="editzone fn-clear"></div>

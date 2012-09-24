@@ -8,7 +8,7 @@
 				dbo = require("DBO"),
 				connecte = require("openDataBase");
 				
-			var cateName, cateInfo, cateOrder, cateRoot, cateCount, cateIcon, cateIsShow, cateOutLink;
+			var cateName, cateInfo, cateOrder, cateRoot, cateCount, cateIcon, cateIsShow, cateOutLink, cateOutLinkText;
 			
 			if ( connecte === true ){
 				dbo.trave({
@@ -23,6 +23,7 @@
 						cateIcon = rs("cate_icon").value;
 						cateIsShow = rs("cate_show").value;
 						cateOutLink = rs("cate_outlink").value;
+						cateOutLinkText = rs("cate_outlinktext").value
 					}
 				});
 				
@@ -36,7 +37,8 @@
 						cateCount: cateCount,
 						cateIcon: cateIcon,
 						cateIsShow: cateIsShow,
-						cateOutLink: cateOutLink
+						cateOutLink: cateOutLink,
+						cateOutLinkText: cateOutLinkText
 					}
 				}
 			}else{
@@ -55,7 +57,8 @@
 				cate_count = req.form.cateCount,
 				cate_icon = req.form.cateIcon,
 				cate_isshow = req.form.cateIsShow,
-				cate_outlink = req.form.cateOutLink;
+				cate_outlink = req.form.cateOutLink,
+				cate_outlinktext = req.form.cateOutLinkText;
 				
 			var status = this.addCategory({
 				cate_name: cate_name,
@@ -65,7 +68,8 @@
 				cate_count: Number(cate_count) || 0,
 				cate_icon: cate_icon,
 				cate_show: cate_isshow === "1" ? true : false,
-				cate_outlink: cate_outlink === "1" ? true : false
+				cate_outlink: cate_outlink === "1" ? true : false,
+				cate_outlinktext: cate_outlinktext
 			});
 			
 			return {
@@ -107,9 +111,11 @@
 					key: "id",
 					keyValue: id
 				});
+				
+				return true;
+			}else{
+				return false;
 			}
-			
-			return true;
 		};
 		
 		callbacks.updatecate = function(){
@@ -121,7 +127,8 @@
 				cate_count = req.form.cateCount,
 				cate_icon = req.form.cateIcon,
 				cate_isshow = req.form.cateIsShow,
-				cate_outlink = req.form.cateOutLink;
+				cate_outlink = req.form.cateOutLink,
+				cate_outlinktext = req.form.cateOutLinkText;
 			
 			var status = this.updateCategory(id, {
 				cate_name: cate_name,
@@ -131,11 +138,50 @@
 				cate_count: Number(cate_count) || 0,
 				cate_icon: cate_icon,
 				cate_show: cate_isshow === "1" ? true : false,
-				cate_outlink: cate_outlink === "1" ? true : false
+				cate_outlink: cate_outlink === "1" ? true : false,
+				cate_outlinktext: cate_outlinktext
 			});
 			
-			return { success: status }
+			return { success: status, data: { id: id }, error: "数据库打开失败" }
 				
+		};
+		
+		callbacks.destorycates = function(){
+			var id = req.query.id,
+				connecte = require("openDataBase");
+				
+			if ( connecte === true ){
+				var len = String(config.conn.Execute("Select Count(*) From blog_category Where cate_root=" + id)(0));
+
+				if ( len === "0" ){
+					try{
+						config.conn.Execute("Delete From blog_category Where id=" + id);
+						return {
+							success: true
+						}
+					}catch(e){
+						return {
+							success: false,
+							error: e.message
+						}
+					}
+				}else{
+					return {
+						success: false,
+						error: "存在二级分类，不能删除。"
+					}
+				}
+				
+			}else{
+				return {
+					success: false,
+					error: "数据库打开失败"
+				}
+			}
+		}
+		
+		callbacks.iconlist = function(){
+			return require.async("icon");
 		}
 		
 		if ( Session("admin") === true ){

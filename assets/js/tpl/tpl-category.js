@@ -11,10 +11,11 @@ define(function(require, exports){
 			+				'<h1 class="fn-clear"><a href="javascript:;" class="updateCategoryInfoClose iconfont fn-right" title="关闭">&#223;</a>其他属性设置</h1>'
 			+				'<table>'
 			+					'<tr><td class="name">排序</td><td class="value"><input type="text" value="" name="cateOrder" placeholder="排序数字.." /></td></tr>'
-			+					'<tr><td class="name">日志数</td><td class="value"><input type="text" value="" name="cateCount" placeholder="日志数.." /></td></tr>'
-			+					'<tr><td class="name">分类图标</td><td class="value"><select name="cateIcon"><option value="0">123</option></select></td></tr>'
-			+					'<tr><td class="name">是否为隐藏分类</td><td class="value"><input type="radio" name="cateIsShow" value="1" /> 是 <input type="radio" name="tcateIsShow" value="0" /> 否</td></tr>'
-			+					'<tr><td class="name">是否为外部链接</td><td class="value"><input type="radio" name="cateOutLink" value="1" /> 是 <input type="radio" name="tcateOutLink" value="0" /> 否</td></tr>'
+			+					'<tr><td class="name">日志数</td><td class="value"><input type="text" value="0" name="cateCount" placeholder="日志数.." /></td></tr>'
+			+					'<tr valign="top"><td class="name">分类图标</td><td class="value"><input type="hidden" value="" name="cateIcon" /> <img src="" class="chooseIconImg" /> <a href="javascript:;" class="iconfont chooseIcon">&#233;</a></td></tr>'
+			+					'<tr><td class="name">是否为隐藏分类</td><td class="value"><input type="radio" name="cateIsShow" value="1" /> 是 <input type="radio" name="tcateIsShow" value="0" checked="checked"  /> 否</td></tr>'
+			+					'<tr><td class="name">是否为外部链接</td><td class="value"><input type="radio" name="cateOutLink" value="1" /> 是 <input type="radio" name="tcateOutLink" value="0" checked="checked" /> 否</td></tr>'
+			+					'<tr><td class="name">外部链接地址</td><td class="value"><input type="text" value="" name="cateOutLinkText" placeholder="外部链接地址.." /></td></tr>'
 			+				'</table>'
 			+			'</div>'
 			+	   '</div>'
@@ -34,5 +35,14 @@ define(function(require, exports){
 		+				'</div>'
         +        	'</div>'
         +    	'</div>';
+	}
+	
+	exports.iconTPL = {
+		global: function( context ){
+			return '<div class="iconChooseArea fn-clear">' + context + '</div>'
+		},
+		items: function( src ){
+			return '<a href="javascript:;" class="iconChooseItem fn-left" data-value="' + src + '"><img src="profile/icons/' + src + '" class="iconChooseItemImg"></a>';
+		}
 	}
 });
