@@ -11,7 +11,7 @@
 	if ( connecte === true ){
 		dbo.trave({
 			conn: config.conn,
-			sql: "Select * From blog_category Where cate_root=0",
+			sql: "Select * From blog_category Where cate_root=0 Order By cate_order Asc",
 			callback: function(rs){
 				if ( rs.Bof || rs.Eof ){
 					console.log("没有数据，请添加");
@@ -31,7 +31,7 @@
 <%
 						dbo.trave({
 							conn: config.conn,
-							sql: "Select * From blog_category Where cate_root=" + rs("id").value,
+							sql: "Select * From blog_category Where cate_root=" + rs("id").value + "  Order By cate_order Asc",
 							callback: function(crs){
 								if ( rs.Bof || rs.Eof ){}else{
 									this.each(function(){

@@ -58,7 +58,7 @@ define(['form', 'overlay'], function(require, exports, module){
 			canPost = false;
 			error = "日志数必须为数字类型。";
 		}else{
-			if ( Number(this.find("input[name='cateCount']").val()) <= 0 ){
+			if ( Number(this.find("input[name='cateCount']").val()) < 0 ){
 				canPost = false;
 				error = "日志数必须大于等于零。";
 			}
