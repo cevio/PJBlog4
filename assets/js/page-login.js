@@ -47,6 +47,7 @@ define(['form'], function(require, exports, module){
 	exports.init = function(){
 		$(function(){
 			ajaxFormBind();
+			$("input[name='password']").focus();
 		});
 	}
 });

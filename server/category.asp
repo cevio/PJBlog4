@@ -138,7 +138,7 @@
 				cate_count: Number(cate_count) || 0,
 				cate_icon: cate_icon,
 				cate_show: cate_isshow === "1" ? true : false,
-				cate_outlink: cate_outlink === "1" ? true : false,
+				cate_outlink: cate_outlink === "1" ? 1 : 0,
 				cate_outlinktext: cate_outlinktext
 			});
 			

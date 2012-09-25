@@ -170,7 +170,7 @@
                         <textarea style="height:100px;"></textarea>
                     </div>
                     <div class="write-tools fn-clear">
-                        <div class="write-tools-list fn-left"><span class="iconfont">&#328;</span> 上传图片 <span class="iconfont">&#391;</span> 添加视频 <span class="iconfont">&#293;</span> 上传附件 <span class="iconfont">&#340;</span> 分享 <a href="?p=writeArticle&mode=add">写完整日志</a></div>
+                        <div class="write-tools-list fn-left"><span class="iconfont">&#328;</span> 上传图片 <span class="iconfont">&#391;</span> 添加视频 <span class="iconfont">&#293;</span> 上传附件 <span class="iconfont">&#340;</span> 分享 <a href="?p=writeArticle">写完整日志</a></div>
                         <input type="submit" value="发表" class="write-article-submit fn-right tpl-button-gray" />
                     </div>
                 </div>

@@ -31,7 +31,7 @@ define(['form', 'overlay'], function(require, exports, module){
 		$(this).find("input[name='cateIcon']").val(jsons.data.cateIcon);
 		$(this).find(".updateCategoryInfo .chooseIconImg").attr("src", "profile/icons/" + jsons.data.cateIcon);
 		$(this).find("input[name='cateIsShow'][value='" + (jsons.data.cateIsShow === true ? "1" : "0") + "']").attr("checked", true);
-		$(this).find("input[name='cateOutLink'][value='" + (jsons.data.cateIsShow === true ? "1" : "0") + "']").attr("checked", true);
+		$(this).find("input[name='cateOutLink'][value='" + (jsons.data.cateOutLink === true ? "1" : "0") + "']").attr("checked", true);
 		$(this).find("input[name='cateOutLinkText']").val(jsons.data.cateOutLinkText);
 	}
 	
