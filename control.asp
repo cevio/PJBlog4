@@ -24,7 +24,6 @@
     	<div class="logo"></div>
         <div class="nav-list">
         	<ul>
-            	<%if ( Session("admin") !== true ){ %><li><a href="default.asp">前台</a></li><%}%>
             	<li><a href="control.asp">首页</a></li>
                 <li><a href="?p=category">分类</a></li>
                 <li><a href="?p=article">日志</a></li>
@@ -34,6 +33,7 @@
             </ul>
         </div>
         <div class="nav-user">
+        	<%if ( Session("admin") !== true ){ %><a href="default.asp">前台</a><%}%>
         	<%if ( Session("admin") === true ){ %><span class="name">sevio</span><%}%>
             <%if ( Session("admin") === true ){ %><a href="javascript:;" class="item">设置<ul><li>全局设置</li><li>修改密码</li></ul></a><%}%>
             <a href="javascript:;">官方</a>
