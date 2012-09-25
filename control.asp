@@ -24,6 +24,7 @@
     	<div class="logo"></div>
         <div class="nav-list">
         	<ul>
+            	<%if ( Session("admin") !== true ){ %><li><a href="default.asp">前台</a></li><%}%>
             	<li><a href="control.asp">首页</a></li>
                 <li><a href="?p=category">分类</a></li>
                 <li><a href="?p=article">日志</a></li>
