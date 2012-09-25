@@ -98,7 +98,7 @@
 }
 .xheDialog textarea{font-size:12px;resize:none;border:1px solid #ccc;}
 .xheDialog input[type=text]{padding:1px;width:160px;border-color:#ABADB3;}
-.xheDialog input[type=button]{margin:0;border-color:#fff #888 #888 #fff;background:#F0F0F0;cursor:pointer;font-size:13px;}
+.xheDialog input[type=button]{margin:0;border-color:#fff #888 #888 #fff;background:#F0F0F0;cursor:pointer;font-size:13px; padding:0px 10px;}
 .xheDialog input[type=file]{font-size:13px;}
 .xheDialog input[type=checkbox]{border:0;}
 .xheDialog select{margin:0;border:1px #ABADB3 solid;}
