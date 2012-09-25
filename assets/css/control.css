@@ -621,3 +621,7 @@ h3{font-weight:bold;margin:10px 0px; height:30px; line-height:30px;}
 .fixed .dialog .content{ padding:15px; color:#666; height:99px;}
 .fixed .dialog .bom{ height:40px; padding:0px 15px; text-align:right;}
 .fixed .dialog .bom .tpl-button-blue{ color:#fff; padding:4px 20px;}
+
+.fn-wordWrap{
+	overflow: hidden;white-space: nowrap;text-overflow: ellipsis;
+}

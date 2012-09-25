@@ -11,6 +11,7 @@ define(["assets/js/core/jQuery"], function(){
 	config.map("form", "assets/js/core/form");
 	config.map("tpl-category", "assets/js/tpl/tpl-category");
 	config.map("overlay", "assets/js/core/overlay");
+	config.map("editor", "assets/js/lib/xheditor/editor");
 	
 	config.ajaxUrl = { assets: {}, server: {} }
 	

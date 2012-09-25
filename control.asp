@@ -26,7 +26,7 @@
         	<ul>
             	<li><a href="control.asp">首页</a></li>
                 <li><a href="?p=category">分类</a></li>
-                <li><a href="">日志</a></li>
+                <li><a href="?p=article">日志</a></li>
                 <li><a href="">主题</a></li>
                 <li><a href="">插件</a></li>
                 <li><a href="">文档</a></li>
@@ -49,7 +49,7 @@
 		try{
 			include("server/web/page-" + checkStatusAndCustomPage());
 		}catch(e){
-			console.log("未找到模板。");
+			console.log("未找到模板。 [" + e.message + "]");
 		}
 	%>
 </div>

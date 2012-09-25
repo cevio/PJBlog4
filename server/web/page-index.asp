@@ -12,7 +12,7 @@
                 <div class="toolaction fn-clear">
                 	<a href=""><span class="iconfont">&#336;</span> 主页</a>
                 	<a href=""><span class="iconfont">&#355;</span> 设置</a>
-                	<a href=""><span class="iconfont">&#291;</span> 日志</a>
+                	<a href="?p=article"><span class="iconfont">&#291;</span> 日志</a>
                     <a href="?p=category"><span class="iconfont">&#388;</span> 分类</a>
                     <a href=""><span class="iconfont">&#343;</span> 评论</a>
                     <a href=""><span class="iconfont">&#359;</span> 留言</a>
@@ -170,7 +170,7 @@
                         <textarea style="height:100px;"></textarea>
                     </div>
                     <div class="write-tools fn-clear">
-                        <div class="write-tools-list fn-left"><span class="iconfont">&#328;</span> 上传图片 <span class="iconfont">&#391;</span> 添加视频 <span class="iconfont">&#293;</span> 上传附件 <span class="iconfont">&#340;</span> 分享</div>
+                        <div class="write-tools-list fn-left"><span class="iconfont">&#328;</span> 上传图片 <span class="iconfont">&#391;</span> 添加视频 <span class="iconfont">&#293;</span> 上传附件 <span class="iconfont">&#340;</span> 分享 <a href="?p=writeArticle&mode=add">写完整日志</a></div>
                         <input type="submit" value="发表" class="write-article-submit fn-right tpl-button-gray" />
                     </div>
                 </div>

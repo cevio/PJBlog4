@@ -1,0 +1,50 @@
+@charset "utf-8";
+/* CSS Document */
+
+.article-zone{ padding:20px;}
+h3{ border-bottom:1px solid #eee;}
+.write-zone{ margin:10px 0px;}
+.maginbom{ margin-bottom:10px;}
+.log-title{ height:30px; line-height:30px;}
+.log-title input{ width:905px; text-align:center; font-weight:bold; color:#000;}
+.log-cate{
+	background-color: #ffffff;border: 1px solid #cccccc;border-radius:3px;padding:5px 10px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+     -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+       -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+          transition: border linear 0.2s, box-shadow linear 0.2s;	  
+}
+.log-cate .log-cate-title{ width:118px; border-right:1px solid #ccc;}
+.log-cate .log-cate-content{ width:767px; border-left:1px solid #ccc; margin-left:-1px; padding:0px 0px 0px 10px; color:#777;}
+.log-cate .log-cate-title .import{ color:#000; font-weight:bold;}
+.log-cate .log-cate-title .gray{ display:block; color:#ccc;}
+
+
+.log-cate .log-cate-content li{ margin-bottom:5px;}
+.log-cate .log-cate-content .cate-name{ display:block; width:60px; height:24px; line-height:24px; text-align:center; padding:0px 10px; cursor:pointer; border-bottom: 1px solid #fff;}
+.log-cate .log-cate-content .cate-one{ float:left; margin-right:20px; color:#52A152;}
+.log-cate .log-cate-content .cate-two{ float:left; width:665px; color:#999;}
+.log-cate .log-cate-content .cate-two li{ float:left; margin-left: 10px;}
+.log-cate .log-cate-content .cate-one .cate-name{ font-weight:bold; text-align: center;}
+.log-cate .log-cate-content .cate-choosed{ 
+	border: none;
+	background-color: #52A152;
+	background-image: -webkit-linear-gradient(top,#5FBE5F,#52A152);
+	background-image: -moz-linear-gradient(top,#5FBE5F,#52A152);
+	background-image: -ms-linear-gradient(top,#5FBE5F,#52A152);
+	border-bottom: 1px solid #417F41;
+	text-shadow: #52A152 0 -1px 0;
+	border-radius:3px;
+	color:#fff;
+}
+
+.log-content{ position:relative; margin-top:40px;}
+.log-content .head{position:absolute; top:-31px; height:31px; width:100%;}
+.log-content .head .tags{ width:200px; padding-right:12px;}
+.log-content .head .tags input{ width:100%;}
+.log-content .tip-title{ border:1px solid #ccc; border-bottom:1px solid #fff; height:31px; line-height:31px; background:#fff; border-radius:3px 3px 0 0; padding:0px 15px; font-weight:bold;}
+.log-actions{}
+.log-submit{ padding:5px 15px; color:#fff;}
