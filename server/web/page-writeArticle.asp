@@ -29,7 +29,7 @@
 <div class="tpl-space fn-clear">
 	<div class="article-zone">
     	<div class="write-area">
-        	<form action="" method="post" style="margin:0; padding:0;">
+        	<form action="server/article.asp?j=add" method="post" style="margin:0; padding:0;">
                 <h3><span class="iconfont">&#367;</span> <%console.log( mode === "add" ? "新建日志" : "编辑日志" )%></h3>
                 <div class="write-zone">
                     <div class="log-title maginbom"><input type="text" value="" name="log_title" placeholder="日志标题" /></div>
