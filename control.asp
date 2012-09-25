@@ -36,7 +36,7 @@
         	<%if ( Session("admin") === true ){ %><span class="name">sevio</span><%}%>
             <%if ( Session("admin") === true ){ %><a href="javascript:;" class="item">设置<ul><li>全局设置</li><li>修改密码</li></ul></a><%}%>
             <a href="javascript:;">官方</a>
-            <%if ( Session("admin") === true ){ %><a href="javascript:;">退出</a><%}%>
+            <%if ( Session("admin") === true ){ %><a href="server/logout.asp">退出</a><%}%>
         </div>
     </div>   
 </div>
