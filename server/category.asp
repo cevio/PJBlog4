@@ -72,6 +72,9 @@
 				cate_outlinktext: cate_outlinktext
 			});
 			
+			var cache = require.async("cache");	
+				cache.build("category");
+			
 			return {
 				success: true,
 				data: {
@@ -142,6 +145,9 @@
 				cate_outlinktext: cate_outlinktext
 			});
 			
+			var cache = require.async("cache");	
+				cache.build("category");
+			
 			return { success: status, data: { id: id }, error: "数据库打开失败" }
 				
 		};
@@ -156,6 +162,8 @@
 				if ( len === "0" ){
 					try{
 						config.conn.Execute("Delete From blog_category Where id=" + id);
+						var cache = require.async("cache");	
+							cache.build("category");
 						return {
 							success: true
 						}

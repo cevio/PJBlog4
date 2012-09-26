@@ -43,6 +43,11 @@
 				log_updatetime: time
 			});
 			
+			var cache = require.async("cache");
+				
+				cache.build("article_pages");
+				cache.build("article", Number(status));
+			
 			return {
 				success: true,
 				data: {
@@ -89,6 +94,9 @@
 				log_tags: log_tags,
 				log_updatetime: time
 			});
+			
+			var cache = require.async("cache");
+				cache.build("article", Number(status));
 			
 			return {
 				success: true,

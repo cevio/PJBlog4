@@ -64,6 +64,7 @@
 	// 缓存模块
 	map["cache_global"] = "server/module/global";
 	map["cache_category"] = "server/module/category";
+	map["cache_article"] = "server/module/article";
 	
 /*
  * 系统默认变量
@@ -74,6 +75,8 @@
 	config.user = {
 		login : false
 	}
+	
+	config.page = { assets: {}, server: {} };
  
 /*
  * 全局ASA文件加载
