@@ -7,4 +7,3 @@
 </div>
 </body>
 </html>
-<%console.debug();%>
