@@ -61,8 +61,10 @@ define(['editor', 'form', 'overlay'], function(require, exports, module){
 					sending = false;
 					if ( jsons && jsons.success ){
 						tipPopUp("保存日志成功了。");
-						$("form").resetForm();
 						var vals = $("input[name='log_category']").val();
+						if ( $("form input[name='id']").val().length === 0 ) { 
+							$("form").resetForm();
+						}
 						if ( vals.length > 0 ){
 							$(".log-cate .log-cate-content .cate-name[data-id='" + vals + "']").trigger("click");
 						}

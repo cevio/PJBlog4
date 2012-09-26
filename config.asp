@@ -47,6 +47,7 @@
 	map["openDataBase"] = "server/dataBaseOperation";
 	map["cache"] = "server/cache";
 	map["icon"] = "server/getIcons";
+	map["tags"] = "server/tags";
 	
 	map["member"] = "server/member";
 	map["article"] = "server/article";
