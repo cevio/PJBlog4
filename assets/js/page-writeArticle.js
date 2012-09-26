@@ -26,53 +26,57 @@ define(['editor', 'form', 'overlay'], function(require, exports, module){
 		$overlayer.trigger("overlay.dialog.popup", callback);
 	}
 	
+	function init_postArticle(){
+		$("form").ajaxForm({
+			dataType: "json",
+			beforeSubmit: function(){
+				if ( sending === false ){
+					if ( $("input[name='log_title']").val().length === 0 ){
+						tipPopUp("亲，您还没有填写标题呢！");
+						return false;
+					}
+					
+					if ( $("input[name='log_category']").val().length === 0 ){
+						tipPopUp("亲，您还没有选择分类呢！");
+						return false;
+					}
+					
+					if ( $("textarea[name='log_content']").val().length === 0 ){
+						tipPopUp("亲，您不打算写日志了吗？");
+						return false;
+					}
+					
+					sending = true;
+				}else{
+					tipPopUp("亲，请不要重复提交好吗？");
+					return false;
+				}
+			},
+			success: function(jsons){
+				sending = false;
+				if ( jsons && jsons.success ){
+					tipPopUp("保存日志成功了。");
+					var vals = $("input[name='log_category']").val();
+					if ( $("form input[name='id']").val().length === 0 ) { 
+						$("form").resetForm();
+					}
+					if ( vals.length > 0 ){
+						$(".log-cate .log-cate-content .cate-name[data-id='" + vals + "']").trigger("click");
+					}
+				}else{
+					tipPopUp(jsons.error);
+				}
+			}
+		});
+	}
+	
 	return {
 		init: function(){
 			init_choose_cates();
 			$("textarea").xheditor({
 				skin: "nostyle"
 			});
-			$("form").ajaxForm({
-				dataType: "json",
-				beforeSubmit: function(){
-					if ( sending === false ){
-						if ( $("input[name='log_title']").val().length === 0 ){
-							tipPopUp("亲，您还没有填写标题呢！");
-							return false;
-						}
-						
-						if ( $("input[name='log_category']").val().length === 0 ){
-							tipPopUp("亲，您还没有选择分类呢！");
-							return false;
-						}
-						
-						if ( $("textarea[name='log_content']").val().length === 0 ){
-							tipPopUp("亲，您不打算写日志了吗？");
-							return false;
-						}
-						
-						sending = true;
-					}else{
-						tipPopUp("亲，请不要重复提交好吗？");
-						return false;
-					}
-				},
-				success: function(jsons){
-					sending = false;
-					if ( jsons && jsons.success ){
-						tipPopUp("保存日志成功了。");
-						var vals = $("input[name='log_category']").val();
-						if ( $("form input[name='id']").val().length === 0 ) { 
-							$("form").resetForm();
-						}
-						if ( vals.length > 0 ){
-							$(".log-cate .log-cate-content .cate-name[data-id='" + vals + "']").trigger("click");
-						}
-					}else{
-						tipPopUp(jsons.error);
-					}
-				}
-			})
+			init_postArticle();
 		}
 	}
 });

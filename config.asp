@@ -61,6 +61,10 @@
 	// handler处理模块映射
 	map["cacheHandle"] = "profile/handler/cache";
 	
+	// 缓存模块
+	map["cache_global"] = "server/module/global";
+	map["cache_category"] = "server/module/category";
+	
 /*
  * 系统默认变量
  * 不允许修改和赋值

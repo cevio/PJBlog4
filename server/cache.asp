@@ -60,15 +60,20 @@ define(function(require){
 			function getFromDataBase(appSQL){
 				try{
 					var dbo = require.async("DBO"),
-						arr;
-
-					dbo.trave({
-						sql: appSQL,
-						conn: config.conn,
-						callback: function(rs){
-							arr = object2array(this.getRows());
-						}
-					});
+						connecte = require.async("openDataBase"),
+						arr = [];
+						
+					if ( connecte === true ){
+						dbo.trave({
+							sql: appSQL,
+							conn: config.conn,
+							callback: function(rs){
+								arr = object2array(this.getRows());
+							}
+						});
+					}else{
+						console.push("数据库打开失败");
+					}
 					
 					return arr;
 				}catch(e){
