@@ -26,17 +26,30 @@
         </div>
         <div id="main">
 <%
-			var article = require("cache_article");
-
+				var article = require("cache_article"),
+					date = require("DATE");
 				for ( var articles = 0 ; articles < article.length ; articles++ ){
 %>
-				<h2><%=article[articles].log_title%></h2>
-                <p><%=article[articles].log_content%></p>
+					<h2><a href="article.asp?id=<%=article[articles].id%>"><%=article[articles].log_title%></a></h2>
+                	<p><%=article[articles].log_content%></p>
+                    <div style="margin-left:30px;">Tags: 
+                    	<%
+							for ( var tagitems = 0 ; tagitems < article[articles].log_tags.length ; tagitems++ ){
+						%>
+                        		<a href="tags.asp?id=<%=article[articles].log_tags[tagitems].id%>"><%=article[articles].log_tags[tagitems].name%></a> 
+                        <%
+							}
+						%>
+                    </div>
+                    <p class="post-footer align-right">					
+                        <a href="index.html" class="readmore">Read more</a>
+                        <a href="index.html" class="comments">Views (<%=article[articles].log_views%>)</a>
+                        <span class="date"><%=date.format(article[articles].log_posttime, "y-m-d h:i:s")%> - <%=date.format(article[articles].log_updatetime, "y-m-d h:i:s")%></span>	
+                    </p>
 <%
 				}
 %>
         </div>
-        
-        <!-- content-wrap ends here --> 
+
     </div>
 <%include(config.params.themeFolder + "/footer")%>
