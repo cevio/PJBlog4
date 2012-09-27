@@ -76,3 +76,6 @@ require(['assets/js/config'], function( custom ){
 </script>
 </body>
 </html>
+<%
+	CloseConnect();
+%>

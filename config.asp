@@ -84,4 +84,15 @@
  * 之后系统将自动创建该文件
  */
  	asa();
+	
+	function CloseConnect(){
+		try{
+			if ( config.conn !== null ){
+				config.conn.Close();
+				config.conn = null;
+			}
+		}catch(error){
+			console.push(error.message);
+		}
+	}
 %>

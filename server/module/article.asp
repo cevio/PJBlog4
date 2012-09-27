@@ -16,10 +16,8 @@ define(function(require, exports, module){
 			keeper = [];
 			
 		for ( var j = 0 ; j < tagStrArrays.length ; j++ ){
-			var rets = module_tags_require.readTag( tagStrArrays[j] );
-			if ( rets.success === true ){
-				keeper.push({ id: Number(tagStrArrays[j]), name: rets.data.name });
-			}
+			var rets = module_tags_require.readTagFromCache( Number(tagStrArrays[j]) );
+				keeper.push({ id: Number(tagStrArrays[j]), name: rets });
 		}
 		return keeper;
 	}

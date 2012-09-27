@@ -11,4 +11,6 @@
 	}
 	
 	include("profile/themes/" + config.params.theme + "/default.asp");
+	
+	CloseConnect();
 %>

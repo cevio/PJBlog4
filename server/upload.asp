@@ -5,4 +5,5 @@ require(["UPLOAD"], function(upload){
 	console.log(JSON.stringify(route));
 	
 });
+CloseConnect();
 %>
