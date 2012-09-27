@@ -1,14 +1,15 @@
 <%
 define(function(require, exports, module){
-	exports.randoms = function(l){
-		var Str = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 
-			tmp = "";
+	exports.randoms = function(n){
+		var chars = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'],
+			res = "";
 			
-		for( var i = 0 ; i < l ; i++ ) { 
-			tmp += Str.charAt( Math.ceil(Math.random() * 100000000) % Str.length ); 
+		for(var i = 0; i < n ; i ++) {
+			var id = Math.ceil(Math.random() * (chars.length - 1));
+			res += chars[id];
 		}
-		
-		return tmp;
+			
+		return res;
 	}
 	
 	exports.localSite = function(){
@@ -20,5 +21,141 @@ define(function(require, exports, module){
 		if ( userip == "undefined" ) userip = String(Request.ServerVariables("REMOTE_ADDR")).toLowerCase();
 		return userip;
 	}
+	
+	exports.SQLStr = function( str ){
+		var reglist = [
+			[/(w)(here)/ig, "$1h&#101;re"],
+			[/(s)(elect)/ig, "$1el&#101;ct"],
+			[/(i)(nsert)/ig, "$1ns&#101;rt"],
+			[/(c)(reate)/ig, "$1r&#101;ate"],
+			[/(d)(rop)/ig, "$1ro&#112;"],
+			[/(a)(lter)/ig, "$1lt&#101;r"],
+			[/(d)(elete)/ig, "$1el&#101;te"],
+			[/(u)(pdate)/ig, "$1p&#100;ate"],
+			[/(\s)(or)/ig, "$1o&#114;"],
+			[/(java)(script)/ig, "$1scri&#112;t"],
+			[/(j)(script)/ig, "$1scri&#112;t"],
+			[/(vb)(script)/ig, "$1scri&#112;t"],
+			[/(expression)/ig, "e&#173;pression"],
+			[/(c)(ookie)/ig, "&#99;ookie"],
+			[/(Object)/ig, "&#79;bject"],
+			[/(script)/ig, "scri&#112;t"]
+		];
+		
+		for ( var i = 0 ; i < reglist.length ; i++ ){
+			str = str.replace( reglist[0], reglist[1] );
+		}
+		
+		return str;
+	}
+	
+	exports.unSQLStr = function( str ){
+		var reglist = [
+			[/(w)(h&#101;re)/ig, "$1here"],
+			[/(s)(el&#101;ct)/ig, "$1elect"],
+			[/(i)(ns&#101;rt)/ig, "$1nsert"],
+			[/(c)(r&#101;ate)/ig, "$1reate"],
+			[/(d)(ro&#112;)/ig, "$1rop"],
+			[/(a)(lt&#101;r)/ig, "$1lter"],
+			[/(d)(el&#101;te)/ig, "$1elete"],
+			[/(u)(p&#100;ate)/ig, "$1pdate"],
+			[/(\s)(o&#114;)/ig, "$1or"],
+			[/(java)(scri&#112;t)/ig, "$1script"],
+			[/(j)(scri&#112;t)/ig, "$1script"],
+			[/(vb)(scri&#112;t)/ig, "$1script"],
+			[/(e&#173;pression)/ig, "expression"],
+			[/&#99;(ookie)/ig, "c$1"],
+			[/&#79;(bject)/ig, "O$1"],
+			[/(scri)&#112;(t)/ig, "$1p$2"]
+		];
+		
+		for ( var i = 0 ; i < reglist.length ; i++ ){
+			str = str.replace( reglist[0], reglist[1] );
+		}
+		
+		return str;
+	}
+	
+	exports.HTMLStr = function( str ){
+		var reglist = [
+			[/\</g, "&#60;"],
+			[/\>/g, "&#62;"]
+		];
+		
+		for ( var i = 0 ; i < reglist.length ; i++ ){
+			str = str.replace( reglist[0], reglist[1] );
+		}
+		
+		return str;
+	}
+	
+	exports.unHTMLStr = function( str ){
+		var reglist = [
+			[/&#60;/g, "<"],
+			[/&#62;/g, ">"]
+		];
+		
+		for ( var i = 0 ; i < reglist.length ; i++ ){
+			str = str.replace( reglist[0], reglist[1] );
+		}
+		
+		return str;
+	}
+	
+	exports.textareaStr = function( str ){
+		var reglist = [
+			[/textarea/ig, "t&#101;xtarea"]
+		];
+		
+		for ( var i = 0 ; i < reglist.length ; i++ ){
+			str = str.replace( reglist[0], reglist[1] );
+		}
+		
+		return str;
+	}
+	
+	exports.unTextareaStr = function( str ){
+		var reglist = [
+			[/t&#101;xtarea/ig, "textarea"]
+		];
+		
+		for ( var i = 0 ; i < reglist.length ; i++ ){
+			str = str.replace( reglist[0], reglist[1] );
+		}
+		
+		return str;
+	}
+	
+	/*
+	 * s: 字符串
+	 * n: 切割字数
+	 * c: 是否使用中文编排
+	 * r: 省略的符号
+	 */
+	exports.cutStr = function( s, n, c, r ){
+		var _s = "", j = 0;
+		for ( var i = 0 ; i < s.length ; i++ ){
+			var t = s.charAt(i);
+				if ( c ){
+					var g = /[^\u4E00-\u9FA5]/g.test(t);
+						if ( g && ( j + 1 <= n ) ){
+							j++;
+							_s += t;
+						}else{
+							if ( j + 2 <= n ){ 
+								j = j + 2; 
+								_s += t;
+							}else{ break; }
+						}
+				}else{
+					if ( j + 1 <= n ){ 
+						j++; 
+						_s += t; 
+					}else{ break; }
+				}
+		}
+		if ( _s != s ){ _s += (r || "...") };
+		return _s;
+	}	
 });
 %>

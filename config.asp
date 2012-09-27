@@ -14,6 +14,7 @@
 	config.access = "profile/PBlog4/PJBlog4.asp"; // 数据库路径
 	config.cookie = "PJBlog4"; // cookie 名称
 	config.cacheAccess = "profile/caches"; // 缓存文件夹名
+	config.platform = "http://platform.pjhome.net";
 	
 /*
  * 配置debug调用模块智能选择函数
@@ -84,7 +85,12 @@
  * 之后系统将自动创建该文件
  */
  	asa();
-	
+
+/*
+ * 数据库关闭
+ * 尝试关闭数据库方法。一般写在系统结束末尾。
+ * 请谨慎使用此方法。
+ */	
 	function CloseConnect(){
 		try{
 			if ( config.conn !== null ){

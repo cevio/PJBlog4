@@ -3,6 +3,11 @@ define(function(require){
 	var cacheMode = require.async("cacheHandle"),
 		fso = require.async("FSO"),
 		stream = require.async("STREAM");
+		
+	function cacheTemplateFile( context ){
+		var percent = "%";
+		return '<' + percent + '\ndefine(function(){ \n    return ' + context + ';\n});\n' + percent + '>';
+	}
 	
 	if ( cacheMode === undefined ){
 		console.push(selector(cacheHandle) + " 模块未知，请确认该模块是否存在或者符合规范。");
@@ -34,7 +39,7 @@ define(function(require){
 			}
 			
 			function createAppFile(appKeyName, appKeyID){
-				return createAppName(appKeyName, appKeyID) + ".cce";
+				return createAppName(appKeyName, appKeyID) + ".asp";
 			}
 			
 			function getFromApplication(appKeyName, appKeyID){
@@ -50,7 +55,7 @@ define(function(require){
 			function getFromFiles(appKeyName, appKeyID){
 				var file = config.cacheAccess + "/" + createAppFile(appKeyName, appKeyID);
 				if ( fso.exsit(file) ){
-					var arr = new Function("return " + stream.load(file))();
+					var arr = require.async(file);
 					return arr;
 				}else{
 					return null;
@@ -102,7 +107,7 @@ define(function(require){
 			
 			function setFile(dataArray, appKeyName, appKeyID){
 				try{
-					stream.save(JSON.stringify(saveFileForDate(dataArray)), config.cacheAccess + "/" + createAppFile(appKeyName, appKeyID));
+					stream.save(cacheTemplateFile(JSON.stringify(saveFileForDate(dataArray))), config.cacheAccess + "/" + createAppFile(appKeyName, appKeyID));
 					return true;
 				}catch(e){
 					return false;
