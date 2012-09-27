@@ -81,9 +81,28 @@ define(function(require){
 				}
 			}
 			
+			function saveFileForDate( datas ){
+				var ret = [];
+				for ( var i = 0 ; i < datas.length ; i++ ){
+					var value = datas[i], 
+						tmpDate = [];
+						
+					for ( var j = 0 ; j < value.length ; j++ ){
+						if ( typeof value[j] === "date" ){
+							value[j] = (new Date( value[j] )).getTime();
+						}
+						tmpDate.push(value[j]);
+					}
+					
+					ret.push(tmpDate);
+				}
+				
+				return ret;
+			}
+			
 			function setFile(dataArray, appKeyName, appKeyID){
 				try{
-					stream.save(JSON.stringify(dataArray), config.cacheAccess + "/" + createAppFile(appKeyName, appKeyID));
+					stream.save(JSON.stringify(saveFileForDate(dataArray)), config.cacheAccess + "/" + createAppFile(appKeyName, appKeyID));
 					return true;
 				}catch(e){
 					return false;
