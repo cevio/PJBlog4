@@ -11,7 +11,7 @@
                 </div>
                 <div class="toolaction fn-clear">
                 	<a href=""><span class="iconfont">&#336;</span> 主页</a>
-                	<a href=""><span class="iconfont">&#355;</span> 设置</a>
+                	<a href="?p=globalConfigure"><span class="iconfont">&#355;</span> 设置</a>
                 	<a href="?p=article"><span class="iconfont">&#291;</span> 日志</a>
                     <a href="?p=category"><span class="iconfont">&#388;</span> 分类</a>
                     <a href=""><span class="iconfont">&#343;</span> 评论</a>
@@ -163,7 +163,7 @@
     <div class="tpl-content fn-left">
     	<div class="tpl-content-zone">
         	<form action="" method="post" onsubmit="return false;">
-                <h3>快速发表新日志</h3>
+                <h3><span class="iconfont">&#367;</span> 快速发表新日志</h3>
                 <div class="write-article">
                     
                     <div class="write-article-form">
