@@ -17,6 +17,7 @@
 				blog_global.nickname = rs("nickname").value;
 				blog_global.webstatus = rs("webstatus").value;
 				blog_global.articleprivewlength = rs("articleprivewlength").value;
+				blog_global.articleperpagecount = rs("articleperpagecount").value;
 			}
 		});
 %>
@@ -71,6 +72,10 @@
             	<tr>
                 	<td class="key">日志预览长度</td>
                     <td class="keyvalue"><input type="text" value="<%=blog_global.articleprivewlength%>" name="articleprivewlength" class="shorter"></td>
+                </tr>
+                <tr>
+                	<td class="key">每页日志数量</td>
+                    <td class="keyvalue"><input type="text" value="<%=blog_global.articleperpagecount%>" name="articleperpagecount" class="shorter"></td>
                 </tr>
             </table>
         </fieldset>

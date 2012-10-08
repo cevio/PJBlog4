@@ -1,9 +1,10 @@
 <%
 define(function(require, exports, module){
 	var cache = require("cache"),
-		sys_cache_articlePages = cache.load("article_pages");
+		sys_cache_articlePages = cache.load("article_pages"),
+		sys_cache_global = cache.load("global");
 		
-	var perPage = 10;
+	var perPage = sys_cache_global[0][10];
 	
 	var arrays = [], 
 		articleIdFrom = 0, 

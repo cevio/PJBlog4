@@ -12,6 +12,7 @@ http.async(function(req){
 			qq_appid = req.form.qq_appid,
 			qq_appkey = req.form.qq_appkey,
 			articleprivewlength = req.form.articleprivewlength,
+			articleperpagecount = req.form.articleperpagecount,
 			error = "处理过程中发生错误。";
 			
 		if ( webstatus === "1" ){
@@ -28,7 +29,8 @@ http.async(function(req){
 			webstatus: webstatus,
 			qq_appid: qq_appid,
 			qq_appkey: qq_appkey,
-			articleprivewlength: articleprivewlength
+			articleprivewlength: articleprivewlength,
+			articleperpagecount: articleperpagecount
 		});
 		
 		if ( ret === true ){
