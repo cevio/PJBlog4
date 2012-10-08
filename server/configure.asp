@@ -33,6 +33,8 @@ http.async(function(req){
 		
 		if ( ret === true ){
 			error = "";
+			var cache = require.async("cache");
+				cache.build("global");
 		}
 		
 		return {
@@ -46,7 +48,7 @@ http.async(function(req){
 			connecte = require("openDataBase");
 			
 		if ( connecte === true ){
-			dbo.add({ data: options, table: "blog_global", conn: config.conn });
+			dbo.update({ data: options, table: "blog_global", conn: config.conn, key: "id", keyValue: "1" });
 			return true;
 		}else{
 			return false;
