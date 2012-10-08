@@ -43,17 +43,18 @@
                 </tr>
                 <tr>
                 	<td class="key">网站地址</td>
-                    <td class="keyvalue"><input type="text" value="<%=blog_global.website%>" name="website" class="long"></td>
+                    <td class="keyvalue"><input type="text" value="<%=blog_global.website%>" name="website" class="long"><div class="info">示例：http://pjhome.net http://pjhome.net/web 请不要在最好添加斜线，以保证系统对路径处理的统一性。</div></td>
                 </tr>
                 <tr>
                 	<td class="key">网站状态</td>
-                    <td class="keyvalue"><input type="radio" value="1" name="webstatus" <%=blog_global.webstatus === true ? "checked" : ""%> /> 开放 <input type="radio" value="0" name="webstatus" <%=blog_global.webstatus !== true ? "checked" : ""%> /> 关闭</td>
+                    <td class="keyvalue"><input type="radio" value="1" name="webstatus" <%=blog_global.webstatus === true ? "checked" : ""%> /> 开放 <input type="radio" value="0" name="webstatus" <%=blog_global.webstatus !== true ? "checked" : ""%> /> 关闭<div class="info">如果选择关闭，网站将无法访问。但是可以通过输入后台地址进行访问，来解除整站限制。<br /><span>选择需慎重。</span></div></td>
                 </tr>
             </table>
         </fieldset>
         
         <fieldset>
         	<legend>QQ登入设置</legend>
+            <p class="info">dasf</p>
             <table>
             	<tr>
                 	<td class="key">QQ APP ID</td>

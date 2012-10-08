@@ -634,11 +634,12 @@ h3{font-weight:bold;margin:10px 0px; height:30px; line-height:30px;}
 
 fieldset{ border:1px solid #eee; border-radius:3px; padding:15px 20px; margin-bottom:20px;}
 fieldset legend{ margin:0px 10px; padding:0px 5px; color:#1E7BB3; height:26px; line-height:26px;}
+fieldset p.info{ color:#999; padding:0px 10px;}
 fieldset table{ width:100%;}
-fieldset table td{ height:26px; line-height:26px; padding:5px 10px;}
+fieldset table td{ height:26px; line-height:26px; padding:5px 10px; vertical-align: top;}
 fieldset table td.key{ width:100px;}
-fieldset table td.key .info{ color:#dcdcdc;}
-fieldset table td.key .info span{ color:#3999D2;}
+fieldset table td .info{ color:#dcdcdc;}
+fieldset table td .info span{ color: #E46650;}
 fieldset table td.keyvalue{ text-align:left;}
 fieldset table td .long{ width:400px;}
 fieldset table td .short{ width:100px;}

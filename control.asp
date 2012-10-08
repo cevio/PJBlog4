@@ -36,7 +36,7 @@
         	<%if ( Session("admin") !== true ){ %><a href="default.asp">前台</a><%}%>
         	<%if ( Session("admin") === true ){ %><span class="name">sevio</span><%}%>
             <%if ( Session("admin") === true ){ %><a href="javascript:;" class="item">设置<ul><li class="sdk-globalconfigure">全局设置</li><li>修改密码</li></ul></a><%}%>
-            <%if ( Session("admin") === true ){ %><a href="?p=writeArticle" class="item">写日志</a><%}%>
+            <%if ( Session("admin") === true ){ %><a href="?p=writeArticle">写日志</a><%}%>
             <a href="javascript:;">官方</a>
             <%if ( Session("admin") === true ){ %><a href="server/logout.asp">退出</a><%}%>
         </div>
