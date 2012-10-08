@@ -52,7 +52,7 @@ define(function(require, exports, module){
 				id: Number(arrays[i]),
 				log_title: sys_cache_article[0][0],
 				log_category: sys_cache_article[0][1],
-				log_content: sys_cache_article[0][2],
+				log_content: sys_cache_article[0][7],
 				log_tags: returnTagArrays(sys_cache_article[0][3]),
 				log_views: sys_cache_article[0][4],
 				log_posttime: sys_cache_article[0][5],

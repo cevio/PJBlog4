@@ -7,7 +7,8 @@
 			var log_title = req.form.log_title,
 				log_category = req.form.log_category,
 				log_content = req.form.log_content,
-				log_tags = req.form.log_tags;
+				log_tags = req.form.log_tags,
+				log_shortcontent = "";
 				
 			if ( log_title.length === 0 ){
 				return {
@@ -33,6 +34,20 @@
 			var date = require("DATE"),
 				time = date.format(new Date(), "y/m/d h:i:s");
 				
+			var fns = require("fn"),
+				tmp_remove_html = fns.removeHTML(log_content);
+				
+			log_shortcontent = this.shortCutContent(tmp_remove_html, fns);
+			
+			if ( log_shortcontent.success ){
+				log_shortcontent = log_shortcontent.data.html;
+			}else{
+				return {
+					success: false,
+					error: "处理日志预览出错"
+				}
+			}
+				
 			var status = this.addArticle({
 				log_title: log_title,
 				log_category: log_category,
@@ -40,7 +55,8 @@
 				log_tags: log_tags,
 				log_views: 0,
 				log_posttime: time,
-				log_updatetime: time
+				log_updatetime: time,
+				log_shortcontent: log_shortcontent
 			});
 			
 			var cache = require.async("cache");
@@ -56,12 +72,40 @@
 			}
 		}
 		
+		callbacks.shortCutContent = function(html, fns){
+			var dbo = require("DBO"),
+				connecte = require("openDataBase");
+				
+			if ( connecte === true ){
+				dbo.trave({
+					conn: config.conn,
+					sql: "Select * From blog_global Where id=1",
+					callback: function(rs){
+						html = fns.cutStr(html, rs("articleprivewlength").value, true);
+					}
+				});
+				
+				return {
+					success: true,
+					data: {
+						html : html
+					}
+				}
+			}else{
+				return {
+					success: false,
+					error: "数据库连接失败"
+				}
+			}
+		}
+		
 		callbacks.update = function(){
 			var log_title = req.form.log_title,
 				log_category = req.form.log_category,
 				log_content = req.form.log_content,
 				log_tags = req.form.log_tags,
-				id = req.form.id;
+				id = req.form.id,
+				log_shortcontent = "";
 				
 			if ( log_title.length === 0 ){
 				return {
@@ -87,12 +131,27 @@
 			var date = require("DATE"),
 				time = date.format(new Date(), "y/m/d h:i:s");
 				
+			var fns = require("fn"),
+				tmp_remove_html = fns.removeHTML(log_content);
+				
+			log_shortcontent = this.shortCutContent(tmp_remove_html, fns);
+			
+			if ( log_shortcontent.success ){
+				log_shortcontent = log_shortcontent.data.html;
+			}else{
+				return {
+					success: false,
+					error: "处理日志预览出错"
+				}
+			}
+				
 			var status = this.updateArticle(id, {
 				log_title: log_title,
 				log_category: log_category,
 				log_content: log_content,
 				log_tags: log_tags,
-				log_updatetime: time
+				log_updatetime: time,
+				log_shortcontent: log_shortcontent
 			});
 			
 			var cache = require.async("cache");

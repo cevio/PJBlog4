@@ -13,7 +13,7 @@ define(function(require, exports, module){
 	}
 	
 	exports["article"] = function( id ){
-		return "Select log_title, log_category, log_content, log_tags, log_views, log_posttime, log_updatetime From blog_article Where id=" + id;
+		return "Select log_title, log_category, log_content, log_tags, log_views, log_posttime, log_updatetime, log_shortcontent From blog_article Where id=" + id;
 	}
 	
 	exports["tags"] = function(){

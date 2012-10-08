@@ -89,6 +89,17 @@ define(function(require, exports, module){
 		return str;
 	}
 	
+	exports.removeHTML = function(html){
+		html = html.replace(/\<(\w+?)([^\>]+)?\>([\s\S]+?)\<\/\1\>/g, "$3")
+				   .replace(/<(\w+?)(\s([^\/]+)?)?\/>/g, "");
+				
+		if ( /\<(\w+?)([^\>]+)?\>[\s\S]+?\<\/\1\>/g.test(html) || /<(\w+?)(\s([^\/]+)?)?\/>/g.test(html) ){
+			html = this.removeHTML(html);
+		}
+		
+		return html;
+	}
+	
 	exports.unHTMLStr = function( str ){
 		var reglist = [
 			[/&#60;/g, "<"],
