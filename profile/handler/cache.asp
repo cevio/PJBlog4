@@ -12,6 +12,10 @@ define(function(require, exports, module){
 		return "Select id From blog_article Order By log_updatetime DESC";
 	}
 	
+	exports["article_pages_cate"] = function(id){
+		return "Select id From blog_article Where log_category=" + id;
+	}
+	
 	exports["article"] = function( id ){
 		return "Select log_title, log_category, log_content, log_tags, log_views, log_posttime, log_updatetime, log_shortcontent From blog_article Where id=" + id;
 	}

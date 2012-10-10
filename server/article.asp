@@ -62,6 +62,7 @@
 			var cache = require.async("cache");
 				
 				cache.build("article_pages");
+				cache.build("article_pages_cate", log_category);
 				cache.build("article", Number(status));
 			
 			return {
@@ -102,6 +103,7 @@
 		callbacks.update = function(){
 			var log_title = req.form.log_title,
 				log_category = req.form.log_category,
+				log_oldCategory = req.form.log_oldCategory,
 				log_content = req.form.log_content,
 				log_tags = req.form.log_tags,
 				id = req.form.id,
@@ -155,6 +157,8 @@
 			});
 			
 			var cache = require.async("cache");
+				cache.build("article_pages_cate", log_oldCategory);
+				cache.build("article_pages_cate", log_category);
 				cache.build("article", Number(status));
 			
 			return {

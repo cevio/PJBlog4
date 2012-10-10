@@ -1,8 +1,10 @@
 <%
 define(function(require, exports, module){
 	var cache = require("cache"),
-		sys_cache_articlePages = cache.load("article_pages"),
-		sys_cache_global = cache.load("global");
+		sys_cache_articlePages,
+		sys_cache_global = cache.load("global"),
+		sys_cache_category,
+		sys_cache_categoryList = {};
 		
 	var perPage = sys_cache_global[0][10];
 	
@@ -10,6 +12,26 @@ define(function(require, exports, module){
 		articleIdFrom = 0, 
 		articleIdTo = 0,
 		articleListContainer = [];
+		
+	if ( pageIndexCustomParams === undefined ){
+		return articleListContainer;
+	}
+	
+	if ( pageIndexCustomParams.page === undefined ){
+		return articleListContainer;
+	}
+	
+	if ( pageIndexCustomParams.cateID === undefined || pageIndexCustomParams.cateID === 0 ){
+		sys_cache_articlePages = cache.load("article_pages");
+	}else{
+		sys_cache_articlePages = cache.load("article_pages_cate", pageIndexCustomParams.cateID);
+	}
+	
+	sys_cache_category = cache.load("category");
+	for ( var o = 0 ; o < sys_cache_category.length ; o++ ){
+		sys_cache_categoryList[sys_cache_category[o][0] + ""] = sys_cache_category[o];
+	}
+	
 		
 	function returnTagArrays( tags ){
 		var module_tags_require = require.async("tags"),
@@ -27,8 +49,8 @@ define(function(require, exports, module){
 		arrays.push(sys_cache_articlePages[i][0]);
 	}
 	
-	articleIdFrom = (config.page.assets.index - 1) * perPage + 1;
-	articleIdTo = config.page.assets.index * perPage;
+	articleIdFrom = (pageIndexCustomParams.page - 1) * perPage + 1;
+	articleIdTo = pageIndexCustomParams.page * perPage;
 	
 	if ( articleIdFrom > arrays.length ){
 		articleIdFrom = arrays.length;
@@ -52,6 +74,8 @@ define(function(require, exports, module){
 				id: Number(arrays[i]),
 				log_title: sys_cache_article[0][0],
 				log_category: sys_cache_article[0][1],
+				log_categoryName: sys_cache_categoryList[sys_cache_article[0][1] + ""][1],
+				log_categoryInfo: sys_cache_categoryList[sys_cache_article[0][1] + ""][2],
 				log_content: sys_cache_article[0][7],
 				log_tags: returnTagArrays(sys_cache_article[0][3]),
 				log_views: sys_cache_article[0][4],

@@ -39,7 +39,7 @@
                         		<a href="tags.asp?id=<%=article[articles].log_tags[tagitems].id%>"><%=article[articles].log_tags[tagitems].name%></a> 
                         <%
 							}
-						%>
+						%> | Category: <a href="default.asp?c=<%=article[articles].log_category%>" title="<%=article[articles].log_categoryInfo%>"><%=article[articles].log_categoryName%></a>
                     </div>
                     <p class="post-footer align-right">					
                         <a href="index.html" class="readmore">Read more</a>

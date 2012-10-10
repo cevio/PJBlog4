@@ -79,6 +79,7 @@
                     <div class="log-title maginbom"><input type="text" value="<%=log_title%>" name="log_title" placeholder="日志标题" /></div>
                     <div class="log-cate maginbom fn-clear">
                         <input type="hidden" value="<%=log_category%>" name="log_category" />
+                        <input type="hidden" value="<%=log_category%>" name="log_oldCategory" />
                         <div class="fn-left log-cate-title">
                             <span class="import">分类</span>
                             <span class="gray">点击右边分类名选择或者更换所属分类</span>
