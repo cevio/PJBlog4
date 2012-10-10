@@ -634,7 +634,7 @@ h3{font-weight:bold;margin:10px 0px; height:30px; line-height:30px;}
 
 fieldset{ border:1px solid #eee; border-radius:3px; padding:15px 20px; margin-bottom:20px;}
 fieldset legend{ margin:0px 10px; padding:0px 5px; color:#1E7BB3; height:26px; line-height:26px;}
-fieldset p.info{ color:#999; padding:0px 10px;}
+fieldset p.info{ color:#999; padding:0px 10px 10px 10px; text-indent:2em;}
 fieldset table{ width:100%;}
 fieldset table td{ height:26px; line-height:26px; padding:5px 10px; vertical-align: top;}
 fieldset table td.key{ width:100px;}

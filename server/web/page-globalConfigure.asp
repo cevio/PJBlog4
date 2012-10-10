@@ -43,7 +43,7 @@
                 </tr>
                 <tr>
                 	<td class="key">网站地址</td>
-                    <td class="keyvalue"><input type="text" value="<%=blog_global.website%>" name="website" class="long"><div class="info">示例：http://pjhome.net http://pjhome.net/web 请不要在最好添加斜线，以保证系统对路径处理的统一性。</div></td>
+                    <td class="keyvalue"><input type="text" value="<%=blog_global.website%>" name="website" class="long"><div class="info">示例：http://pjhome.net http://pjhome.net/web 请不要在最后添加斜线，以保证系统对路径处理的统一性。</div></td>
                 </tr>
                 <tr>
                 	<td class="key">网站状态</td>
@@ -54,7 +54,7 @@
         
         <fieldset>
         	<legend>QQ登入设置</legend>
-            <p class="info">dasf</p>
+            <p class="info">QQ登入需要博主自己在 <a href="http://connect.qq.com/manage/" target="_blank">QQ互联开放平台</a> 申请自己的OPENID和OPENKEY。在那里请先注册成为开发者，然后点击 添加网站/应用 。添加网站将为你生成这2个关键字符串，你只需要填写到下面即可。注意的是，网站需要验证，你可以通过对首页文件稍作修改，验证完毕后还原即可（具体看提示说明），而回调地址则根据说明填写，在这里你需要写入你的网站域名即可，如果是二级域名则填写二级域名。如有疑问，请移步至 <a href="http://bbs.pjhome.net" target="_blank">官方</a> 求助。</p>
             <table>
             	<tr>
                 	<td class="key">QQ APP ID</td>
