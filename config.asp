@@ -66,6 +66,7 @@
 	map["cache_global"] = "server/module/global";
 	map["cache_category"] = "server/module/category";
 	map["cache_article"] = "server/module/article";
+	map["cache_article_detail"] = "server/module/article-detail";
 	
 /*
  * 系统默认变量
