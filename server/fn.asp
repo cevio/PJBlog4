@@ -167,6 +167,49 @@ define(function(require, exports, module){
 		}
 		if ( _s != s ){ _s += (r || "...") };
 		return _s;
-	}	
+	}
+	
+	exports.pageAnalyze = function(currentPage, totalPages, perPageCount){
+		if ( perPageCount === undefined ){ perPageCount = 9; }
+		if ( perPageCount > totalPages ){ perPageCount = totalPages; }
+		
+		var isEven = perPageCount % 2 === 0 ? false : true,
+			o = Math.floor(perPageCount / 2),
+			l = isEven ? o : o - 1,
+			r = o;
+		
+		var _l = currentPage - l,
+			_r = currentPage + r;
+		
+		if ( _l < 1 ){
+			_l = 1;
+			_r = _l + perPageCount - 1;
+			if ( _r > totalPages ){
+				_r = totalPages;
+			}
+		}else if ( _r > totalPages ){
+			_r = totalPages;
+			_l = _r - perPageCount + 1;
+			if ( _l < 1 ){
+				_l = 1;
+			}
+		}
+		
+		return {
+			prev : currentPage - 1 < 1 ? 1 : currentPage - 1,
+			next : currentPage + 1 > totalPages ? totalPages : currentPage + 1,
+			from : _l,
+			to : _r,
+			current : currentPage
+		}
+	}
+	
+	exports.pageOut = function(options, callback){
+		for ( var i = options.from ; i <= options.to ; i++ ){
+			if ( typeof callback === "function" ){
+				callback(i, i === options.current);
+			}
+		}
+	}
 });
 %>
