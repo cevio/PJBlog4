@@ -41,24 +41,30 @@ var dbo = require("DBO"),
 					conn: config.conn,
 					sql: "Select * From blog_article Order By log_posttime DESC",
 					callback: function(rs){
-						pageInfo = this.serverPage(_page, 10, function(i){
-							var even = "";
-							if ( (i + 1) % 2 === 0 ){
-								even = ' class="even"';
-							}
+						if ( !(rs.Bof || rs.Eof) ){
+							pageInfo = this.serverPage(_page, 10, function(i){
+								var even = "";
+								if ( (i + 1) % 2 === 0 ){
+									even = ' class="even"';
+								}
 		%>
-        			<tr<%=even%>>
-                        <td><%=this("log_title").value%></td>
-                        <td>100%</td>
-                        <td><a href="?p=writeArticle&id=<%=this("id").value%>">编辑</a> <a href="javascript:;" data-id="<%=this("id").value%>" class="action-del">删除</a></td>
-                    </tr>
-        <%	
-						});
+						<tr<%=even%>>
+							<td><%=this("log_title").value%></td>
+							<td>暂未完成分类筛选</td>
+							<td><a href="?p=writeArticle&id=<%=this("id").value%>">编辑</a> <a href="javascript:;" data-id="<%=this("id").value%>" class="action-del">删除</a></td>
+						</tr>
+		<%	
+							});
+						}else{
+		%>
+        			<tr><td colspan="3">没有数据，请<a href="?p=writeArticle">添加</a>。</td></tr>
+        <%
+						}
 					}
 				});
 			}else{
 		%>
-        			<tr><td colspan="3">没有数据，请<a href="/?p=writeArticle">添加</a>。</td></tr>
+        			<tr><td colspan="3">数据库连接失败，请检查数据库连接配置文件。</td></tr>
         <%		
 			}
 		 %>

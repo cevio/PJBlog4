@@ -244,6 +244,55 @@
 			return idArrays;
 		}
 		
+		callbacks.delarticle = function(){
+			var id = req.query.id + "";
+			if ( id.length > 0 ){
+				var dbo = require("DBO"),
+					connecte = require("openDataBase");
+				
+				if ( connecte ){
+					try{
+						var cateid = 0;
+						
+						dbo.trave({
+							conn: config.conn,
+							sql: "Select * From blog_article Where id=" + id,
+							type: 3,
+							callback: function(rs){
+								cateid = rs("log_category").value;
+								rs.Delete();
+							}
+						});
+						
+						var cache = require.async("cache");
+							cache.build("article_pages");
+							cache.build("article_pages_cate", cateid);
+							cache.destory("article", id);
+						
+						return {
+							success: true
+						}
+					}catch(e){
+						console.push(e.message);
+						return {
+							success: false,
+							error: e.message
+						}
+					}
+				}else{
+					return {
+						success: false,
+						error: "数据库连接失败"
+					}
+				}
+			}else{
+				return {
+					success: false,
+					error: "参数错误"
+				}
+			}
+		}
+		
 		if ( Session("admin") === true ){
 			if ( callbacks[j] !== undefined ){
 				return callbacks[j]();

@@ -13,6 +13,10 @@ http.async(function(req){
 			qq_appkey = req.form.qq_appkey,
 			articleprivewlength = req.form.articleprivewlength,
 			articleperpagecount = req.form.articleperpagecount,
+			webdescription = req.form.webdescription,
+			webkeywords = req.form.webkeywords,
+			authoremail = req.form.authoremail,
+			seotitle = req.form.seotitle,
 			error = "处理过程中发生错误。";
 			
 		if ( webstatus === "1" ){
@@ -30,7 +34,11 @@ http.async(function(req){
 			qq_appid: qq_appid,
 			qq_appkey: qq_appkey,
 			articleprivewlength: articleprivewlength,
-			articleperpagecount: articleperpagecount
+			articleperpagecount: articleperpagecount,
+			webdescription: webdescription,
+			webkeywords: webkeywords,
+			authoremail: authoremail,
+			seotitle: seotitle
 		});
 		
 		if ( ret === true ){

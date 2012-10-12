@@ -102,4 +102,16 @@
 			console.push(error.message);
 		}
 	}
+
+/*
+ * 数据源缓存
+ * 打开某一数据源，通过缓存
+ * 适用于模板制作。
+ */
+ 	function LoadCacheModule( ModuleName, ModuleCallback ){
+		var ModuleCacheDatas = require(ModuleName);
+		if ( typeof ModuleCallback === "function" ){
+			ModuleCallback(ModuleCacheDatas);
+		}
+	}
 %>

@@ -196,6 +196,11 @@ define(function(require){
 					}
 				}
 			}
+			
+			cache.destory = function(appKeyName, appKeyID){
+				cache.set(createAppName(appKeyName, appKeyID), null);
+				fso.destory(config.cacheAccess + "/" + createAppFile(appKeyName, appKeyID));
+			}
 
 			return cache;
 		})(cacheMode);

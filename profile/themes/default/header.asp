@@ -2,14 +2,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta name="Description" content="Information architecture, Web Design, Web Standards." />
-<meta name="Keywords" content="your, keywords" />
+<meta name="Description" content="<%=config.params.webdescription%>" />
+<meta name="Keywords" content="<%=config.params.webkeywords%>" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="Distribution" content="Global" />
-<meta name="Author" content="Evio Shen - evio@vip.qq.com" />
+<meta name="Author" content="<%=config.params.nickname%> - <%=config.params.authoremail%>" />
 <meta name="Robots" content="index,follow" />
 <link rel="stylesheet" href="<%=config.params.website + "/" + config.params.styleFolder%>/images/Envision.css" type="text/css" />
-<title>Javascript Loader FrameWork On Web</title>
+<title><%=config.params.seotitle%></title>
 </head>
 
 <body>

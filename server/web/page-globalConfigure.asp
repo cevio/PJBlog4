@@ -18,6 +18,10 @@
 				blog_global.webstatus = rs("webstatus").value;
 				blog_global.articleprivewlength = rs("articleprivewlength").value;
 				blog_global.articleperpagecount = rs("articleperpagecount").value;
+				blog_global.webdescription = rs("webdescription").value;
+				blog_global.webkeywords = rs("webkeywords").value;
+				blog_global.authoremail = rs("authoremail").value;
+				blog_global.seotitle = rs("seotitle").value;
 			}
 		});
 %>
@@ -38,8 +42,24 @@
                     <td class="keyvalue"><input type="text" value="<%=blog_global.description%>" name="description" class="longer"></td>
                 </tr>
                 <tr>
+                	<td class="key">SEO标题</td>
+                    <td class="keyvalue"><input type="text" value="<%=blog_global.seotitle%>" name="seotitle" class="long"><div class="info">调用于网站页面源码title标签内容</div></td>
+                </tr>
+                <tr>
+                	<td class="key">SEO描述</td>
+                    <td class="keyvalue"><input type="text" value="<%=blog_global.webdescription%>" name="webdescription" class="longer"><div class="info">让SEO更友好，请认真填写此处。</div></td>
+                </tr>
+                <tr>
+                	<td class="key">SEO关键字</td>
+                    <td class="keyvalue"><input type="text" value="<%=blog_global.webkeywords%>" name="webkeywords" class="longer"><div class="info">关键字影响收录。</div></td>
+                </tr>
+                <tr>
                 	<td class="key">博主昵称</td>
                     <td class="keyvalue"><input type="text" value="<%=blog_global.nickname%>" name="nickname" class="short"></td>
+                </tr>
+                <tr>
+                	<td class="key">博主邮箱</td>
+                    <td class="keyvalue"><input type="text" value="<%=blog_global.authoremail%>" name="authoremail" class="long"></td>
                 </tr>
                 <tr>
                 	<td class="key">网站地址</td>

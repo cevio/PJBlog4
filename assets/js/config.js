@@ -20,7 +20,7 @@ define(["assets/js/core/jQuery"], function(){
 	config.ajaxUrl.server.addCate = "server/category.asp?j=addcates";
 	config.ajaxUrl.server.destoryCate = "server/category.asp?j=destorycates";
 	config.ajaxUrl.server.iconList = "server/category.asp?j=iconlist";
-	
+	config.ajaxUrl.server.delArticles = "server/article.asp?j=delarticle";
 
 	$("body")
 	
