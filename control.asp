@@ -28,7 +28,7 @@
                 <li><a href="?p=category">分类</a></li>
                 <li><a href="?p=article">日志</a></li>
                 <li><a href="">主题</a></li>
-                <li><a href="">插件</a></li>
+                <li><a href="?p=plugin">插件</a></li>
                 <li><a href="">文档</a></li>
             </ul>
         </div>

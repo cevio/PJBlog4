@@ -1,4 +1,4 @@
-define(["jQuery", "easing"], function(require, exports, module){
+define(["easing"], function(require, exports, module){
 	
 	var tabs = function(){
 		this.triggerDom = null;

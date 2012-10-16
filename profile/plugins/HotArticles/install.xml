@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin>
+	<pluginName>最新日志</pluginName>
+	<pluginMark>hotarticle</pluginMark>
+	<pluginAuthor>沈赟杰</pluginAuthor>
+	<pluginEmail>evio@vip.qq.com</pluginEmail>
+	<pluginPublishDate>2012/12/20</pluginPublishDate>
+	<pluginVersion>1.0</pluginVersion>
+	<pluginWebsite>http://assets.sizzle.cc</pluginWebsite>
+	<pluginQQWeibo>http://t.qq.com/PJBlogMaster</pluginQQWeibo>
+	<pluginSinaWeibo>http://weibo.com/sevio</pluginSinaWeibo>
+	<pluginInfo>调用最新的10条日志，按照固定配置进行排序显示。你可以安装后根据基本设置对其进行配置。如有问题请联系官方。</pluginInfo>
+</plugin>

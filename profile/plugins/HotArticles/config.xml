@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<key name="top" value="10" type="text"></key>
+	<key name="date" value="y-m-d h:i:s" type="text"></key>
+	<key name="cut" value="100" type="text"></key>
+</config>

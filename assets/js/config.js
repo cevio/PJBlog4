@@ -12,6 +12,8 @@ define(["assets/js/core/jQuery"], function(){
 	config.map("tpl-category", "assets/js/tpl/tpl-category");
 	config.map("overlay", "assets/js/core/overlay");
 	config.map("editor", "assets/js/lib/xheditor/editor");
+	config.map("tabs", "assets/js/core/tabs");
+	config.map("easing", "assets/js/core/jQuery.easing.1.3");
 	
 	config.ajaxUrl = { assets: {}, server: {} }
 	
@@ -21,6 +23,7 @@ define(["assets/js/core/jQuery"], function(){
 	config.ajaxUrl.server.destoryCate = "server/category.asp?j=destorycates";
 	config.ajaxUrl.server.iconList = "server/category.asp?j=iconlist";
 	config.ajaxUrl.server.delArticles = "server/article.asp?j=delarticle";
+	config.ajaxUrl.server.setupPlugin = "server/plugin.asp?j=setup";
 
 	$("body")
 	
