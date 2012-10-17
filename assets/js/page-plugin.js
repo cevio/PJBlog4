@@ -34,6 +34,44 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 		});
 	}
 	
+	function init_configSetting(){
+		$(".action-set").on("click", function(){
+			var id = $(this).attr("data-id");
+			$.getJSON(config.ajaxUrl.server.configSetPlugin, {id: id}, function(jsons){
+				if ( jsons.success ){
+					var $overlayer = $.overlay({
+							content: jsons.data.html,
+							action: config.ajaxUrl.server.updateConfig
+						});
+								
+						$overlayer.trigger("overlay.set.popup", function(){
+							var _this = this;
+							$(this).find("table").addClass("table").css("width", "100%");
+							$(this).trigger("overlay.mid");
+							$(this).find("form").append('<input type="hidden" name="id" value="' + id + '" />');
+							require.async(['form'], function(){
+								$(_this).find("form").ajaxForm({
+									dataType: "json",
+									success: function(datas){
+										if ( datas.success ){
+											$(_this).find(".content").text("保存成功，1秒关闭。");
+											setTimeout(function(){
+												$(_this).find(".close").trigger("click");
+											}, 1000);
+										}else{
+											alert(datas.error);
+										}
+									}
+								})
+							});
+						});
+				}else{
+					popUpTips(jsons.error);
+				}
+			});
+		});
+	}
+	
 	return {
 		init: function(){
 			$(function(){
@@ -46,6 +84,7 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 					effect : "horizontalSlip"
 				});
 				init_setup();
+				init_configSetting();
 			});	
 		}
 	}

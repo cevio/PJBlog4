@@ -24,6 +24,8 @@ define(["assets/js/core/jQuery"], function(){
 	config.ajaxUrl.server.iconList = "server/category.asp?j=iconlist";
 	config.ajaxUrl.server.delArticles = "server/article.asp?j=delarticle";
 	config.ajaxUrl.server.setupPlugin = "server/plugin.asp?j=setup";
+	config.ajaxUrl.server.configSetPlugin = "server/plugin.asp?j=setconfig";
+	config.ajaxUrl.server.updateConfig = "server/plugin.asp?j=updateconfig";
 
 	$("body")
 	

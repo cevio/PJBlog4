@@ -89,6 +89,23 @@ define(function(require, exports, module){
 				});
 				$.isFunction(callback) && callback.call(this);
 			});
+		})
+		
+		.on("overlay.set.popup", function(event, callback){
+			options.content = '<div class="dialog"><form action="' + options.action + '" method="post" style="margin:0; padding:0;"><div class="title fn-clear"><div class="fn-left mtitle">设置</div><a href="javascript:;" class="fn-right close"><span class="iconfont">&#223;</span></a></div><div class="content">' + options.content + '</div><div class="bom"><input type="submit" value="保存" class="tpl-button-blue" /></div></form></div>';
+			$(this).trigger("overlay.deformationzoom.popup", function(){
+				var _this = this;
+				$(this).find(".close").on("click", function(){
+					$(_this).trigger("overlay.deformationzoom.drop");
+				});
+				$.isFunction(callback) && callback.call(this);
+			});
+		})
+		
+		.on("overlay.mid", function(){
+			$(this).css("height", "auto");
+			htmlElementHeight = $(this).outerHeight();
+			$(window).trigger("resize");
 		});
 		
 		return $overlayer;

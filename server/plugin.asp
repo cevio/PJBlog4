@@ -211,6 +211,87 @@
 			}
 		}
 		
+		callbacks.setconfig = function(){
+			var dbo = require("DBO"),
+				connecte = require("openDataBase"),
+				folder = "";
+				
+			if ( connecte === true ){
+				var id = req.query.id;
+				if ( id.length === 0 ){
+					id = 0;
+				}else{
+					id = Number(id);
+				}
+				
+				if ( id > 0 ) {
+					dbo.trave({
+						conn: config.conn,
+						sql: "Select * From blog_plugin Where id=" + id,
+						callback: function(rs){
+							folder = rs("pluginfolder").value;
+						}
+					});
+					
+					if ( folder.length > 0 ){
+						var xmltable = require("xmltable"),
+							xmltableHTML = xmltable("profile/plugins/" + folder + "/config.xml", id);
+							
+						return {
+							success: true,
+							data: {
+								html: xmltableHTML
+							}
+						}
+					}else{
+						return {
+							success: false,
+							error: "未找到插件"
+						}
+					}
+				}else{
+					return {
+						success: false,
+						error: "调用参数错误"
+					}
+				}
+			}else{
+				return {
+					success: false,
+					error: "数据库连接失败"
+				}
+			}
+		}
+		
+		callbacks.updateconfig = function(){
+			var dbo = require("DBO"),
+				connecte = require("openDataBase");
+				
+			if ( connecte === true ){
+				var formEmtor = config.emtor(Request.Form),
+					id = Number(http.form("id"));
+				
+				for ( var i = 0 ; i < formEmtor.length ; i++ ){
+					if ( formEmtor[i] !== "id" ){
+						var value = config.emtor(Request.Form(formEmtor[i]))[0];
+						config.conn.Execute("Update blog_moden Set modevalue='" + value + "' Where modemark=" + id + " And modekey='" + formEmtor[i] + "'");
+					}
+				}
+				
+				var cache = require("cache");
+					cache.build("moden", id);
+				
+				return {
+					success: true
+				}
+			}else{
+				return {
+					success: false,
+					error: "数据库连接失败"
+				}
+			}
+		}
+		
 		if ( Session("admin") === true ){
 			if ( callbacks[j] !== undefined ){
 				return callbacks[j]();

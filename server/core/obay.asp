@@ -434,6 +434,8 @@ var JSON = !JSON ? {} : JSON;
 		
 		return _ret;
 	}
+	
+	config.emtor = emtor;
 
 	http = function( callback ){
 		var Req = { query : {}, form : {} }, 
