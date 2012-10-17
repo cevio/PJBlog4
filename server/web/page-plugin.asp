@@ -48,10 +48,14 @@
                                         <div class="msg"><%=this("plugininfo").value%></div>
                                         <div class="author"><span class="iconfont">&#359;</span> 此插件由 <%=this("pluginauthor").value%> 于 <%=date.format(this("pluginpublishdate").value, "y-m-d h:i:s")%> 发布版本 <%=this("pluginversion").value%></div>
                                         <div class="tools">
+                                        	<%
+												if ( fso.exsit("profile/plugins/" + this("pluginfolder").value + "/config.xml") ){
+											%>
                                         	<a href="javascript:;" class="action-set fn-clear" data-id="<%=this("id").value%>">
                                             	<span class="iconfont">&#355;</span> <span class="icontext">设置</span>
                                             </a>
                                             <%
+												}
 												if ( this("pluginstatus").value === true ){
 											%>
                                         	<a href="javascript:;" class="action-stop fn-clear" data-id="<%=this("id").value%>">
@@ -69,9 +73,13 @@
                                         	<a href="javascript:;" class="action-uninstall fn-clear" data-id="<%=this("id").value%>">
                                             	<span class="iconfont">&#350;</span> <span class="icontext">卸载</span>
                                             </a> 
+                                            <%
+												if ( fso.exsit("profile/plugins/" + this("pluginfolder").value + "/configure.asp") ){
+											%>
                                             <a href="javascript:;" class="action-use fn-clear" data-id="<%=this("id").value%>">
                                             	<span class="iconfont">&#361;</span> <span class="icontext">高级应用</span>
                                             </a> 
+                                            <%}%>
                                         </div>
                                     </div>
                                 </li>	
