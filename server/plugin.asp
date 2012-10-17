@@ -15,7 +15,8 @@
 					fso = require("FSO"),
 					dbo = require("DBO"),
 					connecte = require("openDataBase"),
-					date = require("DATE");
+					date = require("DATE"),
+					cache = require("cache");
 				
 				if ( connecte === true ){
 					var xmlFile = "profile/plugins/" + folder + "/install.xml";
@@ -134,6 +135,8 @@
 								});
 								
 								if ( id > 0 ){
+								
+									cache.build("plugin");
 									
 									var xmlConfigFile = "profile/plugins/" + folder + "/config.xml";
 									
@@ -152,13 +155,19 @@
 													conn: config.conn
 												});	
 											});
+											
+											cache.build("moden", id);
 										}
 									}
 									
 									try{
 										if ( fso.exsit("profile/plugins/" + folder + "/install.asp") ){
-											require("profile/plugins/" + folder + "/install.asp");
+											require("pluginCustom", function( pluginCustom ){
+												pluginCustom.folder = folder;
+												require("profile/plugins/" + folder + "/install");
+											});
 										}
+										
 										return {
 											success: true
 										}

@@ -24,6 +24,7 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 						$(_this).removeClass("sending").html('<span class="iconfont">&#379;</span> <span class="icontext">安装成功</span>');
 						$(_this).off("click");
 					}else{
+						$(_this).removeClass("sending").html('<span class="iconfont">&#409;</span> <span class="icontext">安装</span>');
 						popUpTips(jsons.error);
 					}
 				});

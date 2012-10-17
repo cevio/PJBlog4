@@ -21,6 +21,8 @@
 		pageIndexCustomParams.cateID = Number(pageIndexCustomParams.cateID);
 	}
 	
+	var assetsPluginCustom = require("pluginCustom");
+	
 	include("profile/themes/" + config.params.theme + "/default.asp");
 	
 	CloseConnect();

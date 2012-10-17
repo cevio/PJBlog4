@@ -23,5 +23,13 @@ define(function(require, exports, module){
 	exports["tags"] = function(){
 		return "Select id, tagname, tagcount From blog_tags";
 	}
+	
+	exports["moden"] = function(id){
+		return "Select modekey, modevalue From blog_moden Where modemark=" + id;
+	}
+	
+	exports["plugin"] = function(){
+		return "Select id, pluginname, pluginmark, pluginfolder, pluginstatus, plugininfo, pluginauthor, pluginemail, pluginwebsite, pluginqqweibo, pluginsinaweibo, pluginpublishdate, pluginversion From blog_plugin";
+	}
 });
 %>

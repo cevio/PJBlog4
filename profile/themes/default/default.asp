@@ -11,14 +11,27 @@
                 <p>&quot;Manage your code, make it more perfect.&quot; </p>
                 <p class="align-right">- Evio Shen</p>
             </div>
-            <h3>Sizzle Plugins Demo</h3>
-            <ul class="sidemenu">
-                <li><a href="demo/sizzleload/" target="_blank">Sizzle Loader</a></li>
-                <li><a href="demo/tipshow" target="_blank">Sizzle TipShow</a></li>
-                <li><a href="demo/upload" target="_blank">Sizzle Upload</a></li>
-                <li><a href="demo/flowlayer" target="_blank">Sizzle Flowlayer</a></li>
-                <li><a href="demo/tabs/default.html" target="_blank">Sizzle Tabs</a></li>
-            </ul>
+            
+            
+            <%
+				var A = assetsPluginCustom.loadPlugin("hotarticle");
+				if ( A !== null ){
+					if ( A.length > 0 ){
+			%>
+					<h3>最新日志</h3>
+                    <ul class="sidemenu">
+            <%
+            		for ( var ai = 0 ; ai < A.length ; ai++ ){
+			%>
+            		<li><a href="article.asp?id=<%=A[ai].id%>" target="_blank"><%=A[ai].log_title%></a></li>
+            <%
+					}		
+            %>
+                    </ul>
+            <%
+					}
+				}
+			%>
             <h3>Link</h3>
             <ul class="sidemenu">
                 <li><a href="http://bbs.pjhome.net" target="_blank">PJBlog BBS</a></li>
