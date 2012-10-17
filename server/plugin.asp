@@ -376,6 +376,8 @@
 					id = Number(id);
 				}
 				
+				var folder = String(config.conn.Execute("Select pluginfolder From blog_plugin Where id=" + id)(0));
+				
 				config.conn.Execute("Delete From blog_plugin Where id=" + id);
 				config.conn.Execute("Delete From blog_moden Where modemark=" + id);
 				
