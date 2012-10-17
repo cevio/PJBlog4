@@ -3,6 +3,7 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 	
 	function popUpTips( words, callback ){
 		var $overlayer = $.overlay({
+			height: 120,
 			content: words
 		});
 				
@@ -50,9 +51,16 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 							$(this).trigger("overlay.mid");
 							$(this).find("form").append('<input type="hidden" name="id" value="' + id + '" />');
 							require.async(['form'], function(){
+								var formDataSending = false;
 								$(_this).find("form").ajaxForm({
 									dataType: "json",
+									beforeSubmit: function(){
+										if ( formDataSending === true ){
+											return false;
+										}
+									},
 									success: function(datas){
+										formDataSending = false;
 										if ( datas.success ){
 											$(_this).find(".content").text("保存成功，1秒关闭。");
 											setTimeout(function(){
@@ -61,10 +69,67 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 										}else{
 											alert(datas.error);
 										}
+									},
+									error: function(){
+										formDataSending = false;
 									}
 								})
 							});
 						});
+				}else{
+					popUpTips(jsons.error);
+				}
+			});
+		});
+	}
+	
+	function init_pluginStop(){
+		$("body").on("click", ".action-stop", function(){
+			var id = $(this).attr("data-id"),
+				_this = this;
+				
+			$.getJSON(config.ajaxUrl.server.pluginStop, {id: id}, function(jsons){
+				if ( jsons.success ){
+					$(_this).html('<span class="iconfont">&#265;</span> <span class="icontext">启用</span>')
+						.removeClass("action-stop")
+						.addClass("action-active");
+						
+					popUpTips("插件已设置为停用");
+				}else{
+					popUpTips(jsons.error);
+				}
+			});
+		});
+	}
+	
+	function init_pluginActive(){
+		$("body").on("click", ".action-active", function(){
+			var id = $(this).attr("data-id"),
+				_this = this;
+				
+			$.getJSON(config.ajaxUrl.server.pluginActive, {id: id}, function(jsons){
+				if ( jsons.success ){
+					$(_this).html('<span class="iconfont">&#419;</span> <span class="icontext">停用</span>')
+						.removeClass("action-active")
+						.addClass("action-stop");
+						
+					popUpTips("插件已设置为启用");
+				}else{
+					popUpTips(jsons.error);
+				}
+			});
+		});
+	}
+	
+	function init_unInstall(){
+		$(".action-uninstall").on("click", function(){
+			var id = $(this).attr("data-id"),
+				_this = this;
+				
+			$.getJSON(config.ajaxUrl.server.pluginUnInstall, {id: id}, function(jsons){
+				if ( jsons.success ){
+					$(_this).html('<span class="iconfont">&#350;</span> <span class="icontext">已卸载</span>');
+					popUpTips("卸载成功");
 				}else{
 					popUpTips(jsons.error);
 				}
@@ -85,6 +150,9 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 				});
 				init_setup();
 				init_configSetting();
+				init_pluginStop();
+				init_pluginActive();
+				init_unInstall();
 			});	
 		}
 	}

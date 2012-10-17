@@ -292,6 +292,116 @@
 			}
 		}
 		
+		callbacks.pluginstop = function(){
+			var dbo = require("DBO"),
+				connecte = require("openDataBase");
+				
+			if ( connecte === true ){
+				var id = req.query.id;
+				if ( id.length === 0 ){
+					id = 0;
+				}else{
+					id = Number(id);
+				}
+				
+				dbo.update({
+					conn: config.conn,
+					table: "blog_plugin",
+					key: "id",
+					keyValue: id,
+					data: {
+						pluginstatus: false
+					}
+				});
+				
+				var cache = require("cache");
+					cache.build("plugin");
+				
+				return {
+					success: true
+				}
+			}else{
+				return {
+					success: false,
+					error: "数据库连接失败"
+				}
+			}
+		}
+		
+		callbacks.pluginactive = function(){
+			var dbo = require("DBO"),
+				connecte = require("openDataBase");
+				
+			if ( connecte === true ){
+				var id = req.query.id;
+				if ( id.length === 0 ){
+					id = 0;
+				}else{
+					id = Number(id);
+				}
+				
+				dbo.update({
+					conn: config.conn,
+					table: "blog_plugin",
+					key: "id",
+					keyValue: id,
+					data: {
+						pluginstatus: true
+					}
+				});
+				
+				var cache = require("cache");
+					cache.build("plugin");
+				
+				return {
+					success: true
+				}
+			}else{
+				return {
+					success: false,
+					error: "数据库连接失败"
+				}
+			}
+		}
+		
+		callbacks.pluginuninstall = function(){
+			var dbo = require("DBO"),
+				connecte = require("openDataBase");
+				
+			if ( connecte === true ){
+				var id = req.query.id;
+				if ( id.length === 0 ){
+					id = 0;
+				}else{
+					id = Number(id);
+				}
+				
+				config.conn.Execute("Delete From blog_plugin Where id=" + id);
+				config.conn.Execute("Delete From blog_moden Where modemark=" + id);
+				
+				var fso = require("FSO");
+				if ( fso.exsit("profile/plugins/" + folder + "/uninstall.asp") ){
+					require("pluginCustom", function( pluginCustom ){
+						pluginCustom.folder = folder;
+						require("profile/plugins/" + folder + "/uninstall");
+					});
+				}
+				
+				var cache = require("cache");
+					cache.destory("plugin");
+					cache.destory("moden", id);
+				
+				return {
+					success: true
+				}
+			}else{
+				return {
+					success: false,
+					error: "数据库连接失败"
+				}
+			}
+		}
+		
 		if ( Session("admin") === true ){
 			if ( callbacks[j] !== undefined ){
 				return callbacks[j]();
