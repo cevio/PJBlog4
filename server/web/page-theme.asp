@@ -84,7 +84,7 @@
             	<img src="profile/themes/<%=theme.name%>/priview.jpg" />
             </div>
             <div class="theme-info fn-left">
-            	<div class="theme-title"><%=theme.data.themeName%></div>
+            	<div class="theme-title"><%=theme.data.themeName%> ( <%=theme.data.themeVersion%> )</div>
                 <div class="theme-user"><span class="iconfont">&#359;</span> 此主题由 <%=theme.data.themeAuthor%> 于 <%=theme.data.themePublishDate%> 制作版本 <%=theme.data.themeVersion%>。</div>
                 <div class="theme-info-items"><span>网站：</span> <a href="<%=theme.data.themeWebSite%>" target="_blank"><%=theme.data.themeWebSite%></a></div>
                 <div class="theme-info-items theme-action"><a href="" target="_blank"><span class="iconfont">&#47;</span> 分享</a> <a href=""><span class="iconfont">&#119;</span> 文档</a></div>
@@ -124,7 +124,7 @@
 					var listFolder = lists[listItem],
 						listInstallXMLFile = "profile/themes/" + listFolder + "/install.xml";
 					
-					if ( fso.exsit(listInstallXMLFile) ){
+					if ( fso.exsit(listInstallXMLFile) && ( listFolder !== theme.name ) ){
 						var xmlCustomLoader = xml.load(listInstallXMLFile);
 						
 						if ( xmlCustomLoader !== null ){
@@ -141,12 +141,19 @@
 								}else{
 									listXMLThemeInfo = "";
 								}
+								
+							var listXMLThemeVersion = xml("themeVersion", xmlCustomLoader.root, xmlCustomLoader.object);
+								if ( listXMLThemeVersion.size() > 0 ){
+									listXMLThemeVersion = listXMLThemeVersion.text();
+								}else{
+									listXMLThemeVersion = "";
+								}
 			%>
             	<li>
                 	<div class="list-area fn-clear">
                 		<div class="list-priview"><img src="profile/themes/<%=listFolder%>/priview.jpg" /></div>
                         <div class="list-info">
-                        	<div class="list-info-title fn-textoverhide"><%=listXMLThemeName%></div>
+                        	<div class="list-info-title fn-textoverhide"><%=listXMLThemeName%> ( <%=listXMLThemeVersion%> )</div>
                             <div class="list-info-msg"><%=listXMLThemeInfo%></div>
                             <div class="list-info-action"><a href="javascript:;"><span class="iconfont">&#47;</span> 分享</a> <a href="javascript:;"><span class="iconfont">&#409;</span> 安装</a> <a href="javascript:;"><span class="iconfont">&#356;</span> 删除</a> </div>
                         </div>
