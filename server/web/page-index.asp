@@ -16,7 +16,7 @@
                     <a href="?p=category"><span class="iconfont">&#388;</span> 分类</a>
                     <a href=""><span class="iconfont">&#343;</span> 评论</a>
                     <a href=""><span class="iconfont">&#359;</span> 留言</a>
-                    <a href=""><span class="iconfont">&#249;</span> 主题</a>
+                    <a href="?p=theme"><span class="iconfont">&#249;</span> 主题</a>
                     <a href="?p=plugin"><span class="iconfont">&#292;</span> 插件</a>
                     <a href=""><span class="iconfont">&#368;</span> 用户</a>
                     <a href=""><span class="iconfont">&#119;</span> 环境</a>

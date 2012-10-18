@@ -192,18 +192,16 @@
 								}
 							})(pluginRootFiles);
 							if ( hasFiles === 0 ){
-								console.log('<li class="fn-clear">未找到未安装的插件</li>');
+								console.log('<li class="fn-clear">[未找到未安装的插件]</li>');
 							}
 						}else{
-							console.log('<li class="fn-clear">未找到未安装的插件</li>');
+							console.log('<li class="fn-clear">[未找到未安装的插件]</li>');
 						}
 					%>
                     </ul>
                 </div>
                 <div class="tabs-content-items tabs-content">
-                    <ul class="tabs-content-items-area">
-                    3
-                    </ul>
+                    <ul class="tabs-content-items-area">[在线插件暂时不开放，敬请关注官方通知！]</ul>
                 </div>
             </div>
         </div>

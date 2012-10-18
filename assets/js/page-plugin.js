@@ -88,13 +88,20 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 			var id = $(this).attr("data-id"),
 				_this = this;
 				
+				$(this).find(".icontext").text("正在停用..");
+				$(this).find(".iconfont").addClass("sending");
+				
 			$.getJSON(config.ajaxUrl.server.pluginStop, {id: id}, function(jsons){
 				if ( jsons.success ){
-					$(_this).html('<span class="iconfont">&#265;</span> <span class="icontext">启用</span>')
-						.removeClass("action-stop")
-						.addClass("action-active");
-						
-					popUpTips("插件已设置为停用");
+					$(_this).find(".icontext").text("插件已成功停用");
+					$(_this).find(".iconfont").removeClass("sending");
+					
+					setTimeout(function(){
+						$(_this).removeClass("action-stop")
+								.addClass("action-active")
+								.find(".icontext")
+								.text("启用");
+					}, 1000);
 				}else{
 					popUpTips(jsons.error);
 				}
@@ -107,13 +114,20 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 			var id = $(this).attr("data-id"),
 				_this = this;
 				
+				$(this).find(".icontext").text("正在启用..");
+				$(this).find(".iconfont").addClass("sending");
+				
 			$.getJSON(config.ajaxUrl.server.pluginActive, {id: id}, function(jsons){
 				if ( jsons.success ){
-					$(_this).html('<span class="iconfont">&#419;</span> <span class="icontext">停用</span>')
-						.removeClass("action-active")
-						.addClass("action-stop");
-						
-					popUpTips("插件已设置为启用");
+					$(_this).find(".icontext").text("插件已成功启用");
+					$(_this).find(".iconfont").removeClass("sending");
+					
+					setTimeout(function(){
+						$(_this).removeClass("action-active")
+								.addClass("action-stop")
+								.find(".icontext")
+								.text("停用");
+					}, 1000);
 				}else{
 					popUpTips(jsons.error);
 				}
@@ -126,10 +140,14 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 			var id = $(this).attr("data-id"),
 				_this = this;
 				
+				$(this).find(".icontext").text("正在卸载..");
+				$(this).find(".iconfont").addClass("sending");
+				
 			$.getJSON(config.ajaxUrl.server.pluginUnInstall, {id: id}, function(jsons){
 				if ( jsons.success ){
-					$(_this).html('<span class="iconfont">&#350;</span> <span class="icontext">已卸载</span>');
-					popUpTips("卸载成功");
+					$(_this).find(".icontext").text("已卸载");
+					$(_this).find(".iconfont").removeClass("sending");
+					$(_this).off("click");
 				}else{
 					popUpTips(jsons.error);
 				}

@@ -287,6 +287,13 @@ a:link, a:visited {
 a:hover {
 	color:#8CAC52;
 }
+
+.fn-textoverhide{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
 textarea {
 	border:1px solid #dedede;
 	border-radius:3px;
