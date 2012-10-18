@@ -1,12 +1,12 @@
 <%
 define(function( require, exports, module ){
-	exports.data = function(id){
+	exports.data = function(){
 		var pluginInstall = require.async("pluginCustom"),
 			cache = require.async("cache"),
 			articlelist = cache.load("article_pages"),
 			fns = require.async("fn"),
 			date = require.async("DATE"),
-			pluginConfigCache = pluginInstall.configCache( id ),
+			pluginConfigCache = pluginInstall.configCache( this.id ),
 			infos = [];
 			
 		if ( articlelist.length < pluginConfigCache.top ){

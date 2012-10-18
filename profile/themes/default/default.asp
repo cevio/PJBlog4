@@ -16,14 +16,15 @@
             <%
 				var A = assetsPluginCustom.loadPlugin("hotarticle");
 				if ( A !== null ){
-					if ( A.length > 0 ){
+					var _data = A.data();
+					if ( _data.length > 0 ){
 			%>
 					<h3>最新日志</h3>
                     <ul class="sidemenu">
             <%
-            		for ( var ai = 0 ; ai < A.length ; ai++ ){
+            		for ( var ai = 0 ; ai < _data.length ; ai++ ){
 			%>
-            		<li><a href="article.asp?id=<%=A[ai].id%>" target="_blank"><%=A[ai].log_title%></a></li>
+            		<li><a href="article.asp?id=<%=_data[ai].id%>" target="_blank"><%=_data[ai].log_title%></a></li>
             <%
 					}		
             %>
