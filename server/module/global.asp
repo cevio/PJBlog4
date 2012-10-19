@@ -19,6 +19,11 @@ define(function(require, exports, module){
 		config.params.webkeywords = sys_cache_global[0][12]; // SEO关键字
 		config.params.authoremail = sys_cache_global[0][13]; // 博主邮箱
 		config.params.seotitle = sys_cache_global[0][14]; // SEO 标题
+		config.params.themeName = sys_cache_global[0][15]; // 主题名称
+		config.params.themeAuthor = sys_cache_global[0][16]; // 主题作者
+		config.params.themeWebSite = sys_cache_global[0][17]; // 主题网站
+		config.params.themeEmail = sys_cache_global[0][18]; // 主题作者邮箱
+		config.params.themeVersion = sys_cache_global[0][19]; // 主题版本
 	}else{
 		console.push("未找到缓存系统处理模块");
 	}
