@@ -47,10 +47,72 @@ define(['overlay'], function( require, exports, module ){
 		});
 	}
 	
+	function init_themeStyleSet(){
+		var setting = false;
+		$(".theme-style-list ul li").on("click", function(){
+			var _this = this;
+			if ( setting === false ){
+				setting = true;
+				var id = $(this).attr("data-id");
+				if ( id.length > 0 ){
+					$.getJSON(config.ajaxUrl.server.setupThemeStyle, { id: id }, function(jsons){
+						setting = false;
+						if ( jsons && jsons.success ){
+							$(".theme-style-list ul li").removeClass("current");
+							$(_this).addClass("current");
+						}else{
+							popUpTips(jsons.error);
+						}
+					});
+				}else{
+					setting = false;
+				}
+			}
+		});
+	}
+	
+	function init_themeDelete(){
+		var deling = false;
+		$(".action-del").on("click", function(){
+			if ( deling === false ){
+				if ( confirm("确定删除？") ){
+					deling = true;
+					var id = $(this).attr("data-id"),
+						_this = this;
+						
+					if ( id.length > 0 ){
+						$(this).find(".iconfont").addClass("sending");
+						$(this).find(".icontext").text("正在删除..");
+						$.getJSON(config.ajaxUrl.server.setupThemeDelete, { id: id }, function(jsons){
+							deling = false;
+							if ( jsons && jsons.success ){
+								$(_this).find(".iconfont").removeClass("sending");
+								$(_this).find(".icontext").text("删除成功");
+								$(_this).parents("li:first").animate({
+									opacity: 0
+								}, "slow", function(){
+									$(this).remove();
+								});
+							}else{
+								popUpTips(jsons.error);
+								$(_this).find(".iconfont").removeClass("sending");
+								$(_this).find(".icontext").text("删除");
+							}
+						});
+					}else{
+						deling = false;
+					}
+				}
+			}
+		});
+	}
+	
 	return {
 		init: function(){
 			$(function(){
 				init_setup();
+				init_themeStyleSet();
+				init_themeDelete();
 			});
 		}
 	}

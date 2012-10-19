@@ -97,9 +97,9 @@
             	<%
 					var styles = fso.collect("profile/themes/" + theme.name + "/style", true);
 					for ( var stylesItem = 0 ; stylesItem < styles.length ; stylesItem++ ){
-						var _current = styles[stylesItem] === theme.style ? ' class="current"' : '';
+						var _current = styles[stylesItem] === theme.style ? 'class="current"' : '';
 				%>
-            	<li<%=_current%>><img src="profile/themes/<%=theme.name%>/style/<%=styles[stylesItem]%>/priview.jpg" /></li>
+            	<li data-id="<%=styles[stylesItem]%>" <%=_current%>><img src="profile/themes/<%=theme.name%>/style/<%=styles[stylesItem]%>/priview.jpg" /></li>
                 <%
 					}
 				%>
@@ -155,7 +155,7 @@
                         <div class="list-info">
                         	<div class="list-info-title fn-textoverhide"><%=listXMLThemeName%> ( <%=listXMLThemeVersion%> )</div>
                             <div class="list-info-msg"><%=listXMLThemeInfo%></div>
-                            <div class="list-info-action fn-clear"><a href="javascript:;" class="fn-clear"><span class="iconfont">&#47;</span> <span class="icontext">分享</span></a> <a href="javascript:;" class="fn-clear action-setup" data-id="<%=listFolder%>"><span class="iconfont">&#409;</span> <span class="icontext">安装</span></a> <a href="javascript:;" class="fn-clear"><span class="iconfont">&#356;</span> <span class="icontext">删除</span></a> </div>
+                            <div class="list-info-action fn-clear"><a href="javascript:;" class="fn-clear"><span class="iconfont">&#47;</span> <span class="icontext">分享</span></a> <a href="javascript:;" class="fn-clear action-setup" data-id="<%=listFolder%>"><span class="iconfont">&#409;</span> <span class="icontext">安装</span></a> <a href="javascript:;" class="fn-clear action-del" data-id="<%=listFolder%>"><span class="iconfont">&#356;</span> <span class="icontext">删除</span></a> </div>
                         </div>
                     </div>
                     <div class="theme-install">

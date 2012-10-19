@@ -117,6 +117,62 @@
 			}
 		}
 		
+		callbacks.setupstyle = function(){
+			var id = req.query.id;
+			
+			if ( id.length > 0 ){
+				var dbo = require("DBO"),
+					connecte = require("openDataBase");
+				
+				if ( connecte === true ){
+					dbo.update({
+						conn: config.conn,
+						table: "blog_global",
+						key: "id",
+						keyValue: "1",
+						data: {
+							style: id
+						}
+					});
+					var cache = require("cache");
+						cache.build("global");
+					
+					return {
+						success: true
+					}
+				}else{
+					return {
+						success: false,
+						error: "连接数据库失败"
+					}
+				}
+			}else{
+				return {
+					success: false,
+					error: "参数错误"
+				}
+			}
+		}
+		
+		callbacks.themedelete = function(){
+			var id = req.query.id;
+			
+			if ( id.length > 0 ){
+				var fso = require("FSO");
+				
+				fso.destory("profile/themes/" + id, true);
+				
+				return {
+					success: true
+				}
+			}else{
+				return {
+					success: false,
+					error: "参数错误"
+				}
+			}
+		}
+		
 		if ( Session("admin") === true ){
 			if ( callbacks[j] !== undefined ){
 				return callbacks[j]();
