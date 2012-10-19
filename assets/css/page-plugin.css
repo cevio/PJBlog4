@@ -1,11 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
 
-@-webkit-keyframes ball {
-	from{ -webkit-transform:rotate(0deg); }
-	to{ -webkit-transform:rotate(360deg); }
-}
-
 .plugin-zone{ padding:20px; }
 .tabs-content-items-area{ padding:20px 25px;}
 
@@ -19,10 +14,3 @@
 .tabs-content-items-area li .info .tools a{ margin-right:10px; float:left;}
 .tabs-content-items-area li .info .tools a span{ float:left; margin-right:3px; height:24px; line-height:24px;}
 .tabs-content-items-area li .info .tools a span .icontext{}
-.tabs-content-items-area li .info .tools .sending{
-	-webkit-animation-duration: 1s;
-	-webkit-animation-name: ball;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-timing-function: linear;
-	-webkit-transform-origin:50% 50%;
-}

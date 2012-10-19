@@ -8,6 +8,20 @@
 	src: 	url('uxiconfont.eot'); /* IE9*/
 	src: 	url('uxiconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */  url('uxiconfont.woff') format('woff'), /* chrome、firefox */  url('uxiconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/  url('uxiconfont.svg#svgFontName') format('svg'); /* iOS 4.1- */
 }
+
+@-webkit-keyframes ball {
+	from{ -webkit-transform:rotate(0deg); }
+	to{ -webkit-transform:rotate(360deg); }
+}
+
+.sending{
+	-webkit-animation-duration: 1s;
+	-webkit-animation-name: ball;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+	-webkit-transform-origin:50% 50%;
+}
+
 /* 防止用户自定义背景颜色对网页的影响，添加让用户可以自定义字体 */
 html {
 	color: #000;

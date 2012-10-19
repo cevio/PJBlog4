@@ -155,8 +155,11 @@
                         <div class="list-info">
                         	<div class="list-info-title fn-textoverhide"><%=listXMLThemeName%> ( <%=listXMLThemeVersion%> )</div>
                             <div class="list-info-msg"><%=listXMLThemeInfo%></div>
-                            <div class="list-info-action"><a href="javascript:;"><span class="iconfont">&#47;</span> 分享</a> <a href="javascript:;"><span class="iconfont">&#409;</span> 安装</a> <a href="javascript:;"><span class="iconfont">&#356;</span> 删除</a> </div>
+                            <div class="list-info-action fn-clear"><a href="javascript:;" class="fn-clear"><span class="iconfont">&#47;</span> <span class="icontext">分享</span></a> <a href="javascript:;" class="fn-clear action-setup" data-id="<%=listFolder%>"><span class="iconfont">&#409;</span> <span class="icontext">安装</span></a> <a href="javascript:;" class="fn-clear"><span class="iconfont">&#356;</span> <span class="icontext">删除</span></a> </div>
                         </div>
+                    </div>
+                    <div class="theme-install">
+                    sdaf
                     </div>
                 </li>
             <%
