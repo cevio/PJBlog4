@@ -38,7 +38,7 @@ define(function( require, exports, module ){
 			if ( thisPluginCache.pluginstatus === true ){
 				var proxy = require.async("profile/plugins/" + thisPluginCache.pluginfolder + "/proxy");
 					proxy.id = thisPluginCache.id;
-					proxy.pluginFolder = thisPluginCache.pluginfolder;
+					proxy.folder = thisPluginCache.pluginfolder;
 					retPlugin = proxy;
 			}
 		}
