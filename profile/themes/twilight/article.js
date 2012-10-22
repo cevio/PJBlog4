@@ -13,7 +13,7 @@ define(['form'], function( require, exports, module ){
 					return false;
 				}
 				
-				if ($form.find("input[name='content']").val().length === 0){
+				if ($form.find("textarea[name='content']").val().length === 0){
 					alert("请填写内容");
 					return false;
 				}
@@ -30,7 +30,7 @@ define(['form'], function( require, exports, module ){
 			},
 			error: function(s){
 				isSending = false;
-				alert(s.error);
+				alert(s.error());
 			}
 		});
 		

@@ -21,7 +21,7 @@
         <p>评论列表</p>
         <blockquote><p>发表评论</p></blockquote>
         <p>
-        	<form action="server/proxy/comment.asp?j=post" id="postcomment">
+        	<form action="server/proxy/comment.asp?j=post" id="postcomment" method="post">
             <input type="hidden" name="logid" value="<%=articleCache.id%>" />
             <input type="hidden" name="commid" value="0" />
             <table width="100%" cellpadding="0" cellspacing="0" style="margin:0; padding:0;">

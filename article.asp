@@ -1,5 +1,6 @@
 <!--#include file="config.asp" -->
 <%
+	require("status");
 	require("cache_global");
 	
 	var pageArticleCustomParams = {};

@@ -1,4 +1,4 @@
-<!--#include file="../config.asp" -->
+<!--#include file="../../config.asp" -->
 <%
 http.async(function(req){
 	var j = req.query.j,
@@ -51,10 +51,10 @@ http.async(function(req){
 					commentcontent: fns.SQLStr(content),
 					commentpostdate: date.format(new Date(), "y/m/d h:i:s"),
 					commentpostip: ip,
-					commentaduit: false
+					commentaudit: false
 				},
 				callback: function(){
-					id = rs("id").value;
+					id = this("id").value;
 				}
 			});
 			
@@ -84,8 +84,8 @@ http.async(function(req){
 		}
 	}
 	
-	if ( config.user.login === true ){
-		if ( c[j] === undefined ){
+	if ( config.user.login !== true ){
+		if ( c[j] !== undefined ){
 			return c[j]();
 		}else{
 			return {
