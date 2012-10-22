@@ -1,5 +1,14 @@
 <%include(config.params.themeFolder + "/header");%>
-
+<%
+if ( config.user.login === true ){
+    console.log('您已登入 <a href="server/logout.asp">退出登入</a>');
+}else{
+    var oauth = require("server/oAuth/qq/oauth"),
+        fns = require("fn");
+        
+    console.log('<a href="' + oauth.url("100299901", "http://lols.cc/server/oauth.asp?type=qq&dir=" + escape( fns.localSite() )) + '">登入</a>');
+}
+%>
     <div class="holder">
 		<%
 			var cache_article = require("cache_article"),

@@ -33,7 +33,11 @@ define(function(require, exports, module){
 	}
 	
 	exports["artcomm"] = function(id){
-		return "Select id, commentid, commentuserid, commentcontent, commentpostdate, commentpostip From blog_comment, commentaudit Where commentlogid=" + id + " Order By commentpostdate DESC";
+		return "Select id, commentid, commentuserid, commentcontent, commentpostdate, commentpostip, commentaudit From blog_comment Where commentlogid=" + id + " Order By commentpostdate DESC";
+	}
+	
+	exports["user"] = function(id){
+		return "Select sex, photo, nickName, isAdmin From blog_member Where id=" + id;
 	}
 });
 %>

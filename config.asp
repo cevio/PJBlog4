@@ -69,6 +69,7 @@
 	map["cache_category"] = "server/module/category";
 	map["cache_article"] = "server/module/article";
 	map["cache_article_detail"] = "server/module/article-detail";
+	map["cache_comment"] = "server/module/comment";
 	
 /*
  * 系统默认变量
@@ -77,7 +78,8 @@
  */
  	config.conn = null;
 	config.user = {
-		login : false
+		login: false,
+		id: 0
 	}
 	
 	config.page = { assets: {}, server: {} };

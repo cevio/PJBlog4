@@ -120,11 +120,10 @@ define(["openDataBase"], function(require, exports, module){
 				error : "dbo error"
 			}
 		}
-		
+		CloseConnect();
 		return ret;
 	}
 	
 	return login;
 });
-CloseConnect();
 %>

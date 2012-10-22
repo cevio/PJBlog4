@@ -5,6 +5,8 @@ http.async(function(req){
 		c = {};
 		
 	c.post = function(){
+		require("status");
+	
 		var date = require("DATE"),
 			logid = req.form.logid,
 			commid = req.form.commid,
@@ -30,7 +32,7 @@ http.async(function(req){
 				error: "未找到用户"
 			}
 		}
-		
+
 		logid = Number(logid);
 		commid = Number(commid);
 		userid = Number(userid);

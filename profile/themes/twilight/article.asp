@@ -18,7 +18,40 @@
         </ul>
         
         <blockquote><p>评论区域</p></blockquote>
-        <p>评论列表</p>
+        <p><ul>
+        	<%
+				var coms = require("cache_comment"),
+					comsList = coms.commentList(articleCache.id);
+					
+				if ( comsList.length > 0 ){
+					for ( var comsListItem = 0 ; comsListItem < comsList.length ; comsListItem++ ){
+						var items = comsList[comsListItem].items;
+			%>
+            			<li>谁： <%=comsList[comsListItem].user.name%> 头像： <img src="<%=comsList[comsListItem].user.photo%>/30" /> 内容:<%=comsList[comsListItem].content%>
+            <%
+							if ( items.length > 0 ){
+			%>
+            					<ul>
+            <%
+									for ( var ck = 0 ; ck < items.length ; ck++ ){
+			%>
+            							<li>谁： <%=items[ck].user.name%> 头像： <img src="<%=items[ck].user.photo%>/30" /> 内容：<%=items[ck].content%></li>
+            <%						
+									}
+			%>
+                                </ul>
+            <%
+							}
+			%>
+                        </li>
+            <%
+					}
+				}else{
+					console.log("没有数据");
+				}
+			%>
+            </ul>
+        </p>
         <blockquote><p>发表评论</p></blockquote>
         <p>
         	<form action="server/proxy/comment.asp?j=post" id="postcomment" method="post">

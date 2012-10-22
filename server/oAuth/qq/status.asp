@@ -13,6 +13,7 @@ define(["openDataBase"], function(require, exports, module){
 				if ( !(rs.Bof || rs.Eof) ){
 					if ( token === rs("qq_token").value ){
 						config.user.login = true;
+						config.user.id = rs("id").value;
 					}else{
 						cookie.clear(config.cookie + "_user");
 					}
