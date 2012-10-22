@@ -1,7 +1,8 @@
 <%@LANGUAGE="JAVASCRIPT" CODEPAGE="65001"%>
 <%
 var config = {};
-
+	config.timer = new Date().getTime();
+	
 var console = {}, 
 	selector, 
 	fetch, 
@@ -112,6 +113,11 @@ var JSON = !JSON ? {} : JSON;
 			this.end(tpl);
 		}
 	}
+	
+	config.timers = function(){
+		var timer = new Date().getTime();
+		return (( timer - config.timer ) / 1000) + "s";
+	};
 
 })();
 
