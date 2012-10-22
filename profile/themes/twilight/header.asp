@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="Author" content="<%=config.params.nickname%> - <%=config.params.authoremail%>" />
 <link rel="stylesheet" href="<%=config.params.website + "/" + config.params.styleFolder%>/default.css" type="text/css" />
+<script language="javascript" src="<%=config.params.website + "/assets/js/core/sizzle.js"%>"></script>
 <title><%=config.params.seotitle%></title>
 </head>
 
