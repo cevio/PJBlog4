@@ -21,7 +21,8 @@
 				blog_global.webdescription = rs("webdescription").value;
 				blog_global.webkeywords = rs("webkeywords").value;
 				blog_global.authoremail = rs("authoremail").value;
-				blog_global.seotitle = rs("seotitle").value;
+				blog_global.seotitle = rs("seotitle").value,
+				blog_global.commentaduit = rs("commentaduit").value;
 			}
 		});
 %>
@@ -97,6 +98,16 @@
                 <tr>
                 	<td class="key">每页日志数量</td>
                     <td class="keyvalue"><input type="text" value="<%=blog_global.articleperpagecount%>" name="articleperpagecount" class="shorter"></td>
+                </tr>
+            </table>
+        </fieldset>
+        
+        <fieldset>
+        	<legend>评论模块设置</legend>
+            <table>
+            	<tr>
+                	<td class="key">需要审核?</td>
+                    <td class="keyvalue"><input type="checkbox" value="1" name="commentaduit" <%=blog_global.commentaduit === true ? 'checked="checked"' : ''%>> <span class="info">开启评论审核功能？</span></td>
                 </tr>
             </table>
         </fieldset>

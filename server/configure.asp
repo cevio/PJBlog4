@@ -17,12 +17,19 @@ http.async(function(req){
 			webkeywords = req.form.webkeywords,
 			authoremail = req.form.authoremail,
 			seotitle = req.form.seotitle,
+			commentaduit = req.form.commentaduit,
 			error = "处理过程中发生错误。";
 			
 		if ( webstatus === "1" ){
 			webstatus = true;
 		}else{
 			webstatus = false;
+		}
+		
+		if ( commentaduit === "1" ){
+			commentaduit = true;
+		}else{
+			commentaduit = false;
 		}
 			
 		var ret = this.saveNormal({
@@ -38,7 +45,8 @@ http.async(function(req){
 			webdescription: webdescription,
 			webkeywords: webkeywords,
 			authoremail: authoremail,
-			seotitle: seotitle
+			seotitle: seotitle,
+			commentaduit: commentaduit
 		});
 		
 		if ( ret === true ){

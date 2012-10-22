@@ -121,11 +121,10 @@ define(["openDataBase"], function(require, exports, module){
 			}
 		}
 		
-		(config.conn !== null) && config.conn.Close();
-		
 		return ret;
 	}
 	
 	return login;
 });
+CloseConnect();
 %>
