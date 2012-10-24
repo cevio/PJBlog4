@@ -192,7 +192,7 @@
                             	<li class="tabs-content-weibo-item fn-clear">
                                 	<div class="fn-left tabs-content-weibo-item-img"><a href=""><img src="http://tp2.sinaimg.cn/2687147321/50/22821916476/0" /></a></div>
                                     <div class="fn-left tabs-content-weibo-item-info">
-                                    	<div class="word"><a href="">玉伯也叫射雕(玉伯)</a>：//@学诚法师: 初学阶段用功的重点是培养对三宝的信心，生活中多行善助人，多看他人的好处，靠善业培植福慧，增长内心正面的力量。"依僧先从依友起"，多结交同行善友，生活中可以互相提策。</div>
+                                    	<div class="word"><a href=""><span class="iconfont">&#368;</span> 玉伯也叫射雕(玉伯)</a>：//@学诚法师: 初学阶段用功的重点是培养对三宝的信心，生活中多行善助人，多看他人的好处，靠善业培植福慧，增长内心正面的力量。"依僧先从依友起"，多结交同行善友，生活中可以互相提策。</div>
                                         <div class="attemds fn-clear">
                                         	
                                         </div>

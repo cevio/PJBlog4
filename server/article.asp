@@ -8,7 +8,7 @@
 				log_category = req.form.log_category,
 				log_content = req.form.log_content,
 				log_tags = req.form.log_tags,
-				log_shortcontent = "";
+				log_shortcontent = req.form.log_shortcontent;
 				
 			if ( log_title.length === 0 ){
 				return {
@@ -36,15 +36,16 @@
 				
 			var fns = require("fn"),
 				tmp_remove_html = fns.removeHTML(log_content);
-				
-			log_shortcontent = this.shortCutContent(tmp_remove_html, fns);
-			
-			if ( log_shortcontent.success ){
-				log_shortcontent = log_shortcontent.data.html;
-			}else{
-				return {
-					success: false,
-					error: "处理日志预览出错"
+
+			if ( log_shortcontent.length === 0 ){
+				log_shortcontent = this.shortCutContent(tmp_remove_html, fns);
+				if ( log_shortcontent.success ){
+					log_shortcontent = log_shortcontent.data.html;
+				}else{
+					return {
+						success: false,
+						error: "处理日志预览出错"
+					}
 				}
 			}
 				
@@ -107,7 +108,7 @@
 				log_content = req.form.log_content,
 				log_tags = req.form.log_tags,
 				id = req.form.id,
-				log_shortcontent = "";
+				log_shortcontent = req.form.log_shortcontent;
 				
 			if ( log_title.length === 0 ){
 				return {
@@ -135,15 +136,16 @@
 				
 			var fns = require("fn"),
 				tmp_remove_html = fns.removeHTML(log_content);
-				
-			log_shortcontent = this.shortCutContent(tmp_remove_html, fns);
 			
-			if ( log_shortcontent.success ){
-				log_shortcontent = log_shortcontent.data.html;
-			}else{
-				return {
-					success: false,
-					error: "处理日志预览出错"
+			if ( log_shortcontent.length === 0 ){	
+				log_shortcontent = this.shortCutContent(tmp_remove_html, fns);
+				if ( log_shortcontent.success ){
+					log_shortcontent = log_shortcontent.data.html;
+				}else{
+					return {
+						success: false,
+						error: "处理日志预览出错"
+					}
 				}
 			}
 				

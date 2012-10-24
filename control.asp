@@ -35,7 +35,7 @@
         <div class="nav-user">
         	<%if ( Session("admin") !== true ){ %><a href="default.asp">前台</a><%}%>
         	<%if ( Session("admin") === true ){ %><span class="name">sevio</span><%}%>
-            <%if ( Session("admin") === true ){ %><a href="javascript:;" class="item">设置<ul><li class="sdk-globalconfigure">全局设置</li><li>修改密码</li></ul></a><%}%>
+            <%if ( Session("admin") === true ){ %><a href="javascript:;" class="item">设置<ul><li class="sdk-globalconfigure"><span class="iconfont">&#355;</span> 全局设置</li><li><span class="iconfont">&#226;</span> 修改密码</li></ul></a><%}%>
             <%if ( Session("admin") === true ){ %><a href="?p=writeArticle">写日志</a><%}%>
             <a href="javascript:;">官方</a>
             <%if ( Session("admin") === true ){ %><a href="server/logout.asp">退出</a><%}%>
@@ -58,8 +58,8 @@
 
 <div id="footer" class="tpl-wrapper">
 	<div class="foot-zone fn-clear">
-    	<div class="one">微博帮助　意见反馈　开放平台　微博招聘　新浪网导航　社区管理中心　微博社区</div>
-        <div class="two fn-clear"><div class="fn-left">北京微梦创科网络技术有限公司 京网文[2011]0398-130号 京ICP证100780号</div><div class="fn-right">Copyright © 1996-2012 SINA</div></div>
+    	<div class="fn-left">&copy; 2012 <a href="http://pjhome.net" target="_blank">PJHome.net</a>. Valid <a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank">CSS</a> &amp; <a href="http://validator.w3.org/check?uri=referer" target="_blank">XHTML</a> Timer <%=config.timers()%></div>
+        <div class="fn-right">code by <a href="http://sizzle.cc" target="_blank">evio</a> . design by <a href="http://sizzle.cc" target="_blank">evio</a></div>
     </div>
 </div>
 <script language="javascript">

@@ -387,7 +387,12 @@ textarea {
 #footer .foot-zone {
 	border-radius:8px 8px 0 0;
 	padding:5px 0px;
+	color:#666;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
 }
+
+#footer .foot-zone a{ color:#999; text-decoration:underline;}
 #footer .foot-zone .one {
 	line-height:30px;
 	color:#888;

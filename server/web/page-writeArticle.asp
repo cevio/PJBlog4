@@ -62,18 +62,24 @@
 							}
 							
 							return arrays.join(",");
-						})(module_tags)
+						})(module_tags);
 						
 					}
 				}
 			});
 		}
 %>
+
+<script language="javascript">
+var articleCut = 300;
+</script>
+
 <div class="tpl-space fn-clear">
 	<div class="article-zone">
     	<div class="write-area">
         	<form action="<%=actionURL%>" method="post" style="margin:0; padding:0;">
             	<input type="hidden" value="<%=id%>" name="id" />
+                <textarea name="log_shortcontent" style="position:absolute; top:-99999px; left:-99999px;"></textarea>
                 <h3><span class="iconfont">&#367;</span> <%console.log( mode === "add" ? "新建日志" : "编辑日志" )%></h3>
                 <div class="write-zone">
                     <div class="log-title maginbom"><input type="text" value="<%=log_title%>" name="log_title" placeholder="日志标题" /></div>
@@ -113,7 +119,7 @@
                         <div class="fn-clear head"><div class="tip-title fn-left">内容区域</div><div class="fn-right tags"><input type="text" value="<%=log_tags%>" name="log_tags" placeholder="标签..."></div></div>
                         <textarea style="height:350px;" name="log_content"><%=log_content%></textarea>
                     </div>
-                    <div class="log-actions"><input type="submit" value="提交" class="tpl-button-blue log-submit" /></div>
+                    <div class="log-actions"><input type="button" value="提交" class="tpl-button-blue log-submit" id="submit" /></div>
                 </div>
             </form>
         </div>
