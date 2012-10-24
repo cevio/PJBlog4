@@ -26,6 +26,8 @@
 		console.log("日志ID错误");
 	}
 	
+	var assetsPluginCustom = require("pluginCustom");
+	
 	include("profile/themes/" + config.params.theme + "/article.asp");
 	
 	CloseConnect();

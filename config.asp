@@ -115,7 +115,14 @@
  	function LoadCacheModule( ModuleName, ModuleCallback ){
 		var ModuleCacheDatas = require(ModuleName);
 		if ( typeof ModuleCallback === "function" ){
-			ModuleCallback(ModuleCacheDatas);
+			ModuleCallback( ModuleCacheDatas );
+		}
+	}
+	
+	function LoadPluginsCacheModule( ModuleName, ModuleCallback ){
+		var ModuleCacheDatas = assetsPluginCustom.loadPlugin( ModuleName );
+		if ( typeof ModuleCallback === "function" ){
+			ModuleCallback( ModuleCacheDatas );
 		}
 	}
 %>

@@ -20,7 +20,6 @@ define(['overlay'], function( require, exports, module ){
 						opacity: 0
 					}, "slow", function(){
 						$(this).remove();
-						popUpTips("删除成功！");
 					});
 				}else{
 					popUpTips(jsons.error);
