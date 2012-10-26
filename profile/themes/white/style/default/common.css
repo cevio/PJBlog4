@@ -1,0 +1,222 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* 防止用户自定义背景颜色对网页的影响，添加让用户可以自定义字体 */
+html {
+	color: #000;
+	background: #fff;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+form {
+	margin:0;
+	padding:0;
+}
+/* 内外边距通常让各个浏览器样式的表现位置不同 */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	margin: 0;
+	padding: 0;
+	font-family:microsoft yahei;
+}
+/* 重设 HTML5 标签, IE 需要在 js 中 createElement(TAG) */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+	font-family:microsoft yahei;
+}
+/* HTML5 媒体文件跟 img 保持一致 */
+audio, canvas, video {
+	display: inline-block;
+ *display: inline;
+ *zoom: 1;
+}
+/* 要注意表单元素并不继承父级 font 的问题 */
+body, button, input, select, textarea {
+	font: 12px/1.5 microsoft yahei, "\5b8b\4f53", sans-serif;
+	outline:none;
+}
+input, select, textarea {
+	font-size: 100%;
+}
+/* 去掉各Table  cell 的边距并让其边重合 */
+table {
+	border-spacing: 0;
+}
+/* IE bug fixed: th 不继承 text-align*/
+th {
+	text-align: inherit;
+}
+/* 去除默认边框 */
+fieldset, img {
+	border: 0;
+}
+/* ie6 7 8(q) bug 显示为行内表现 */
+iframe {
+	display: block;
+}
+/* 去掉 firefox 下此元素的边框 */
+abbr, acronym {
+	border: 0;
+	font-variant: normal;
+}
+/* 一致的 del 样式 */
+del {
+	text-decoration: line-through;
+}
+address, caption, cite, code, dfn, em, th, var {
+	font-style: normal;
+	font-weight: 500;
+}
+/* 去掉列表前的标识, li 会继承 */
+ol, ul {
+	list-style: none;
+}
+/* 对齐是排版最重要的因素, 别让什么都居中 */
+caption, th {
+	text-align: left;
+}
+/* 来自yahoo, 让标题都自定义, 适应多个系统应用 */
+h1, h2, h3, h4, h5, h6 {
+	font-size: 100%;
+	font-weight: 500;
+}
+q:before, q:after {
+	content: '';
+}
+/* 统一上标和下标 */
+sub, sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+sup {
+	top: -0.5em;
+}
+sub {
+	bottom: -0.25em;
+}
+/* 让链接在 hover 状态下显示下划线 */
+a:hover {
+	text-decoration: underline;
+}
+/* 默认不显示下划线，保持页面简洁 */
+ins, a {
+	text-decoration: none;
+	outline:none;
+}
+/* 清理浮动 */
+.fn-clear:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+.fn-clear {
+	zoom: 1;/* for IE6 IE7 */
+
+}
+/* 隐藏, 通常用来与 JS 配合 */
+body .fn-hide {
+	display: none;
+}
+/* 设置内联, 减少浮动带来的bug */
+.fn-left, .fn-right {
+	display: inline;
+}
+.fn-left {
+	float: left;
+}
+.fn-right {
+	float: right;
+}
+/* 设置元素为内联*/
+.fn-lump {
+	display: inline-block;
+	zoom: 1;
+ *display: inline;
+}
+/* 设置元素可见 */
+.fn-visible {
+	visibility: visible;
+}
+/* 设置元素不可见 */
+.fn-invisible {
+	visibility: hidden;
+}
+/* 文本强制断行 */
+.fn-brk {
+	word-wrap: break-word;
+	word-break: break-all;
+}
+a img {
+	border:0;
+}
+button, input, select, textarea {
+	margin: 0;
+	font-size: 100%;
+	vertical-align: middle;
+}
+button, input {
+ *overflow: visible;
+	line-height: normal;
+}
+ button::-moz-focus-inner, input::-moz-focus-inner {
+ padding: 0;
+ border: 0;
+}
+button, input[type="button"], input[type="reset"], input[type="submit"] {
+	cursor: pointer;
+	-webkit-appearance: button;
+}
+input[type="search"] {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	-webkit-appearance: textfield;
+}
+ input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button {
+ -webkit-appearance: none;
+}
+textarea {
+	overflow: auto;
+	vertical-align: top;
+}
+
+
+
+
+/* #####################################################################################################*/
+.pj-zone{ border-bottom:1px solid #ddd; box-shadow:0px 1px 5px #ccc;}
+.pj-wrapper{ width:980px; margin:0 auto;}
+.pj-top{ height:80px; position:relative;}
+.pj-top .pj-title{ position:absolute; top:10px; left:30px; font-size:24px; font-family:Verdana, Geneva, sans-serif; font-style:oblique; font-weight:bold;}
+.pj-top .pj-title .pj-info{ font-size:12px; margin-left:50px; color:#999; font-style:normal; font-weight:normal;}
+.pj-top .pj-nav{ position:absolute; height:30px; bottom:0px; right:10px;}
+.pj-top .pj-nav ul.nav-ul-one{ height:30px; display:block;}
+.pj-top .pj-nav ul.nav-ul-one li.nav-li-one{ float:left; line-height:30px; position:relative}
+.pj-top .pj-nav ul.nav-ul-one li.nav-li-one a{ padding:0px 20px; display:block; border-bottom:1px solid #ddd;}
+.pj-top .pj-nav ul.nav-ul-one li.nav-li-one a.current{border-bottom: 1px solid #ff0000;}
+.pj-top .pj-nav ul.nav-ul-one li.nav-li-one a:link, .pj-top .pj-nav ul.nav-ul-one li.nav-li-one a:visited{ color:#999;}
+.pj-top .pj-nav ul.nav-ul-one li.nav-li-one a:hover{ color:#666; text-decoration:none; border-bottom: 1px solid #ff0000;}
+
+.pj-top .pj-nav ul.nav-ul-one li.nav-li-one:hover ul.nav-ul-two{ display:block;}
+
+.pj-top .pj-nav ul.nav-ul-one li.nav-li-one ul.nav-ul-two{ background:#fff; margin-top:1px; border:1px solid #ddd; display:none; position:absolute; top:30px; left:0px; width:150px; }
+.pj-top .pj-nav ul.nav-ul-one li.nav-li-one ul.nav-ul-two li.nav-li-two{}
+.pj-top .pj-nav ul.nav-ul-one li.nav-li-one ul.nav-ul-two li.nav-li-two a{ display:block; border-bottom: 1px solid #fff;}
+.pj-top .pj-nav ul.nav-ul-one li.nav-li-one ul.nav-ul-two li.nav-li-two a:hover{ background:#efefef; border-bottom: 1px solid #efefef;}
+
+.pj-top .pj-search{ height:31px; overflow:hidden; width:263px; position:absolute; top:0px; right:10px;}
+.pj-top .pj-search .pj-search-box{ height:30px; border:1px solid #ddd; border-top:0px; border-radius:0px 0px 4px 4px;}
+.pj-top .pj-search .pj-search-box .pj-search-box-input{ float:left; border-right:1px solid #ddd;}
+.pj-top .pj-search .pj-search-box .pj-search-box-input input{ border:none; background:none; height:30px; width:200px;padding:0px 5px 0px 5px; color:#666;}
+.pj-top .pj-search .pj-search-box .pj-search-box-btn{ float:left;}
+.pj-top .pj-search .pj-search-box .pj-search-box-btn input{ width:50px; height:30px; border:0px; background:none; padding:0px; margin:0px; text-align:center; background:#efefef; color:#666;}
+
+.pj-footer{ color:#999;}
+.pj-footer a:link, .pj-footer a:visited{ color:#999;}
+.pj-footer a:hover{ color:#666;}
+
+.pj-bodyer{ padding:30px 0px;}
