@@ -267,3 +267,23 @@ a:hover{ color:#000; text-decoration:none;}
 .comments .comment-list ul li .comment-content .actiontools a{ margin-right:10px;}
 .comments .comment-list ul li .comment-content .actiontools a:link, .comments .comment-list ul li .comment-content .actiontools a:visited{ color:#1E7BB3;}
 .comments .comment-list ul li .comment-content .actiontools a:hover{ color:#ff0000;}
+
+.comments .comment-list ul li .comment-items{ margin-top:10px; border:1px solid #eee; padding:10px 15px;}
+.comments .comment-list ul li .comment-items .cimg{ width:30px; height:30px; margin-right:10px;}
+.comments .comment-list ul li .comment-items .cimg img{width:30px; height:30px; border-radius:3px;}
+.comments .comment-list ul li .comment-items .ccontent{}
+.comments .comment-list ul li .comment-items .ccontent .cwho{ font-size:12px; font-weight:bold; color:#666; height:24px; line-height:24px;}
+.comments .comment-list ul li .comment-items .ccontent .cinfo{ height:20px; line-height:20px; color:#999;}
+.comments .comment-list ul li .comment-items .ccontent .cdes{ color:#999; margin-top:10px;}
+.comments .comment-list ul li .comment-items .cline{ margin-bottom:20px;}
+
+.postcommentzone{ background:#fff; box-shadow:0px 0px 5px #ccc; padding:10px 20px;}
+.postcommentzone .textarea{ margin-top:10px;}
+.postcommentzone .textarea textarea{ border:1px solid #ddd; width:400px; height:100px;}
+.postcommentzone .submit{ margin-top:10px;}
+.postcommentzone .submit input{ border:1px solid #ddd; background:none; color:#999; padding:5px 10px;}
+
+.postreplyform .textarea{ margin-top:10px;}
+.postreplyform .textarea textarea{ border:1px solid #ddd; width:400px; height:100px;}
+.postreplyform .submit{ margin-top:10px;}
+.postreplyform .submit input{ border:1px solid #ddd; background:none; color:#999; padding:5px 10px;}
