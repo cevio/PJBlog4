@@ -1,5 +1,5 @@
 <%include(config.params.themeFolder + "/header");%>
-<% var articleCache = require("cache_article_detail"), date = require("DATE"); %>
+<% var date = require("DATE"); %>
 <script language="javascript">
 var postid = <%=articleCache.id%>;
 </script>
@@ -38,7 +38,9 @@ var postid = <%=articleCache.id%>;
             <div class="comment-list">
             <%
 				var coms = require("cache_comment"),
-					comsList = coms.commentList(articleCache.id);
+					comsList = coms.commentList(articleCache.id),
+					pages = comsList.page,
+					comsList = comsList.list;
 				
 				if ( comsList.length > 0 ){
 			%>
@@ -83,27 +85,29 @@ var postid = <%=articleCache.id%>;
                 </ul>
             <%	
 				}
+				if ( comsList.length > 0 && (pages.to - pages.from > 0) ){
+			%>
+            
+            <div class="pj-article-pagebar fn-clear">
+			<%
+                        for ( var n = pages.from ; n <= pages.to ; n++ ){
+                            if ( pages.current === n ){
+            %>
+                <span class="fn-left"><%=n%></span>
+            <%
+                            }else{
+            %>
+                <a href="article.asp?id=<%=articleCache.id%>&page=<%=n%>" class="fn-left"><%=n%></a>
+            <%				
+                            }
+                        }
+            %>
+            </div>
+            <%
+				}
 			%>
             </div>
         </div>
-        
-<!--        <blockquote><p>发表评论</p></blockquote>
-        <p>
-        	<form action="server/proxy/comment.asp?j=post" id="postcomment" method="post">
-            <input type="hidden" name="logid" value="%=articleCache.id%" />
-            <input type="hidden" name="commid" value="0" />
-            <table width="100%" cellpadding="0" cellspacing="0" style="margin:0; padding:0;">
-            	<tr>
-                	<td valign="top" width="50">内容</td>
-                    <td><textarea name="content" style="width:100%; height:150px;"></textarea></td>
-                </tr>
-                <tr>
-                	<td></td>
-                    <td><input type="submit" value="提交" /></td>
-                </tr>
-            </table>
-            </form>
-        </p>-->
     </div>
     <script language="javascript">
     	require("assets/js/config.js", function( route ){

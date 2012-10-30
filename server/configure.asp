@@ -18,6 +18,7 @@ http.async(function(req){
 			authoremail = req.form.authoremail,
 			seotitle = req.form.seotitle,
 			commentaduit = req.form.commentaduit,
+			commentperpagecount = req.form.commentperpagecount,
 			error = "处理过程中发生错误。";
 			
 		if ( webstatus === "1" ){
@@ -46,7 +47,8 @@ http.async(function(req){
 			webkeywords: webkeywords,
 			authoremail: authoremail,
 			seotitle: seotitle,
-			commentaduit: commentaduit
+			commentaduit: commentaduit,
+			commentperpagecount: commentperpagecount
 		});
 		
 		if ( ret === true ){

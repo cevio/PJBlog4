@@ -24,9 +24,12 @@
 	
 	if ( pageArticleCustomParams.id === 0 ){
 		console.log("日志ID错误");
-	}
+	}	
 	
-	var assetsPluginCustom = require("pluginCustom");
+	var assetsPluginCustom = require("pluginCustom"),
+		articleCache = require("cache_article_detail");
+		
+	config.params.seotitle = articleCache.log_title;
 	
 	include("profile/themes/" + config.params.theme + "/article.asp");
 	

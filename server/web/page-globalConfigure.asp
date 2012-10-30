@@ -23,6 +23,7 @@
 				blog_global.authoremail = rs("authoremail").value;
 				blog_global.seotitle = rs("seotitle").value,
 				blog_global.commentaduit = rs("commentaduit").value;
+				blog_global.commentperpagecount = rs("commentperpagecount").value;
 			}
 		});
 %>
@@ -108,6 +109,10 @@
             	<tr>
                 	<td class="key">需要审核?</td>
                     <td class="keyvalue"><input type="checkbox" value="1" name="commentaduit" <%=blog_global.commentaduit === true ? 'checked="checked"' : ''%>> <span class="info">开启评论审核功能？</span></td>
+                </tr>
+                <tr>
+                	<td class="key">评论每页条数</td>
+                    <td class="keyvalue"><input type="text" name="commentperpagecount" value="<%=blog_global.commentperpagecount%>" class="shorter" /></td>
                 </tr>
             </table>
         </fieldset>

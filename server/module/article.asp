@@ -3,11 +3,11 @@ define(function(require, exports, module){
 	var cache = require("cache"),
 		sys_cache_articlePages,
 		sys_cache_global = cache.load("global"),
+		sys_fns = require("fn"),
 		sys_cache_category,
 		sys_cache_categoryList = {};
 		
 	var perPage = sys_cache_global[0][10];
-	
 	var arrays = [], 
 		articleIdFrom = 0, 
 		articleIdTo = 0,
@@ -31,6 +31,13 @@ define(function(require, exports, module){
 		sys_cache_articlePages = cache.load("article_pages");
 	}else{
 		sys_cache_articlePages = cache.load("article_pages_cate", pageIndexCustomParams.cateID);
+	}
+	
+	if ( sys_cache_articlePages.length === 0 ){
+		return {
+			list: [],
+			page: {}
+		}
 	}
 	
 	sys_cache_category = cache.load("category");
@@ -91,45 +98,9 @@ define(function(require, exports, module){
 		}
 	}
 	
-	
-	function pageAnalyze(currentPage, totalPages, perPageCount){
-		if ( perPageCount === undefined ){ perPageCount = 9; }
-		if ( perPageCount > totalPages ){ perPageCount = totalPages; }
-		
-		var isEven = perPageCount % 2 === 0 ? false : true,
-			o = Math.floor(perPageCount / 2),
-			l = isEven ? o : o - 1,
-			r = o;
-		
-		var _l = currentPage - l,
-			_r = currentPage + r;
-		
-		if ( _l < 1 ){
-			_l = 1;
-			_r = _l + perPageCount - 1;
-			if ( _r > totalPages ){
-				_r = totalPages;
-			}
-		}else if ( _r > totalPages ){
-			_r = totalPages;
-			_l = _r - perPageCount + 1;
-			if ( _l < 1 ){
-				_l = 1;
-			}
-		}
-		
-		return {
-			prev : currentPage - 1 < 1 ? 1 : currentPage - 1,
-			next : currentPage + 1 > totalPages ? totalPages : currentPage + 1,
-			from : _l,
-			to : _r,
-			current : currentPage
-		}
-	}
-	
 	return {
 		list : articleListContainer, 
-		page: pageAnalyze(pageIndexCustomParams.page, Math.ceil(arrays.length / perPage))
+		page: sys_fns.pageAnalyze(pageIndexCustomParams.page, Math.ceil(arrays.length / perPage))
 	};
 	
 });

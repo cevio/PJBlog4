@@ -7,7 +7,24 @@ define(function( require, exports, module ){
 			firstTreeList = [],
 			firstTreeJson = {},
 			lastTreeData = [],
-			_this = this;
+			_this = this,
+			sys_cache_global = cache.load("global"),
+			sys_fns = require("fn"),
+			perPage = sys_cache_global[0][21],
+			currentPage = pageArticleCustomParams.page;
+			
+		if ( commentLogList.length === 0 ){
+			return {
+				list: [],
+				page: {}
+			}
+		}
+	
+		if ( perPage > commentLogList.length ){
+			perPage = commentLogList.length;
+		}
+		
+		if ( perPage < 1 ){ perPage = 1; }
 			
 		for ( var i = 0 ; i < commentLogList.length ; i++ ){
 			var commentItemData = commentLogList[i],
@@ -66,8 +83,33 @@ define(function( require, exports, module ){
 				lastTreeData.push(firstTreeJson[firstTreeList[j] + ""]);
 			}
 		}
+
+		var commentFrom = ( currentPage - 1 ) * perPage + 1,
+			commentTo = (currentPage * perPage),
+			containers = [];
+	
+		if ( commentFrom > lastTreeData.length ){
+			commentFrom = lastTreeData.length;
+			commentTo = lastTreeData.length;
+		}else{
+			if ( commentFrom < 1 ){
+				commentFrom = 1;
+			}
+			if ( commentTo > lastTreeData.length ){
+				commentTo = lastTreeData.length;
+			}
+		}
 		
-		return lastTreeData;
+		commentFrom--; commentTo--;
+		
+		for ( var j = commentFrom ; j <= commentTo ; j++ ){
+			containers.push(lastTreeData[j]);
+		}
+		
+		return {
+			list: containers,
+			page: sys_fns.pageAnalyze(currentPage, Math.ceil(lastTreeData.length / perPage))
+		}
 		
 	}
 	

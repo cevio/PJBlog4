@@ -49,6 +49,27 @@
         
     </div>
     <div class="pj-sidebar fn-right">
+    	<div class="pj-sidepannel">
+        	<h3>登入信息</h3>
+            <ul>
+    <%
+	if ( config.user.login === true ){
+	%>
+    	<li><a href="server/logout.asp">您已登入  退出登入</a></li>
+        <li><a href="control.asp">管理后台（需要权限）</a></li>
+    <%
+	}else{
+		var oauth = require("server/oAuth/qq/oauth"),
+			fns = require("fn");
+			
+	%>
+    	<li><a href="<%=oauth.url("100299901", "http://lols.cc/server/oauth.asp?type=qq&dir=" + escape( fns.localSite() ))%>">登入</a></li>
+    <%
+	}
+    %>
+    		</ul>
+    	</div>
+    
     <%
 		LoadPluginsCacheModule("hotarticle", function( HotArticle ){
 			if ( HotArticle !== null ){
