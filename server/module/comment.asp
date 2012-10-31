@@ -31,7 +31,7 @@ define(function( require, exports, module ){
 				id = commentItemData[0],
 				commid = commentItemData[1],
 				content = commentItemData[3],
-				user = _this.commentUsers(commentItemData[2]),
+				user = _this.commentUsers(commentItemData[2], commentItemData[7], commentItemData[8]),
 				date = commentItemData[4],
 				ip = commentItemData[5],
 				aduit = commentItemData[6];
@@ -113,12 +113,21 @@ define(function( require, exports, module ){
 		
 	}
 	
-	exports.commentUsers = function( id ){
-		var user = cache.load("user", id);
-		return {
-			name: user[0][2],
-			photo: user[0][1],
-			id: id
+	exports.commentUsers = function( id, name, mail ){
+		if ( Number(id) === 0 ){
+			var GRATE = require.async("gra");
+			return {
+				name: name,
+				photo: GRATE(mail),
+				id: 0
+			}
+		}else{
+			var user = cache.load("user", id);
+			return {
+				name: user[0][2],
+				photo: user[0][1],
+				id: id
+			}
 		}
 	}
 	

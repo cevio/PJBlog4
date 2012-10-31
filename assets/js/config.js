@@ -5,6 +5,7 @@ define(["assets/js/core/jQuery"], function(){
 	// build upload module
 	config("debug", true);
 	config("base", "/");
+	config.cookie = "PJBlog4";
 	
 	// map modules
 	config.map("upload", "assets/js/upload");
@@ -33,6 +34,53 @@ define(["assets/js/core/jQuery"], function(){
 	config.ajaxUrl.server.setupTheme = "server/theme.asp?j=setup";
 	config.ajaxUrl.server.setupThemeStyle = "server/theme.asp?j=setupstyle";
 	config.ajaxUrl.server.setupThemeDelete = "server/theme.asp?j=themedelete";
+	
+	
+	function cookie(key, value, options) {
+        // key and at least value given, set cookie...
+        if (arguments.length > 1 && (!/Object/.test(Object.prototype.toString.call(value)) || value === null || value === undefined)) {
+            options = $.extend({}, options);
+    
+            if (value === null || value === undefined) {
+                options.expires = -1;
+            }
+    
+            if (typeof options.expires === 'number') {
+                var days = options.expires, t = options.expires = new Date();
+                t.setDate(t.getDate() + days);
+				options.expires = t;
+            }
+    
+            value = String(value);
+    
+            return (document.cookie = [
+                encodeURIComponent(key), '=', options.raw ? value : encodeURIComponent(value),
+                options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
+                options.path    ? '; path=' + options.path : '',
+                options.domain  ? '; domain=' + options.domain : '',
+                options.secure  ? '; secure' : ''
+            ].join(''));
+        }
+    
+        // key and possibly options given, get cookie...
+        options = value || {};
+        var decode = options.raw ? function(s) { return s; } : decodeURIComponent;
+    
+        var pairs = document.cookie.split('; ');
+        for (var i = 0, pair; pair = pairs[i] && pairs[i].split('='); i++) {
+            if (decode(pair[0]) === key) return decode(pair[1] || ''); // IE saves cookies with empty string as "c; ", e.g. without "=" as opposed to EOMB, thus pair[1] may be undefined
+        }
+        return null;
+    };
+	
+	config.isLogin = function(){
+		var loginKey = cookie(config.cookie + "_login");
+		if ( loginKey && loginKey === "true" ){
+			return true;
+		}else{
+			return false;
+		}
+	}
 
 	$("body")
 	

@@ -50,7 +50,19 @@ var postid = <%=articleCache.id%>;
 						var items = comsList[comsListItem].items;
 			%>
             		<li class="fn-clear">
-                    	<div class="img fn-left"><img src="<%=comsList[comsListItem].user.photo%>/50" /></div>
+                    	<div class="img fn-left">
+                        <%
+							if ( comsList[comsListItem].user.id === 0 ){
+						%>
+                        	<img src="<%=comsList[comsListItem].user.photo%>" />
+                        <%	
+							}else{
+						%>
+                        	<img src="<%=comsList[comsListItem].user.photo%>/50" />
+                        <%	
+							}
+						%>
+                        </div>
                         <div class="comment-content fn-left">
                         	<div class="comment-who fn-clear"><span class="fn-left"><%=comsList[comsListItem].user.name%></span><span class="fn-right comment-who-time"><%=date.format(comsList[comsListItem].date, "M d y - h:i")%></span></div>
                             <div class="comment-des"><%=comsList[comsListItem].content%></div>
@@ -63,7 +75,19 @@ var postid = <%=articleCache.id%>;
 									for ( var ck = 0 ; ck < items.length ; ck++ ){
 							%>
                             	<div class="fn-clear cline">
-                                    <div class="cimg fn-left"><img src="<%=comsList[comsListItem].user.photo%>/30" /></div>
+                                    <div class="cimg fn-left">
+                                    <%
+										if ( items[ck].user.id === 0 ){
+									%>
+                                    	<img src="<%=items[ck].user.photo%>" />
+                                    <%	
+										}else{
+									%>
+                                    	<img src="<%=items[ck].user.photo%>/30" />
+                                    <%	
+										}
+									%>
+                                    </div>
                                     <div class="ccontent fn-left">
                                         <div class="cwho"><%=items[ck].user.name%></div>
                                         <div class="cinfo"><%=date.format(items[ck].date, "M d y - h:i")%></div>

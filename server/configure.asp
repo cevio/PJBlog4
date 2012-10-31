@@ -19,6 +19,9 @@ http.async(function(req){
 			seotitle = req.form.seotitle,
 			commentaduit = req.form.commentaduit,
 			commentperpagecount = req.form.commentperpagecount,
+			gravatarS = req.form.gravatarS,
+			gravatarR = req.form.gravatarR,
+			gravatarD = req.form.gravatarD,
 			error = "处理过程中发生错误。";
 			
 		if ( webstatus === "1" ){
@@ -48,7 +51,10 @@ http.async(function(req){
 			authoremail: authoremail,
 			seotitle: seotitle,
 			commentaduit: commentaduit,
-			commentperpagecount: commentperpagecount
+			commentperpagecount: commentperpagecount,
+			gravatarS: gravatarS,
+			gravatarR: gravatarR,
+			gravatarD: gravatarD
 		});
 		
 		if ( ret === true ){

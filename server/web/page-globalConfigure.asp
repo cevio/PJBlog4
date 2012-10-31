@@ -24,6 +24,9 @@
 				blog_global.seotitle = rs("seotitle").value,
 				blog_global.commentaduit = rs("commentaduit").value;
 				blog_global.commentperpagecount = rs("commentperpagecount").value;
+				blog_global.gravatarS = rs("gravatarS").value;
+				blog_global.gravatarR = rs("gravatarR").value;
+				blog_global.gravatarD = rs("gravatarD").value;
 			}
 		});
 %>
@@ -113,6 +116,29 @@
                 <tr>
                 	<td class="key">评论每页条数</td>
                     <td class="keyvalue"><input type="text" name="commentperpagecount" value="<%=blog_global.commentperpagecount%>" class="shorter" /></td>
+                </tr>
+            </table>
+        </fieldset>
+        
+        <fieldset>
+        	<legend>全球通用头像设置</legend>
+            <table>
+            	<tr>
+                	<td class="key">头像尺寸</td>
+                    <td class="keyvalue"><input type="text" value="<%=blog_global.gravatarS%>" name="gravatarS" class="shorter"> <span class="info">请填写数字。这里是你头像的大小，他的规格在80-512之间。</span></td>
+                </tr>
+                <tr>
+                	<td class="key">头像限制等级</td>
+                    <td class="keyvalue"><input type="text" name="gravatarR" value="<%=blog_global.gravatarR%>" class="short" /> <div class="info">
+                    	1. G: 使用所有网站。<br />
+                        2. PG: 适用于含 ”粗鲁，挑逗，小暴力“的网站。<br />
+                        3. R: 适用于”强暴力，裸露，毒品“等的网站。<br />
+                        4. X: 适用于”性交，超强暴力“的网站。
+                    </div></td>
+                </tr>
+                <tr>
+                	<td class="key">头像容错地址</td>
+                    <td class="keyvalue"><input type="text" name="gravatarD" value="<%=blog_global.gravatarD%>" class="long" /><div class="info">如果该邮箱未注册GRA头像，那么将使用这里的头像地址作为头像。</div></td>
                 </tr>
             </table>
         </fieldset>

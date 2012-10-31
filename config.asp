@@ -40,6 +40,7 @@
 	
 	// 逻辑模块映射
 	map["fn"] = "server/fn";
+	map["gra"] = "server/gravatar";
 	map["openDataBase"] = "server/dataBaseOperation";
 	map["cache"] = "server/cache";
 	map["icon"] = "server/getIcons";

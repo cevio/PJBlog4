@@ -4,21 +4,33 @@ define(function(require, exports, module){
 	var article = require("article");
 	
 	function init_postCommentFormHTML(){
-		return '<form action="server/proxy/comment.asp?j=post" id="postcomment" method="post">'
+		var template = '<form action="server/proxy/comment.asp?j=post" id="postcomment" method="post">'
             	+	'<input type="hidden" name="logid" value="' + postid + '" />'
-            	+	'<input type="hidden" name="commid" value="0" />'
-				+	'<div class="textarea"><textarea name="content"></textarea></div>'
+            	+	'<input type="hidden" name="commid" value="0" />';
+				
+		if ( !config.isLogin() ){
+			template += '<div class="text">昵称：<input type="text" value="" name="username" /></div><div class="text">邮箱：<input type="text" value="" name="usermail" /></div>';
+		}
+				
+			template +=	'<div class="textarea"><textarea name="content"></textarea></div>'
 				+	'<div class="submit"><input type="submit" value="提交" /> <input type="button" value="取消" class="close" /></div>'
             + 	'</form>';
+		
+		return template;
 	}
 	
 	function init_replyFormHTML(id){
-		return '<form action="server/proxy/comment.asp?j=post" id="postcomment" method="post">'
+		var template = '<form action="server/proxy/comment.asp?j=post" id="postcomment" method="post">'
             	+	'<input type="hidden" name="logid" value="' + postid + '" />'
-            	+	'<input type="hidden" name="commid" value="' + id + '" />'
-				+	'<div class="textarea"><textarea name="content"></textarea></div>'
+            	+	'<input type="hidden" name="commid" value="' + id + '" />';
+		if ( !config.isLogin() ){
+			template += '<div class="text">昵称：<input type="text" value="" name="username" /></div><div class="text">邮箱：<input type="text" value="" name="usermail" /></div>';
+		}
+			template +=	'<div class="textarea"><textarea name="content"></textarea></div>'
 				+	'<div class="submit"><input type="submit" value="提交" /> <input type="button" value="取消" class="close" /></div>'
             + 	'</form>';
+			
+		return template;
 	}
 	
 	function init_postcomment(){
@@ -55,10 +67,14 @@ define(function(require, exports, module){
 					beforeSubmit: function(){
 						
 					},
-					success: function(){
+					success: function(jsons){
 						article.isSendData = false;
-						$(postFormDiv).trigger("post.close");
-						window.location.reload();
+						if ( jsons && jsons.success ){
+							$(postFormDiv).trigger("post.close");
+							window.location.reload();
+						}else{
+							alert(jsons.error);
+						}
 					},
 					error: function(){
 						article.isSendData = false;

@@ -12,6 +12,8 @@ http.async(function(req){
 			commid = req.form.commid,
 			userid = config.user.id,
 			content = req.form.content,
+			username = req.form.username,
+			usermail = req.form.usermail,
 			fns = require("fn"),
 			ip = fns.getIP();
 			
@@ -26,11 +28,8 @@ http.async(function(req){
 			commid = 0;
 		}
 		
-		if ( !userid || userid === 0 ){
-			return {
-				success: false,
-				error: "未找到用户"
-			}
+		if ( !userid || userid.toString().length === 0 || Number(userid) === 0 ){
+			userid = 0;
 		}
 
 		logid = Number(logid);
@@ -53,7 +52,9 @@ http.async(function(req){
 					commentcontent: fns.SQLStr(content),
 					commentpostdate: date.format(new Date(), "y/m/d h:i:s"),
 					commentpostip: ip,
-					commentaudit: false
+					commentaudit: false,
+					commentusername: username,
+					commentusermail: usermail
 				},
 				callback: function(){
 					id = this("id").value;
