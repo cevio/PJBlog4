@@ -48,8 +48,10 @@ define(function(require, exports, module){
 					}
 				}
 			}else{
-				success: false,
-				error: "tag is empty"
+				return {
+					success: false,
+					error: "tag is empty"
+				}
 			}
 		}else{
 			return {
