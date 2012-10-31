@@ -11,7 +11,7 @@ define(function( require, exports, module ){
 	D = sys_cache_global[0][24];
 	
 	return function( mail ){
-		return "http://www.gravatar.com/avatar/" + MD5(mail) + "?s=" + S + "&r=" + R + "&d=" + D;
+		return "http://www.gravatar.com/avatar/" + MD5(mail).toLowerCase() + "?s=" + S + "&r=" + R + "&d=" + D;
 	}
 });
 %>
