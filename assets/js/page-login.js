@@ -36,7 +36,7 @@ define(['form'], function(require, exports, module){
 	function getSuccess(){
 		$(".word-tip").html('<span class="iconfont green">&#126;</span> 验证密码成功，3秒后跳转，或者<a href="control.asp">点击这里跳转</a>');
 		setTimeout(function(){
-			window.location.href = "control.asp";
+			window.location.reload();
 		}, 3000);
 	}
 	
