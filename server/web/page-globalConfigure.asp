@@ -27,6 +27,10 @@
 				blog_global.gravatarS = rs("gravatarS").value;
 				blog_global.gravatarR = rs("gravatarR").value;
 				blog_global.gravatarD = rs("gravatarD").value;
+				blog_global.uploadimagetype = rs("uploadimagetype").value;
+				blog_global.uploadlinktype = rs("uploadlinktype").value;
+				blog_global.uploadswftype = rs("uploadswftype").value;
+				blog_global.uploadmediatype = rs("uploadmediatype").value;
 			}
 		});
 %>
@@ -139,6 +143,28 @@
                 <tr>
                 	<td class="key">头像容错地址</td>
                     <td class="keyvalue"><input type="text" name="gravatarD" value="<%=blog_global.gravatarD%>" class="long" /><div class="info">如果该邮箱未注册GRA头像，那么将使用这里的头像地址作为头像。</div></td>
+                </tr>
+            </table>
+        </fieldset>
+        
+        <fieldset>
+        	<legend>上传设置</legend>
+            <table>
+            	<tr>
+                	<td class="key">图片类型</td>
+                    <td class="keyvalue"><input type="text" value="<%=blog_global.uploadimagetype%>" name="uploadimagetype" class="long"></td>
+                </tr>
+                <tr>
+                	<td class="key">附件类型</td>
+                    <td class="keyvalue"><input type="text" value="<%=blog_global.uploadlinktype%>" name="uploadlinktype" class="long"></td>
+                </tr>
+                <tr>
+                	<td class="key">FLASH类型</td>
+                    <td class="keyvalue"><input type="text" value="<%=blog_global.uploadswftype%>" name="uploadswftype" class="long"></td>
+                </tr>
+                <tr>
+                	<td class="key">多媒体类型</td>
+                    <td class="keyvalue"><input type="text" value="<%=blog_global.uploadmediatype%>" name="uploadmediatype" class="long"></td>
                 </tr>
             </table>
         </fieldset>

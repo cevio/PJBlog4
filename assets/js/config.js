@@ -34,6 +34,7 @@ define(["assets/js/core/jQuery"], function(){
 	config.ajaxUrl.server.setupTheme = "server/theme.asp?j=setup";
 	config.ajaxUrl.server.setupThemeStyle = "server/theme.asp?j=setupstyle";
 	config.ajaxUrl.server.setupThemeDelete = "server/theme.asp?j=themedelete";
+	config.ajaxUrl.server.editorUpload = "server/upload.asp?immediate=1";
 	
 	
 	function cookie(key, value, options) {

@@ -22,6 +22,10 @@ http.async(function(req){
 			gravatarS = req.form.gravatarS,
 			gravatarR = req.form.gravatarR,
 			gravatarD = req.form.gravatarD,
+			uploadimagetype = req.form.uploadimagetype,
+			uploadlinktype = req.form.uploadlinktype,
+			uploadswftype = req.form.uploadswftype,
+			uploadmediatype = req.form.uploadmediatype,
 			error = "处理过程中发生错误。";
 			
 		if ( webstatus === "1" ){
@@ -54,7 +58,11 @@ http.async(function(req){
 			commentperpagecount: commentperpagecount,
 			gravatarS: gravatarS,
 			gravatarR: gravatarR,
-			gravatarD: gravatarD
+			gravatarD: gravatarD,
+			uploadimagetype: uploadimagetype,
+			uploadlinktype: uploadlinktype,
+			uploadswftype: uploadswftype,
+			uploadmediatype: uploadmediatype
 		});
 		
 		if ( ret === true ){

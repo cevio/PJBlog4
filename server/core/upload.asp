@@ -140,6 +140,79 @@ define(function(require, exports, module){
 		}
 	}
 	
+	
+	custom.upload = function(h5Container, options){
+		function checkExt(_ext, exts){
+			if ( exts === "*" ){
+				return true;
+			}else{
+				var x = false;
+				if ( typeof exts === "string" ){
+					exts = [exts];	
+				}
+				
+				for ( var i = 0 ; i < exts.length ; i++ ){
+					if ( exts[i].toLowerCase() === _ext.toLowerCase() ){
+						x = true;
+						break;
+					}
+				}
+				
+				return x;
+			}
+		}
+		
+		var name = /name=\"([^\"]+)\"/.exec(h5Container);
+		if ( name && name[1] ){
+			name = name[1];
+		}else{
+			name = "";
+		}
+		
+		var filename = /filename=\"([^\"]+)\"/.exec(h5Container);
+		if ( filename && filename[1] ){
+			filename = filename[1];
+		}else{
+			filename = "";
+		}
+		
+		var newFileExt = filename.split(".").slice(-1).join(""),
+			newFile = this.randoms(16);
+
+		if ( checkExt(newFileExt, options.allowExt) ){
+		
+			var newFilename = options.saveTo + "/" + newFile + "." + newFileExt;
+
+			try{
+				var obj = new ActiveXObject(config.nameSpace.stream);
+					obj.Type = 1;
+					obj.Mode = 3;
+					obj.Open();
+					obj.Write(this.readBinary(options.speed));
+					obj.Position = 0;
+					obj.SaveToFile(selector.lock(newFilename), 2);
+					obj.Close();
+					obj = null;	
+					
+				return {
+					err: "",
+					msg: newFilename
+				}
+				
+			}catch(e){
+				return {
+					err: "server error: " + e.message,
+					msg: newFilename
+				}
+			}
+		}else{
+			return {
+				err: "文件类型不匹配",
+				msg: ""
+			}
+		}
+	}
+	
 	var upload = function(options){
 		options = custom.extend({
 			speed : 1000,
@@ -147,6 +220,13 @@ define(function(require, exports, module){
 			allowExt : "*",
 			error : null
 		}, options);
+		
+		var h5Container = String(Request.ServerVariables("HTTP_CONTENT_DISPOSITION"));
+			canH5Upload = h5Container.length !== 0;
+		
+		if ( canH5Upload ){
+			return custom.upload(h5Container, options);
+		}
 
 		var binary = custom.readBinary(options.speed),
 			ascObject = new ActiveXObject(config.nameSpace.stream);

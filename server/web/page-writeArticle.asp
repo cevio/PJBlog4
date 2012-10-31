@@ -36,6 +36,24 @@
 			log_tags = "",
 			log_content = "";
 			
+		var articleCuts = 300,
+			uploadimagetype,
+			uploadlinktype,
+			uploadswftype,
+			uploadmediatype;
+			
+		dbo.trave({
+			conn: config.conn,
+			sql: "Select * From blog_global Where id=1",
+			callback: function( rs ){
+				articleCuts = rs("articleprivewlength").value;
+				uploadimagetype = rs("uploadimagetype").value;
+				uploadlinktype = rs("uploadlinktype").value;
+				uploadswftype = rs("uploadswftype").value;
+				uploadmediatype = rs("uploadmediatype").value;
+			}
+		});
+			
 		
 		if ( mode === "edit" ){
 			dbo.trave({
@@ -71,7 +89,11 @@
 %>
 
 <script language="javascript">
-var articleCut = 300;
+var articleCut = <%=articleCuts%>,
+	uploadimagetype = "<%=uploadimagetype%>",
+	uploadlinktype = "<%=uploadlinktype%>",
+	uploadswftype = "<%=uploadswftype%>",
+	uploadmediatype = "<%=uploadmediatype%>";
 </script>
 
 <div class="tpl-space fn-clear">

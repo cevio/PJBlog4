@@ -138,12 +138,25 @@ define(['editor', 'form', 'overlay'], function(require, exports, module){
 			}
 	}
 	
+	function init_editor(){
+		$("textarea[name='log_content']").xheditor({
+			skin: "nostyle",
+			upLinkUrl: 	config.ajaxUrl.server.editorUpload,
+			upLinkExt: 	uploadlinktype,
+			upImgUrl:  	config.ajaxUrl.server.editorUpload,
+			upImgExt:  	uploadimagetype,
+			upFlashUrl: config.ajaxUrl.server.editorUpload,
+			upFlashExt: uploadswftype,
+			upMediaUrl: config.ajaxUrl.server.editorUpload,
+			upMediaExt: uploadmediatype,
+			debug:true
+		});
+	}
+	
 	return {
 		init: function(){
 			init_choose_cates();
-			$("textarea[name='log_content']").xheditor({
-				skin: "nostyle"
-			});
+			init_editor();
 			init_postArticle();
 		}
 	}
