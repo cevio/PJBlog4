@@ -14,7 +14,7 @@ define(function(require, exports, module){
 		config.params.nickname = sys_cache_global[0][7]; // 昵称
 		config.params.themeFolder = "profile/themes/" + config.params.theme; // 主题文件夹
 		config.params.styleFolder = "profile/themes/" + config.params.theme + "/style/" + config.params.style; // 样式文件夹
-		config.params.website = config.debug === true ? "http://blog.cn" : sys_cache_global[0][3]; // 本网站地址
+		config.params.website = sys_cache_global[0][3]; // 本网站地址
 		config.params.webdescription = sys_cache_global[0][11]; // SEO描述
 		config.params.webkeywords = sys_cache_global[0][12]; // SEO关键字
 		config.params.authoremail = sys_cache_global[0][13]; // 博主邮箱

@@ -17,11 +17,6 @@
 	config.platform = "http://platform.pjhome.net";
 	
 /*
- * 配置debug调用模块智能选择函数
- */
- 	function debugMode( exps ){ return config.debug ? exps : exps + "-min"; }
-	
-/*
  * 网站模块映射
  * 调用模块时候注意模块返回变量。
  * 在调用前请先确定模块的稳定性和存在性。
@@ -29,19 +24,19 @@
  */
  
  	// 通用模块映射
- 	map["DBO"] = debugMode("server/core/dbo");
-	map["FSO"] = debugMode("server/core/fso");
-	map["STREAM"] = debugMode("server/core/stream");
-	map["XML"] = debugMode("server/core/xml");
-	map["XMLHTTP"] = debugMode("server/core/xmlhttp");
-	map["WINHTTP"] = debugMode("server/core/winhttp");
-	map["UPLOAD"] = debugMode("server/core/upload");
-	map["COOKIE"] = debugMode("server/core/cookie");
-	map["DATE"] = debugMode("server/core/date");
-	map["MD5"] = debugMode("server/core/md5");
-	map["SHA1"] = debugMode("server/core/sha1");
-	map["PACKAGE"] = debugMode("server/core/package");
-	map["SPKPACKAGE"] = debugMode("server/core/spkPckage");
+ 	map["DBO"] = "server/core/dbo";
+	map["FSO"] = "server/core/fso";
+	map["STREAM"] = "server/core/stream";
+	map["XML"] = "server/core/xml";
+	map["XMLHTTP"] = "server/core/xmlhttp";
+	map["WINHTTP"] = "server/core/winhttp";
+	map["UPLOAD"] = "server/core/upload";
+	map["COOKIE"] = "server/core/cookie";
+	map["DATE"] = "server/core/date";
+	map["MD5"] = "server/core/md5";
+	map["SHA1"] = "server/core/sha1";
+	map["PACKAGE"] = "server/core/package";
+	map["SPKPACKAGE"] = "server/core/spkPackage";
 	
 	// 逻辑模块映射
 	map["fn"] = "server/fn";
