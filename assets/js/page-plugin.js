@@ -24,6 +24,7 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 					if ( jsons.success ){
 						$(_this).removeClass("sending").html('<span class="iconfont">&#379;</span> <span class="icontext">安装成功</span>');
 						$(_this).off("click");
+						setTimeout(function(){ window.location.reload(); }, 1000);
 					}else{
 						$(_this).removeClass("sending").html('<span class="iconfont">&#409;</span> <span class="icontext">安装</span>');
 						popUpTips(jsons.error);
@@ -148,6 +149,7 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 					$(_this).find(".icontext").text("已卸载");
 					$(_this).find(".iconfont").removeClass("sending");
 					$(_this).off("click");
+					setTimeout(function(){ window.location.reload() }, 1000);
 				}else{
 					popUpTips(jsons.error);
 				}

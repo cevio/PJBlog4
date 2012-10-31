@@ -1,4 +1,9 @@
 <!--#include file="config.asp" --><%
+	require("status");
+	if ( !config.user.login ){
+		Response.Redirect("default.asp");
+	}
+	
 	var page = http.get("p");
 	function checkStatusAndCustomPage(){
 		if ( Session("admin") !== true ){
