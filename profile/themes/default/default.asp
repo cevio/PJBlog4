@@ -1,69 +1,98 @@
 <%include(config.params.themeFolder + "/header");%>
-
-    <div id="content-wrap">
-        <div id="sidebar">
-            <h3>Download</h3>
-            <p>
-            <div class="download" onclick="window.location.href='assets/system/javascript/sizzle.js'">Sizzle v4.0</div>
-            </p>
-            <h3>Wise Words</h3>
-            <div class="left-box">
-                <p>&quot;Manage your code, make it more perfect.&quot; </p>
-                <p class="align-right">- Evio Shen</p>
-            </div>
-            
-            
-            <%
-				var A = assetsPluginCustom.loadPlugin("hotarticle");
-				if ( A !== null ){
-					var _data = A.data();
-					if ( _data.length > 0 ){
-			%>
-					<h3>最新日志</h3>
-                    <ul class="sidemenu">
-            <%
-            		for ( var ai = 0 ; ai < _data.length ; ai++ ){
-			%>
-            		<li><a href="article.asp?id=<%=_data[ai].id%>" target="_blank"><%=_data[ai].log_title%></a></li>
-            <%
-					}		
-            %>
-                    </ul>
-            <%
+<div class="pj-wrapper fn-clear pj-bodyer">
+	<div class="pj-article-list fn-left">
+    	<%
+			LoadCacheModule("cache_article", function( cache_article ){
+				var date = require("DATE"),
+					cache_article_pagebar = cache_article.page,
+					cache_article_list = cache_article.list;
+					
+				for ( var i = 0 ; i < cache_article_list.length ; i++ ){
+		%>
+        <div class="pj-article-content">
+        	<h1><a href="article.asp?id=<%=cache_article_list[i].id%>"><%=cache_article_list[i].log_title%></a></h1>
+            <div class="pj-article-infos">
+            	<span class="date"><%=date.format(cache_article_list[i].log_updatetime, "M d y - h:i")%></span>
+                <span class="tags"><%
+					for ( var j = 0 ; j < cache_article_list[i].log_tags.length ; j++ ){
+				%>
+                	<a href="tags.asp?id=<%=cache_article_list[i].log_tags[j].id%>"><%=cache_article_list[i].log_tags[j].name%></a> 
+                <%	
 					}
-				}
-			%>
-            <h3>Link</h3>
-            <ul class="sidemenu">
-                <li><a href="http://bbs.pjhome.net" target="_blank">PJBlog BBS</a></li>
-            </ul>
+				%></span>
+            </div>
+            <div class="pj-content"><%=cache_article_list[i].log_content%></div>
         </div>
-        <div id="main">
-<%
-				var article = require("cache_article"),
-					date = require("DATE");
-				for ( var articles = 0 ; articles < article.length ; articles++ ){
-%>
-					<h2><a href="article.asp?id=<%=article[articles].id%>"><%=article[articles].log_title%></a></h2>
-                	<p><%=article[articles].log_content%></p>
-                    <div style="margin-left:30px;">Tags: 
-                    	<%
-							for ( var tagitems = 0 ; tagitems < article[articles].log_tags.length ; tagitems++ ){
-						%>
-                        		<a href="tags.asp?id=<%=article[articles].log_tags[tagitems].id%>"><%=article[articles].log_tags[tagitems].name%></a> 
-                        <%
-							}
-						%> | Category: <a href="default.asp?c=<%=article[articles].log_category%>" title="<%=article[articles].log_categoryInfo%>"><%=article[articles].log_categoryName%></a>
-                    </div>
-                    <p class="post-footer align-right">					
-                        <a href="index.html" class="readmore">Read more</a>
-                        <a href="index.html" class="comments">Views (<%=article[articles].log_views%>)</a>
-                        <span class="date"><%=date.format(article[articles].log_posttime, "y-m-d h:i:s")%> - <%=date.format(article[articles].log_updatetime, "y-m-d h:i:s")%></span>	
-                    </p>
-<%
+        <%		
 				}
-%>
+				if ( cache_article_list.length > 0 && (cache_article_pagebar.to - cache_article_pagebar.from > 0) ){
+		%>
+        <div class="pj-article-pagebar fn-clear">
+        <%
+					for ( var n = cache_article_pagebar.from ; n <= cache_article_pagebar.to ; n++ ){
+						if ( cache_article_pagebar.current === n ){
+		%>
+        	<span class="fn-left"><%=n%></span>
+        <%
+						}else{
+		%>
+        	<a href="default.asp?c=<%=pageIndexCustomParams.cateID%>&page=<%=n%>" class="fn-left"><%=n%></a>
+        <%				
+						}
+					}
+		%>
         </div>
-
+        <%
+				}
+			});
+		%>
+        
     </div>
+    <div class="pj-sidebar fn-right">
+    	<div class="pj-sidepannel">
+        	<h3>登入信息</h3>
+            <ul>
+    <%
+	if ( config.user.login === true ){
+	%>
+    	<li><a href="server/logout.asp">您已登入  退出登入</a></li>
+        <li><a href="control.asp">管理后台（需要权限）</a></li>
+    <%
+	}else{
+		var oauth = require("server/oAuth/qq/oauth"),
+			fns = require("fn");
+			
+	%>
+    	<li><a href="<%=oauth.url("100299901", "http://lols.cc/server/oauth.asp?type=qq&dir=" + escape( fns.localSite() ))%>">登入</a></li>
+    <%
+	}
+    %>
+    		</ul>
+    	</div>
+    
+    <%
+		LoadPluginsCacheModule("hotarticle", function( HotArticle ){
+			if ( HotArticle !== null ){
+				var _data = HotArticle.data();
+				if ( _data.length > 0 ){
+	%>
+    	<div class="pj-sidepannel">
+        	<h3>最新日志</h3>
+            <ul>
+    <%
+					for ( var i = 0 ; i < _data.length ; i++ ){
+	%>
+    			<li><a href="article.asp?id=<%=_data[i].id%>" target="_blank"><%=_data[i].log_title%></a></li>
+    <%
+					}
+	%>
+    		</ul>
+        </div>
+    <%			
+				}
+			}
+		});
+	%>
+    </div>
+</div>
 <%include(config.params.themeFolder + "/footer")%>
