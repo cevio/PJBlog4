@@ -311,6 +311,7 @@ define(function(require, exports, module){
 		ascObject = null;
 		
 		return reture;
+		
 	}
 	
 	return upload;
