@@ -26,6 +26,7 @@ http.async(function(req){
 			uploadlinktype = req.form.uploadlinktype,
 			uploadswftype = req.form.uploadswftype,
 			uploadmediatype = req.form.uploadmediatype,
+			binarywhitelist = req.form.binarywhitelist,
 			error = "处理过程中发生错误。";
 			
 		if ( webstatus === "1" ){
@@ -62,7 +63,8 @@ http.async(function(req){
 			uploadimagetype: uploadimagetype,
 			uploadlinktype: uploadlinktype,
 			uploadswftype: uploadswftype,
-			uploadmediatype: uploadmediatype
+			uploadmediatype: uploadmediatype,
+			binarywhitelist: binarywhitelist
 		});
 		
 		if ( ret === true ){

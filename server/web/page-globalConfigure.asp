@@ -31,6 +31,7 @@
 				blog_global.uploadlinktype = rs("uploadlinktype").value;
 				blog_global.uploadswftype = rs("uploadswftype").value;
 				blog_global.uploadmediatype = rs("uploadmediatype").value;
+				blog_global.binarywhitelist = rs("binarywhitelist").value;
 			}
 		});
 %>
@@ -165,6 +166,16 @@
                 <tr>
                 	<td class="key">多媒体类型</td>
                     <td class="keyvalue"><input type="text" value="<%=blog_global.uploadmediatype%>" name="uploadmediatype" class="long"></td>
+                </tr>
+            </table>
+        </fieldset>
+        
+        <fieldset>
+        	<legend>安全设置</legend>
+            <table>
+            	<tr>
+                	<td class="key">附件防盗链白名单</td>
+                    <td class="keyvalue"><input type="text" value="<%=blog_global.binarywhitelist%>" name="binarywhitelist" class="longer"></td>
                 </tr>
             </table>
         </fieldset>

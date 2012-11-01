@@ -1,7 +1,7 @@
 <%
 define(function(require, exports, module){
 	exports["global"] = function(){
-		return "Select title, qq_appid, qq_appkey, website, description, theme, style, nickname, webstatus, articleprivewlength, articleperpagecount, webdescription, webkeywords, authoremail,seotitle, themename, themeauthor, themewebsite, themeemail, themeversion, commentaduit, commentperpagecount, gravatarS, gravatarR, gravatarD From blog_global Where id=1";
+		return "Select title, qq_appid, qq_appkey, website, description, theme, style, nickname, webstatus, articleprivewlength, articleperpagecount, webdescription, webkeywords, authoremail,seotitle, themename, themeauthor, themewebsite, themeemail, themeversion, commentaduit, commentperpagecount, gravatarS, gravatarR, gravatarD, binarywhitelist From blog_global Where id=1";
 	}
 	
 	exports["category"] = function(){
@@ -38,6 +38,10 @@ define(function(require, exports, module){
 	
 	exports["user"] = function(id){
 		return "Select sex, photo, nickName, isAdmin From blog_member Where id=" + id;
+	}
+	
+	exports["attachments"] = function(){
+		return "Select id, attachext, attachpath, attachsize From blog_attachments";
 	}
 });
 %>

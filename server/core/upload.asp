@@ -181,7 +181,8 @@ define(function(require, exports, module){
 
 		if ( checkExt(newFileExt, options.allowExt) ){
 		
-			var newFilename = options.saveTo + "/" + newFile + "." + newFileExt;
+			var newFilename = options.saveTo + "/" + newFile + "." + newFileExt,
+				newFleSize = Request.TotalBytes;
 
 			try{
 				var obj = new ActiveXObject(config.nameSpace.stream);
@@ -195,21 +196,26 @@ define(function(require, exports, module){
 					obj = null;	
 					
 				return {
-					err: "",
-					msg: newFilename
+					success: true,
+					data: {
+						src: newFilename,
+						file: newFile + "." + newFileExt,
+						ext: newFileExt,
+						size: newFleSize
+					}
 				}
 				
 			}catch(e){
 				return {
-					err: "server error: " + e.message,
-					msg: newFilename
+					success: false,
+					error: e.message
 				}
 			}
 		}else{
 			return {
-				err: "文件类型不匹配",
-				msg: ""
-			}
+					success: false,
+					error: "文件类型被禁止上传"
+				}
 		}
 	}
 	
