@@ -10,15 +10,17 @@
 		ext,
 		size,
 		ContentType,
-		whiteAllowIPArray = [];
-		
+		whiteAllowIPArray = [String(Request.ServerVariables("SERVER_NAME"))],
+		needForbit = true;
+
 	function CHECKURLREFERER(){
-		var refererURL = String(Request.ServerVariables("SERVER_NAME")),
+		var refererURL = String(Request.ServerVariables("HTTP_REFERER")),
+			refererExec = /http(s)?\:\/\/([^\/]+)(\/.+)?/.exec(refererURL),
 			rets = false,
 			whiteDomain;
 
-		if ( refererURL && refererURL.length > 0 ){
-			whiteDomain = refererURL;
+		if ( refererExec && refererExec[2] ){
+			whiteDomain = refererExec[2];
 		}else{
 			return false;
 		}
@@ -37,16 +39,13 @@
 		var list = cache.load("global"),
 			listStr = list[0][25];
 			
-		whiteAllowIPArray = listStr.split(",");
+		whiteAllowIPArray = listStr.split(",").concat(whiteAllowIPArray);
 	}
 	
 	if ( id.length > 0 ){
 		
 		fillWhiteList();
-		if ( !CHECKURLREFERER() ){
-			return;
-		}
-		
+
 		for ( var i = 0 ; i < attachmentsCache.length ; i++ ){
 			attachmentsJSON[attachmentsCache[i][0] + ""] = {
 				path: attachmentsCache[i][2], 
@@ -59,16 +58,6 @@
 			file = attachmentsJSON[id + ""].path;
 			ext = attachmentsJSON[id + ""].ext;
 			size = attachmentsJSON[id + ""].size;
-			
-			var stream = new ActiveXObject(config.nameSpace.stream);
-				stream.Type = 1;
-				stream.Mode = 3;
-				stream.Open();
-				stream.Position = 0;
-				stream.LoadFromFile(selector.lock("profile/uploads/" + file));
-				fileBinaryData = stream.Read();
-				stream.Close();
-				stream = null;
 				
 			switch ( ext ){
 				case "asf":
@@ -88,12 +77,27 @@
 					break;
     			case "gif":
     				ContentType = "image/gif";
+					needForbit = false;
 					break;
     			case "jpg":
     				ContentType = "image/jpeg";
+					needForbit = false
 					break;
 				case "jpeg":
     				ContentType = "image/jpeg";
+					needForbit = false;
+					break;
+				case "png":
+    				ContentType = "image/png";
+					needForbit = false;
+					break;
+				case "bmp":
+    				ContentType = "image/bmp";
+					needForbit = false;
+					break;
+				case "gif":
+    				ContentType = "image/gif";
+					needForbit = false;
 					break;
     			case "wav":
     				ContentType = "audio/wav";
@@ -122,6 +126,21 @@
     			default:
     				ContentType = "application/octet-stream";
 			}
+			
+			if ( needForbit && !CHECKURLREFERER() ){
+				console.log("Prohibit Hotlinking!");
+				return;
+			}
+			
+			var stream = new ActiveXObject(config.nameSpace.stream);
+				stream.Type = 1;
+				stream.Mode = 3;
+				stream.Open();
+				stream.Position = 0;
+				stream.LoadFromFile(selector.lock("profile/uploads/" + file));
+				fileBinaryData = stream.Read();
+				stream.Close();
+				stream = null;
 			
 			Response.AddHeader("Content-Length", size);
 			Response.Charset = "UTF-8";
