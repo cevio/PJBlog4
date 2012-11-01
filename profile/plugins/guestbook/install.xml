@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin>
+	<pluginName>留言本</pluginName>
+	<pluginMark>guestbook</pluginMark>
+	<pluginAuthor>沈赟杰</pluginAuthor>
+	<pluginEmail>evio@vip.qq.com</pluginEmail>
+	<pluginPublishDate>2012/11/1</pluginPublishDate>
+	<pluginVersion>1.0</pluginVersion>
+	<pluginWebsite>http://assets.sizzle.cc</pluginWebsite>
+	<pluginQQWeibo>http://t.qq.com/PJBlogMaster</pluginQQWeibo>
+	<pluginSinaWeibo>http://weibo.com/sevio</pluginSinaWeibo>
+	<pluginInfo>官方提供的留言本插件</pluginInfo>
+</plugin>

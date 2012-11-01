@@ -163,7 +163,10 @@
 									try{
 										if ( fso.exsit("profile/plugins/" + folder + "/install.asp") ){
 											require("pluginCustom", function( pluginCustom ){
+												pluginCustom.themeFolder = String(config.conn.Execute("Select theme From blog_global Where id=1")(0));
+												pluginCustom.styleFolder = String(config.conn.Execute("Select style From blog_global Where id=1")(0));
 												pluginCustom.folder = folder;
+												config.plugin = pluginCustom;
 												require("profile/plugins/" + folder + "/install");
 											});
 										}
@@ -384,7 +387,10 @@
 				var fso = require("FSO");
 				if ( fso.exsit("profile/plugins/" + folder + "/uninstall.asp") ){
 					require("pluginCustom", function( pluginCustom ){
+						pluginCustom.themeFolder = String(config.conn.Execute("Select theme From blog_global Where id=1")(0));
+						pluginCustom.styleFolder = String(config.conn.Execute("Select style From blog_global Where id=1")(0));
 						pluginCustom.folder = folder;
+						config.plugin = pluginCustom;
 						require("profile/plugins/" + folder + "/uninstall");
 					});
 				}
