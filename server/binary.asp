@@ -38,8 +38,10 @@
 	function fillWhiteList(){
 		var list = cache.load("global"),
 			listStr = list[0][25];
-			
-		whiteAllowIPArray = listStr.split(",").concat(whiteAllowIPArray);
+		
+		try{
+			whiteAllowIPArray = listStr.split(",").concat(whiteAllowIPArray);
+		}catch(e){}
 	}
 	
 	if ( id.length > 0 ){
