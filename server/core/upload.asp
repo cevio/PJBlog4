@@ -309,7 +309,7 @@ define(function(require, exports, module){
 		
 		ascObject.Close();
 		ascObject = null;
-		return reture;
+		return reture; 
 	}
 	
 	return upload;
