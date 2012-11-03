@@ -1,5 +1,11 @@
 <%@LANGUAGE="JAVASCRIPT" CODEPAGE="65001"%>
 <%
+Response.Buffer = true;
+Server.ScriptTimeOut = 120;
+Session.CodePage = 65001;
+Session.LCID = 2057;
+Response.Charset = "UTF-8";
+
 var config = {};
 	config.timer = new Date().getTime();
 	
