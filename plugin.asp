@@ -2,7 +2,7 @@
 <%
 (function(mark){
 	
-
+ 
 	
 })(http.get("mark"));
 CloseConnect();
