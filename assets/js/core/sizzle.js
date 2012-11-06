@@ -83,7 +83,13 @@
 		else {
 			if ( base.length > 0 ) { 
 				if ( regExp.isAbsolute.test(base) ){ S.host = fetch_uri_decode(base); }
-				else{ S.host = host + fetch_uri_decode(base); }
+				else{
+					if ( regExp.isRoot.test(base) ){
+						S.host = host + fetch_uri_decode(base);
+					}else{
+						S.host = host + "/" + fetch_uri_decode(base);
+					}
+				}
 			}
 			else { S.host = host; }
 		}
