@@ -1,39 +1,38 @@
 <!--#include file="config.asp" -->
 <%
-(function(mark){
-	
- 	require("status");
-	require("cache_global");
-	
-	var pagePluginCustomParams = {};
-	
-	pagePluginCustomParams.page = http.get("page");
-	if ( pagePluginCustomParams.page.length === 0 ){ 
-		pagePluginCustomParams.page = 1; 
-	}else{
-		pagePluginCustomParams.page = Number(pagePluginCustomParams.page);
-		if ( pagePluginCustomParams.page < 1 ){
-			pagePluginCustomParams.page = 1;
-		}
+var mark = http.get("mark");
+
+require("status");
+require("cache_global");
+
+var pagePluginCustomParams = {};
+
+pagePluginCustomParams.page = http.get("page");
+if ( pagePluginCustomParams.page.length === 0 ){ 
+	pagePluginCustomParams.page = 1; 
+}else{
+	pagePluginCustomParams.page = Number(pagePluginCustomParams.page);
+	if ( pagePluginCustomParams.page < 1 ){
+		pagePluginCustomParams.page = 1;
 	}
+}
+
+var assetsPluginCustom = require("pluginCustom"),
+	AllPluginLists = assetsPluginCustom.pluginCache(),
+	thisPluginInfo = {};
 	
-	var assetsPluginCustom = require("pluginCustom"),
-		AllPluginLists = assetsPluginCustom.pluginCache()，
-		thisPluginInfo = {};
-		
-	if ( AllPluginLists[mark] === undefined ){
-		console.log("未找到该插件");
-		return;
-	}else{
-		thisPluginInfo = AllPluginLists[mark];
-	}
+if ( AllPluginLists[mark] === undefined ){
+	console.log("未找到该插件");
+}else{
+	thisPluginInfo = AllPluginLists[mark];
 	
 	if ( thisPluginInfo.pluginstatus === true ){
-		var fso = require("fso"),
+		var fso = require("FSO"),
 			pluginWebPath = "profile/themes/" + config.params.theme + "/" + thisPluginInfo.pluginwebpage,
-			pluginProcyPath = "profile/plugins/" + thisPluginInfo.pluginfolder + "/proxy";	
+			pluginProcyPath = "profile/plugins/" + thisPluginInfo.pluginfolder + "/proxy.asp";	
 		if ( fso.exsit(pluginProcyPath) === true ){
 			pagePluginCustomParams.webData = require(pluginProcyPath);
+			pagePluginCustomParams.pluginFolder = "profile/plugins/" + thisPluginInfo.pluginfolder;
 			if ( fso.exsit(pluginWebPath) ){
 				include(pluginWebPath);
 			}else{
@@ -45,6 +44,6 @@
 	}else{
 		console.log("插件已被停用");
 	}
-})(http.get("mark"));
+}
 CloseConnect();
 %>

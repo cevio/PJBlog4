@@ -6,5 +6,7 @@ define(function( require, exports, module ){
 				
 			}
 	}
+	
+	exports.cc = 1;
 });
 %>
