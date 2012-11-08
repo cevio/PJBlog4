@@ -1,0 +1,60 @@
+OAUTH2.0
+
+APP ID：205263
+
+KEY：85b127e979f29089b1dd652435df3bfa
+
+Step1：获取Authorization Code 直接打开登录页面 回调地址经过url处理
+
+https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=#这里写申请的appid&redirect_uri=带域名完整的回调地址
+https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=205263&redirect_uri=http%3A//www.54bq.com
+
+Step2：通过Authorization Code获取Access Token（然后根据code获取 Access Token）
+
+用户登录并授权后跳转回回调地址，获取到参数code
+
+http://www.54bq.com/boke/callback2.0.asp?code=03F237D9E93F8E435618930A80F49034
+
+用asp抓取方式GET
+
+https://graph.qq.com/oauth2.0/token?grant_type=authorization_code&client_id=#这里写申请的appid#&client_secret=#这里写申请到的appkey#&code=#这里写刚才获取到的code#&state=#这个参数会原样传回，写一个随机代码就行了#&redirect_uri=#这里写跟刚才一样的回调地址#
+
+获取到的格式为字符串
+access_token=FE04************************CCE2&expires_in=7776000
+
+这个值就是Access Token，由于这个值有时效性，所以最好每次验证都储存数据库或缓存处理
+
+
+Step3：通过Access Token获取用户openid
+
+同样是GET抓取
+https://graph.qq.com/oauth2.0/me?access_token=**********
+
+返回这样的字符串
+callback( {"client_id":"YOUR_APPID","openid":"YOUR_OPENID"} ); 
+
+数据库储存好openid和access_token
+
+
+Step4：通过Access Token获取用户资料
+
+用asp抓取方式GET
+
+https://graph.qq.com/user/get_user_info?access_token=*************&oauth_consumer_key=12345&openid=****************&format=json
+
+返回json类型如下
+
+{
+"ret":0,
+"msg":"",
+"nickname":"Peter",
+"figureurl":"http://qzapp.qlogo.cn/qzapp/111111/942FEA70050EEAFBD4DCE2C1FC775E56/30",
+"figureurl_1":"http://qzapp.qlogo.cn/qzapp/111111/942FEA70050EEAFBD4DCE2C1FC775E56/50",
+"figureurl_2":"http://qzapp.qlogo.cn/qzapp/111111/942FEA70050EEAFBD4DCE2C1FC775E56/100",
+"gender":"男",
+"vip":"1",
+"level":"7",
+}
+
+
+nickname为QQ空间的昵称 好像是 然后跟pj会员对应就行了

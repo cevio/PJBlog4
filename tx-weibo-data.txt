@@ -1,0 +1,169 @@
+/*QQ互联里面没有读取微博列表的功能，这点很遗憾*/
+
+
+
+
+/*获取腾讯微博登录用户的用户资料。
+
+接口地址	https://graph.qq.com/user/get_info
+
+*/
+
+https://graph.qq.com/user/get_info?access_token=*************&oauth_consumer_key=123456&openid=****************&format=xml
+
+/*
+返回格式为json 编码utf-8
+*/
+{
+	"errcode":0,
+	"msg":"ok",
+	"ret": 0,
+	"data":{
+		"province_code":"42",//省份id
+		"location":"中国 湖北 武汉",
+		"head":"http://app.qlogo.cn/mbloghead/563ad8b6be488a07a694",	//后面加尺寸 100 50 30 或者 20（有时候没有）
+		"idolnum":84,//用户收听数量
+		"fansnum":152,//粉丝数量
+		"favnum":111,//用户收藏数量
+		"tweetnum":444,//用户发表的微博数
+		"homepage":"",//个人首页
+		"introduction":"",//个人介绍
+		"name":"",//用户的帐号名
+		"nick":"",用户昵称
+		"openid":"813B5DD59D54FE52FAC72AC1BF28EE82",	//一般为32位
+		"regtime":1299585734,//注册时间的时间戳
+		"send_private_flag":0,
+		"sex":1,//用户性别（1：男； 2：女； 0：未填写）。
+		"tweetinfo":[
+			{
+				"city_code": "3",
+				"country_code": "1",
+				"province_code": "44",
+				"location": "中国 广东 深圳",
+				"from": "腾讯微博",
+				"fromurl": "http://t.qq.com\n",
+				"id": "131008025107394",
+				"image": null,//存在时返回字符串url
+				"origtext": "开心",
+				"self": 1,
+				"status": 0,
+				"text": "开心",
+				"timestamp": 1337765791,
+				"type": 1,//表示微博的类型。1：原创发表；2：转播；3：私信；4：回复；5：没有内容的回复；6：提及；7：评论。
+
+				"video": null,//视频 字符串url
+		
+			}
+		],
+	}
+}
+
+/*获取腾讯微博其他用户的用户资料。
+
+接口地址	https://graph.qq.com/user/get_other_info
+
+*/
+
+/*传递参数可以是微博号*/
+https://graph.qq.com/user/get_other_info?access_token=*************&oauth_consumer_key=123456&openid=****************&name=shmshz&format=xml
+
+/*也可以是QQ的openid*/
+https://graph.qq.com/user/get_other_info?access_token=*************&oauth_consumer_key=123456&openid=****************&fopenid=指定用户的openid&format=xml
+/*返回的格式同上*/
+
+
+
+
+
+/*发布普通微博
+接口地址
+
+https://graph.qq.com/t/add_t
+
+参数全部post传递
+*/
+
+/*传递的参数有*/
+{
+	"oauth_consumer_key":"",
+	"openid":"",
+	"access_token":"",
+	"format":"json",
+	"content":"",//内容必须经过编码
+	"clientip":"127.0.0.1",//IP可选
+	"jing":0.0,//经纬度可选
+	"wei":0.0,//经纬度可选
+}
+
+/*返回数据*/
+{
+	ret:0,
+	msg:"ok",
+	errcode:0,
+	data:
+	{
+		id:12345678,
+		time:12863444444
+	}
+}
+
+
+
+
+
+
+
+
+
+/*发布图片微博
+接口地址
+
+https://graph.qq.com/t/add_pic_t
+
+参数全部post传递
+*/
+
+/*传递的参数有*/
+{
+	"oauth_consumer_key":"",
+	"openid":"",
+	"access_token":"",
+	"format":"json",
+	"content":"",//内容必须经过编码
+	"pic":,//必须数据以binary方式传递	要上传的图片的文件名以及图片的内容（在发送请求时，图片内容以二进制数据流的形式发送，见下面的请求示例）。图片仅支持gif、jpeg、jpg、png、bmp及ico格式（所有图片都会重新压缩，gif被重新压缩后不会再有动画效果），图片size小于4M。 
+	"clientip":"127.0.0.1",//IP可选
+	"jing":0.0,//经纬度可选
+	"wei":0.0,//经纬度可选
+	"compatibleflag":"",
+	//容错标志即当图片不正确时是否以普通微博发布 
+	//容错标志(类型字符串)，支持按位操作，默认为0。0x2：图片数据大小错误则报错；0x4：检查图片格式不支持则报错；0x8：上传图片失败则报错；0：以上错误均做容错处理，即发表普通微博；0x2|0x4|0x8：同旧模式，以上各种情况均报错，不做兼容处理。 
+}
+
+/*返回数据*/
+{
+	ret:0,
+	msg:"ok",
+	errcode:0,
+	data:
+	{
+		id:12345678,
+		time:12863444444,
+		imgurl:"http://t1.qpic.cn/mblogpic/3b0dde076353bc94c2c8/460"
+	}
+}
+
+
+
+
+
+
+
+/*错误返回数据
+判断json.ret==0
+ret不为0时再判断errcode或者输出msg就可以了
+*/
+{
+ret:4,
+msg:"禁止访问，城市，QQ号码被加入黑名单",
+errcode:5
+} 

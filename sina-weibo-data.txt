@@ -1,0 +1,462 @@
+/*新浪微博
+http://open.weibo.com/wiki/API%E6%96%87%E6%A1%A3_V2
+新浪微博的功能太多，没有一一标明
+*/
+/*备注 所有参数如果含有中文或者特殊全角字符，需要经过URLencode转码（最好写个类所有参数进行转码腾讯的也是一样需要URLencode）*/
+
+
+
+/*获取微博用户最新发表的微博列表 
+
+接口地址	https://api.weibo.com/2/statuses/user_timeline.json
+
+*/
+
+https://api.weibo.com/2/statuses/user_timeline.json?access_token=abcd&uid=用户id
+或者
+https://api.weibo.com/2/statuses/user_timeline.json?access_token=abcd&screen_name=用户昵称
+/*
+返回格式为json 编码utf-8
+*/
+{
+    "statuses": [
+        {
+            "created_at": "Tue May 31 17:46:55 +0800 2011",
+            "id": 11488058246,//	微博ID 
+            "text": "求关注。"，
+            "source": "<a href=\"http://weibo.com\" rel=\"nofollow\">新浪微博</a>",//来自
+			"thumbnail_pic":"",//缩略图片地址，没有时不返回此字段 判断时需注意
+			"bmiddle_pic":"",//中等尺寸图片地址，没有时不返回此字段
+			"original_pic":"",//原始图片地址，没有时不返回此字段 
+            "favorited": false,
+            "truncated": false,
+            "in_reply_to_status_id": "",
+            "in_reply_to_user_id": "",
+            "in_reply_to_screen_name": "",
+            "geo": null,
+            "mid": "5612814510546515491",//微博MID 
+            "reposts_count": 8,//转发数
+            "comments_count": 9,//评论数
+            "annotations": [],
+            "user": {
+                "id": 1404376560,//微博用户id
+                "screen_name": "zaku",//用户昵称
+                "name": "zaku",
+                "province": "11",
+                "city": "5",
+                "location": "北京 朝阳区",//地区
+                "description": "人生五十年，乃如梦如幻；有生斯有死，壮士复何憾。",//简介
+                "url": "http://blog.sina.com.cn/zaku",//链接
+                "profile_image_url": "http://tp1.sinaimg.cn/1404376560/50/0/1",//小头像50X50
+                "domain": "zaku",
+                "gender": "m",
+                "followers_count": 1204,
+                "friends_count": 447,
+                "statuses_count": 2908,
+                "favourites_count": 0,
+                "created_at": "Fri Aug 28 00:00:00 +0800 2009",
+                "following": false,
+                "allow_all_act_msg": false,
+                "remark": "",
+                "geo_enabled": true,
+                "verified": false,
+                "allow_all_comment": true,
+                "avatar_large": "http://tp1.sinaimg.cn/1404376560/180/0/1",//大头像180X180
+                "verified_reason": "",
+                "follow_me": false,
+                "online_status": 0,
+                "bi_followers_count": 215
+            }
+        },
+        ...
+    ],
+    "previous_cursor": 0,                     // 暂未支持
+    "next_cursor": 11488013766,      // 暂未支持
+    "total_number": 81655
+}
+
+/*
+发布一条新微博
+https://api.weibo.com/2/statuses/update.json
+传递方式为post
+*/
+{
+	"access_token":"",//
+	"status":""//要发布的微博文本内容，必须做URLencode，内容不超过140个汉字。
+}
+/*返回代码格式如下*/
+{
+    "created_at": "Tue May 31 17:46:55 +0800 2011",
+    "id": 11488058246,//微博id
+    "text": "求关注。"，//内容
+    "source": "<a href=\"http://weibo.com\" rel=\"nofollow\">新浪微博</a>",//来自
+	"thumbnail_pic":"",//缩略图片地址，没有时不返回此字段 判断时需注意
+	"bmiddle_pic":"",//中等尺寸图片地址，没有时不返回此字段
+	"original_pic":"",//原始图片地址，没有时不返回此字段 
+    "favorited": false,
+    "truncated": false,
+    "in_reply_to_status_id": "",
+    "in_reply_to_user_id": "",
+    "in_reply_to_screen_name": "",
+    "geo": null,
+    "mid": "5612814510546515491",//MID微博
+    "reposts_count": 8,
+    "comments_count": 9,
+    "annotations": [],
+    "user": {
+        "id": 1404376560,//用户id
+        "screen_name": "zaku",//用户昵称
+        "name": "zaku",
+        "province": "11",
+        "city": "5",
+        "location": "北京 朝阳区",
+        "description": "人生五十年，乃如梦如幻；有生斯有死，壮士复何憾。",
+        "url": "http://blog.sina.com.cn/zaku",
+        "profile_image_url": "http://tp1.sinaimg.cn/1404376560/50/0/1",//用户头像地址50X50
+        "domain": "zaku",
+        "gender": "m",
+        "followers_count": 1204,
+        "friends_count": 447,
+        "statuses_count": 2908,
+        "favourites_count": 0,
+        "created_at": "Fri Aug 28 00:00:00 +0800 2009",
+        "following": false,
+        "allow_all_act_msg": false,
+        "remark": "",
+        "geo_enabled": true,
+        "verified": false,
+        "allow_all_comment": true,
+        "avatar_large": "http://tp1.sinaimg.cn/1404376560/180/0/1",//用户头像地址180X180
+        "verified_reason": "",
+        "follow_me": false,
+        "online_status": 0,
+        "bi_followers_count": 215
+    }
+}
+
+
+
+
+
+/*发布一条图片微博
+https://upload.api.weibo.com/2/statuses/upload.json
+传递方式为post
+*/
+{
+	"access_token":"",
+	"status":"",
+	"pic":binary,//	binary方式传递 要上传的图片，仅支持JPEG、GIF、PNG格式，图片大小小于5M。 
+}
+
+/*返回数据格式如下*/
+
+{
+    "created_at": "Tue May 31 17:46:55 +0800 2011",
+    "id": 11488058246,//微博id
+    "text": "求关注。"，//内容
+    "source": "<a href=\"http://weibo.com\" rel=\"nofollow\">新浪微博</a>",//来自
+	"thumbnail_pic":"",//缩略图片地址，没有时不返回此字段 判断时需注意
+	"bmiddle_pic":"",//中等尺寸图片地址，没有时不返回此字段
+	"original_pic":"",//原始图片地址，没有时不返回此字段 
+    "favorited": false,
+    "truncated": false,
+    "in_reply_to_status_id": "",
+    "in_reply_to_user_id": "",
+    "in_reply_to_screen_name": "",
+    "geo": null,
+    "mid": "5612814510546515491",//MID微博
+    "reposts_count": 8,
+    "comments_count": 9,
+    "annotations": [],
+    "user": {
+        "id": 1404376560,//用户id
+        "screen_name": "zaku",//用户昵称
+        "name": "zaku",
+        "province": "11",
+        "city": "5",
+        "location": "北京 朝阳区",
+        "description": "人生五十年，乃如梦如幻；有生斯有死，壮士复何憾。",
+        "url": "http://blog.sina.com.cn/zaku",
+        "profile_image_url": "http://tp1.sinaimg.cn/1404376560/50/0/1",//用户头像地址50X50
+        "domain": "zaku",
+        "gender": "m",
+        "followers_count": 1204,
+        "friends_count": 447,
+        "statuses_count": 2908,
+        "favourites_count": 0,
+        "created_at": "Fri Aug 28 00:00:00 +0800 2009",
+        "following": false,
+        "allow_all_act_msg": false,
+        "remark": "",
+        "geo_enabled": true,
+        "verified": false,
+        "allow_all_comment": true,
+        "avatar_large": "http://tp1.sinaimg.cn/1404376560/180/0/1",//用户头像地址180X180
+        "verified_reason": "",
+        "follow_me": false,
+        "online_status": 0,
+        "bi_followers_count": 215
+    }
+}
+
+/*新浪支持直接用图片url发布一条图片微博
+https://api.weibo.com/2/statuses/upload_url_text.json
+传递方式为post
+*/
+{
+	"access_token":"",
+	"status":"",
+	"url":"",//	图片的URL地址，必须以http开头。  
+}
+/*返回代码格式同上*/
+
+
+
+
+
+/*关注一个用户
+https://api.weibo.com/2/friendships/create.json
+传递方式为POST
+*/
+{
+	"access_token":""//
+	"uid":""//需要关注的用户ID。 
+	"screen_name":""//需要关注的用户昵称。
+	//用户ID和用户昵称任选其一
+}
+/**返回*/
+
+{
+    "id": 1404376560,//用户id
+    "screen_name": "zaku",//用户昵称
+    "name": "zaku",
+    "province": "11",
+    "city": "5",
+    "location": "北京 朝阳区",
+    "description": "人生五十年，乃如梦如幻；有生斯有死，壮士复何憾。",
+    "url": "http://blog.sina.com.cn/zaku",
+    "profile_image_url": "http://tp1.sinaimg.cn/1404376560/50/0/1",
+    "domain": "zaku",
+    "gender": "m",
+    "followers_count": 1204,
+    "friends_count": 447,
+    "statuses_count": 2908,
+    "favourites_count": 0,
+    "created_at": "Fri Aug 28 00:00:00 +0800 2009",
+    "following": false,
+    "allow_all_act_msg": false,
+    "geo_enabled": true,
+    "verified": false,
+    "status": {
+        "created_at": "Tue May 24 18:04:53 +0800 2011",
+        "id": 11142488790,
+        "text": "我的相机到了。",
+        "source": "<a href=\"http://weibo.com\" rel=\"nofollow\">新浪微博</a>",
+        "favorited": false,
+        "truncated": false,
+        "in_reply_to_status_id": "",
+        "in_reply_to_user_id": "",
+        "in_reply_to_screen_name": "",
+        "geo": null,
+        "mid": "5610221544300749636",
+        "annotations": [],
+        "reposts_count": 5,
+        "comments_count": 8
+    },
+    "allow_all_comment": true,
+    "avatar_large": "http://tp1.sinaimg.cn/1404376560/180/0/1",
+    "verified_reason": "",
+    "follow_me": false,
+    "online_status": 0,
+    "bi_followers_count": 215
+}
+
+/*取消关注一个用户
+https://api.weibo.com/2/friendships/destroy.json
+传递方式为POST
+*/
+{
+	"access_token":""//
+	"uid":""//需要关注的用户ID。 
+	"screen_name":""//需要关注的用户昵称。
+	//用户ID和用户昵称任选其一
+}
+/*返回值同上*/
+
+
+
+
+
+
+/*
+新浪微博错误返回代码如下
+当成功的情况下没有这三个值，仅当出错时出现，判断时注意
+*/
+{
+	"request" : "/statuses/home_timeline.json",
+	"error_code" : "20502",
+	"error" : "Need you follow uid."
+}
+
+
+/*备注新浪MID与新浪id互转的function
+var s=new SinaWeiboUtility();
+ *s.id2mid() // id转mid
+ *s.mid2id() // mid转id
+ 虽然新浪有MID与id互转的接口不过还是本地处理比较快
+ 形如“3z4efAo4lk”的MID即为经过base62转换的MID 
+*/1651453804
+function SinaWeiboUtility() {
+    /**
+    * 62进制字典
+    * @property {String}
+    */
+    this.str62keys = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    if (typeof (SinaWeiboUtility._initalized) == 'undefined') {
+        /**
+        * 10进制值转换为62进制
+        * @param {String} int10 10进制值
+        * @return {String} 62进制值
+        */
+        SinaWeiboUtility.prototype.int10to62 = function (int10) {
+            var s62 = '';
+            var r = 0;
+            while (int10 != 0) {
+                r = int10 % 62;
+                s62 = this.str62keys.charAt(r) + s62;
+                int10 = Math.floor(int10 / 62);
+            }
+            return s62;
+        };
+        /**
+        * 62进制值转换为10进制
+        * @param {String} str62 62进制值
+        * @return {String} 10进制值
+        */
+        SinaWeiboUtility.prototype.str62to10 = function (str62) {
+            var i10 = 0;
+            for (var i = 0; i < str62.length; i++) {
+                var n = str62.length - i - 1;
+                var s = str62.substr(i, 1);  // str62[i]; 字符串用数组方式获取，IE下不支持为“undefined”
+                i10 += parseInt(this.str62keys.indexOf(s)) * Math.pow(62, n);
+            }
+            return i10;
+        };
+        /**
+        * id转换为mid
+        * @param {String} id 微博id，如 "201110410216293360"
+        * @return {String} 微博mid，如 "wr4mOFqpbO"
+        */
+        SinaWeiboUtility.prototype.id2mid = function (id) {
+            if (typeof (id) != 'string') {
+                return false; // id数值较大，必须为字符串！
+            }
+            var mid = '';
+
+            for (var i = id.length - 7; i > -7; i = i - 7) //从最后往前以7字节为一组读取mid
+            {
+                var offset1 = i < 0 ? 0 : i;
+                var offset2 = i + 7;
+                var num = id.substring(offset1, offset2);
+
+                num = this.int10to62(num);
+                mid = num + mid;
+            }
+
+            return mid;
+        };
+        /**
+        * mid转换为id
+        * @param {String} mid 微博mid，如 "wr4mOFqpbO"
+        * @return {String} 微博id，如 "201110410216293360"
+        */
+        SinaWeiboUtility.prototype.mid2id = function (mid) {
+            var id = '';
+
+            for (var i = mid.length - 4; i > -4; i = i - 4) //从最后往前以4字节为一组读取mid字符
+            {
+                var offset1 = i < 0 ? 0 : i;
+                var len = i < 0 ? parseInt(mid.length % 4) : 4;
+                var str = mid.substr(offset1, len);
+
+                str = this.str62to10(str).toString();
+                if (offset1 > 0) //若不是第一组，则不足7位补0
+                {
+                    while (str.length < 7) {
+                        str = '0' + str;
+                    }
+                }
+
+                id = str + id;
+            }
+            return id;
+        };
+
+        /**
+        * 标识对象是否初始化过（将方法挂在prototype上只需执行一次即可，不必要的重复的运算。）
+        * @property {boolean}
+        */
+        SinaWeiboUtility._initalized = true;
+    }
+}
+
+
+
+
+
+//mid 数字转base62	base62encode()
+//mid base62转数字	base62encode()
+
+var encTable = new Array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',  
+	'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',  
+	'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',  
+	'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0',  
+	'1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '/');  
+var decTable = new Array(256);  
+for (i = 0; i < encTable.length; i++) {  
+	decTable[encTable[i]] = i;  
+}
+function base62encode(str) {  
+	value = "";  
+	pos = 0, val = 0;  
+	for ( var i = 0; i < str.length; i++) {  
+		val = (val << 8) | (str.charCodeAt(i) & 0xFF);  
+		pos += 8;  
+		while (pos > 5) {  
+			c = encTable[val >> (pos -= 6)];  
+			value += c == 'i' ? "ia" : c == '+' ? "ib" : c == '/' ? "ic" : c;  
+			val &= ((1 << pos) - 1);  
+		}  
+	}  
+	if (pos > 0) {  
+		value += encTable[val << (6 - pos)];  
+		if (pos == 2) {  
+			value += "==";  
+		} else if (pos == 4) {  
+			value += "=";  
+		}  
+	}  
+	return value;  
+}  
+function base62decode(str) {  
+	pos = 0, val = 0;  
+	value = "";  
+	for ( var i = 0; i < str.length; i++) {  
+		c = str.charAt(i);  
+		if (c == '=') {  
+			break;  
+		}  
+		if (c == 'i') {  
+			c = str.charAt(++i);  
+			c = c == 'a' ? 'i' : c == 'b' ? '+' : c == 'c' ? '/' : str.charAt(--i);  
+		}  
+		val = (val << 6) | decTable[c];  
+		pos += 6;  
+		while (pos > 7) {  
+			value += String.fromCharCode((val >> (pos -= 8)) & 0xFF);  
+			val &= ((1 << pos) - 1);  
+		}  
+	}  
+	return value;  
+}  

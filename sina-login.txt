@@ -1,0 +1,59 @@
+新浪登陆接口OAUTH2.0
+
+Step1：获取Authorization Code 直接打开登录页面 回调地址经过url处理
+
+https://api.weibo.com/oauth2/response_type=code&authorize?client_id=申请应用时分配的AppKey&redirect_uri=授权回调地址&state=sina 
+
+Step2：通过Authorization Code获取Access Token（然后根据code获取 Access Token）
+
+用户登录并授权后跳转到回调地址，获取到参数code
+
+http://lols.cc/oauth.asp?response&code=03F237D9E93F8E435618930A80F49034
+
+用asp抓取方式GET（其中client_id=YOUR_CLIENT_ID&client_secret=YOUR_CLIENT_SECRET可以使用basic方式加入header中）
+
+https://api.weibo.com/oauth2/access_token?client_id=#申请应用时分配的AppKey#&client_secret=#申请应用时分配的AppSecret#&grant_type=authorization_code&redirect_uri=#授权回调地址#&code=#这里写刚获取到的code#
+
+获取到的格式为字符串
+{ "access_token":"SlAV32hkKG", "remind_in ":3600, "expires_in":3600 } 
+
+这个值就是Access Token，由于这个值有时效性，所以最好每次验证都储存数据库或缓存处理
+
+####
+新浪微博提供一个通过新浪用户名和密码获取access_token的接口
+https://open.weibo.cn/oauth2/access_token?client_id=#申请应用时分配的AppKey#&client_secret=#申请应用时分配的AppSecret#&grant_type=password&username=USER_NAME&password=PASSWORD
+返回格式如下
+{ "access_token":"SlAV32hkKG", "expires_in":3600 } 
+####
+
+
+
+Step3：下面可以利用access_token来调用接口
+新浪提供两种方式提交Access Token值：一是GET  二是header传递Authorization:#Access Token值#
+
+##########
+获取uid请求方式为GET
+https://api.weibo.com/2/account/get_uid.json?source=#申请应用时分配的AppKey#&access_token=#Access_token值#
+返回数据格式
+{
+    "uid":"3456676543"
+}
+#########
+
+
+Step4 根据uid获取到该微博的基本资料（Step4为可选）
+
+
+https://api.weibo.com/2/users/show.json?source=#申请应用时分配的AppKey#&access_token=#Access_token值#&uid=#刚才获取到的uid值#
+
+
+返回数据比较长，可以到这来查看
+http://open.weibo.com/wiki/2/users/show
+
+主要的数据有以下几个
+JSON.id  用户的uid
+JSON.screen_name  用户昵称
+JSON.name  友好显示名称
+JSON.avatar_large 用户头像
+
+
