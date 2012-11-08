@@ -22,7 +22,8 @@ define(function( require, exports, module ){
 				id: pluginCacheArray[i][0],
 				pluginname: pluginCacheArray[i][1],
 				pluginfolder: pluginCacheArray[i][3],
-				pluginstatus: pluginCacheArray[i][4]
+				pluginstatus: pluginCacheArray[i][4],
+				pluginwebpage: pluginCacheArray[i][13]
 			}
 		}
 		

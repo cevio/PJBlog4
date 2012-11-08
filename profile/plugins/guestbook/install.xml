@@ -10,4 +10,5 @@
 	<pluginQQWeibo>http://t.qq.com/PJBlogMaster</pluginQQWeibo>
 	<pluginSinaWeibo>http://weibo.com/sevio</pluginSinaWeibo>
 	<pluginInfo>官方提供的留言本插件</pluginInfo>
+	<pluginWebPage>guestbook.asp</pluginWebPage>
 </plugin>

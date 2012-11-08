@@ -93,6 +93,13 @@
 								pluginVersion = "";
 							}
 							
+							var pluginWebPage = xml("pluginWebPage", xmlConsole.root, xmlConsole.object);
+							if ( pluginWebPage.length > 0 ){
+								pluginWebPage = pluginWebPage.text();
+							}else{
+								pluginWebPage = "";
+							}
+							
 							var canInsert = true;
 							
 							dbo.trave({
@@ -125,7 +132,8 @@
 										pluginqqweibo: pluginQQWeibo,
 										pluginsinaweibo: pluginSinaWeibo,
 										pluginpublishdate: _date,
-										pluginversion: pluginVersion
+										pluginversion: pluginVersion,
+										pluginwebpage: pluginWebPage
 									},
 									table: "blog_plugin",
 									conn: config.conn,
