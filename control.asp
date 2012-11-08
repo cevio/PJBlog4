@@ -29,7 +29,7 @@
                 <li><a href="?p=article">日志</a></li>
                 <li><a href="?p=theme">主题</a></li>
                 <li><a href="?p=plugin">插件</a></li>
-                <li><a href="">文档</a></li>
+                <li><a href="?p=documents">文档</a></li>
             </ul>
         </div>
         <div class="nav-user">

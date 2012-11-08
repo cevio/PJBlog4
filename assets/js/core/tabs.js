@@ -26,10 +26,12 @@ define(["easing"], function(require, exports, module){
 			contentDom.hide().css("opacity", "0");
 		}
 		this.process = function(sourceDom, targetDom, callback, object){
-			targetDom.show().animate({
-				opacity : "1"
-			}, object.config.speed, callback);
-			sourceDom.css("opacity", "0").hide();
+			if ( targetDom[0] !== sourceDom[0] ){
+				targetDom.show().animate({
+					opacity : "1"
+				}, object.config.speed, callback);
+				sourceDom.css("opacity", "0").hide();
+			}
 		}
 	});
 	
@@ -47,6 +49,8 @@ define(["easing"], function(require, exports, module){
 		}
 		this.process = function(sourceDom, targetDom, callback, object){
 			var height = targetDom.outerHeight({padding:true});
+			var heights = sourceDom.outerHeight({padding:true});
+			var duHiehgt = Math.max(height, heights);
 			
 			
 			function getHeight(nodes){
@@ -59,13 +63,16 @@ define(["easing"], function(require, exports, module){
 			}
 			
 			targetDom.parent().parent().css({
-				height : height + "px",
+				height : duHiehgt + "px",
 				overflow : "hidden"
 			});
 			
 			targetDom.parent().animate({
 				"margin-top" : "-" + ( getHeight(object.contentDom.slice(0, object.current)) ) + "px" 
-			}, object.config.speed, callback);
+			}, object.config.speed, function(){
+				targetDom.parent().parent().css("height", height + "px");
+				callback.call(this);
+			});
 		}
 	});
 	

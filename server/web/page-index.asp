@@ -20,7 +20,7 @@
                     <a href="?p=plugin"><span class="iconfont">&#292;</span> 插件</a>
                     <a href=""><span class="iconfont">&#368;</span> 用户</a>
                     <a href=""><span class="iconfont">&#119;</span> 环境</a>
-                    <a href=""><span class="iconfont">&#269;</span> 文档</a>
+                    <a href="?p=documents"><span class="iconfont">&#269;</span> 文档</a>
                     <a href=""><span class="iconfont">&#416;</span> 升级</a>
                 </div>
             </div>
