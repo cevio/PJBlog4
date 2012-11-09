@@ -111,9 +111,9 @@
 			var rets = {};
 			if ( categoryJSON[id + ""] !== undefined ){
 				rets.id = id;
-				rets.name = categoryJSON[id + ""][1];
-				rets.info = categoryJSON[id + ""][2];
-				rets.icon = "profile/icons/" + categoryJSON[id + ""][5];
+				rets.name = categoryJSON[id + ""].name;
+				rets.info = categoryJSON[id + ""].info;
+				rets.icon = "profile/icons/" + categoryJSON[id + ""].icon;
 				rets.url = "default.asp?c=" + id;
 			}
 			return rets;
@@ -127,7 +127,7 @@
 		
 		;(function(){
 			for ( var o = 0 ; o < categoryCacheData.length ; o++ ){
-				categoryJSON[categoryCacheData[o][0] + ""] = categoryCacheData[o];
+				categoryJSON[categoryCacheData[o].id + ""] = categoryCacheData[o];
 			}
 		})();
 		
@@ -166,7 +166,6 @@
 							url: "article.asp?id=" + modules[i][0]
 						});
 				}
-				
 				pagebar = fns.pageAnalyze(pageCustomParams.page, Math.ceil(modules.length / perPage));
 			})();
 			

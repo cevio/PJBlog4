@@ -71,51 +71,50 @@
 
 		;(function(){
 			for ( var o = 0 ; o < categoryCacheData.length ; o++ ){
-				categoryJSON[categoryCacheData[o][0] + ""] = categoryCacheData[o];
-			}
-		})();
-		
-		function getTags(tagStr){
-			var tagStrArrays = tagsCacheData.reFormatTags(tagStr),
-				keeper = [];
-				
-			for ( var j = 0 ; j < tagStrArrays.length ; j++ ){
-				var rets = tagsCacheData.readTagFromCache( Number(tagStrArrays[j]) );
-				
-				keeper.push({ 
-					id: Number(tagStrArrays[j]), 
-					name: rets,
-					url: "tags.asp?id=" + tagStrArrays[j]
-				});
+				categoryJSON[categoryCacheData[o].id + ""] = categoryCacheData[o];
 			}
 			
-			return keeper;
-		}
-		
-		function getCategoryName( id ){
-			var rets = {};
-			if ( categoryJSON[id + ""] !== undefined ){
-				rets.id = id;
-				rets.name = categoryJSON[id + ""][1];
-				rets.info = categoryJSON[id + ""][2];
-				rets.icon = "profile/icons/" + categoryJSON[id + ""][5];
-				rets.url = "default.asp?c=" + id;
+			function getTags(tagStr){
+				var tagStrArrays = tagsCacheData.reFormatTags(tagStr),
+					keeper = [];
+					
+				for ( var j = 0 ; j < tagStrArrays.length ; j++ ){
+					var rets = tagsCacheData.readTagFromCache( Number(tagStrArrays[j]) );
+					
+					keeper.push({ 
+						id: Number(tagStrArrays[j]), 
+						name: rets,
+						url: "tags.asp?id=" + tagStrArrays[j]
+					});
+				}
+				
+				return keeper;
 			}
-			return rets;
-		}
-		
-		if ( sys_cache_article.length === 1 ){
-			articleListContainer.id = id;
-			articleListContainer.title = sys_cache_article[0][0];
-			articleListContainer.category = getCategoryName(sys_cache_article[0][1]);
-			articleListContainer.content = sys_cache_article[0][2];
-			articleListContainer.tags = getTags(sys_cache_article[0][3]);
-			articleListContainer.postDate = sys_cache_article[0][5];
-			articleListContainer.editDate = sys_cache_article[0][6];
-		}
-		
-		pageCustomParams.article = articleListContainer;
-		
+			
+			function getCategoryName( id ){
+				var rets = {};
+				if ( categoryJSON[id + ""] !== undefined ){
+					rets.id = id;
+					rets.name = categoryJSON[id + ""].name;
+					rets.info = categoryJSON[id + ""].info;
+					rets.icon = "profile/icons/" + categoryJSON[id + ""].icon;
+					rets.url = "default.asp?c=" + id;
+				}
+				return rets;
+			}
+			if ( sys_cache_article.length === 1 ){
+				articleListContainer.id = id;
+				articleListContainer.title = sys_cache_article[0][0];
+				articleListContainer.category = getCategoryName(sys_cache_article[0][1]);
+				articleListContainer.content = sys_cache_article[0][2];
+				articleListContainer.tags = getTags(sys_cache_article[0][3]);
+				articleListContainer.postDate = sys_cache_article[0][5];
+				articleListContainer.editDate = sys_cache_article[0][6];
+			}
+			
+			pageCustomParams.article = articleListContainer;
+		})();
+
 		// '处理评论
 		;(function(){
 			
@@ -159,7 +158,7 @@
 			}
 			
 			if ( perPage < 1 ){ perPage = 1; }
-				
+
 			for ( var i = 0 ; i < commentLogList.length ; i++ ){
 				var commentItemData = commentLogList[i],
 					ids = commentItemData[0],
@@ -185,13 +184,13 @@
 							items: []
 						}
 					}else{
-						firstTreeJson[id + ""].id = ids;
-						firstTreeJson[id + ""].commid = commid;
-						firstTreeJson[id + ""].content = content;
-						firstTreeJson[id + ""].date = date;
-						firstTreeJson[id + ""].ip = ip;
-						firstTreeJson[id + ""].aduit = aduit;
-						firstTreeJson[id + ""].user = user;
+						firstTreeJson[ids + ""].id = ids;
+						firstTreeJson[ids + ""].commid = commid;
+						firstTreeJson[ids + ""].content = content;
+						firstTreeJson[ids + ""].date = date;
+						firstTreeJson[ids + ""].ip = ip;
+						firstTreeJson[ids + ""].aduit = aduit;
+						firstTreeJson[ids + ""].user = user;
 					}
 				}else{
 					if ( firstTreeJson[commid + ""] === undefined ){
