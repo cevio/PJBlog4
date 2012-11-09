@@ -39,10 +39,8 @@ var postid = <%=pageCustomParams.article.id%>;
             </div>
             <div class="comment-list">
             <%
-				var coms = require("cache_comment"),
-					comsList = coms.commentList(pageCustomParams.article.id),
-					pages = comsList.page,
-					comsList = comsList.list;
+				var comsList = pageCustomParams.comments.list,
+					pages = pageCustomParams.comments.pagebar;
 				
 				if ( comsList.length > 0 ){
 			%>
@@ -52,19 +50,7 @@ var postid = <%=pageCustomParams.article.id%>;
 						var items = comsList[comsListItem].items;
 			%>
             		<li class="fn-clear">
-                    	<div class="img fn-left">
-                        <%
-							if ( comsList[comsListItem].user.id === 0 ){
-						%>
-                        	<img src="<%=comsList[comsListItem].user.photo%>" />
-                        <%	
-							}else{
-						%>
-                        	<img src="<%=comsList[comsListItem].user.photo%>/50" />
-                        <%	
-							}
-						%>
-                        </div>
+                    	<div class="img fn-left"><img src="<%=comsList[comsListItem].user.photo%>" /></div>
                         <div class="comment-content fn-left">
                         	<div class="comment-who fn-clear"><span class="fn-left"><%=comsList[comsListItem].user.name%></span><span class="fn-right comment-who-time"><%=date.format(comsList[comsListItem].date, "M d y - h:i")%></span></div>
                             <div class="comment-des"><%=comsList[comsListItem].content%></div>
@@ -77,19 +63,7 @@ var postid = <%=pageCustomParams.article.id%>;
 									for ( var ck = 0 ; ck < items.length ; ck++ ){
 							%>
                             	<div class="fn-clear cline">
-                                    <div class="cimg fn-left">
-                                    <%
-										if ( items[ck].user.id === 0 ){
-									%>
-                                    	<img src="<%=items[ck].user.photo%>" />
-                                    <%	
-										}else{
-									%>
-                                    	<img src="<%=items[ck].user.photo%>/30" />
-                                    <%	
-										}
-									%>
-                                    </div>
+                                    <div class="cimg fn-left"><img src="<%=items[ck].user.photo%>/30" /></div>
                                     <div class="ccontent fn-left">
                                         <div class="cwho"><%=items[ck].user.name%></div>
                                         <div class="cinfo"><%=date.format(items[ck].date, "M d y - h:i")%></div>
@@ -111,19 +85,19 @@ var postid = <%=pageCustomParams.article.id%>;
                 </ul>
             <%	
 				}
-				if ( comsList.length > 0 && (pages.to - pages.from > 0) ){
+				if ( pages.length > 0 ){
 			%>
             
             <div class="pj-article-pagebar fn-clear">
 			<%
-                        for ( var n = pages.from ; n <= pages.to ; n++ ){
-                            if ( pages.current === n ){
+                        for ( var n = 0 ; n < pages.length ; n++ ){
+                            if ( pages[n].url === undefined ){
             %>
-                <span class="fn-left"><%=n%></span>
+                <span class="fn-left"><%=pages[n].key%></span>
             <%
                             }else{
             %>
-                <a href="article.asp?id=<%=pageCustomParams.article.id%>&page=<%=n%>" class="fn-left"><%=n%></a>
+                <a href="<%=pages[n].url%>" class="fn-left"><%=pages[n].key%></a>
             <%				
                             }
                         }

@@ -132,8 +132,8 @@
 		})();
 		
 		if ( modules.length === 0 ){
-			list = [];
-			pagebar = { from: 0, to: 0 };
+			pageCustomParams.article.list = [];
+			pageCustomParams.article.pagebar = { from: 0, to: 0 };
 		}else{
 			articleIdFrom = (pageCustomParams.page - 1) * perPage + 1;
 			articleIdTo = pageCustomParams.page * perPage;

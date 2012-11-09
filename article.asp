@@ -7,26 +7,26 @@
  * ' 	id: 1,
  * '	article: {
  * '		id: 1,
- * '				title: "...",
- * '				postDate: "1986/10/31 10:31:25",
- * '				editDate: "1986/10/31 10:31:25",
- * '				category: {
- * '					id: 0,
- * '					name: "...",
- * '					info: "...",
- * '					icon: "...",
- * '					url: "..."
- * '				},
- * '				tags: [
- * '					{
- * '						id: 0,
- * '						name: "...",
- * '						url: "..."
- * '					},
- * '					#loop#
- * '				],
- * '				content: "...",
+ * '		title: "...",
+ * '		postDate: "1986/10/31 10:31:25",
+ * '		editDate: "1986/10/31 10:31:25",
+ * '		category: {
+ * '			id: 0,
+ * '			name: "...",
+ * '			info: "...",
+ * '			icon: "...",
+ * '			url: "..."
+ * '		},
+ * '		tags: [
+ * '			{
+ * '				id: 0,
+ * '				name: "...",
  * '				url: "..."
+ * '			},
+ * '			#loop#
+ * '		],
+ * '		content: "...",
+ * '		url: "..."
  * '	}
  * ' }
  */
@@ -34,7 +34,7 @@
 	require("status");
 	
 	// '加载全局变量模块
-	require("cache_global");
+	pageCustomParams.globalCache = require("cache_global");
 	
 	// '加载分类数据
 	require("cache_category");
@@ -115,6 +115,152 @@
 		}
 		
 		pageCustomParams.article = articleListContainer;
+		
+		// '处理评论
+		;(function(){
+			
+			pageCustomParams.comments = {
+				list: [],
+				pagebar: []
+			};
+		
+			var commentLogList = cache.load("artcomm", pageCustomParams.article.id),
+				firstTreeList = [],
+				firstTreeJson = {},
+				lastTreeData = [],
+				fns = require("fn"),
+				GRATE = require("gra"),
+				perPage = pageCustomParams.globalCache[0][21],
+				currentPage = pageCustomParams.page;
+				
+			if ( commentLogList.length === 0 ){
+				return ;
+			}
+			
+			function getUserGRA( ids, name, mail ){
+				if ( Number(ids) === 0 ){
+					return {
+						name: name,
+						photo: GRATE(mail),
+						id: 0
+					}
+				}else{
+					var user = cache.load("user", ids);
+					return {
+						name: user[0][2],
+						photo: user[0][1] + "/50",
+						id: ids
+					}
+				}
+			}
+		
+			if ( perPage > commentLogList.length ){
+				perPage = commentLogList.length;
+			}
+			
+			if ( perPage < 1 ){ perPage = 1; }
+				
+			for ( var i = 0 ; i < commentLogList.length ; i++ ){
+				var commentItemData = commentLogList[i],
+					ids = commentItemData[0],
+					commid = commentItemData[1],
+					content = commentItemData[3],
+					user = getUserGRA(commentItemData[2], commentItemData[7], commentItemData[8]),
+					date = commentItemData[4],
+					ip = commentItemData[5],
+					aduit = commentItemData[6];
+				
+				firstTreeList.push(ids); // '保证顺序
+				
+				if ( commid === 0 ){
+					if (firstTreeJson[ids + ""] === undefined){
+						firstTreeJson[ids + ""] = {
+							id: ids,
+							commid: commid,
+							content: content,
+							date: date,
+							ip: ip,
+							aduit: aduit,
+							user: user,
+							items: []
+						}
+					}else{
+						firstTreeJson[id + ""].id = ids;
+						firstTreeJson[id + ""].commid = commid;
+						firstTreeJson[id + ""].content = content;
+						firstTreeJson[id + ""].date = date;
+						firstTreeJson[id + ""].ip = ip;
+						firstTreeJson[id + ""].aduit = aduit;
+						firstTreeJson[id + ""].user = user;
+					}
+				}else{
+					if ( firstTreeJson[commid + ""] === undefined ){
+						firstTreeJson[commid + ""] = {
+							items: []
+						}
+					}
+					
+					firstTreeJson[commid + ""].items.push({
+						id: ids,
+						commid: commid,
+						content: content,
+						date: date,
+						ip: ip,
+						aduit: aduit,
+						user: user
+					});
+				}
+			}
+			
+			for ( var j = 0 ; j < firstTreeList.length ; j++ ){
+				if ( firstTreeJson[firstTreeList[j] + ""] !== undefined ){
+					lastTreeData.push(firstTreeJson[firstTreeList[j] + ""]);
+				}
+			}
+	
+			var commentFrom = ( currentPage - 1 ) * perPage + 1,
+				commentTo = (currentPage * perPage),
+				containers = [];
+		
+			if ( commentFrom > lastTreeData.length ){
+				commentFrom = lastTreeData.length;
+				commentTo = lastTreeData.length;
+			}else{
+				if ( commentFrom < 1 ){
+					commentFrom = 1;
+				}
+				if ( commentTo > lastTreeData.length ){
+					commentTo = lastTreeData.length;
+				}
+			}
+			
+			commentFrom--; commentTo--;
+			
+			for ( var j = commentFrom ; j <= commentTo ; j++ ){
+				containers.push(lastTreeData[j]);
+			}
+			
+			pageCustomParams.comments.list = containers;
+			(function(){
+				var _page = fns.pageAnalyze(currentPage, Math.ceil(lastTreeData.length / perPage));
+				if ( (pageCustomParams.comments.list.length > 0) && ( (_page.to - _page.from) > 0 ) ){
+					for ( var n = _page.from ; n <= _page.to ; n++ ){
+						var _url = "default.asp?id=" + id + "&page=" + n;
+										
+						if ( _page.current === n ){
+							pageCustomParams.comments.pagebar.push({
+								key: n
+							});
+						}else{
+							pageCustomParams.comments.pagebar.push({
+								key: n,
+								url : _url
+							});
+						}				
+					}
+				}
+			})();
+		})();	
 	})();
 	
 		

@@ -2,18 +2,22 @@
 <%
 var mark = http.get("mark");
 
+// '加载用户登入状态
 require("status");
-require("cache_global");
 
-var pagePluginCustomParams = {};
+// '加载全局变量模块
+pageCustomParams.globalCache = require("cache_global");
 
-pagePluginCustomParams.page = http.get("page");
-if ( pagePluginCustomParams.page.length === 0 ){ 
-	pagePluginCustomParams.page = 1; 
+// '加载分类数据
+require("cache_category");
+
+pageCustomParams.page = http.get("page");
+if ( pageCustomParams.page.length === 0 ){ 
+	pageCustomParams.page = 1; 
 }else{
-	pagePluginCustomParams.page = Number(pagePluginCustomParams.page);
-	if ( pagePluginCustomParams.page < 1 ){
-		pagePluginCustomParams.page = 1;
+	pageCustomParams.page = Number(pageCustomParams.page);
+	if ( pageCustomParams.page < 1 ){
+		pageCustomParams.page = 1;
 	}
 }
 
@@ -28,11 +32,11 @@ if ( AllPluginLists[mark] === undefined ){
 	
 	if ( thisPluginInfo.pluginstatus === true ){
 		var fso = require("FSO"),
-			pluginWebPath = "profile/themes/" + config.params.theme + "/" + thisPluginInfo.pluginwebpage,
+			pluginWebPath = "profile/themes/" + pageCustomParams.global.theme + "/" + thisPluginInfo.pluginwebpage,
 			pluginProcyPath = "profile/plugins/" + thisPluginInfo.pluginfolder + "/proxy.asp";	
 		if ( fso.exsit(pluginProcyPath) === true ){
-			pagePluginCustomParams.webData = require(pluginProcyPath);
-			pagePluginCustomParams.pluginFolder = "profile/plugins/" + thisPluginInfo.pluginfolder;
+			pageCustomParams.webData = require(pluginProcyPath);
+			pageCustomParams.pluginFolder = "profile/plugins/" + thisPluginInfo.pluginfolder;
 			if ( fso.exsit(pluginWebPath) ){
 				include(pluginWebPath);
 			}else{
