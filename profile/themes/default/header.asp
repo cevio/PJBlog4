@@ -1,21 +1,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta name="Description" content="<%=config.params.webdescription%>" />
-    <meta name="Keywords" content="<%=config.params.webkeywords%>" />
+    <meta name="Description" content="<%=pageCustomParams.global.webdescription%>" />
+    <meta name="Keywords" content="<%=pageCustomParams.global.webkeywords%>" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="Author" content="<%=config.params.nickname%> - <%=config.params.authoremail%>" />
-    <link rel="stylesheet" href="<%=config.params.website + "/" + config.params.styleFolder%>/common.css" type="text/css" />
-    <script language="javascript" src="<%=config.params.website + "/assets/js/core/sizzle.js"%>"> </script>
-    <title><%=config.params.seotitle%></title>
+    <meta name="Author" content="<%=pageCustomParams.global.nickname%> - <%=pageCustomParams.global.authoremail%>" />
+    <link rel="stylesheet" href="<%=pageCustomParams.global.website + "/" + pageCustomParams.global.styleFolder%>/common.css" type="text/css" />
+    <script language="javascript" src="<%=pageCustomParams.global.website + "/assets/js/core/sizzle.js"%>"> </script>
+    <title><%=pageCustomParams.global.seotitle%></title>
 </head>
 <body>
 	<div class="pj-zone">
         <div class="pj-wrapper">
             <div class="pj-top">
                 <div class="pj-title">
-                    <%=config.params.title%>
-                    <div class="pj-info"><%=config.params.description%></div>
+                    <%=pageCustomParams.global.title%>
+                    <div class="pj-info"><%=pageCustomParams.global.description%></div>
                 </div>
                 <div class="pj-search">
                 	<form action="search.asp" method="post" style="margin:0; padding:0;">

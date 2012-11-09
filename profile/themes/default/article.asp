@@ -1,25 +1,27 @@
-<%include(config.params.themeFolder + "/header");%>
-<% var date = require("DATE"); %>
+<%include(pageCustomParams.global.themeFolder + "/header");%>
+<% 
+	var date = require("DATE");
+%>
 <script language="javascript">
-var postid = <%=articleCache.id%>;
+var postid = <%=pageCustomParams.article.id%>;
 </script>
 	<div class="pj-wrapper fn-clear pj-bodyer">
         <div class="pj-article-content">
-        	<h1><%=articleCache.log_title%></a></h1>
+        	<h1><%=pageCustomParams.article.title%></a></h1>
             <div class="pj-article-infos">
-            	<span class="date"><%=date.format(articleCache.log_updatetime, "M d y - h:i")%></span>
+            	<span class="date"><%=date.format(pageCustomParams.article.postDate, "M d y - h:i")%></span>
             </div>
-            <div class="pj-content"><%=articleCache.log_content%></div>
+            <div class="pj-content"><%=pageCustomParams.article.content%></div>
             <div class="information">
-            	<div class="category">Category: <a href="default.asp?c=<%=articleCache.log_category%>" title="<%=articleCache.log_categoryInfo%>"><%=articleCache.log_categoryName%></a></div>
+            	<div class="category">Category: <a href="<%=pageCustomParams.article.category.url%>" title="<%=pageCustomParams.article.category.info%>"><%=pageCustomParams.article.category.name%></a></div>
                 <%
-					if ( articleCache.log_tags.length > 0 ){
+					if ( pageCustomParams.article.tags.length > 0 ){
 				%>
                 <div class="tags">Tags: 
                 <%
-						for ( var tagitems = 0 ; tagitems < articleCache.log_tags.length ; tagitems++ ){
+						for ( var tagitems = 0 ; tagitems < pageCustomParams.article.tags.length ; tagitems++ ){
 				%>
-                	<a href="tags.asp?id=<%=articleCache.log_tags[tagitems].id%>"><%=articleCache.log_tags[tagitems].name%></a>
+                	<a href="<%=pageCustomParams.article.tags[tagitems].url%>"><%=pageCustomParams.article.tags[tagitems].name%></a>
                 <%			
 						}
 				%>
@@ -38,7 +40,7 @@ var postid = <%=articleCache.id%>;
             <div class="comment-list">
             <%
 				var coms = require("cache_comment"),
-					comsList = coms.commentList(articleCache.id),
+					comsList = coms.commentList(pageCustomParams.article.id),
 					pages = comsList.page,
 					comsList = comsList.list;
 				
@@ -121,7 +123,7 @@ var postid = <%=articleCache.id%>;
             <%
                             }else{
             %>
-                <a href="article.asp?id=<%=articleCache.id%>&page=<%=n%>" class="fn-left"><%=n%></a>
+                <a href="article.asp?id=<%=pageCustomParams.article.id%>&page=<%=n%>" class="fn-left"><%=n%></a>
             <%				
                             }
                         }
@@ -135,7 +137,7 @@ var postid = <%=articleCache.id%>;
     </div>
     <script language="javascript">
     	require("assets/js/config.js", function( route ){
-			route.load("<%=config.params.themeFolder%>/js/article");
+			route.load("<%=pageCustomParams.global.themeFolder%>/js/article");
 		});
     </script>
-<%include(config.params.themeFolder + "/footer")%>
+<%include(pageCustomParams.global.themeFolder + "/footer")%>

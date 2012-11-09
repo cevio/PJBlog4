@@ -116,9 +116,14 @@
 	}
 	
 	function LoadPluginsCacheModule( ModuleName, ModuleCallback ){
-		var ModuleCacheDatas = assetsPluginCustom.loadPlugin( ModuleName );
+		if ( config.pluginModen === undefined ){
+			config.pluginModen = require("pluginCustom");
+		}
+		var ModuleCacheDatas = config.pluginModen.loadPlugin( ModuleName );
 		if ( typeof ModuleCallback === "function" ){
 			ModuleCallback( ModuleCacheDatas );
 		}
 	}
+	
+	var pageCustomParams = {};
 %>

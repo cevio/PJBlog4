@@ -1,52 +1,55 @@
-<%include(config.params.themeFolder + "/header");%>
+<%include(pageCustomParams.global.themeFolder + "/header");%>
+<%
+	var date = require("DATE");
+%>
 <div class="pj-wrapper fn-clear pj-bodyer">
 	<div class="pj-article-list fn-left">
     	<%
-			LoadCacheModule("cache_article", function( cache_article ){
-				var date = require("DATE"),
-					cache_article_pagebar = cache_article.page,
-					cache_article_list = cache_article.list;
+			(function(){
+				var tplList = pageCustomParams.article.list,
+					tplPagebar = pageCustomParams.article.pagebar,
+					i, j;
 					
-				for ( var i = 0 ; i < cache_article_list.length ; i++ ){
+				for ( i = 0 ; i < tplList.length ; i++ ){
 		%>
         <div class="pj-article-content">
-        	<h1><a href="article.asp?id=<%=cache_article_list[i].id%>"><%=cache_article_list[i].log_title%></a></h1>
+        	<h1><a href="<%=tplList[i].url%>"><%=tplList[i].title%></a></h1>
             <div class="pj-article-infos">
-            	<span class="date"><%=date.format(cache_article_list[i].log_updatetime, "M d y - h:i")%></span>
+            	<span class="date"><%=date.format(tplList[i].postDate, "M d y - h:i")%></span>
                 <span class="tags"><%
-					for ( var j = 0 ; j < cache_article_list[i].log_tags.length ; j++ ){
-				%>
-                	<a href="tags.asp?id=<%=cache_article_list[i].log_tags[j].id%>"><%=cache_article_list[i].log_tags[j].name%></a> 
-                <%	
-					}
-				%></span>
-            </div>
-            <div class="pj-content"><%=cache_article_list[i].log_content%></div>
-        </div>
-        <%		
+				for ( j = 0 ; j < tplList[i].tags.length ; j++ ){
+		%>
+        			<a href="<%=tplList[i].tags[j].url%>"><%=tplList[i].tags[j].name%></a>
+        <%
 				}
-				if ( cache_article_list.length > 0 && (cache_article_pagebar.to - cache_article_pagebar.from > 0) ){
+		%></span>
+            </div>
+            <div class="pj-content"><%=tplList[i].content%></div>
+        </div>	
+        <%
+				}
+				
+				if ( tplPagebar.length > 0 ){
 		%>
         <div class="pj-article-pagebar fn-clear">
         <%
-					for ( var n = cache_article_pagebar.from ; n <= cache_article_pagebar.to ; n++ ){
-						if ( cache_article_pagebar.current === n ){
+					for ( i = 0 ; i < tplPagebar.length ; i++ ){
+						if ( tplPagebar[i].url === undefined ){
 		%>
-        	<span class="fn-left"><%=n%></span>
+        	<span class="fn-left"><%=tplPagebar[i].key%></span>
         <%
 						}else{
 		%>
-        	<a href="default.asp?c=<%=pageIndexCustomParams.cateID%>&page=<%=n%>" class="fn-left"><%=n%></a>
-        <%				
+        	<a href="<%=tplPagebar[i].url%>" class="fn-left"><%=tplPagebar[i].key%></a>
+        <%			
 						}
 					}
 		%>
-        </div>
+        </div>		
         <%
 				}
-			});
+			})();
 		%>
-        
     </div>
     <div class="pj-sidebar fn-right">
     	<div class="pj-sidepannel">
@@ -95,4 +98,4 @@
 	%>
     </div>
 </div>
-<%include(config.params.themeFolder + "/footer")%>
+<%include(pageCustomParams.global.themeFolder + "/footer")%>

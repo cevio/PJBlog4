@@ -69,6 +69,8 @@ define(function(require, exports, module){
 		}
 	}
 	
+	pageCustomParams.categorys = trees;
+	
 	return trees;
 });
 %>
