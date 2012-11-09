@@ -35,7 +35,7 @@ define(function(require){
 			}
 			
 			function createAppName(appKeyName, appKeyID){
-				return appKeyName + (appKeyID === undefined ? "" : "_" + appKeyID);
+				return config.cookie + "_" + appKeyName + (appKeyID === undefined ? "" : "_" + appKeyID);
 			}
 			
 			function createAppFile(appKeyName, appKeyID){
