@@ -103,7 +103,7 @@ var JSON = !JSON ? {} : JSON;
 	var debug = [];
 
 	console.push = function(ResponseText){
-		debug.push(ResponseText);
+		debug.push('[' + ResponseText + '](' + config.timers() + ')');
 	}
 
 	console.debug = function(){
