@@ -37,7 +37,7 @@
 	pageCustomParams.globalCache = require("cache_global");
 	
 	// '加载分类数据
-	require("cache_category");
+	pageCustomParams.categoryCache = require("cache_category");
 	
 	pageCustomParams.page = http.get("page");
 	if ( pageCustomParams.page.length === 0 ){ 
@@ -63,7 +63,7 @@
 	;(function(){
 		var cache = require("cache"),
 			tagsCacheData = require("tags"),
-			categoryCacheData = cache.load("category"),
+			categoryCacheData = pageCustomParams.categoryCache,
 			id = pageCustomParams.id,
 			sys_cache_article = cache.load("article", id),
 			articleListContainer = {},
@@ -265,6 +265,9 @@
 	
 		
 	pageCustomParams.global.seotitle = pageCustomParams.article.log_title;
+	
+	delete pageCustomParams.globalCache;
+	delete pageCustomParams.categoryCache;
 	
 	include("profile/themes/" + pageCustomParams.global.theme + "/article.asp");
 	

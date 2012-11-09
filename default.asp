@@ -49,7 +49,7 @@
 	pageCustomParams.globalCache = require("cache_global");
 	
 	// '加载分类数据
-	require("cache_category");
+	pageCustomParams.categoryCache = require("cache_category");
 
 	// '当前页面page参数
 	pageCustomParams.page = http.get("page");
@@ -79,7 +79,7 @@
 	// ' 处理日志列表
 	;(function(){
 		var cache = require("cache"),
-			categoryCacheData = cache.load("category"),
+			categoryCacheData = pageCustomParams.categoryCache,
 			tagsCacheData = require("tags"),
 			fns = require("fn"),
 			perPage = pageCustomParams.globalCache[0][10],
@@ -192,6 +192,9 @@
 			}
 		}
 	})();
+	
+	delete pageCustomParams.globalCache;
+	delete pageCustomParams.categoryCache;
 	
 	// '加载对应主题模板
 	include("profile/themes/" + pageCustomParams.global.theme + "/default.asp");
