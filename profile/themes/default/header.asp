@@ -26,62 +26,21 @@
                     </form>
                 </div>
                 <div class="pj-nav">
-                	<%
-						LoadCacheModule("cache_category", function( cache_category ){
-							if ( cache_category.length > 0 ){
-					%>
+                	<%var cache_category = pageCustomParams.categorys;if ( cache_category.length > 0 ){%>
                                 <ul class="nav-ul-one">
-                    <%
-								for ( var i = 0 ; i < cache_category.length ; i++ ){
-					%>
-                    				<li class="nav-li-one">
-                                    	<%
-											if ( cache_category[i].cate_outlink === true ){
-										%>
-                                        	<a href="<%=cache_category[i].cate_outlinktext%>" title="<%=cache_category[i].cate_info%>"><%=cache_category[i].cate_name%></a>
-                                        <%		
-											}else{
-										%>
-                                        	<a href="default.asp?c=<%=cache_category[i].id%>" title="<%=cache_category[i].cate_info%>"><%=cache_category[i].cate_name%></a>
-                                        <%		
-											}
-											
-											var childrens = cache_category[i].childrens;
-											if ( childrens.length > 0 ){
-										%>
+                   		<%for ( var i = 0 ; i < cache_category.length ; i++ ){%>
+                    				<li class="nav-li-one"><a href="<%=cache_category[i].link%>" title="<%=cache_category[i].info%>"><%=cache_category[i].name%></a>
+                                        <%var childrens = cache_category[i].childrens;if ( childrens.length > 0 ){%>
                                         	<ul class="nav-ul-two">
-                                        <%
-												for ( var j = 0 ; j < childrens.length ; j++ ){
-										%>
-                                        			<li class="nav-li-two">
-                                        <%
-													if ( childrens[j].cate_outlink === true ){
-										%>
-                                        				<a href="<%=childrens[j].cate_outlinktext%>" title="<%=childrens[j].cate_info%>"><%=childrens[j].cate_name%></a>
-                                        <%
-													}else{
-										%>
-                                        				<a href="default.asp?c=<%=childrens[j].id%>" title="<%=childrens[j].cate_info%>"><%=childrens[j].cate_name%></a>
-                                        <%
-													}
-										%>
-                                        			</li>
-                                        <%
-												}
-										%>
+                                        <%for ( var j = 0 ; j < childrens.length ; j++ ){%>
+                                        		<li class="nav-li-two"><a href="<%=childrens[j].link%>" title="<%=childrens[j].info%>"><%=childrens[j].name%></a></li>
+                                        <%}%>
                                             </ul>
-                                        <%		
-											}
-										%>
+                                        <%}%>
                                     </li>
-                    <%				
-								}
-					%>
+                    	<%}%>
                                 </ul>
-                    <%
-							}
-						});
-					%>
+                    <%};%>
                 </div>
             </div>
         </div>

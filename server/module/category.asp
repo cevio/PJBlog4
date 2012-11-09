@@ -24,22 +24,20 @@ define(function(require, exports, module){
 			if ( arrays[id + ""] === undefined ){
 				arrays[id + ""] = {
 					id: id,
-					cate_name: cate_name,
-					cate_info: cate_info,
-					cate_count: cate_count, 
-					cate_icon: cate_icon,
-					cate_outlink: cate_outlink,
-					cate_outlinktext: cate_outlinktext,
+					name: cate_name,
+					info: cate_info,
+					count: cate_count, 
+					icon: cate_icon,
+					link: cate_outlink ? cate_outlinktext : "default.asp?c=" + id,
 					childrens: []
 				};
 			}else{
 				arrays[id + ""].id = id;
-				arrays[id + ""].cate_name = cate_name;
-				arrays[id + ""].cate_info = cate_info;
-				arrays[id + ""].cate_count = cate_count;
-				arrays[id + ""].cate_icon = cate_icon;
-				arrays[id + ""].cate_outlink = cate_outlink;
-				arrays[id + ""].cate_outlinktext = cate_outlinktext;
+				arrays[id + ""].name = cate_name;
+				arrays[id + ""].info = cate_info;
+				arrays[id + ""].count = cate_count;
+				arrays[id + ""].icon = cate_icon;
+				arrays[id + ""].link = cate_outlink ? cate_outlinktext : "default.asp?c=" + id;
 				if ( arrays[id + ""].childrens === undefined ){
 					arrays[id + ""].childrens = [];
 				}
@@ -53,12 +51,11 @@ define(function(require, exports, module){
 			
 			arrays[cate_root + ""].childrens.push({
 				id: id,
-				cate_name: cate_name,
-				cate_info: cate_info,
-				cate_count: cate_count, 
-				cate_icon: cate_icon,
-				cate_outlink: cate_outlink,
-				cate_outlinktext: cate_outlinktext
+				name: cate_name,
+				info: cate_info,
+				count: cate_count, 
+				icon: cate_icon,
+				cate_outlink: cate_outlink ? cate_outlinktext : "default.asp?c=" + id
 			});
 		}	
 	}
