@@ -55,7 +55,7 @@ define(function(require, exports, module){
 				info: cate_info,
 				count: cate_count, 
 				icon: cate_icon,
-				cate_outlink: cate_outlink ? cate_outlinktext : "default.asp?c=" + id
+				link: cate_outlink ? cate_outlinktext : "default.asp?c=" + id
 			});
 		}	
 	}
