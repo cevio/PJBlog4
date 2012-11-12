@@ -118,7 +118,7 @@
 				};
 				
 				// '辅助变量和参数以及模块
-				var commentDataFromLogs = cache.load( "artcomm", pageCustomParams.id ), // 获取该文章下的评论数据
+				var commentDataFromLogs = cache.load( "artcomm", pageCustomParams.id ), // '获取该文章下的评论数据
 					commentContainer = {},
 					commentOrderIDArray = [],
 					commentArrayData = [],
