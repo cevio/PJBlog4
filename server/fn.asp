@@ -211,5 +211,29 @@ define(function(require, exports, module){
 			}
 		}
 	}
+	
+	exports.pageFormTo = function( page, perpage, total ){
+		var leftid = ( page - 1 ) * perpage + 1,
+			rightid = page * perpage;
+			
+		if ( leftid > total ){
+			leftid = total;
+			rightid = total;
+		}else{
+			if ( leftid < 1 ){
+				leftid = 1;
+			}
+			if ( rightid > total ){
+				rightid = total;
+			}
+		}
+		
+		leftid--; rightid--;
+		
+		return {
+			from: leftid,
+			to: rightid
+		}
+	}
 });
 %>

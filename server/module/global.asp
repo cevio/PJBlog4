@@ -2,8 +2,7 @@
 define(function(require, exports, module){
 	var cache = require("cache"),
 		sys_cache_global = cache.load("global");
-	
-	if ( cache !== null ){
+
 		pageCustomParams.global = {};
 		pageCustomParams.global.title = sys_cache_global[0][0]; // 标题
 		pageCustomParams.global.description = sys_cache_global[0][4]; // 描述
@@ -24,9 +23,6 @@ define(function(require, exports, module){
 		pageCustomParams.global.themeWebSite = sys_cache_global[0][17]; // 主题网站
 		pageCustomParams.global.themeEmail = sys_cache_global[0][18]; // 主题作者邮箱
 		pageCustomParams.global.themeVersion = sys_cache_global[0][19]; // 主题版本
-	}else{
-		console.push("未找到缓存系统处理模块");
-	}
 	
 	return sys_cache_global;
 });

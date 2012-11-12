@@ -1,109 +1,79 @@
 <!--#include file="config.asp" -->
 <%
-/**
- * ' pageCustomParams变量参数实例：
- * ' {
- * '	page: 1,
- * ' 	cateID: 0,
- * '	article: {
- * '		list: [ // 文章列表数据
- * '			{
- * '				id: 1,
- * '				title: "...",
- * '				postDate: "1986/10/31 10:31:25",
- * '				editDate: "1986/10/31 10:31:25",
- * '				category: {
- * '					id: 0,
- * '					name: "...",
- * '					info: "...",
- * '					icon: "...",
- * '					url: "..."
- * '				},
- * '				tags: [
- * '					{
- * '						id: 0,
- * '						name: "...",
- * '						url: "..."
- * '					},
- * '					#loop#
- * '				],
- * '				content: "...",
- * '				url: "..."
- * '			},
- * '			#loop#
- * '		],
- * '		pagebar: [
- * '			{
- * '				key: 1[,url: "...."]
- * '			},
- * '			#loop#
- * '		]
- * '	}
- * ' }
- */
- 	
 	// '加载用户登入状态
 	require("status");
 	
 	// '加载全局变量模块
-	pageCustomParams.globalCache = require("cache_global");
+	pageCustomParams.tempCaches.globalCache = require("cache_global");
 	
 	// '加载分类数据
-	pageCustomParams.categoryCache = require("cache_category");
-
-	// '当前页面page参数
+	pageCustomParams.tempCaches.categoryCache = require("cache_category");
+	
+	// '加载fn模块
+	pageCustomParams.tempModules.fns = require("fn");
+	
+	// '获取页面page参数
 	pageCustomParams.page = http.get("page");
+	// 'Page参数的逻辑判断和过滤
 	if ( pageCustomParams.page.length === 0 ){ 
 		pageCustomParams.page = 1; 
 	}else{
-		pageCustomParams.page = Number(pageCustomParams.page);
-		if ( pageCustomParams.page < 1 ){
-			pageCustomParams.page = 1;
+		// '判断是否是数字类型（包括字符串）
+		if ( !isNaN( pageCustomParams.page ) ){
+			// '统一转成数字类型
+			pageCustomParams.page = Number(pageCustomParams.page);
+			if ( pageCustomParams.page < 1 ){
+				pageCustomParams.page = 1;
+			}
+		}else{
+			console.end("page params error.");
 		}
-	}
+	};
 	
 	// '当前页面分类参数（进入category筛选模式）
 	pageCustomParams.cateID = http.get("c");
 	if ( pageCustomParams.cateID.length === 0 ){
 		pageCustomParams.cateID = 0;
 	}else{
-		pageCustomParams.cateID = Number(pageCustomParams.cateID);
+		if ( !isNaN(pageCustomParams.cateID) ){
+			pageCustomParams.cateID = Number(pageCustomParams.cateID);
+			if ( pageCustomParams.cateID < 1 ){
+				pageCustomParams.cateID = 0;
+			}
+		}else{
+			pageCustomParams.cateID = 0;
+		}
 	};
 	
-	// '分析处理相关逻辑
 	pageCustomParams.article = {
 		list: [],
 		pagebar: []
-	}
-
-	// ' 处理日志列表
+	};
+	
+	// '处理日志列表
 	;(function(){
 		var cache = require("cache"),
-			categoryCacheData = pageCustomParams.categoryCache,
 			tagsCacheData = require("tags"),
 			fns = require("fn"),
-			perPage = pageCustomParams.globalCache[0][10],
-			modules, 
-			list, 
-			pagebar,
+			perPage = pageCustomParams.tempCaches.globalCache[0][10],
+			categoryCacheData = pageCustomParams.tempCaches.categoryCache,
+			articleCurrentPage = pageCustomParams.page,
+			modules,
+			articlesArray = [],
 			categoryJSON = {},
-			articleIdFrom = 0,
-			articleIdTo = 0;
+			i = 0;
 			
-		function getTags(tagStr){
+		function getTags( tagStr ){
 			var tagStrArrays = tagsCacheData.reFormatTags(tagStr),
-				keeper = [];
-				
+				keeper = [];	
 			for ( var j = 0 ; j < tagStrArrays.length ; j++ ){
 				var rets = tagsCacheData.readTagFromCache( Number(tagStrArrays[j]) );
-				
 				keeper.push({ 
 					id: Number(tagStrArrays[j]), 
 					name: rets,
 					url: "tags.asp?id=" + tagStrArrays[j]
 				});
 			}
-			
 			return keeper;
 		}
 		
@@ -118,86 +88,61 @@
 			}
 			return rets;
 		}
-			
+		
 		if ( pageCustomParams.cateID === undefined || pageCustomParams.cateID === 0 ){
 			modules = cache.load("article_pages");
 		}else{
 			modules = cache.load("article_pages_cate", pageCustomParams.cateID);
 		}
 		
-		;(function(){
-			for ( var o = 0 ; o < categoryCacheData.length ; o++ ){
-				categoryJSON[categoryCacheData[o].id + ""] = categoryCacheData[o];
-			}
-		})();
+		for ( i = 0 ; i < categoryCacheData.length ; i++ ){
+			categoryJSON[categoryCacheData[i].id + ""] = categoryCacheData[i];
+		}
 		
-		if ( modules.length === 0 ){
-			pageCustomParams.article.list = [];
-			pageCustomParams.article.pagebar = { from: 0, to: 0 };
-		}else{
-			articleIdFrom = (pageCustomParams.page - 1) * perPage + 1;
-			articleIdTo = pageCustomParams.page * perPage;
-			
-			if ( articleIdFrom > modules.length ){
-				articleIdFrom = modules.length;
-				articleIdTo = modules.length;
-			}else{
-				if ( articleIdFrom < 1 ){
-					articleIdFrom = 1;
-				}
-				if ( articleIdTo > modules.length ){
-					articleIdTo = modules.length;
-				}
+		if ( modules.length > 0 ){
+			var articleContainerParams = pageCustomParams.tempModules.fns.pageFormTo( articleCurrentPage, perPage, modules.length );
+			for ( i = articleContainerParams.from ; i <= articleContainerParams.to ; i++ ){
+				var articleCacheDatas = cache.load("article", Number(modules[i][0]));
+				articlesArray.push({
+					id: Number(modules[i][0]),
+					title: articleCacheDatas[0][0],
+					postDate: articleCacheDatas[0][5],
+					editDate: articleCacheDatas[0][6],
+					category: getCategoryName(articleCacheDatas[0][1]),
+					tags: getTags(articleCacheDatas[0][3]),
+					content: articleCacheDatas[0][7],
+					url: "article.asp?id=" + modules[i][0]
+				});
 			}
-			articleIdFrom--; articleIdTo--;
+			pageCustomParams.article.list = articlesArray;
 			
-			;(function(){
-				for ( var i = articleIdFrom ; i <= articleIdTo ; i++ ){
-					var sys_cache_article = cache.load("article", Number(modules[i][0]));
-						
-						pageCustomParams.article.list.push({
-							id: Number(modules[i][0]),
-							title: sys_cache_article[0][0],
-							postDate: sys_cache_article[0][5],
-							editDate: sys_cache_article[0][6],
-							category: getCategoryName(sys_cache_article[0][1]),
-							tags: getTags(sys_cache_article[0][3]),
-							content: sys_cache_article[0][7],
-							url: "article.asp?id=" + modules[i][0]
+			var articlePagebar = pageCustomParams.tempModules.fns.pageAnalyze(articleCurrentPage, Math.ceil(modules.length / perPage));
+			if ( (pageCustomParams.article.list.length > 0) && ( (articlePagebar.to - articlePagebar.from) > 0 ) ){
+				for ( i = articlePagebar.from ; i <= articlePagebar.to ; i++ ){
+					var url = pageCustomParams.cateID > 0 ? 
+									"default.asp?c=" + pageCustomParams.cateID + "&page=" + i :
+									"default.asp?page=" + i;
+									
+					if ( articlePagebar.current === i ){
+						pageCustomParams.article.pagebar.push({
+							key: n
 						});
+					}else{
+						pageCustomParams.article.pagebar.push({
+							key: n,
+							url : url
+						});
+					}				
 				}
-				pagebar = fns.pageAnalyze(pageCustomParams.page, Math.ceil(modules.length / perPage));
-			})();
-			
-			
-		}
-		
-		if ( (pageCustomParams.article.list.length > 0) && ( (pagebar.to - pagebar.from) > 0 ) ){
-			for ( var n = pagebar.from ; n <= pagebar.to ; n++ ){
-				var _url = pageCustomParams.cateID > 0 ? 
-								"default.asp?c=" + pageCustomParams.cateID + "&page=" + n :
-								"default.asp?page=" + n;
-								
-				if ( pagebar.current === n ){
-					pageCustomParams.article.pagebar.push({
-						key: n
-					});
-				}else{
-					pageCustomParams.article.pagebar.push({
-						key: n,
-						url : _url
-					});
-				}				
 			}
 		}
+		
 	})();
 	
-	delete pageCustomParams.globalCache;
-	delete pageCustomParams.categoryCache;
+	delete pageCustomParams.tempCaches;
+	delete pageCustomParams.tempModules;
+	delete pageCustomParams.tempParams;
 	
-	// '加载对应主题模板
 	include("profile/themes/" + pageCustomParams.global.theme + "/default.asp");
-	
-	// '关闭数据库
 	CloseConnect();
 %>

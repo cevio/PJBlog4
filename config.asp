@@ -125,5 +125,9 @@
 		}
 	}
 	
-	var pageCustomParams = {};
+	var pageCustomParams = {
+		tempCaches: {},
+		tempParams: {},
+		tempModules: {}
+	};
 %>
