@@ -76,7 +76,7 @@
                                             <%
 												if ( fso.exsit("profile/plugins/" + this("pluginfolder").value + "/configure.asp") ){
 											%>
-                                            <a href="javascript:;" class="action-use fn-clear" data-id="<%=this("id").value%>">
+                                            <a href="?p=plugin-configure&id=<%=this("id").value%>" class="action-use fn-clear" data-id="<%=this("id").value%>">
                                             	<span class="iconfont">&#361;</span> <span class="icontext">高级应用</span>
                                             </a> 
                                             <%}%>
