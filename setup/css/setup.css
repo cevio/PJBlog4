@@ -182,18 +182,23 @@ textarea {
 	overflow: auto;
 	vertical-align: top;
 }
-.wrapper{ width:550px; height:350px; overflow:hidden; margin:0 auto; margin-top:100px; border:1px solid #ddd; border-radius:4px; position:relative;}
+.wrapper{ width:550px; height:350px; overflow:hidden; margin:0 auto; margin-top:100px; border:1px solid #ddd; border-radius:4px; position:relative; box-shadow:0px 0px 50px #ddd;}
 .outer{ height:350px; position:absolute;}
 .inner{ width:550px; height:350px; overflow:hidden; float:left;}
 .animate{ width:550px; height:350px; overflow:hidden; position:absolute;}
 .guide{ width:550px; height:30px; overflow:hidden; position:absolute; top:250px; left:0px; box-shadow:0px 1px 10px rgba(0, 0, 0, .3); line-height:30px;}
-
-.inner .content{ padding:10px 20px;}
-
 .guide .fn-left, .guide .fn-right{ padding:0px 10px;}
 .guide .fn-right{ color:#408DB4; font-weight:bold;}
 .guide .fn-right span{ margin:0px 3px;}
 .guide .fn-right span.active{ color:#BF4210;}
-.guide .fn-left{ text-shadow:1px 1px 1px #ddd;}
-
+.guide .fn-left{ text-shadow:1px 1px 1px #ddd; padding-left:30px;}
 .publue, a.publue{ color:#00B7EE;}
+
+.inner .content{}
+.inner .content .area{ padding:10px 20px; position:relative;}
+.inner .content .top-zone{ height:245px;}
+.inner .content .bom-zone{ height:65px; margin-top:40px; text-align:right;}
+.inner .content .top-zone .welcome{ position:absolute; top:40px; left:30px;}
+.inner .content .top-zone .welcome ul{ margin-left:30px; margin-top:20px;}
+.inner .content .top-zone .welcome ul li{ height:20px; line-height:20px; color: #00B7EE;}
+h1{ font-size:24px; color:#00B7EE; height:50px; line-height:50px; width:500px;}

@@ -16,7 +16,25 @@
 	<div class="outer fn-clear">
     	<div class="inner">
         	<div class="content">
-            	<a href="#" class="button small green">下一步</a>
+            	<div class="top-zone">
+                	<div class="area">
+                    	<div class="welcome">
+                        	<h1>PJBlog4在线安装程序</h1>
+                            <ul>
+                            	<li>1. 创新的技术，突破传统的定格。</li>
+                                <li>2. 创新的编程语言，让程序更加灵活。</li>
+                                <li>3. 创新的主题架构，让风格千变万化，五彩缤纷。</li>
+                                <li>4. 创新的插件机制，做你想做的完美个人博客。</li>
+                                <li>5. 时代在前进，PJBlog永不没落。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            	<div class="bom-zone">
+                	<div class="area">
+                		<a href="javascript:;" class="button small green">下一步</a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="inner">

@@ -59,16 +59,6 @@ p.note{
 	width:0;
 }
 
-h1{
-	font-size:20px;
-	font-weight:normal;
-	left:50%;
-	margin-left:-400px;
-	padding:25px 0;
-	position:absolute;
-	width:400px;
-}
-
 a, a:visited {
 	text-decoration:none;
 	outline:none;
