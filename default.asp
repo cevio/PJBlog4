@@ -55,7 +55,7 @@
 		var cache = require("cache"),
 			tagsCacheData = require("tags"),
 			fns = require("fn"),
-			perPage = pageCustomParams.tempCaches.globalCache[0][10],
+			perPage = pageCustomParams.tempCaches.globalCache.articleperpagecount,
 			categoryCacheData = pageCustomParams.tempCaches.categoryCache,
 			articleCurrentPage = pageCustomParams.page,
 			modules,

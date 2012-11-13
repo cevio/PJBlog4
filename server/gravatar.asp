@@ -6,9 +6,9 @@ define(function( require, exports, module ){
 	
 	var S, R, D;
 	
-	S = sys_cache_global[0][22];
-	R = sys_cache_global[0][23];
-	D = sys_cache_global[0][24];
+	S = sys_cache_global.gravatarS;
+	R = sys_cache_global.gravatarR;
+	D = sys_cache_global.gravatarD;
 	
 	return function( mail ){
 		return "http://www.gravatar.com/avatar/" + MD5(mail).toLowerCase() + "?s=" + S + "&r=" + R + "&d=" + escape(D);

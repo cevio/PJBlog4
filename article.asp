@@ -123,7 +123,7 @@
 					commentOrderIDArray = [],
 					commentArrayData = [],
 					GRATE = require("gra"),
-					perPage = pageCustomParams.tempCaches.globalCache[0][21],
+					perPage = pageCustomParams.tempCaches.globalCache.commentperpagecount,
 					commentIdsFrom = 0,
 					commentIdsTo = 0,
 					commentCurrentPage = pageCustomParams.page,

@@ -27,7 +27,11 @@ define(function(require){
 				for ( var i = 0 ; i < object.length ; i++ ){
 					var arr2 = [];
 					for ( var j = 0 ; j < object[i].length ; j++ ){
-						arr2.push(object[i][j]);
+						var tmp_data = object[i][j];
+						if ( typeof tmp_data === "date" ){
+							tmp_data = (new Date( tmp_data )).getTime();
+						}
+						arr2.push(tmp_data);
 					}
 					arr1.push(arr2);
 				}
@@ -66,14 +70,26 @@ define(function(require){
 				try{
 					var dbo = require.async("DBO"),
 						connecte = require.async("openDataBase"),
-						arr = [];
+						arr = [],
+						sql,
+						sqlfn;
+						
+					if ( typeof appSQL !== "string"){
+						sql = appSQL.sql;
+						sqlfn = appSQL.callback;
+					}else{
+						sql = appSQL;
+					}
 						
 					if ( connecte === true ){
 						dbo.trave({
-							sql: appSQL,
+							sql: sql,
 							conn: config.conn,
 							callback: function(rs){
 								arr = object2array(this.getRows());
+								if ( typeof sqlfn === "function" ){
+									arr = sqlfn(arr);
+								}
 							}
 						});
 					}else{
@@ -86,28 +102,9 @@ define(function(require){
 				}
 			}
 			
-			function saveFileForDate( datas ){
-				var ret = [];
-				for ( var i = 0 ; i < datas.length ; i++ ){
-					var value = datas[i], 
-						tmpDate = [];
-						
-					for ( var j = 0 ; j < value.length ; j++ ){
-						if ( typeof value[j] === "date" ){
-							value[j] = (new Date( value[j] )).getTime();
-						}
-						tmpDate.push(value[j]);
-					}
-					
-					ret.push(tmpDate);
-				}
-				
-				return ret;
-			}
-			
 			function setFile(dataArray, appKeyName, appKeyID){
 				try{
-					stream.save(cacheTemplateFile(JSON.stringify(saveFileForDate(dataArray))), config.cacheAccess + "/" + createAppFile(appKeyName, appKeyID));
+					stream.save(cacheTemplateFile(JSON.stringify(dataArray)), config.cacheAccess + "/" + createAppFile(appKeyName, appKeyID));
 					return true;
 				}catch(e){
 					return false;
@@ -125,7 +122,6 @@ define(function(require){
 			
 			cache.set = function(key, value){
 				Application.Lock();
-				
 				if ( typeof key === "object" ){
 					for ( var items in key ){
 						Application.StaticObjects(config.appName).Item(items) = key[items];
@@ -133,7 +129,6 @@ define(function(require){
 				}else{
 					Application.StaticObjects(config.appName).Item(key) = value;
 				}
-				
 				Application.UnLock();
 			}
 			
@@ -178,7 +173,7 @@ define(function(require){
 						if ( fileCache === null ){
 							var dataCache = getFromDataBase(appMode);
 							if ( dataCache === null ){
-								return [];
+								return null;
 							}else{
 								setFile(dataCache, appKeyName, appKeyID);
 								setApplication(dataCache, appKeyName, appKeyID);
@@ -198,7 +193,9 @@ define(function(require){
 			}
 			
 			cache.destory = function(appKeyName, appKeyID){
-				cache.set(createAppName(appKeyName, appKeyID), null);
+				Application.Lock();
+				Application.StaticObjects(config.appName).Remove(createAppName(appKeyName, appKeyID));
+				Application.UnLock();
 				fso.destory(config.cacheAccess + "/" + createAppFile(appKeyName, appKeyID));
 			}
 
