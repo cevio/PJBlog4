@@ -69,17 +69,9 @@ define(function(require, exports, module){
 	
 	exports.readTagFromCache = function( id ){
 		var cache = require.async("cache"),
-			tagsDatas = cache.load("tags"),
-			name = "";
-			
-		for ( var i = 0 ; i < tagsDatas.length ; i++ ){
-			var value = tagsDatas[i];
-			if ( value[0] === id ){
-				name = value[1];
-			}
-		}
+			tagsDatas = cache.load("tags");
 		
-		return name;
+		return tagsDatas[id + ""];
 	}
 	
 	exports.readTag = function( id ){

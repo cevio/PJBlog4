@@ -134,7 +134,20 @@ define(function(require, exports, module){
 	}
 	
 	exports["tags"] = function(){
-		return "Select id, tagname, tagcount From blog_tags";
+		return {
+			sql: "Select id, tagname, tagcount From blog_tags",
+			callback: function( cacheData ){
+				var tmpJSONS = {};
+				for ( var i = 0 ; i < cacheData.length ; i++ ){
+					tmpJSONS[cacheData[i][0] + ""] = {
+						id: cacheData[i][0],
+						name: cacheData[i][1],
+						count: cacheData[i][2]
+					}
+				}
+				return tmpJSONS;
+			}
+		};
 	}
 	
 	exports["moden"] = function(id){

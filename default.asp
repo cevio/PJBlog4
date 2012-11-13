@@ -66,11 +66,14 @@
 				keeper = [];	
 			for ( var j = 0 ; j < tagStrArrays.length ; j++ ){
 				var rets = tagsCacheData.readTagFromCache( Number(tagStrArrays[j]) );
-				keeper.push({ 
-					id: Number(tagStrArrays[j]), 
-					name: rets,
-					url: "tags.asp?id=" + tagStrArrays[j]
-				});
+				if ( rets !== undefined ){
+					keeper.push({ 
+						id: Number(tagStrArrays[j]), 
+						name: rets.name,
+						url: "tags.asp?id=" + tagStrArrays[j],
+						count: rets.count
+					});
+				}
 			}
 			return keeper;
 		}
