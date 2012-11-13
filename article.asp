@@ -6,9 +6,6 @@
 	// '加载全局变量模块
 	pageCustomParams.tempCaches.globalCache = require("cache_global");
 	
-	// '加载分类数据
-	pageCustomParams.tempCaches.categoryCache = require("cache_category");
-	
 	// '加载fn模块
 	pageCustomParams.tempModules.fns = require("fn");
 	
@@ -55,16 +52,17 @@
 			// '处理文章数据
 			;(function(){
 				// '获取所有category数据列表
-				var categoryCacheData = pageCustomParams.tempCaches.categoryCache,
-					categoryJSON = {}, // '新容器（用于存放根据category.id来排序的数据）	
+				var categoryCacheData = cache.load("category"),
+					categoryJSON = categoryCacheData.list,
+					categoryArray = categoryCacheData.arrays,
 					tagsCacheData = require("tags"), // 'tags模块加载
 					singleArticleCacheData = cache.load( "article", pageCustomParams.id ), // '本文章具体缓存
 					singleArticleContainer = {}; // 文章解析容器
 				
-				// '压缩新数据到categoryJSON
-				for ( var o = 0 ; o < categoryCacheData.length ; o++ ){
-					categoryJSON[categoryCacheData[o].id + ""] = categoryCacheData[o];
-				}
+				// '排序
+				pageCustomParams.categorys = categoryArray.sort(function( A, B ){
+					return A.order > B.order;
+				});
 				
 				// '获取category具体信息的方法
 				function getCategoryName( id ){

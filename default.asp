@@ -6,9 +6,6 @@
 	// '加载全局变量模块
 	pageCustomParams.tempCaches.globalCache = require("cache_global");
 	
-	// '加载分类数据
-	pageCustomParams.tempCaches.categoryCache = require("cache_category");
-	
 	// '加载fn模块
 	pageCustomParams.tempModules.fns = require("fn");
 	
@@ -56,13 +53,14 @@
 			tagsCacheData = require("tags"),
 			fns = require("fn"),
 			perPage = pageCustomParams.tempCaches.globalCache.articleperpagecount,
-			categoryCacheData = pageCustomParams.tempCaches.categoryCache,
+			categoryCacheData = cache.load("category"),
 			articleCurrentPage = pageCustomParams.page,
 			modules,
 			articlesArray = [],
-			categoryJSON = {},
+			categoryJSON = categoryCacheData.list,
+			categoryArray = categoryCacheData.arrays,
 			i = 0;
-			
+
 		function getTags( tagStr ){
 			var tagStrArrays = tagsCacheData.reFormatTags(tagStr),
 				keeper = [];	
@@ -94,10 +92,12 @@
 		}else{
 			modules = cache.load("article_pages_cate", pageCustomParams.cateID);
 		}
+
+		categoryArray = categoryArray.sort(function( A, B ){
+			return A.order > B.order;
+		});
 		
-		for ( i = 0 ; i < categoryCacheData.length ; i++ ){
-			categoryJSON[categoryCacheData[i].id + ""] = categoryCacheData[i];
-		}
+		pageCustomParams.categorys = categoryArray;
 		
 		if ( modules.length > 0 ){
 			var articleContainerParams = pageCustomParams.tempModules.fns.pageFormTo( articleCurrentPage, perPage, modules.length );
