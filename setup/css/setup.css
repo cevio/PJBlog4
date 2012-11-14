@@ -236,13 +236,13 @@ html{ background-color:#eee;}
 .guide{ width:550px; height:30px; overflow:hidden; position:absolute; top:250px; left:0px; box-shadow:0px 1px 10px rgba(0, 0, 0, .3); line-height:30px;}
 .guide .fn-left, .guide .fn-right{ padding:0px 10px;}
 .guide .fn-right{ color:#408DB4; font-weight:bold;}
-.guide .fn-right span{ margin:0px 3px; -webkit-transform:rotate(0deg);}
+.guide .fn-right span{ margin:0px 6px 0px 3px; -webkit-transform:rotate(0deg); float:left;}
 .guide .fn-right span.active{ 
 	color:#BF4210;
-	-webkit-transition-duration:400ms;
+	-webkit-transition-duration:300ms;
 	-webkit-transition-property: -webkit-transform;
 	-webkit-transition-timing-function:linear;
-	-webkit-transform:rotate(180deg);
+	-webkit-transform:rotate(360deg);
 }
 .guide .fn-left{ text-shadow:1px 1px 1px #ddd; padding-left:30px; color:#fff;}
 .publue, a.publue{ color:#00B7EE;}

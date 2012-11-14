@@ -103,7 +103,7 @@
     </div>
     <div class="guide fn-clear">
     	<div class="fn-left publue"><!--<span>18%</span> 正在进行安装... --></div>
-        <div class="fn-right">
+        <div class="fn-right fn-clear">
         	<span class="active">欢迎&nbsp;&nbsp;»</span>
             <span>选择&nbsp;&nbsp;»</span>
             <span>选项&nbsp;&nbsp;»</span>
