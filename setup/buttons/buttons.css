@@ -1,8 +1,8 @@
 .button{
-	font:15px Calibri, Arial, sans-serif;
+	font-size:12px;
 
 	/* A semi-transparent text shadow */
-	text-shadow:1px 1px 0 rgba(255,255,255,0.4);
+	text-shadow:1px 1px 1px rgba(255,255,255,0.4);
 	
 	/* Overriding the default underline styling of the links */
 	text-decoration:none !important;

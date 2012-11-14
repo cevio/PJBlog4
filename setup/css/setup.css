@@ -1,6 +1,42 @@
 @charset "utf-8";
 /* CSS Document */
 
+@-webkit-keyframes goaroundT {
+	0% {
+		-webkit-transform:translateX(0px) translateY(0px);
+	}
+	25% {
+		-webkit-transform:translateX(500px) translateY(0px);
+	}
+	50% {
+		-webkit-transform:translateX(500px) translateY(300px);
+	}
+	75% {
+		-webkit-transform:translateX(0px) translateY(300px);
+	}
+	100% {
+		-webkit-transform:translateX(0px) translateY(0px);
+	}
+}
+
+@-webkit-keyframes goaroundB {
+	0% {
+		-webkit-transform:translateX(0px) translateY(0px);
+	}
+	25% {
+		-webkit-transform:translateX(-500px) translateY(0px);
+	}
+	50% {
+		-webkit-transform:translateX(-500px) translateY(-300px);
+	}
+	75% {
+		-webkit-transform:translateX(0px) translateY(-300px);
+	}
+	100% {
+		-webkit-transform:translateX(0px) translateY(0px);
+	}
+}
+
 /* 防止用户自定义背景颜色对网页的影响，添加让用户可以自定义字体 */
 html {
 	color: #000;
@@ -182,23 +218,60 @@ textarea {
 	overflow: auto;
 	vertical-align: top;
 }
-.wrapper{ width:550px; height:350px; overflow:hidden; margin:0 auto; margin-top:100px; border:1px solid #ddd; border-radius:4px; position:relative; box-shadow:0px 0px 50px #ddd;}
-.outer{ height:350px; position:absolute;}
+
+html{ background-color:#eee;}
+
+.wrapper{ width:550px; height:350px; overflow:hidden; margin:0 auto; margin-top:100px; border:1px solid #ddd; border-radius:4px; position:relative; box-shadow:0px 0px 50px #999;}
+.outer{ 
+	height:350px; position:absolute;
+	-webkit-transition-duration:.4s;
+	-webkit-transition-property:-webkit-transform;
+	-webkit-transition-timing-function:linear;
+	-webkit-transform:translateX(0px);
+}
 .inner{ width:550px; height:350px; overflow:hidden; float:left;}
-.animate{ width:550px; height:350px; overflow:hidden; position:absolute;}
+.animate{ 
+	width:550px; height:350px; overflow:hidden; position:absolute; background: url('../img/bg.jpg') -20px -390px; border-radius:4px;
+}
 .guide{ width:550px; height:30px; overflow:hidden; position:absolute; top:250px; left:0px; box-shadow:0px 1px 10px rgba(0, 0, 0, .3); line-height:30px;}
 .guide .fn-left, .guide .fn-right{ padding:0px 10px;}
 .guide .fn-right{ color:#408DB4; font-weight:bold;}
-.guide .fn-right span{ margin:0px 3px;}
-.guide .fn-right span.active{ color:#BF4210;}
-.guide .fn-left{ text-shadow:1px 1px 1px #ddd; padding-left:30px;}
+.guide .fn-right span{ margin:0px 3px; -webkit-transform:rotate(0deg);}
+.guide .fn-right span.active{ 
+	color:#BF4210;
+	-webkit-transition-duration:400ms;
+	-webkit-transition-property: -webkit-transform;
+	-webkit-transition-timing-function:linear;
+	-webkit-transform:rotate(180deg);
+}
+.guide .fn-left{ text-shadow:1px 1px 1px #ddd; padding-left:30px; color:#fff;}
 .publue, a.publue{ color:#00B7EE;}
 
 .inner .content{}
 .inner .content .area{ padding:10px 20px; position:relative;}
 .inner .content .top-zone{ height:245px;}
 .inner .content .bom-zone{ height:65px; margin-top:40px; text-align:right;}
-.inner .content .top-zone .welcome{ position:absolute; top:40px; left:30px;}
+.inner .content .top-zone .welcome{ position:absolute; top:77px; left:75px;}
 .inner .content .top-zone .welcome ul{ margin-left:30px; margin-top:20px;}
-.inner .content .top-zone .welcome ul li{ height:20px; line-height:20px; color: #00B7EE;}
-h1{ font-size:24px; color:#00B7EE; height:50px; line-height:50px; width:500px;}
+.inner .content .top-zone .welcome ul li{ height:20px; line-height:20px; color: #3884A7;}
+.inner .content .top-zone .welcome h1{}
+.inner .content .top-zone .welcome h2{ margin-top:36px; margin-left:100px;}
+h1{ font-size:24px; color:#fff; height:50px; line-height:50px; width:500px; text-shadow:0px 1px 1px #4E99C0}
+h2{ color:#3884A7; font-weight:bold; font-size:14px;}
+
+.animate .box{width:550px; height:350px; overflow:hidden; position:relative;}
+.animate .box .pops1{ 
+	width:30px; height:30px; background:#fff; border-radius:15px; opacity:.2; position:absolute; top:10px; left:10px;
+	-webkit-animation-name: goaroundT;
+	-webkit-animation-duration: 5s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+.animate .box .pops2{ 
+	width:30px; height:30px; background:#fff; border-radius:15px; opacity:.2; position:absolute; bottom:10px; right:10px;
+	-webkit-animation-name: goaroundB;
+	-webkit-animation-duration: 5s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+	-webkit-transform-origin:15px -95px;
+}
