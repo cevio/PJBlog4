@@ -330,3 +330,20 @@ h1{ font-size:24px; color:#fff; height:50px; line-height:50px; width:500px; text
 h2{ color:#3884A7; font-weight:bold; font-size:14px;}
 
 .animate .box{width:550px; height:350px; overflow:hidden; position:relative;}
+
+.inner .content .top-zone .setupfolder{ position:absolute; top:75px; left:50px;}
+
+input{
+	border:1px solid #45A6C3;
+	border-radius:3px;
+	padding:5px 10px;
+	height:20px;
+	line-height:20px;
+	background-color:#D7EFF1;
+	color:#ff0000;
+}
+.input{ margin-top:10px;}
+.info{ margin-top:10px; color:#75A535;}
+.info a{ color:#BF4210; text-decoration:none; outline:none;}
+.yanzheng{ position:absolute; top:22px; left:40px;}
+.setuping{ position:absolute; top:65px; left:50px;}
