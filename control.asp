@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="assets/css/control.css" media="all" />
 <link rel="stylesheet" href="assets/css/page-<%=checkStatusAndCustomPage()%>.css" media="all" />
 <script language="javascript" src="assets/js/core/sizzle.js"></script>
+<script language="javascript" src="assets/js/configure.js"></script>
 <title>PJBlog4 管理后台</title>
 </head>
 <body>

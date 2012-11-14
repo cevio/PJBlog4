@@ -1,12 +1,7 @@
 // JavaScript Document
 // set default params for sizzle
 define(["assets/js/core/jQuery"], function(){
-	
-	// build upload module
-	config("debug", true);
-	config("base", "/");
-	config.cookie = "PJBlog4";
-	
+
 	// map modules
 	config.map("upload", "assets/js/upload");
 	config.map("form", "assets/js/core/form");

@@ -18,8 +18,42 @@
 		-webkit-transform:translateX(0px) translateY(0px);
 	}
 }
+@keyframes goaroundT {
+	0% {
+		-webkit-transform:translateX(0px) translateY(0px);
+	}
+	25% {
+		-webkit-transform:translateX(500px) translateY(0px);
+	}
+	50% {
+		-webkit-transform:translateX(500px) translateY(300px);
+	}
+	75% {
+		-webkit-transform:translateX(0px) translateY(300px);
+	}
+	100% {
+		-webkit-transform:translateX(0px) translateY(0px);
+	}
+}
 
 @-webkit-keyframes goaroundB {
+	0% {
+		-webkit-transform:translateX(0px) translateY(0px);
+	}
+	25% {
+		-webkit-transform:translateX(-500px) translateY(0px);
+	}
+	50% {
+		-webkit-transform:translateX(-500px) translateY(-300px);
+	}
+	75% {
+		-webkit-transform:translateX(0px) translateY(-300px);
+	}
+	100% {
+		-webkit-transform:translateX(0px) translateY(0px);
+	}
+}
+@keyframes goaroundB {
 	0% {
 		-webkit-transform:translateX(0px) translateY(0px);
 	}
@@ -262,6 +296,13 @@ h2{ color:#3884A7; font-weight:bold; font-size:14px;}
 .animate .box{width:550px; height:350px; overflow:hidden; position:relative;}
 .animate .box .pops1{ 
 	width:30px; height:30px; background:#fff; border-radius:15px; opacity:.2; position:absolute; top:10px; left:10px;
+	
+	
+	animation-name: goaroundT;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	
 	-webkit-animation-name: goaroundT;
 	-webkit-animation-duration: 5s;
 	-webkit-animation-iteration-count: infinite;
