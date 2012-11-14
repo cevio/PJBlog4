@@ -339,7 +339,7 @@ input{
 	padding:5px 10px;
 	height:20px;
 	line-height:20px;
-	background-color:#D7EFF1;
+	background:rgba(255,255,255, .3);
 	color:#ff0000;
 }
 .input{ margin-top:10px;}
