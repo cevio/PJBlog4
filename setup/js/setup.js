@@ -18,7 +18,8 @@ function bindGuideEvent(){
 			_this = this;
 			
 		parent.css({
-			"-webkit-transform": "translateX(-" + (i * params.width) + "px)"
+			"-webkit-transform": "translateX(-" + (i * params.width) + "px)",
+			"-moz-transform": "translateX(-" + (i * params.width) + "px)",
 		});
 		container.removeClass("active");
 			$(_this).addClass("active");
