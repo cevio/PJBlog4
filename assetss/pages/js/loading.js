@@ -14,7 +14,7 @@ define(function( require, exports, module ){
 			require.async( loadTree[i].url, function(){
 				setTimeout(function(){
 					loadHandle(i, callback);
-				}, 1000);
+				}, 500);
 			});
 		}else{
 			$.isFunction(callback) && callback();
@@ -37,6 +37,10 @@ define(function( require, exports, module ){
 				file: "welcome"
 			});
 		});
+	}
+	
+	exports.close = function(){
+		
 	}
 	
 	exports.style = "green";

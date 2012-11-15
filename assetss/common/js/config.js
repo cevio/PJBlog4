@@ -10,20 +10,144 @@ define(['assetss/common/js/sysmo/jQuery'], function( require, exports, module ){
 	config.map("easing", "assets/js/core/jQuery.easing.1.3");
 	config.map("article", "assets/js/article");
 	
-	var animateName = "common";
+	function cookie(key, value, options) {
+        // key and at least value given, set cookie...
+        if (arguments.length > 1 && (!/Object/.test(Object.prototype.toString.call(value)) || value === null || value === undefined)) {
+            options = $.extend({}, options);
+    
+            if (value === null || value === undefined) {
+                options.expires = -1;
+            }
+    
+            if (typeof options.expires === 'number') {
+                var days = options.expires, t = options.expires = new Date();
+                t.setDate(t.getDate() + days);
+				options.expires = t;
+            }
+    
+            value = String(value);
+    
+            return (document.cookie = [
+                encodeURIComponent(key), '=', options.raw ? value : encodeURIComponent(value),
+                options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
+                options.path    ? '; path=' + options.path : '',
+                options.domain  ? '; domain=' + options.domain : '',
+                options.secure  ? '; secure' : ''
+            ].join(''));
+        }
+    
+        // key and possibly options given, get cookie...
+        options = value || {};
+        var decode = options.raw ? function(s) { return s; } : decodeURIComponent;
+    
+        var pairs = document.cookie.split('; ');
+        for (var i = 0, pair; pair = pairs[i] && pairs[i].split('='); i++) {
+            if (decode(pair[0]) === key) return decode(pair[1] || ''); // IE saves cookies with empty string as "c; ", e.g. without "=" as opposed to EOMB, thus pair[1] may be undefined
+        }
+        return null;
+    };
+	
+	var animateName = cookie(config.cookie + "_animatename") || "common";
 	
 	var animateContainer = {
 		"common": {
+			// 进入动画
 			enter: function(element, callback){
-				element.show();
-				$.isFunction(callback) && callback();
+				var tricWin = $(window).outerWidth() / 4 * 3;
+				element.show().removeData("transEnd");
+				element.css("-" + vendor + "-transform", "rotate(720deg) scale(.5) translate(" + (tricWin * 2) + "px)");
+				 
+				setTimeout(function(){
+					element.data("transEnd", {
+						cls: "metro-inner-enter",
+						proName: "-" + vendor + "-transform",
+						callback: function(){
+							$(this).data("transEnd", {
+								cls: "metro-inner-enter-show",
+								proName: "-" + vendor + "-transform",
+								callback: function(){
+									$(this).removeClass("metro-inner-enter").removeClass("metro-inner-enter-show");
+									$.isFunction(callback) && callback();
+								}
+							});
+							$(this).addClass("metro-inner-enter-show")
+								.css("-" + vendor + "-transform", "rotate(0deg) scale(1) translate(0px)");
+						}
+					});
+					element.addClass("metro-inner-enter")
+						.css("-" + vendor + "-transform", "rotate(720deg) scale(.5) translate(0px)");
+				}, 1);
 			},
+			
+			// 退出动画
 			leave: function(element, callback){
-				element.hide();
-				$.isFunction(callback) && callback();
+				var tricWin = $(window).outerWidth() / 4 * 3;
+				element.data("transEnd", {
+					cls: "metro-inner-close",
+					proName: "-" + vendor + "-transform",
+					callback: function(){
+						$(this).data("transEnd", {
+							cls: "metro-inner-close-hide",
+							proName: "-" + vendor + "-transform",
+							callback: function(){
+								$(this).remove();
+								$.isFunction(callback) && callback();
+							}
+						});
+						$(this).addClass("metro-inner-close-hide")
+							.css("-" + vendor + "-transform", "rotate(720deg) scale(.5) translate(-" + (tricWin * 2) + "px)");
+					}
+				});
+				element.addClass("metro-inner-close")
+					.css("-" + vendor + "-transform", "rotate(720deg) scale(.5) translate(0px)");
+			},
+			
+			// 初始化
+			init: function(){
+				$("body").addClass("metro-animate-rotate");
+				$("body").on(transEndEventName, ".metro-inner", function(event){console.log(event);
+					var tmpData = $(this).data("transEnd");
+					if ( tmpData ){
+						var protytypeName = event.originalEvent.propertyName;
+						if ( $(event.target).hasClass(tmpData.cls) && protytypeName === tmpData.proName ){
+							tmpData.callback.call(this);
+						}
+					}
+				});
 			}
 		}
 	}
+	
+	var dummyStyle = document.createElement('div').style,
+		vendor = (function () {
+			var vendors = 't,webkitT,MozT,msT,OT'.split(','),
+				t,
+				i = 0,
+				l = vendors.length;
+	
+			for ( ; i < l; i++ ) {
+				t = vendors[i] + 'ransform';
+				if ( t in dummyStyle ) {
+					return vendors[i].substr(0, vendors[i].length - 1);
+				}
+			}
+	
+			return false;
+		})(),
+		cssVendor = vendor ? '-' + vendor.toLowerCase() + '-' : '',
+		transEndEventName = (function () {
+			if ( vendor === false ) return false;
+	
+			var transitionEnd = {
+					''			: 'transitionend',
+					'webkit'	: 'webkitTransitionEnd',
+					'Moz'		: 'transitionend',
+					'O'			: 'oTransitionEnd',
+					'ms'		: 'MSTransitionEnd'
+				};
+	
+			return transitionEnd[vendor];
+		})();
 	
 	function setMetroUrlBar(z){
 		if ( z === -1 ){
@@ -31,6 +155,20 @@ define(['assetss/common/js/sysmo/jQuery'], function( require, exports, module ){
 		}else{
 			$(".metro-url-loadbar").show();
 			$(".metro-url-loadbar .bar").css("width", z + "%");
+		}
+	}
+	
+	function setStyle(prevElement, selfElement, style, file){
+		if ( prevElement !== null && prevElement.size() > 0 ){
+			if ( prevElement.data("custom").style ) 
+				$("#metro-wrapper").removeClass("metro-" + prevElement.data("custom").style);
+				$("body").removeClass(prevElement.data("custom").style);
+		} 
+		if ( selfElement !== null && selfElement.size() > 0 ) {
+			selfElement.data("custom", {style: style});
+			selfElement.addClass("metro-" + style);
+			selfElement.addClass("metro-page-" + file);
+			$("body").addClass(style);
 		}
 	}
 	
@@ -46,62 +184,75 @@ define(['assetss/common/js/sysmo/jQuery'], function( require, exports, module ){
 			setMetroUrlBar(10);
 			$.post(url, { method: "ajax"}, function(html){
 				setMetroUrlBar(20);
+				
+				// 加载到body中
 				var div = document.createElement("div");
 				$(div).appendTo("#metro-outer");
 				$(div).addClass("metro-inner").html(html).hide();
 				
-				var selfElement = $(div), prevElement = selfElement.prev();
+				// 当前对象与前一对象
+				var selfElement = $(div), 
+					prevElement = selfElement.prev();
 				
 				setMetroUrlBar(30);
+				
+				// 加载JS
 				require("assetss/pages/js/" + options.file, function( retData ){
 					
-					setMetroUrlBar(40);
-					selfElement.on("page.ready", function(e, callback){
-						retData.ready.call(this, callback);
-					});
-					selfElement.on("page.close", function(e, callback){
-						retData.close.call(this, callback);
+					setMetroUrlBar(70);
+					
+					// 绑定JS中事件
+					selfElement.on("page.ready", function(){
+						retData.ready.call(this);
+					}).on("page.close", function(){
+						retData.close.call(this);
 					});
 					
-					if ( retData.style && retData.style.length > 0) { $("#metro-wrapper").attr("class", "metro-" + retData.style); }
-					
-					animateContainer[animateName].leave(prevElement, function(){
-						setMetroUrlBar(50);
-						prevElement.trigger("page.close", function(){
-							alert(1)
+					if ( retData.style && retData.style.length > 0 ) {
+						setStyle(prevElement, selfElement, retData.style, options.file);
+					}
+
+					if ( prevElement.size() > 0 ){
+						prevElement.trigger("page.close");
+						animateContainer[animateName].leave(prevElement, function(){
+							
+							setMetroUrlBar(60);
+							
 							animateContainer[animateName].enter(selfElement, function(){
-								setMetroUrlBar(60);
-								selfElement.trigger("page.ready", function(){
-									setMetroUrlBar(100);
-									setTimeout(function(){
-										setMetroUrlBar(0);
-										setMetroUrlBar(-1);
-									}, 500);
-								});
-							})
+								setMetroUrlBar(100);
+								setTimeout(function(){
+									setMetroUrlBar(-1);
+									
+									$(selfElement).trigger("page.ready");
+								}, 2000);
+							});
 						});
-					});
-					
+					}else{	
+						animateContainer[animateName].enter(selfElement, function(){
+							
+							setMetroUrlBar(100);
+							
+							setTimeout(function(){
+								setMetroUrlBar(-1);
+								
+								$(selfElement).trigger("page.ready");
+							}, 2000);
+						});
+					}
 				});
 			});	
 		}
 	});
 	
+	animateContainer[animateName].init();
+	
 	exports.load = function( file ){
-		require.async("assetss/pages/js/" + file, function( filefactory ){
-			if ( filefactory.afterLoad ){ filefactory.afterLoad(); }
+		require(["assetss/pages/js/" + file], function( rets ){
+			var selfElement = $(".metro-inner:first");
+			setStyle(null, selfElement, rets.style, file);
+			selfElement.on("page.ready", rets.ready).on("page.close", rets.close);
 			$(function(){
-				if ( filefactory.ready ){
-					filefactory.ready();
-				}
-			});
-			if ( filefactory.style ){
-				$("#metro-wrapper").attr("class", "metro-" + filefactory.style);
-			}
-			$(".metro-innder").on("page.close", function(e, callback){
-				filefactory.close.call(this, callback);
-			}).on("page.ready", function(e, callback){
-				filefactory.ready.call(this, callback);
+				selfElement.trigger("page.ready");
 			});
 		});
 	}

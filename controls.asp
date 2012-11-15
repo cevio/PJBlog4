@@ -3,7 +3,7 @@
 	var method = http.form("method"),
 		files = http.get("files"),
 		fso = require("FSO");
-
+	
 	if ( files.length === 0 ){
 		files = "loading";
 	}
@@ -20,17 +20,11 @@
 <link rel="stylesheet" href="assetss/common/css/custom.css" media="all" />
 <script language="javascript" src="assetss/common/js/sysmo/sizzle.js"></script>
 <script language="javascript" src="assetss/common/js/configure.js"></script>
-<script language="javascript">
-<%if ( fso.exsit("assetss/pages/js/" + files + ".js") ){%>require(['assetss/common/js/config'], function( configure ){ configure.load("<%=files%>"); });<%}%>
-</script>
 </head>
 <body>
 <div id="metro-wrapper">
-    <div id="metro-start" class="clearfix">
-        <div class="metro-start-btn"><a href="#" class="metro-ui-start">Start</a></div>
-        <div class="metro-start-login"></div>
-    </div>
-    <div id="metro-outer"><div class="metro-inner">
+    <div id="metro-outer">
+    	<div class="metro-inner">
 <%
 	}
 	
@@ -45,12 +39,21 @@
 	function containerFooter(){
 %>
 	</div></div>
+    <div id="metro-start" class="clearfix">
+        <div class="metro-start-btn"><a href="#" class="metro-ui-start">Start</a></div>
+        <div class="metro-start-login"></div>
+    </div>
 </div>
 <div class="metro-url-loadbar">
 	<div class="progress progress-striped active">
       <div class="bar" style="width: 0%;"></div>
     </div>
 </div>
+<script language="javascript">
+require(['assetss/common/js/config'], function( configure ){ 
+	configure.load("<%=files.length === 0 ? "loading" : files%>");
+});
+</script>
 </body>
 </html>
 <%

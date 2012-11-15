@@ -10,5 +10,5 @@ define(function(require, exports, module){
 		$.isFunction(callback) && callback();
 	}
 	
-	exports.style = "green";
+	exports.style = "white";
 });
