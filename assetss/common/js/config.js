@@ -199,7 +199,7 @@ define(['assetss/common/js/sysmo/jQuery'], function( require, exports, module ){
 				// 加载JS
 				require("assetss/pages/js/" + options.file, function( retData ){
 					
-					setMetroUrlBar(70);
+					setMetroUrlBar(60);
 					
 					// 绑定JS中事件
 					selfElement.on("page.ready", function(){
@@ -216,7 +216,7 @@ define(['assetss/common/js/sysmo/jQuery'], function( require, exports, module ){
 						prevElement.trigger("page.close");
 						animateContainer[animateName].leave(prevElement, function(){
 							
-							setMetroUrlBar(60);
+							setMetroUrlBar(90);
 							
 							animateContainer[animateName].enter(selfElement, function(){
 								setMetroUrlBar(100);
