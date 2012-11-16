@@ -21,7 +21,7 @@
 	var cache = require("cache"),
 		categoryCacheData = cache.load("category"),
 		categoryJSON = categoryCacheData.list,
-		categoryArray = categoryCacheData.arrays,
+		categoryArray = categoryCacheData.arrays;
 	// '排序
 	categoryArray = categoryArray.sort(function( A, B ){
 		return A.order > B.order;
