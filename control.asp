@@ -27,7 +27,7 @@
 <body>
 <div id="navtion" class="tpl-navtion fn-black-opacity">
 	<div class="tpl-wrapper fn-clear">
-    	<div class="logo"></div>
+    	<div class="logo">PJBlog4</div>
         <div class="nav-list">
         	<ul>
             	<li><a href="control.asp">首页</a></li>
