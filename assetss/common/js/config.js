@@ -47,6 +47,40 @@ define(['assetss/common/js/sysmo/jQuery'], function( require, exports, module ){
         return null;
     };
 	
+	var dummyStyle = document.createElement('div').style,
+		vendor = (function () {
+			var vendors = 'webkitT,MozT,msT,OT,t'.split(','),
+				t,
+				i = 0,
+				l = vendors.length;
+	
+			for ( ; i < l; i++ ) {
+				t = vendors[i] + 'ransform';
+				if ( t in dummyStyle ) {
+					return vendors[i].substr(0, vendors[i].length - 1);
+				}
+			}
+	
+			return false;
+		})(),
+		cssVendor = vendor ? '-' + vendor.toLowerCase() + '-' : '',
+		cssTransformVendor,
+		transEndEventName = (function () {
+			if ( vendor === false ) return false;
+	
+			var transitionEnd = {
+				''			: ['transitionend', ''],
+				'webkit'	: ['webkitTransitionEnd', '-webkit-'],
+				'Moz'		: ['transitionend', ''],
+				'O'			: ['oTransitionEnd', '-o-'],
+				'ms'		: ['MSTransitionEnd', '-ms-']
+			};
+				
+			cssTransformVendor = transitionEnd[vendor][1];
+			
+			return transitionEnd[vendor][0];
+		})();
+	
 	var animateName = cookie(config.cookie + "_animatename") || "common";
 	
 	var animateContainer = {
@@ -60,11 +94,11 @@ define(['assetss/common/js/sysmo/jQuery'], function( require, exports, module ){
 				setTimeout(function(){
 					element.data("transEnd", {
 						cls: "metro-inner-enter",
-						proName: "-" + vendor + "-transform",
+						proName: cssTransformVendor + "transform",
 						callback: function(){
 							$(this).data("transEnd", {
 								cls: "metro-inner-enter-show",
-								proName: "-" + vendor + "-transform",
+								proName: cssTransformVendor + "transform",
 								callback: function(){
 									$(this).removeClass("metro-inner-enter").removeClass("metro-inner-enter-show");
 									$.isFunction(callback) && callback();
@@ -84,11 +118,11 @@ define(['assetss/common/js/sysmo/jQuery'], function( require, exports, module ){
 				var tricWin = $(window).outerWidth() / 4 * 3;
 				element.data("transEnd", {
 					cls: "metro-inner-close",
-					proName: "-" + vendor + "-transform",
+					proName: cssTransformVendor + "transform",
 					callback: function(){
 						$(this).data("transEnd", {
 							cls: "metro-inner-close-hide",
-							proName: "-" + vendor + "-transform",
+							proName: cssTransformVendor + "transform",
 							callback: function(){
 								$(this).remove();
 								$.isFunction(callback) && callback();
@@ -105,7 +139,7 @@ define(['assetss/common/js/sysmo/jQuery'], function( require, exports, module ){
 			// 初始化
 			init: function(){
 				$("body").addClass("metro-animate-rotate");
-				$("body").on(transEndEventName, ".metro-inner", function(event){console.log(event);
+				$("body").on(transEndEventName, ".metro-inner", function(event){
 					var tmpData = $(this).data("transEnd");
 					if ( tmpData ){
 						var protytypeName = event.originalEvent.propertyName;
@@ -117,38 +151,7 @@ define(['assetss/common/js/sysmo/jQuery'], function( require, exports, module ){
 			}
 		}
 	}
-	
-	var dummyStyle = document.createElement('div').style,
-		vendor = (function () {
-			var vendors = 't,webkitT,MozT,msT,OT'.split(','),
-				t,
-				i = 0,
-				l = vendors.length;
-	
-			for ( ; i < l; i++ ) {
-				t = vendors[i] + 'ransform';
-				if ( t in dummyStyle ) {
-					return vendors[i].substr(0, vendors[i].length - 1);
-				}
-			}
-	
-			return false;
-		})(),
-		cssVendor = vendor ? '-' + vendor.toLowerCase() + '-' : '',
-		transEndEventName = (function () {
-			if ( vendor === false ) return false;
-	
-			var transitionEnd = {
-					''			: 'transitionend',
-					'webkit'	: 'webkitTransitionEnd',
-					'Moz'		: 'transitionend',
-					'O'			: 'oTransitionEnd',
-					'ms'		: 'MSTransitionEnd'
-				};
-	
-			return transitionEnd[vendor];
-		})();
-	
+
 	function setMetroUrlBar(z){
 		if ( z === -1 ){
 			$(".metro-url-loadbar").hide();
