@@ -330,6 +330,11 @@ textarea {
 	text-shadow:0 1px 0 rgba(255, 255, 255, .1), 0 0 30px rgba(255, 255, 255, .125);
 	font-family:Verdana, Geneva, sans-serif;
 	-webkit-transition:color .4s ease-in-out;
+	-moz-transition:color .4s ease-in-out;
+	-o-transition:color .4s ease-in-out;
+	-ms-transition:color .4s ease-in-out;
+	transition:color .4s ease-in-out;
+	cursor:pointer;
 }
 #navtion .tpl-wrapper .logo:hover{
 	color:#fff;

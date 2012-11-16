@@ -21,8 +21,8 @@ var dbo = require("DBO"),
                 <tbody>
                     <tr>
                         <th>标题</th>
-                        <th>分类</th>
-                        <th>&nbsp;</th>
+                        <th width="150">分类</th>
+                        <th width="100">&nbsp;</th>
                     </tr>
                     <!-- Table Header -->
          <%	
@@ -37,6 +37,21 @@ var dbo = require("DBO"),
 			}
 			
 			if ( connecte === true ){
+				var categoryBeyondArray = {};
+				
+				dbo.trave({
+					conn: config.conn,
+					sql: "Select * From blog_category",
+					callback: function(){
+						this.each(function(){
+							categoryBeyondArray[this("id").value + ""] = {
+								id: this("id").value,
+								name: this("cate_name").value
+							}
+						});
+					}
+				});
+			
 				dbo.trave({
 					conn: config.conn,
 					sql: "Select * From blog_article Order By log_posttime DESC",
@@ -50,7 +65,7 @@ var dbo = require("DBO"),
 		%>
 						<tr<%=even%>>
 							<td><%=this("log_title").value%></td>
-							<td>暂未完成分类筛选</td>
+							<td><%=categoryBeyondArray[this("log_category").value + ""].name%></td>
 							<td><a href="?p=writeArticle&id=<%=this("id").value%>">编辑</a> <a href="javascript:;" data-id="<%=this("id").value%>" class="action-del">删除</a></td>
 						</tr>
 		<%	
