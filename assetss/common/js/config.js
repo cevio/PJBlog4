@@ -1,5 +1,7 @@
 // JavaScript Document
-define(['assetss/common/js/sysmo/jQuery'], function( require, exports, module ){
+define([
+	'assetss/common/js/sysmo/jQuery'
+], function( require, exports, module ){
 	
 	config.map("upload", "assets/js/upload");
 	config.map("form", "assets/js/core/form");
@@ -9,6 +11,7 @@ define(['assetss/common/js/sysmo/jQuery'], function( require, exports, module ){
 	config.map("tabs", "assets/js/core/tabs");
 	config.map("easing", "assets/js/core/jQuery.easing.1.3");
 	config.map("article", "assets/js/article");
+	config.map("history", "assetss/js/core/sysmo/history");
 	
 	function cookie(key, value, options) {
         // key and at least value given, set cookie...
@@ -152,6 +155,8 @@ define(['assetss/common/js/sysmo/jQuery'], function( require, exports, module ){
 		}
 	}
 
+	animateContainer[animateName].init();
+
 	function setMetroUrlBar(z){
 		if ( z === -1 ){
 			$(".metro-url-loadbar").hide();
@@ -175,16 +180,29 @@ define(['assetss/common/js/sysmo/jQuery'], function( require, exports, module ){
 		}
 	}
 	
+	$(window).on("popstate", function(event){
+		var state = event.originalEvent.state;
+		if ( state !== null ){
+			$(window).trigger("page.open", state);
+		}
+	})
+	
 	$(window).on("page.open", function(event, options){
 		var url = "controls.asp", 
 			urlJSON = {};	
+			
 		if ( options.args ){
 			urlJSON = options.args;
 		}	
-		if ( options.file ){
-			urlJSON.files = options.file;
+		
+		if ( options.files !== undefined ){
+
+			options.files = options.files.length === 0 ? "loading" : options.files;
+			urlJSON.files = options.files;
 			url += "?" + $.param(urlJSON);
+			
 			setMetroUrlBar(10);
+
 			$.post(url, { method: "ajax"}, function(html){
 				setMetroUrlBar(20);
 				
@@ -200,7 +218,7 @@ define(['assetss/common/js/sysmo/jQuery'], function( require, exports, module ){
 				setMetroUrlBar(30);
 				
 				// 加载JS
-				require("assetss/pages/js/" + options.file, function( retData ){
+				require("assetss/pages/js/" + options.files, function( retData ){
 					
 					setMetroUrlBar(60);
 					
@@ -212,7 +230,7 @@ define(['assetss/common/js/sysmo/jQuery'], function( require, exports, module ){
 					});
 					
 					if ( retData.style && retData.style.length > 0 ) {
-						setStyle(prevElement, selfElement, retData.style, options.file);
+						setStyle(prevElement, selfElement, retData.style, options.files);
 					}
 
 					if ( prevElement.size() > 0 ){
@@ -221,7 +239,10 @@ define(['assetss/common/js/sysmo/jQuery'], function( require, exports, module ){
 							
 							setMetroUrlBar(90);
 							
+							history.pushState(options, "", url);
+							
 							animateContainer[animateName].enter(selfElement, function(){
+								
 								setMetroUrlBar(100);
 								setTimeout(function(){
 									setMetroUrlBar(-1);
@@ -246,14 +267,40 @@ define(['assetss/common/js/sysmo/jQuery'], function( require, exports, module ){
 			});	
 		}
 	});
-	
-	animateContainer[animateName].init();
-	
+
 	exports.load = function( file ){
 		require(["assetss/pages/js/" + file], function( rets ){
 			var selfElement = $(".metro-inner:first");
+			
 			setStyle(null, selfElement, rets.style, file);
 			selfElement.on("page.ready", rets.ready).on("page.close", rets.close);
+			
+			var windowState = window.location,
+				windowStateUrl = windowState.pathname.replace(/^\//, "") + windowState.search,
+				windowStateJSON = (function(){
+					if ( windowState.search.length > 0 && windowState.search !== "?" ){
+						var arrays = windowState.search.replace(/^\?/, "").split("&"),
+							rets = {};
+							
+						for ( var i = 0 ; i < arrays.length ; i++ ){
+							rets[arrays[i].split("=")[0] + ""] = arrays[i].split("=")[1];
+						}
+						
+						var states = {
+							files: rets.files
+						}
+						
+						delete rets.files;
+						states.args = rets;
+						
+						return states;
+					}else{
+						return {files: ""}
+					}
+				})();
+				
+			history.replaceState(windowStateJSON, "", windowStateUrl);
+			
 			$(function(){
 				selfElement.trigger("page.ready");
 			});

@@ -34,7 +34,7 @@ define(function( require, exports, module ){
 	exports.ready = function(){
 		loadDepinessTree(0, function(){
 			$(window).trigger("page.open", {
-				file: "welcome"
+				files: "welcome"
 			});
 		});
 	}

@@ -97,23 +97,23 @@ html, body{ height:100%; background:#ccc; font-family: microsoft yahei;}
 
 /* animate css3 */
 .metro-animate-rotate .metro-inner{
-	-webkit-transition-duration:1s;
+	-webkit-transition-duration:.8s;
 	-webkit-transition-property:all;
 	-webkit-transition-timing-function:ease-in-out;
 	-webkit-transform:rotate(0deg) scale(1) translate(0px);
-	-moz-transition-duration:1s;
+	-moz-transition-duration:.5s;
 	-moz-transition-property:all;
 	-moz-transition-timing-function:ease-in-out;
 	-moz-transform:rotate(0deg) scale(1) translate(0px);
-	-ms-transition-duration:1s;
+	-ms-transition-duration:.8s;
 	-ms-transition-property:all;
 	-ms-transition-timing-function:ease-in-out;
 	-ms-transform:rotate(0deg) scale(1) translate(0px);
-	-o-transition-duration:1s;
+	-o-transition-duration:.8s;
 	-o-transition-property:all;
 	-o-transition-timing-function:ease-in-out;
 	-o-transform:rotate(0deg) scale(1) translate(0px);
-	transition-duration:1s;
+	transition-duration:.8s;
 	transition-property:all;
 	transition-timing-function:ease-in-out;
 	transform:rotate(0deg) scale(1) translate(0px);
