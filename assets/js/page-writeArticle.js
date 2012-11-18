@@ -4,18 +4,24 @@ define(['editor', 'form', 'overlay'], function(require, exports, module){
 	var sending = false;
 	
 	function init_choose_cates(){
-		var $cates = $(".log-cate .log-cate-content .cate-name"),
-			vals = $("input[name='log_category']").val();
-
-		$cates.on("click", function(){
-			$cates.removeClass("cate-choosed");
-			$(this).addClass("cate-choosed");
+		
+		if ( $(".choose-current").size() > 0 ){
+			$(".click-cate").text($(".choose-current").children().eq(0).text());
+		}
+		
+		$("body").on("click", ".choose-cate", function(){
+			$(".items-bar").removeClass("choose-current");
+			$(this).parents(".items-bar:first").addClass("choose-current");
 			$("input[name='log_category']").val($(this).attr("data-id"));
+			$(".click-cate").text($(this).parent().prev().prev().text());
+			$(".log-cate").slideUp("fast", function(){
+				$(".log-cate").hide();
+			});
 		});
 		
-		if ( vals.length > 0 ){
-			$(".log-cate .log-cate-content .cate-name[data-id='" + vals + "']").trigger("click");
-		}
+		$(".click-cate").on("click", function(){
+			$(".log-cate").toggle();	
+		});
 	}
 	
 	function tipPopUp( words, callback ){
@@ -63,12 +69,11 @@ define(['editor', 'form', 'overlay'], function(require, exports, module){
 					sending = false;
 					if ( jsons && jsons.success ){
 						tipPopUp("保存日志成功了。");
-						var vals = $("input[name='log_category']").val();
 						if ( $("form input[name='id']").val().length === 0 ) { 
 							$("form").resetForm();
-						}
-						if ( vals.length > 0 ){
-							$(".log-cate .log-cate-content .cate-name[data-id='" + vals + "']").trigger("click");
+							$(".click-cate").text("请选择分类");
+							$(".choose-current").removeClass("choose-current");
+							$("input[name='log_category'], input[name='log_oldCategory']").val('');
 						}
 					}else{
 						tipPopUp(jsons.error);

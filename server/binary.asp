@@ -37,7 +37,7 @@
 	
 	function fillWhiteList(){
 		var list = cache.load("global"),
-			listStr = list[0][25];
+			listStr = list.binarywhitelist;
 		
 		try{
 			whiteAllowIPArray = listStr.split(",").concat(whiteAllowIPArray);
