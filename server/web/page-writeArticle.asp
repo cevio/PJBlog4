@@ -40,7 +40,8 @@
 		var log_title = "",
 			log_category = "",
 			log_tags = "",
-			log_content = "";
+			log_content = "",
+			log_cover = "";
 			
 		var articleCuts = 300,
 			uploadimagetype,
@@ -71,6 +72,7 @@
 						log_category = rs("log_category").value;
 						log_tags = rs("log_tags").value;
 						log_content = rs("log_content").value;
+						log_cover = rs("log_cover").value;
 						
 						var module_tags = require("tags");
 						log_tags = module_tags.reFormatTags(log_tags);
@@ -87,7 +89,7 @@
 							
 							return arrays.join(",");
 						})(module_tags);
-						
+
 					}
 				}
 			});
@@ -153,16 +155,34 @@ var articleCut = <%=articleCuts%>,
                         <!--<div class="fn-clear head"><div class="tip-title fn-left">内容区域</div><div class="fn-right tags"><input type="text" value="<%=log_tags%>" name="log_tags" placeholder="标签..."></div></div>-->
                         <textarea style="height:550px;" name="log_content"><%=log_content%></textarea>
                     </div>
-               		<div class="tools-configure">
-                        <div class="sidepannel maginbom">
-                            <div class="leader-box">
-                                <div class="heads fn-clear">
-                                    <div class="main-point fn-left">文章标签设置</div>
-                                    <div class="other-point fn-left"><a href="javascript:;">从库中选取标签</a></div>
+               		<div class="tools-configure fn-clear">
+                    	<div class="fn-left tools-configure-left">
+                            <div class="sidepannel maginbom">
+                                <div class="leader-box">
+                                    <div class="heads fn-clear">
+                                        <div class="main-point fn-left">文章标签设置</div>
+                                        <div class="other-point fn-left"><a href="javascript:;">从库中选取标签</a></div>
+                                    </div>
+                                    <div class="bodys">
+                                        <div class="infos">标签填写以英文逗号或者空格分隔</div>
+                                        <input type="text" value="<%=log_tags%>" name="log_tags" placeholder="标签..." style="width:370px;">
+                                    </div>
                                 </div>
-                                <div class="bodys">
-                                    <div class="infos">标签填写以英文逗号或者空格分隔</div>
-                                    <input type="text" value="<%=log_tags%>" name="log_tags" placeholder="标签..." style="width:600px;">
+                            </div>
+                        </div>
+                        
+                        <div class="fn-right tools-configure-right">
+                            <div class="sidepannel maginbom log-coverside">
+                                <div class="leader-box">
+                                    <div class="heads fn-clear">
+                                        <div class="main-point fn-left">日志封面</div>
+                                        <div class="other-point fn-left"></div>
+                                    </div>
+                                    <div class="bodys fn-clear">
+                                    	<input type="hidden" value="<%=log_cover%>" name="log_cover" />
+                                        <div class="fn-left imgs"><img src="<%=log_cover%>" id="cover-img" /></div>
+                                        <div class="fn-left actions"><input type="file" id="upload" /></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

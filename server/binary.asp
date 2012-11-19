@@ -60,7 +60,7 @@
 			file = attachmentsJSON[id + ""].path;
 			ext = attachmentsJSON[id + ""].ext;
 			size = attachmentsJSON[id + ""].size;
-				
+
 			switch ( ext ){
 				case "asf":
     				ContentType = "video/x-ms-asf";

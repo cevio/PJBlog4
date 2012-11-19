@@ -1,5 +1,5 @@
 // JavaScript Document
-define(['editor', 'form', 'overlay'], function(require, exports, module){
+define(['editor', 'form', 'overlay', 'upload'], function(require, exports, module){
 	
 	var sending = false;
 	
@@ -74,6 +74,8 @@ define(['editor', 'form', 'overlay'], function(require, exports, module){
 							$(".click-cate").text("请选择分类");
 							$(".choose-current").removeClass("choose-current");
 							$("input[name='log_category'], input[name='log_oldCategory']").val('');
+							$("#cover-img").attr("src", "");
+							$("input[name='log_cover']").val("");
 						}
 					}else{
 						tipPopUp(jsons.error);
@@ -158,11 +160,34 @@ define(['editor', 'form', 'overlay'], function(require, exports, module){
 		});
 	}
 	
+	function bindCoverEvent(){
+		var ext = uploadimagetype.split(","),
+			cons = [];
+			
+		for ( var i = 0 ; i < ext.length ; i++ ){
+			cons.push("*." + ext[i] + ";");
+		}
+		
+		$("#upload").upload({
+			auto: true,
+			buttonText: "请选择封面图片",
+			uploader: config.ajaxUrl.server.editorUpload,
+			multi: false,
+			fileTypeExts: cons.join("") + "*.txt;",
+			onUploadSuccess: function(file, data, response){
+				var imgURL = $.parseJSON(data).msg.replace(/^\!/, "");
+				$("#cover-img").attr("src", imgURL);
+				$("input[name='log_cover']").val(imgURL);
+			}
+		});
+	}
+	
 	return {
 		init: function(){
 			init_choose_cates();
 			init_editor();
 			init_postArticle();
+			bindCoverEvent();
 		}
 	}
 });

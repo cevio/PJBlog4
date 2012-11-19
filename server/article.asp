@@ -8,7 +8,8 @@
 				log_category = req.form.log_category,
 				log_content = req.form.log_content,
 				log_tags = req.form.log_tags,
-				log_shortcontent = req.form.log_shortcontent;
+				log_shortcontent = req.form.log_shortcontent,
+				log_cover = req.form.log_cover;
 				
 			if ( log_title.length === 0 ){
 				return {
@@ -57,7 +58,8 @@
 				log_views: 0,
 				log_posttime: time,
 				log_updatetime: time,
-				log_shortcontent: log_shortcontent
+				log_shortcontent: log_shortcontent,
+				log_cover: log_cover
 			});
 			
 			var cache = require.async("cache");
@@ -108,7 +110,8 @@
 				log_content = req.form.log_content,
 				log_tags = req.form.log_tags,
 				id = req.form.id,
-				log_shortcontent = req.form.log_shortcontent;
+				log_shortcontent = req.form.log_shortcontent,
+				log_cover = req.form.log_cover;
 				
 			if ( log_title.length === 0 ){
 				return {
@@ -155,7 +158,8 @@
 				log_content: log_content,
 				log_tags: log_tags,
 				log_updatetime: time,
-				log_shortcontent: log_shortcontent
+				log_shortcontent: log_shortcontent,
+				log_cover: log_cover
 			});
 			
 			var cache = require.async("cache");

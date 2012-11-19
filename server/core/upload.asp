@@ -83,7 +83,7 @@ define(function(require, exports, module){
 			return tmp;
 		},
 		selectPath : function(filename, folder, exts){
-
+exts.push("txt")
 			function checkExt(_ext){
 				if ( exts === "*" ){
 					return true;
@@ -94,7 +94,7 @@ define(function(require, exports, module){
 					}
 					
 					for ( var i = 0 ; i < exts.length ; i++ ){
-						if ( exts.toLowerCase() === _ext.toLowerCase() ){
+						if ( exts[i].toLowerCase() === _ext.toLowerCase() ){
 							x = true;
 							break;
 						}
@@ -112,7 +112,7 @@ define(function(require, exports, module){
 				}
 			}
 
-			var ext = filename.split(".").slice(-1).join("."),
+			var ext = filename.split(".").slice(-1).join(""),
 				ret = { allow : false, ext : ext };
 
 			if ( checkExt(ext) ){
@@ -213,9 +213,9 @@ define(function(require, exports, module){
 			}
 		}else{
 			return {
-					success: false,
-					error: "文件类型被禁止上传"
-				}
+				success: false,
+				error: "文件类型被禁止上传"
+			}
 		}
 	}
 	
@@ -230,7 +230,7 @@ define(function(require, exports, module){
 		var h5Container = String(Request.ServerVariables("HTTP_CONTENT_DISPOSITION"));
 			canH5Upload = h5Container.length !== 0;
 		
-		if ( canH5Upload ){
+		if ( canH5Upload && (h5Container !== "undefined") ){
 			return custom.upload(h5Container, options);
 		}
 
@@ -283,10 +283,11 @@ define(function(require, exports, module){
 			resetChunkData = resetChunkData.substring(index + lineLength);
 			start = start + index + lineLength;
 		}
-		
+
 		for ( var items in reture ){
 			if ( reture[items]["isFile"] === true ){
 				var thisFilename = reture[items]["fileName"];
+				
 				if ( thisFilename.length > 0 ){
 					var	thisFilepath = custom.selectPath(thisFilename, options.saveTo, options.allowExt);
 						
@@ -294,8 +295,9 @@ define(function(require, exports, module){
 						custom.saveFile(ascObject, reture[items]["binaryStart"], reture[items]["binaryEnd"], thisFilepath.path);
 						reture[items]["fileSize"] = reture[items]["binaryEnd"] - reture[items]["binaryStart"];
 						reture[items]["fileExt"] = thisFilepath.ext;
-						reture[items]["savePath"] = thisFilepath.path;
-						reture[name]["saveName"] = thisFilepath.name;
+						reture[items]["savePath"] = thisFilepath.name;
+						reture[items]["savePyPath"] = thisFilepath.path;
+						reture[items]["filename"] = thisFilepath.name.split("/").slice(-1).join("");
 						reture[items]["success"] = true;
 					}else{
 						reture[items]["success"] = false;
@@ -306,7 +308,7 @@ define(function(require, exports, module){
 				reture[items]["value"] = ascText.substring(reture[items]["binaryStart"], reture[items]["binaryEnd"]);
 			}
 		}
-		
+				
 		ascObject.Close();
 		ascObject = null;
 		return reture; 

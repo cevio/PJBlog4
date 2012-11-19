@@ -30,11 +30,25 @@ require(["UPLOAD", "DATE", "FSO", "cache"], function(upload, _date, fso, cache){
 				if ( !fso.exsit(folder) ){
 					fso.create(folder);
 				}
-				
+
 				var route = upload({
 					saveTo : folder,
 					allowExt : extArray.split(",")
 				});
+
+				if ( route.Filedata !== undefined ){
+
+					route = {
+						success: true,
+						data: {
+							src: route.Filedata.savePath,
+							file: route.Filedata.filename,
+							ext: route.Filedata.fileExt,
+							size: route.Filedata.fileSize
+						}
+					}
+
+				}
 				
 				if ( route.success === true ){
 					var uploadRetID = 0,
