@@ -176,7 +176,7 @@ var articleCut = <%=articleCuts%>,
                                 <div class="leader-box">
                                     <div class="heads fn-clear">
                                         <div class="main-point fn-left">日志封面</div>
-                                        <div class="other-point fn-left"></div>
+                                        <div class="other-point fn-left"><a href="javascript:;">从本站库中选取</a></div>
                                     </div>
                                     <div class="bodys fn-clear">
                                     	<input type="hidden" value="<%=log_cover%>" name="log_cover" />

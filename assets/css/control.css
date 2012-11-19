@@ -705,3 +705,5 @@ table.table tr:hover td {
 .tabs .tabs-navs .fn-left{line-height:30px; padding:0px 10px; margin-right:5px; display:block; height:30px; border:1px solid #dedede; border-radius:3px 3px 0 0; border-bottom-color:#5FBE5F;}
 .tabs .tabs-navs .current{ border-color:#5FBE5F; border-bottom-color:#fff;}
 .tabs-content-html{ padding:20px;}
+
+.dialog{ width:500px;}

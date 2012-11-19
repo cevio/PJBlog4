@@ -25,11 +25,11 @@ define(['editor', 'form', 'overlay', 'upload'], function(require, exports, modul
 	}
 	
 	function tipPopUp( words, callback ){
-		var $overlayer = $.overlay({
-			content: words
+		$.dialog({
+			content: words,
+			effect: "deformationZoom",
+			callback: callback
 		});
-				
-		$overlayer.trigger("overlay.dialog.popup", callback);
 	}
 	
 	function init_postArticle(){
@@ -74,7 +74,7 @@ define(['editor', 'form', 'overlay', 'upload'], function(require, exports, modul
 							$(".click-cate").text("请选择分类");
 							$(".choose-current").removeClass("choose-current");
 							$("input[name='log_category'], input[name='log_oldCategory']").val('');
-							$("#cover-img").attr("src", "");
+							$("#cover-img").attr("src", "_blank");
 							$("input[name='log_cover']").val("");
 						}
 					}else{

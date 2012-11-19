@@ -8,11 +8,11 @@ define(['form', 'overlay'], function(require, exports, module){
 	}
 	
 	function popUpTips( words, callback ){
-		var $overlayer = $.overlay({
-			content: words
+		$.dialog({
+			content: words,
+			effect: "deformationZoom",
+			callback: callback
 		});
-				
-		$overlayer.trigger("overlay.dialog.popup", callback);
 	}
 	
 	function editComplete(jsons){
