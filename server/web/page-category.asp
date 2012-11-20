@@ -1,7 +1,7 @@
 <div class="tpl-space fn-clear">
 	<div class="cate-zone">
     	<h3><span class="iconfont">&#367;</span> 分类管理</h3>
-        <div class="tools fn-clear"> <div class="fn-left">亲，分类可以拖动存放哦。</div> </div>
+        <div class="tools fn-clear"> <div class="fn-left">暂时无法拖动存放改变分类结构</div> </div>
         
         <div class="list">
 <%

@@ -1,6 +1,9 @@
 // JavaScript Document
-define(function(require, exports, module){
+define(['overlay'],function(require, exports, module){
 	exports.init = function(){
-		console.log("index open success.");
+		$.dialog({
+			content: '1111<span class="close">close</span>',
+			effect: "deformationZoom"
+		});
 	}
 });

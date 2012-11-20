@@ -2,12 +2,11 @@
 define(['tabs', 'overlay'], function( require, exports, module ){
 	
 	function popUpTips( words, callback ){
-		var $overlayer = $.overlay({
-			height: 120,
-			content: words
+		$.dialog({
+			content: words,
+			effect: "deformationZoom",
+			callback: callback
 		});
-				
-		$overlayer.trigger("overlay.dialog.popup", callback);
 	}
 	
 	function init_setup(){
@@ -41,42 +40,42 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 			var id = $(this).attr("data-id");
 			$.getJSON(config.ajaxUrl.server.configSetPlugin, {id: id}, function(jsons){
 				if ( jsons.success ){
-					var $overlayer = $.overlay({
-							content: jsons.data.html,
-							action: config.ajaxUrl.server.updateConfig
-						});
-								
-						$overlayer.trigger("overlay.set.popup", function(){
+					$.dialogSet({
+						content: jsons.data.html,
+						action: config.ajaxUrl.server.updateConfig,
+						effect: "deformationZoom",
+						callback: function(){
 							var _this = this;
-							$(this).find("table").addClass("table").css("width", "100%");
-							$(this).trigger("overlay.mid");
-							$(this).find("form").append('<input type="hidden" name="id" value="' + id + '" />');
-							require.async(['form'], function(){
-								var formDataSending = false;
-								$(_this).find("form").ajaxForm({
-									dataType: "json",
-									beforeSubmit: function(){
-										if ( formDataSending === true ){
-											return false;
+								$(this).find("table").css("width", "100%");
+								$(this).trigger("overlay.mid");
+								$(this).find("form").append('<input type="hidden" name="id" value="' + id + '" />');
+								require.async(['form'], function(){
+									var formDataSending = false;
+									$(_this).find("form").ajaxForm({
+										dataType: "json",
+										beforeSubmit: function(){
+											if ( formDataSending === true ){
+												return false;
+											}
+										},
+										success: function(datas){
+											formDataSending = false;
+											if ( datas.success ){
+												$(_this).find(".content").text("保存成功，1秒关闭。");
+												setTimeout(function(){
+													$(_this).find(".close").trigger("click");
+												}, 1000);
+											}else{
+												alert(datas.error);
+											}
+										},
+										error: function(){
+											formDataSending = false;
 										}
-									},
-									success: function(datas){
-										formDataSending = false;
-										if ( datas.success ){
-											$(_this).find(".content").text("保存成功，1秒关闭。");
-											setTimeout(function(){
-												$(_this).find(".close").trigger("click");
-											}, 1000);
-										}else{
-											alert(datas.error);
-										}
-									},
-									error: function(){
-										formDataSending = false;
-									}
-								})
-							});
-						});
+									})
+								});
+						}
+					});
 				}else{
 					popUpTips(jsons.error);
 				}

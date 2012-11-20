@@ -111,7 +111,7 @@ define(function(require, exports, module){
 		}
 		
 		if ( retHTML.length > 0 ) {
-			retHTML = '<table>' + retHTML + '</table>';
+			retHTML = '<table class="table">' + retHTML + '</table>';
 		}
 		
 		return retHTML;
