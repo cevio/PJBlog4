@@ -110,10 +110,13 @@ define(function( require, exports, module ){
 		var fso = require.async("FSO");
 		
 		for ( var i = 0 ; i < copyArray.length ; i++ ){
-			fso.copy(
-				"profile/plugins/" + this.folder + "/" + copyArray[i].from, 
-				"profile/themes/" + this.themeFolder + (copyArray[i].to === "." ? "" : "/" + copyArray[i].to)
-			);
+			var sourcefile = "profile/plugins/" + this.folder + "/" + copyArray[i].from,
+				targetfolder = "profile/themes/" + this.themeFolder + (copyArray[i].to === "." ? "" : "/" + copyArray[i].to),
+				targetfile = targetfolder + "/" + sourcefile.split("/").slice(-1).join("");
+				
+			if ( !fso.exsit(targetfile) ){
+				fso.copy( sourcefile, targetfolder );
+			}
 		}
 	}
 	
@@ -131,10 +134,13 @@ define(function( require, exports, module ){
 		var fso = require.async("FSO");
 		
 		for ( var i = 0 ; i < copyArray.length ; i++ ){
-			fso.copy(
-				"profile/plugins/" + this.folder + "/" + copyArray[i].from, 
-				"profile/themes/" + this.themeFolder + "/style/" + this.styleFolder + (copyArray[i].to === "." ? "" : "/" + copyArray[i].to)
-			);
+			var sourcefile = "profile/plugins/" + this.folder + "/" + copyArray[i].from,
+				targetfolder = "profile/themes/" + this.themeFolder + "/style/" + this.styleFolder + (copyArray[i].to === "." ? "" : "/" + copyArray[i].to),
+				targetfile = targetfolder + "/" + sourcefile.split("/").slice(-1).join("");
+		
+			if ( !fso.exsit(targetfile) ){
+				fso.copy( sourcefile, targetfolder );
+			}
 		}
 	}
 	
