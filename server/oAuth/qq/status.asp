@@ -16,6 +16,7 @@ define(["openDataBase"], function(require, exports, module){
 						config.user.login = true;
 						config.user.id = rs("id").value;
 						config.user.name = rs("nickName").value;
+						config.user.isAdmin = rs("isAdmin").value === true ? true : false;
 						cookie.set(config.cookie + "_login", "true");
 					}else{
 						cookie.clear(config.cookie + "_user");

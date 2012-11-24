@@ -1,6 +1,6 @@
 <!--#include file="config.asp" --><%
 	require("status");
-	if ( !config.user.login ){
+	if ( (!config.user.login) || (config.user.isAdmin === false) ){
 		Response.Redirect("default.asp");
 	}
 	

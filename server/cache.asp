@@ -197,8 +197,10 @@ define(function(require){
 					Application.Lock();
 					Application.StaticObjects(config.appName).Remove(createAppName(appKeyName, appKeyID));
 					Application.UnLock();
-					fso.destory(config.cacheAccess + "/" + createAppFile(appKeyName, appKeyID));
 				}catch(e){}
+				if ( fso.exsit(config.cacheAccess + "/" + createAppFile(appKeyName, appKeyID)) ){
+					fso.destory(config.cacheAccess + "/" + createAppFile(appKeyName, appKeyID));
+				}
 			}
 
 			return cache;
