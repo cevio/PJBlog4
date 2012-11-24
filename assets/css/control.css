@@ -320,7 +320,7 @@ textarea {
 
 #navtion .tpl-wrapper .logo {
 	float:left;
-	width:300px;
+	width:150px;
 	height:35px;
 	text-align:center;
 	line-height:35px;
@@ -335,6 +335,7 @@ textarea {
 	-ms-transition:color .4s ease-in-out;
 	transition:color .4s ease-in-out;
 	cursor:pointer;
+	font-family: "Comic Sans MS", cursive
 }
 #navtion .tpl-wrapper .logo:hover{
 	color:#fff;
@@ -352,9 +353,15 @@ textarea {
 	height:26px;
 	line-height:26px;
 	margin-top:5px;
+	-webkit-transition:all .4s ease-in-out;
+	-moz-transition:all .4s ease-in-out;
+	-o-transition:all .4s ease-in-out;
+	-ms-transition:all .4s ease-in-out;
+	transition:all .4s ease-in-out;
 }
 #navtion .tpl-wrapper .nav-list li a:link, #navtion .tpl-wrapper .nav-list li a:visited {
 	color:#fff;
+	background:none;
 }
 #navtion .tpl-wrapper .nav-list li a:hover {
 	background: #000;

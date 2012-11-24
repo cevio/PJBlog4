@@ -33,6 +33,8 @@
             	<li><a href="control.asp">首页</a></li>
                 <li><a href="?p=category">分类</a></li>
                 <li><a href="?p=article">日志</a></li>
+                <li><a href="?p=comment">评论</a></li>
+                <li><a href="?p=member">用户</a></li>
                 <li><a href="?p=theme">主题</a></li>
                 <li><a href="?p=plugin">插件</a></li>
                 <li><a href="?p=documents">文档</a></li>
@@ -40,7 +42,7 @@
         </div>
         <div class="nav-user">
         	<%if ( Session("admin") !== true ){ %><a href="default.asp">前台</a><%}%>
-        	<%if ( Session("admin") === true ){ %><span class="name">sevio</span><%}%>
+        	<%if ( Session("admin") === true ){ %><span class="name"><%=config.user.name%></span><%}%>
             <%if ( Session("admin") === true ){ %><a href="javascript:;" class="item">设置<ul><li class="sdk-globalconfigure"><span class="iconfont">&#355;</span> 全局设置</li><li><span class="iconfont">&#226;</span> 修改密码</li></ul></a><%}%>
             <%if ( Session("admin") === true ){ %><a href="?p=writeArticle">写日志</a><%}%>
             <a href="javascript:;">官方</a>

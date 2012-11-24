@@ -15,6 +15,7 @@ define(["openDataBase"], function(require, exports, module){
 					if ( token === SHA1(rs("hashkey").value) ){
 						config.user.login = true;
 						config.user.id = rs("id").value;
+						config.user.name = rs("nickName").value;
 						cookie.set(config.cookie + "_login", "true");
 					}else{
 						cookie.clear(config.cookie + "_user");
