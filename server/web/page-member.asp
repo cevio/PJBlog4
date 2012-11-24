@@ -35,9 +35,29 @@ var dbo = require("DBO"),
                         	<div class="img"><img src="<%=this("photo").value + "/100"%>" /></div>
                             <div class="info"><div class="name"><%=this("nickname").value%></div></div>
                             <div class="tools">
-                            	<a href="javascript:;" class="action-delete" data-id="<%=this("id").value%>">删除</a> 
+                            	<a href="javascript:;" class="action-delete" data-id="<%=this("id").value%>">删除</a>
+                                <%
+									if ( this("canlogin").value === true ){
+								%> 
                                 <a href="javascript:;" class="action-force" data-id="<%=this("id").value%>">禁止</a> 
+                                <%
+									}else{
+								%>
+                                <a href="javascript:;" class="action-unforce" data-id="<%=this("id").value%>">恢复</a>
+                                <%		
+									};
+									
+									if ( this("isAdmin").value === true ){
+								%>
+                                <a href="javascript:;" class="action-down" data-id="<%=this("id").value%>">降阶</a>
+                                <%		
+									}else{
+								%>
                                 <a href="javascript:;" class="action-up" data-id="<%=this("id").value%>">提升</a>
+                                <%		
+									}
+								%>
+                                
                             </div>
                         </div>
                     </div>

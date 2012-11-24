@@ -3,6 +3,7 @@ define(["openDataBase"], function(require, exports, module){
 	var oauth = require.async("server/oAuth/qq/oauth"),
 		dbo = require.async("DBO"),
 		fns = require.async("fn"),
+		date = require.async("DATE"),
 		APPID,
 		APPKEY,
 		WEBSITE,
@@ -61,7 +62,10 @@ define(["openDataBase"], function(require, exports, module){
 												oauth : "qq",
 												qq_token : token.data.access_token,
 												qq_openid : openid.data.openid,
-												hashkey: salt
+												hashkey: salt,
+												canlogin: true,
+												logindate: date.format(new Date(), "y/m/d h:i:s"),
+												loginip: fns.getIP()
 											},
 											callback: function(){
 												id = this("id").value;
@@ -76,7 +80,9 @@ define(["openDataBase"], function(require, exports, module){
 												photo : info.data.figureurl.split("/").slice(0, -1).join("/"),
 												nickname : info.data.nickname,
 												qq_token : token.data.access_token,
-												hashkey: salt
+												hashkey: salt,
+												logindate: date.format(new Date(), "y/m/d h:i:s"),
+												loginip: fns.getIP()
 											},
 											key : "qq_openid",
 											keyValue : "'" + openid.data.openid + "'",
