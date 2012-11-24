@@ -2,6 +2,7 @@
 define(["openDataBase"], function(require, exports, module){
 	var oauth = require.async("server/oAuth/qq/oauth"),
 		dbo = require.async("DBO"),
+		fns = require.async("fn"),
 		APPID,
 		APPKEY,
 		WEBSITE,
@@ -28,7 +29,7 @@ define(["openDataBase"], function(require, exports, module){
 	}
 	
 	var login = function(code){
-		var ret;
+		var ret, id = 0;
 	
 		if ( getInfoFromDBO() === true ){
 			token = oauth.token(APPID, APPKEY, code, WEBSITE);
@@ -39,7 +40,10 @@ define(["openDataBase"], function(require, exports, module){
 					if ( info.success === true ){
 						try{
 							var sha1 = require.async("SHA1"),
-								iddbo = openid.data.openid;
+								iddbo = openid.data.openid,
+								salt = fns.randoms(40),
+								saltSHA1 = sha1(salt);
+								
 							dbo.trave({
 								conn : config.conn,
 								sql : "Select * From blog_member Where qq_openid='" + openid.data.openid + "'",
@@ -56,7 +60,11 @@ define(["openDataBase"], function(require, exports, module){
 												nickname : info.data.nickname,
 												oauth : "qq",
 												qq_token : token.data.access_token,
-												qq_openid : openid.data.openid
+												qq_openid : openid.data.openid,
+												hashkey: salt
+											},
+											callback: function(){
+												id = this("id").value;
 											}
 										});
 									}else{
@@ -67,27 +75,38 @@ define(["openDataBase"], function(require, exports, module){
 												sex : info.data.gender === "男" ? 1 : 2,
 												photo : info.data.figureurl.split("/").slice(0, -1).join("/"),
 												nickname : info.data.nickname,
-												qq_token : token.data.access_token
+												qq_token : token.data.access_token,
+												hashkey: salt
 											},
 											key : "qq_openid",
-											keyValue : "'" + openid.data.openid + "'"
+											keyValue : "'" + openid.data.openid + "'",
+											callback: function(){
+												id = this("id").value;
+											}
 										});
 									}
 								}
 							});
 							
-							var cookie = require.async("COOKIE");
+							if ( id > 0 ){
+								var cookie = require.async("COOKIE");
+									
+									cookie.set(config.cookie + "_user", "id", id);
+									cookie.set(config.cookie + "_user", "hashkey", saltSHA1);
+									cookie.set(config.cookie + "_user", "oauth", "qq");
+									
+									cookie.expire(config.cookie + "_user", 30 * 24 * 60 * 60 * 1000);
 								
-								cookie.set(config.cookie + "_user", "id", openid.data.openid);
-								cookie.set(config.cookie + "_user", "token", token.data.access_token);
-								cookie.set(config.cookie + "_user", "oauth", "qq");
-								
-								cookie.expire(config.cookie + "_user", 30 * 24 * 60 * 60 * 1000);
-							
-							ret = {
-								success : true,
-								photo : info.data.figureurl,
-								nickname : info.data.nickname
+								ret = {
+									success : true,
+									photo : info.data.figureurl,
+									nickname : info.data.nickname
+								}
+							}else{
+								ret = {
+									success : false,
+									error : "数据录入失败"
+								}
 							}
 						}catch(e){
 							ret = {
