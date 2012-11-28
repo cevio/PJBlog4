@@ -53,30 +53,7 @@
                 </div>
             	<div class="bom-zone">
                 	<div class="area">
-                		<a href="javascript:;" class="button small orange step-prev" data-step="0">上一步</a>
                         <a href="javascript:;" class="button small green step-next" data-step="2">下一步</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="inner">
-        	<div class="content">
-            	<div class="top-zone">
-                	<div class="area">
-                    	<div class="setupfolder">
-                        	<h1>请输入Cookie名称</h1>
-                            <div class="input"><input type="text" name="cookie" style="width:300px;" placeholder="自定义COOKIE名称能有效防止数据泄露。" /></div>
-                            <div class="info">
-                            	1. COOKIE设置必不可少<br />
-                                2. 请使用英文填写，不可使用特殊字符和中文。
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            	<div class="bom-zone">
-                	<div class="area">
-                		<a href="javascript:;" class="button small orange step-prev" data-step="1">上一步</a>
-                        <a href="javascript:;" class="button small green step-next" data-step="3">下一步</a>
                     </div>
                 </div>
             </div>
@@ -98,8 +75,8 @@
                 </div>
             	<div class="bom-zone">
                 	<div class="area">
-                		<a href="javascript:;" class="button small orange step-prev" data-step="2">上一步</a>
-                        <a href="javascript:;" class="button small green step-next" data-step="4">下一步</a>
+                		<a href="javascript:;" class="button small orange step-prev" data-step="1">上一步</a>
+                        <a href="javascript:;" class="button small green step-next" data-step="3">下一步</a>
                     </div>
                 </div>
             </div>
@@ -115,7 +92,7 @@
                 </div>
             	<div class="bom-zone">
                 	<div class="area">
-                		<a href="javascript:;" class="button small gray step-next" data-step="5">下一步</a>
+                		<a href="javascript:;" class="button small gray step-next" data-step="4">下一步</a>
                     </div>
                 </div>
             </div>
@@ -146,8 +123,7 @@
         	<span class="active">欢迎&nbsp;&nbsp;»</span>
             <span>基址&nbsp;&nbsp;»</span>
             <span>设置&nbsp;&nbsp;»</span>
-            <span>验证&nbsp;&nbsp;»</span>
-            <span>安装&nbsp;&nbsp;»</span>
+            <span id="setup">安装&nbsp;&nbsp;»</span>
             <span>完成</span>
         </div>
     </div>
