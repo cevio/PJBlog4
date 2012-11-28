@@ -43,7 +43,13 @@
                         }
                     }
                 });
-                
+%>
+<script language="javascript">
+	config.plugin = {
+		folder: '<%=config.plugin.folder%>'
+	};
+</script>
+<%
                 include(config.plugin.folder + "/configure.asp");
             }else{
                 console.log('<div style="padding:30px;">插件已被停用</div>');
