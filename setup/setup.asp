@@ -63,7 +63,7 @@ http.async(function(req){
 						rs.Open("Select * From blog_global Where id=1", dbo, 3, 3);
 						rs("qq_appid") = params.openid;
 						rs("qq_appkey") = params.openkey;
-						rs("website") = params.website + "/" + params.folder;
+						rs("website") = params.website + ((params.folder === "" || params.folder === "." || params.folder === "./") ? "" : "/" + params.folder);
 						rs.Update();
 						rs.Close();
 						
