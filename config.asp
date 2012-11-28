@@ -1,4 +1,5 @@
 <!--#include file="server/core/obay.asp" -->
+<!--#include file="profile/handler/config.asp" -->
 <%
 /* 
  * version V4.0 ( 2012-08-10 )
@@ -8,12 +9,7 @@
  * 具体参见各项说明。
  */
 	config.debug = true; // 是否开启DEBUG模式
-	config.base = "/"; // obay 基址
 	config.useApp = true; // 是否使用APP
-	config.appName = "PJBlog4"; // APP 统一名称
-	config.cacheFileNamePixer = "PJBlog4_Cache_Files"; // 缓存文件名前缀
-	config.access = "profile/PBlog4/PJBlog4.asp"; // 数据库路径
-	config.cookie = "PJBlog4"; // cookie 名称
 	config.cacheAccess = "profile/caches"; // 缓存文件夹名
 	config.platform = "http://platform.pjhome.net";
 	
