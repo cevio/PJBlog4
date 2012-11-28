@@ -45,6 +45,8 @@ define(["openDataBase"], function(require, exports, module){
 								salt = fns.randoms(40),
 								saltSHA1 = sha1(salt);
 								
+							var counts = Number(String(config.conn.Execute("Select count(*) From blog_member")));
+								
 							dbo.trave({
 								conn : config.conn,
 								sql : "Select * From blog_member Where qq_openid='" + openid.data.openid + "'",
@@ -54,7 +56,7 @@ define(["openDataBase"], function(require, exports, module){
 											conn : config.conn,
 											table : "blog_member",
 											data : {
-												isAdmin : false,
+												isAdmin : counts === 0 ? true : false,
 												adminPass : sha1("admin888"),
 												sex : info.data.gender === "男" ? 1 : 2,
 												photo : info.data.figureurl.split("/").slice(0, -1).join("/"),
