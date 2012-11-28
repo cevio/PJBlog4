@@ -65,8 +65,8 @@ http.async(function(req){
 						rs.Update();
 						rs.Close();
 						
-					fso.destory("/install.asp");
-					fso.destory("/setup", true);
+					//'fso.destory("/install.asp");
+					//'fso.destory("/setup", true);
 						
 					return { success: true };
 				}else{

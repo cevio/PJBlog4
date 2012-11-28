@@ -116,7 +116,7 @@ function bindSetupAction(){
 				$("#goWeb").on("click", function(){
 					window.location.href = postData.website + "/" + postData.folder;
 				});
-				$(".setuping").append('<div class="info">安装成功，点击下一步完成安装。</div>');
+				$(".setuping").append('<div class="info">安装成功，点击下一步完成安装。<br />注意：请手动删除根目录下的安装文件，以免产生不必要的漏洞。</div>');
 			}else{
 				alert(callers.error);
 			}
