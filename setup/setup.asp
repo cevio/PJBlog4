@@ -3,7 +3,7 @@
 config.base = "/";
 config.debug = true;
 http.async(function(req){
-	try{
+	//try{
 		var dataParams = {
 			folder: req.query.folder,
 			openid: req.query.openid,
@@ -85,12 +85,13 @@ http.async(function(req){
 				error: "请将所有必填项填写完整"
 			}
 		}
-	}catch(e){
-		//console.debug();
-		return {
-			success: false,
-			error: e.message
-		}
-	}
+		
+	//}catch(e){
+//		//console.debug();
+//		return {
+//			success: false,
+//			error: e.message
+//		}
+//	}
 });
 %>
