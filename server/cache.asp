@@ -43,7 +43,7 @@ define(function(require){
 			}
 			
 			function createAppFile(appKeyName, appKeyID){
-				return createAppName(appKeyName, appKeyID) + ".asp";
+				return config.cacheFileNamePixer + "_" + appKeyName + (appKeyID === undefined ? "" : "_" + appKeyID) + ".asp";
 			}
 			
 			function getFromApplication(appKeyName, appKeyID){
