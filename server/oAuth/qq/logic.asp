@@ -45,7 +45,7 @@ define(["openDataBase"], function(require, exports, module){
 								salt = fns.randoms(40),
 								saltSHA1 = sha1(salt);
 								
-							var counts = Number(String(config.conn.Execute("Select count(*) From blog_member")));
+							var counts = Number(String(config.conn.Execute("Select Count(*) From blog_member")(0)));
 								
 							dbo.trave({
 								conn : config.conn,

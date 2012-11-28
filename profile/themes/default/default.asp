@@ -66,7 +66,7 @@
 			fns = require("fn");
 			
 	%>
-    	<li><a href="<%=oauth.url("100299901", "http://lols.cc/server/oauth.asp?type=qq&dir=" + escape( fns.localSite() ))%>">登入</a></li>
+    	<li><a href="<%=oauth.url()%>">登入</a></li>
     <%
 	}
     %>

@@ -1,7 +1,7 @@
 <%
 define(function(require, exports, module){
-	exports.url = function(APPID, url){
-		return 'https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=' + APPID + '&redirect_uri=' + escape(url);
+	exports.url = function(){
+		return 'https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=' + pageCustomParams.global.qq_appid + '&redirect_uri=' + escape(pageCustomParams.global.website + '/server/oauth.asp?type=qq&dir=' + ( pageCustomParams.global.website + '/' + Request.ServerVariables("Url") + "?" + Request.ServerVariables("Query_String") ));
 	}
 	
 	exports.token = function(APPID, APPKEY, code, website){
