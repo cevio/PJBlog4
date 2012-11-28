@@ -1,6 +1,20 @@
 <!--#include file="../config.asp" -->
 <%
+	require("status");
 	http.async(function( req ){
+		if ( !config.user.login ){
+			return {
+				success: false,
+				error: "请先登入"
+			}
+		}
+		
+		if ( !config.user.isAdmin ){
+			return {
+				success: false,
+				error: "您没有权限登入"
+			}
+		}
 		var tmpConnection = require.async("openDataBase");
 		
 		if ( tmpConnection === true ){
