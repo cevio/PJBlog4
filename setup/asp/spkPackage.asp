@@ -1,11 +1,12 @@
 <%
 define(function(require, exports, module){
 	
-	var fso = require("FSO");
+	var fso = require("/setup/asp/fso");
 	
 	var package = function(path, savePath){
 		this.object = new ActiveXObject(config.nameSpace.stream);
 		this.path = selector.lock(path);
+		console.push(this.path);
 		this.savePath = savePath || ".";
 		
 		this.object.Type = 1; 

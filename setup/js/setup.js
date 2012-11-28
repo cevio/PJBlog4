@@ -106,11 +106,16 @@ function bindSetupAction(){
 		var postData = {
 			folder: $("input[name='folder']").val(),
 			openid: $("input[name='openid']").val(),
-			openkey: $("input[name='openkey']").val()
+			openkey: $("input[name='openkey']").val(),
+			website: $("input[name='website']").val()
 		};
 		$.getJSON("setup/setup.asp", postData, function( callers ){
 			if ( callers.success === true ){
 				params.cangonext = true;
+				$("#goWeb").off("click");
+				$("#goWeb").on("click", function(){
+					window.location.href = postData.website + "/" + postData.folder;
+				});
 				$(".setuping").append('<div class="info">安装成功，点击下一步完成安装。</div>');
 			}else{
 				alert(callers.error);
@@ -120,6 +125,10 @@ function bindSetupAction(){
 }
 
 $(function(){
+	$("input[name='website']").val(
+		selector("OPADFJHAIFHISDAHFIEHRTKHFAIUAWDIFHI")
+			.replace(/\/OPADFJHAIFHISDAHFIEHRTKHFAIUAWDIFHI\.js$/, "")
+	);
 	initTabsWrapper();
 	bindGuideEvent();
 	bindNextEvent();

@@ -7,10 +7,12 @@
 <link rel="stylesheet" href="setup/css/setup.css" type="text/css" />
 <link rel="stylesheet" href="setup/css/pp.css" type="text/css" />
 <link rel="stylesheet" href="setup/buttons/buttons.css" type="text/css" />
+<script language="javascript" src="setup/js/sizzle.js"></script>
 <script language="javascript" src="setup/js/jQuery.js"></script>
 <script language="javascript" src="setup/js/setup.js"></script>
 </head>
 <body>
+<input type="hidden" name="website" value="" />
 <div class="wrapper">
 	<div class="animate">
     	<div class="box">
@@ -111,7 +113,7 @@
                 </div>
             	<div class="bom-zone">
                 	<div class="area">
-                		<a href="javascript:;" class="button small orange">安装完成</a>
+                		<a href="javascript:;" class="button small orange" id="goWeb">安装完成</a>
                     </div>
                 </div>
             </div>

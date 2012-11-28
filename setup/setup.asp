@@ -1,5 +1,7 @@
 <!--#include file="asp/obay.asp" -->
 <%
+config.base = "/";
+config.debug = true;
 http.async(function(req){
 	try{
 		var dataParams = {
@@ -30,13 +32,14 @@ http.async(function(req){
 					rand_Cookie = randoms(10);
 				
 				fso.create(params.folder, true);
-				spkInstall = new spk("setup/package.pbd", params.folder);
+				spkInstall = new spk("/setup/package.pbd", params.folder);
 				spkInstall.install();
 				
 				var percentFn = "%",
 					systemConfigureText = '<' + percentFn + 'config.base="' + params.folder + '";config.appName="' + rand_AppName + '";config.cacheFileNamePixer="' + rand_CacheFileName + '";config.access="profile/PBlog4/PJBlog4.asp";config.cookie="' + rand_Cookie + '";' + percentFn + '>', 
 					assetsConfigureText = 'config("debug", false);config("base", "' + params.folder + '");config.cookie = "' + rand_Cookie + '";';
-				
+					
+				console.push("start save files");
 				stream.save(systemConfigureText, params.folder + "/profile/handler/config.asp");
 				stream.save(assetsConfigureText, params.folder + "/profile/handler/configure.js");
 				
@@ -56,11 +59,14 @@ http.async(function(req){
 				
 				if ( status === true ){
 					var rs = new ActiveXObject(config.nameSpace.record);
-						rs.Open("Select * Form blog_global Where id=1", conn, 3, 3);
+						rs.Open("Select * From blog_global Where id=1", dbo, 3, 3);
 						rs("qq_appid") = params.openid;
 						rs("qq_appkey") = params.openkey;
 						rs.Update();
 						rs.Close();
+						
+					fso.destory("/install.asp");
+					fso.destory("/setup", true);
 						
 					return { success: true };
 				}else{
@@ -78,7 +84,11 @@ http.async(function(req){
 			}
 		}
 	}catch(e){
-		
+		//console.debug();
+		return {
+			success: false,
+			error: e.message
+		}
 	}
 });
 %>
