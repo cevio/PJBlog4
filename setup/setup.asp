@@ -1,4 +1,4 @@
-<!--#include file="asp/obay.asp" -->
+﻿<!--#include file="asp/obay.asp" -->
 <%
 config.base = "/";
 config.debug = true;

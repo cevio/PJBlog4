@@ -18,7 +18,10 @@
 		};
 		
 		var percent = "%",
-			configText = '<' + percent + '\ndefine(function(){return "' + randoms(10) + '";});\n' + percent + '>'
+			rans = randoms(10),
+			configText = '<' + percent + '\ndefine(function(){return "' + rans + '";});\n' + percent + '>';
+			
+		config.appName = rans;
 		
 		stream.save(configText, "setup/config.asp");
 		asa();
