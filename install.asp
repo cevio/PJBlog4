@@ -1,4 +1,31 @@
 <!--#include file="setup/asp/obay.asp" -->
+<%
+	config.base = "/";
+	config.useApp = true;
+	var fso = require("setup/asp/fso");
+	if ( !fso.exsit("setup/config.asp") ){
+		var stream = require("setup/asp/stream");
+		var randoms = function(n){
+			var chars = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'],
+				res = "";
+				
+			for(var i = 0; i < n ; i ++) {
+				var id = Math.ceil(Math.random() * (chars.length - 1));
+				res += chars[id];
+			}
+				
+			return res;
+		};
+		
+		var percent = "%",
+			configText = '<' + percent + '\ndefine(function(){return "' + randoms(10) + '";});\n' + percent + '>'
+		
+		stream.save(configText, "setup/config.asp");
+		asa();
+		
+		Response.Redirect("install.asp");
+	}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

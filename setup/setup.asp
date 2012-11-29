@@ -3,7 +3,7 @@
 config.base = "/";
 config.debug = true;
 http.async(function(req){
-	//try{
+	try{
 		var dataParams = {
 			folder: req.query.folder,
 			openid: req.query.openid,
@@ -28,7 +28,7 @@ http.async(function(req){
 					spk = require("setup/asp/spkPackage"),
 					stream = require("setup/asp/stream"),
 					spkInstall,
-					rand_AppName = randoms(10),
+					rand_AppName = require("setup/config"),
 					rand_CacheFileName = randoms(10),
 					rand_Cookie = randoms(10);
 				
@@ -66,10 +66,9 @@ http.async(function(req){
 						rs("website") = params.website + ((params.folder === "" || params.folder === "." || params.folder === "./") ? "" : "/" + params.folder);
 						rs.Update();
 						rs.Close();
-						
-					//'fso.destory("/install.asp");
-					//'fso.destory("/setup", true);
-						
+					
+					dbo.Close();
+					dbo = null;
 					return { success: true };
 				}else{
 					return {
@@ -86,12 +85,12 @@ http.async(function(req){
 			}
 		}
 		
-	//}catch(e){
-//		//console.debug();
-//		return {
-//			success: false,
-//			error: e.message
-//		}
-//	}
+	}catch(e){
+		return {
+			success: false,
+			error: e.message
+		}
+	}
+	
 });
 %>
