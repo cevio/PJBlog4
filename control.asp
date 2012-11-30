@@ -1,4 +1,4 @@
-<!--#include file="config.asp" --><%
+﻿<!--#include file="config.asp" --><%
 	require("status");
 	if ( (!config.user.login) || (config.user.isAdmin === false) ){
 		Response.Redirect("default.asp");
@@ -17,59 +17,76 @@
 %><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<title>PJBlog4 管理后台</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="assets/css/control.css" media="all" />
+<link rel="stylesheet" href="assets/css/reset.css" type="text/css" />
+<link rel="stylesheet" href="assets/css/ui.css" type="text/css" />
+<link rel="stylesheet" href="assets/css/fn.css" type="text/css" />
+<link rel="stylesheet" href="assets/css/icon.css" type="text/css" />
 <link rel="stylesheet" href="assets/css/page-<%=checkStatusAndCustomPage()%>.css" media="all" />
 <script language="javascript" src="assets/js/core/sizzle.js"></script>
 <script language="javascript" src="profile/handler/configure.js"></script>
-<title>PJBlog4 管理后台</title>
 </head>
 <body>
-<div id="navtion" class="tpl-navtion fn-black-opacity">
-	<div class="tpl-wrapper fn-clear">
-    	<div class="logo">PJBlog4</div>
-        <div class="nav-list">
-        	<ul>
-            	<li><a href="control.asp">首页</a></li>
-                <li><a href="?p=category">分类</a></li>
-                <li><a href="?p=article">日志</a></li>
-                <li><a href="?p=comment">评论</a></li>
-                <li><a href="?p=member">用户</a></li>
-                <li><a href="?p=theme">主题</a></li>
-                <li><a href="?p=plugin">插件</a></li>
-                <li><a href="?p=documents">文档</a></li>
-            </ul>
-        </div>
-        <div class="nav-user">
-        	<%if ( Session("admin") !== true ){ %><a href="default.asp">前台</a><%}%>
-        	<%if ( Session("admin") === true ){ %><span class="name"><%=config.user.name%></span><%}%>
-            <%if ( Session("admin") === true ){ %><a href="javascript:;" class="item">设置<ul><li class="sdk-globalconfigure"><span class="iconfont">&#355;</span> 全局设置</li><li><span class="iconfont">&#226;</span> 修改密码</li></ul></a><%}%>
-            <%if ( Session("admin") === true ){ %><a href="?p=writeArticle">写日志</a><%}%>
-            <a href="javascript:;">官方</a>
-            <%if ( Session("admin") === true ){ %><a href="server/logout.asp">退出</a><%}%>
-        </div>
-    </div>   
-</div>
-<div id="slogen" class="tpl-wrapper">
-	<div class="Alogo">创新技术、创新架构、创新分享<div class="Blogo">不能承受的重博客之轻！</div></div>
-    <div class="update">发现新版本 请点击升级</div>
-</div>
-<div id="content" class="tpl-wrapper">
-	<%
-		try{
-			include("server/web/page-" + checkStatusAndCustomPage());
-		}catch(e){
-			console.log("未找到模板。 [" + e.message + "]");
+	<div class="ui-header fn-clear">
+		<div class="ui-user fn-right fn-clear">
+			<%
+				if ( Session("admin") === true ){ 
+			%>
+            <div class="icon-user fn-rightspace fn-left"><%=config.user.name%></div>
+			<a href="#" class="fn-rightspace fn-left">修改密码</a>
+			<a href="?p=writeArticle" class="fn-rightspace fn-left">写新日志</a>
+			<a href="server/logout.asp" class="fn-left">退出</a>
+            <%
+				}else{
+					console.log("请先登入");
+				}
+			%>
+		</div>
+		<div class="ui-guide">
+			<a class="ui-logo fn-left fn-rightspace">PJBlog4</a>
+			<ul class="fn-clear">
+				<li><a href="default.asp" target="_blank">前台</a></li>
+				<li><a href="control.asp">首页</a></li>
+				<li><a href="?p=globalconfigure">设置</a></li>
+				<li><a href="?p=documents">文档</a></li>
+				<li><a href="http://webkits.cn" target="_blank">官方</a></li>
+			</ul>
+		</div>
+	</div>
+    
+    <%
+		if ( Session("admin") === true ){
+	%>
+    <div class="ui-body fn-clear">
+		<div class="ui-nav">
+			<div class="ui-nav-list">
+				<ul>
+					<li><a href="?p=category" class="ui-customspace <%=(page === "category"?"active":"")%>"><span>分类管理</span></a></li>
+					<li><a href="?p=article" class="ui-customspace <%=(page === "article"?"active":"")%>"><span>日志管理</span></a></li>
+					<li><a href="?p=comment" class="ui-customspace <%=(page === "comment"?"active":"")%>"><span>评论管理</span></a></li>
+					<li><a href="?p=member" class="ui-customspace <%=(page === "member"?"active":"")%>"><span>用户管理</span></a></li>
+					<li><a href="?p=theme" class="ui-customspace <%=(page === "theme"?"active":"")%>"><span>主题管理</span></a></li>
+					<li><a href="?p=plugin" class="ui-customspace <%=(page === "plugin"?"active":"")%>"><span>插件管理</span></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="ui-content">
+			<%
+                try{
+                    include("server/web/page-" + checkStatusAndCustomPage());
+                }catch(e){
+                    console.log("未找到模板。 [" + e.message + "]");
+                }
+            %>
+    		</div>
+		</div>
+	</div>
+   	<%
+		}else{
+			include("server/web/page-login");
 		}
 	%>
-</div>
-
-<div id="footer" class="tpl-wrapper">
-	<div class="foot-zone fn-clear">
-    	<div class="fn-left">&copy; 2012 <a href="http://pjhome.net" target="_blank">PJHome.net</a>. Valid <a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank">CSS</a> &amp; <a href="http://validator.w3.org/check?uri=referer" target="_blank">XHTML</a> Timer <%=config.timers()%></div>
-        <div class="fn-right">code by <a href="http://sizzle.cc" target="_blank">evio</a> . design by <a href="http://sizzle.cc" target="_blank">evio</a></div>
-    </div>
-</div>
 <script language="javascript">
 require(['assets/js/config'], function( custom ){
 	if ( custom.status === true ){

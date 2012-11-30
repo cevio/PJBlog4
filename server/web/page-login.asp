@@ -2,24 +2,20 @@
 if ( Session("admin") === true ){
 	Response.Redirect("control.asp");
 }
+require("status");
 %>
-<div class="tpl-space fn-clear">
-	<div class="login-area">
-    	<ul class="tabs">
-        	<li class="login-form">
-            	<div class="plaim-zone">
-                	<div class="password-area">
-                    	<form action="server/login.asp" method="post">
-                            <div class="word-tip"><span class="iconfont">&#226;</span> 请输入密码后登入【第一次登入密码为"admin888"，请登入后修改！】</div> 
-                            <input type="password" class="text" value="" placeholder="请输入密码..." name="password" />
-                            <div class="login-submit"><input type="submit" value="登录" class="submit tpl-button-blue" /></div>
-                        </form>
+    <div class="login-box ui-wrapshadow">
+    	<div class="login-user fn-clear">
+            <form action="server/login.asp" method="post">
+                <div class="imgs fn-left"><img src="<%=config.user.photo%>/50"></div>
+                <div class="action fn-left">
+                    <div class="name"><%=config.user.name%></div>
+                    <div class="put">
+                        <input type="password" value="" placeholder="请输入密码.." name="password" class="pass" />
+                        <input type="submit" value="" class="submit" />
                     </div>
                 </div>
-            </li>
-            <!--<li class="login-sending">sending</li>
-            <li class="login-success">success</li>
-            <li class="login-error">error</li>-->
-        </ul>
+            </form>
+        </div>
+        <div class="login-info">正在验证密码..请稍后!</div>
     </div>
-</div>

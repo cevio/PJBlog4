@@ -1,41 +1,28 @@
 @charset "utf-8";
 /* CSS Document */
 
-.theme-zone{ padding:20px; }
-.theme-current{ padding:0px 0px 10px 0px; border-bottom:1px dashed #ddd;}
-.theme-current .theme-priview{ margin-right:20px;}
-.theme-current .theme-priview img{ padding:2px; border:1px solid #ddd; border-radius:4px;}
-.theme-current .theme-info{ width:400px; border-right: 1px solid #ddd; margin-right:20px;}
-.theme-current .theme-info .theme-title{ height:30px; line-height:30px; font-weight:bold; color:#666; }
-.theme-current .theme-info .theme-user{ color:#999; margin-bottom:5px;}
-.theme-current .theme-info .theme-info-items{ color:#666; margin-top:5px;}
-.theme-current .theme-info .theme-info-items span{ font-weight:bold}
-.theme-current .theme-info .theme-action a{ margin-right:10px;}
-.theme-current .theme-message{ width:360px; color:#666;}
-.theme-current .theme-message span.strong{ font-weight:bold;}
-.theme-style-list{}
-.theme-style-list ul{ padding:5px 10px; border-bottom:1px solid #ddd;}
-.theme-style-list ul li{ float:left; margin-right:10px; width:40px; height:40px; border:1px solid #fff; padding:1px; border-radius:3px; cursor:pointer; margin-bottom:8px;}
-.theme-style-list ul li img{ width:40px; height:40px; border-radius:3px;}
-.theme-style-list ul li.current{ border:1px solid #52A152;}
-.theme-style-list .theme-style-list-warn{ height:30px; line-height:30px; color:#666;}
-.theme-style-list .theme-style-list-warn span{ font-weight:bold;}
+.theme-list{
 
-.theme-other{}
-.theme-other .theme-list{}
-.theme-other .theme-list li{ float:left; width:459px; margin-bottom:20px; height:106px; overflow:hidden;}
-.theme-other .theme-list li .list-area:hover{ background:#efefef; border-radius:4px; cursor:pointer;}
-.theme-other .theme-list li .list-area{ width:440px;}
-.theme-other .theme-list li .list-area .list-priview{ width:100px; height:100px; padding:2px; border:1px solid #ddd; border-radius:4px; float:left; margin-right:20px;}
-.theme-other .theme-list li .list-area .list-priview img{ width:100px; height:100px; border-radius:4px;}
-.theme-other .theme-list li .list-area .list-info{ width:310px; float:left; color:#666;}
-.theme-other .theme-list li .list-area .list-info .list-info-title{ height:30px; line-height:30px; width:270px; font-weight:bold;}
-.theme-other .theme-list li .list-area .list-info .list-info-msg{ width:310px; height:54px; overflow:hidden; color:#999;}
-.theme-other .theme-list li .list-area .list-info .list-info-action{}
-.theme-other .theme-list li .list-area .list-info .list-info-action a{ margin-right:10px; float:left;}
-.theme-other .theme-list li .list-area .list-info .list-info-action a span{ float:left;}
-.theme-other .theme-list li .list-area .list-info .list-info-action a span.iconfont{ display:block; margin-right:3px;}
-.theme-other .theme-list li .list-area .list-info .list-info-action a span.icontext{ height: 24px; line-height:24px;}
+}
 
-.themeStyleSetZone{ background:#fff;  border:1px solid #ddd; position:absolute;}
-.themeStyleSetZone .themeStyleSetZoneContent{padding:20px;}
+.theme-list li{
+	width: 220px;
+	height: 190px;
+	background-color: #fff;
+	margin: 0px 20px 30px 0px;
+	float: left;
+	display: block;
+}
+
+.list-zone{ padding: 10px;}
+
+.theme-list li .data-pic-view{
+	width: 200px;
+	height: 150px;
+	overflow: hidden;
+}
+
+.theme-list li .data-pic-view img{ 
+	width: 200px;
+	border-radius: 3px;
+}

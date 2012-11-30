@@ -1,6 +1,20 @@
 @charset "utf-8";
 /* CSS Document */
+.long{ width:400px;}
+.longer{ width:500px;}
+.short{ width:200px;}
+.shorter{ width:50px;}
 
-.globalconfigure-zone{ padding:20px 30px;}
-.globalconfigure-zone .submit-area{ padding:0px 20px;}
-.globalconfigure-zone .submit-area .tpl-button-blue{ padding:5px 20px; color:#fff;}
+.configure-list{ 
+	padding:10px 15px;
+	margin-bottom:20px;
+	width:90%;
+}
+.configure-list legend{ 
+	font-size:14px;
+	height:30px;
+	font-size:14px;
+}
+
+.configure-list table td{ padding:10px;}
+.configure-list .info{ color:#999; }
