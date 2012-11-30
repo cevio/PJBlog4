@@ -1,0 +1,52 @@
+@charset "utf-8";
+/* CSS Document */
+
+.setuped-list{}
+.setuped-list li{
+	margin:0px 0px 20px 0px;
+}
+.setuped-list li .pic{
+	padding:5px;
+	background:#fff;
+	width:80px;
+	height:80px;
+}
+.setuped-list li .pic img{
+	width:80px;
+	height:80px;
+}
+.setuped-list li .info{
+	padding-left:110px;
+}
+
+.setuped-list li:hover .info{
+	background-color: #fff;
+	border-radius:3px;
+	box-shadow:1px 1px 5px rgba(0, 0, 0, .097);
+}
+.setuped-list li .info .titles{
+	height:30px;
+	line-height:30px;
+	font-size:14px;
+}
+.setuped-list li .info .msg{
+	width:500px;
+	height:20px;
+	line-height:20px;
+}
+.setuped-list li .info .author{
+	height:20px;
+	line-height:20px;
+}
+.setuped-list li .info .tools{
+	height:20px;
+	line-height:20px;
+}
+.setuped-list li .info .tools a{
+	margin-right:10px;
+}
+
+.activing:link,
+.activing:visited{
+	color:#CF4467!important;
+}

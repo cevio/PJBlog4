@@ -11,6 +11,7 @@ define(["assets/js/core/jQuery"], function(){
 	config.map("tabs", "assets/js/core/tabs");
 	config.map("easing", "assets/js/core/jQuery.easing.1.3");
 	config.map("article", "assets/js/article");
+	config.map("tips", "assets/js/lib/tips/tips");
 	
 	config.ajaxUrl = { assets: {}, server: {} }
 	

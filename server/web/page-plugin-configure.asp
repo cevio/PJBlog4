@@ -21,9 +21,15 @@
 				}
 			});
 %>
-<div class="tpl-space fn-clear">
-    <div class="pconfig-zone">
-    	<h3><span class="iconfont">&#367;</span> 插件高级应用 - <%=pname%></h3>
+<div class="ui-position fn-clear">
+  <div class="fn-left ui-position-title">插高级应用中心 - <%=pname%></div>
+  <div class="fn-right ui-position-tools">
+  	<a href="?p=plugin">已安装插件</a> 
+    <a href="?p=plugin&t=list">未安装插件</a> 
+    <a href="?p=plugin&t=online">在线插件</a>
+  </div>
+</div>
+<div class="ui-context">
 			<%
             if ( pstatus ){
                 config.plugin = {};
@@ -52,16 +58,15 @@
 <%
                 include(config.plugin.folder + "/configure.asp");
             }else{
-                console.log('<div style="padding:30px;">插件已被停用</div>');
+                console.log("插件已被停用");
             }
             %>
-    </div>
 </div>
 <%
 		}else{
-			console.log('<div class="tpl-space fn-clear"><div class="plugin-zone">错误的插件ID</div></div>');
+			console.log("错误的插件ID");
 		}
 	}else{
-		console.log('<div class="tpl-space fn-clear"><div class="plugin-zone">数据库连接失败</div></div>');
+		console.log("数据库连接失败");
 	}
 %>

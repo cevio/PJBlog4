@@ -101,7 +101,7 @@
 <script language="javascript">
 require(['assets/js/config'], function( custom ){
 	if ( custom.status === true ){
-		custom.load('assets/js/page-<%=checkStatusAndCustomPage()%>');
+		custom.load(['assets/js/page-<%=checkStatusAndCustomPage()%>', 'tips']);
 	}else{
 		if ( $.browser.msie ){
 			alert("Getting Config File Error.");

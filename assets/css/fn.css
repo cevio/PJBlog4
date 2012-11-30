@@ -52,3 +52,10 @@
 .fn-rightspace{
 	margin-right: 10px;
 }
+
+
+.fn-textoverhide{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}

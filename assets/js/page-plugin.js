@@ -15,22 +15,25 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 		$(".action-setup").on("click", function(){
 			if ( setuping === false ){
 				setuping = true;
-				$(this).html('<span class="iconfont">&#409;</span> <span class="icontext">安装进行中..</span>').find(".iconfont").addClass("sending");
-				var folder = $(this).attr("data-fo"), _this = this;
+				$(this).addClass("activing").text('安装进行中..');
+				var folder = $(this).attr("data-fo"), 
+					_this = this;
 				
 				$.getJSON(config.ajaxUrl.server.setupPlugin, {fo: folder}, function( jsons ){
 					setuping = false;
 					if ( jsons.success ){
-						$(_this).removeClass("sending").html('<span class="iconfont">&#379;</span> <span class="icontext">安装成功</span>');
+						$(_this).removeClass("activing").text('安装成功');
 						$(_this).off("click");
-						setTimeout(function(){ window.location.reload(); }, 1000);
+						if ( confirm("是否需要切换到已安装插件页面？") ){
+							setTimeout(function(){ 
+								window.location.href = "?p=plugin";
+							}, 500);
+						}
 					}else{
-						$(_this).removeClass("sending").html('<span class="iconfont">&#409;</span> <span class="icontext">安装</span>');
-						popUpTips(jsons.error);
+						$(_this).removeClass("activing").text('安装');
+						//popUpTips(jsons.error);
 					}
 				});
-			}else{
-				popUpTips("正在安装中，请等待安装完毕！");
 			}
 		});
 	}
@@ -88,22 +91,20 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 			var id = $(this).attr("data-id"),
 				_this = this;
 				
-				$(this).find(".icontext").text("正在停用..");
-				$(this).find(".iconfont").addClass("sending");
+				$(this).addClass("activing").text("正在停用..");
 				
 			$.getJSON(config.ajaxUrl.server.pluginStop, {id: id}, function(jsons){
 				if ( jsons.success ){
-					$(_this).find(".icontext").text("插件已成功停用");
-					$(_this).find(".iconfont").removeClass("sending");
+					$(_this).removeClass("activing").text("插件已成功停用");
 					
 					setTimeout(function(){
 						$(_this).removeClass("action-stop")
 								.addClass("action-active")
-								.find(".icontext")
 								.text("启用");
-					}, 1000);
+					}, 500);
 				}else{
-					popUpTips(jsons.error);
+					$(_this).removeClass("activing").text("停用");
+					// popUpTips(jsons.error);
 				}
 			});
 		});
@@ -114,22 +115,20 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 			var id = $(this).attr("data-id"),
 				_this = this;
 				
-				$(this).find(".icontext").text("正在启用..");
-				$(this).find(".iconfont").addClass("sending");
+				$(this).addClass("activing").text("正在启用..");
 				
 			$.getJSON(config.ajaxUrl.server.pluginActive, {id: id}, function(jsons){
 				if ( jsons.success ){
-					$(_this).find(".icontext").text("插件已成功启用");
-					$(_this).find(".iconfont").removeClass("sending");
+					$(_this).removeClass("activing").text("插件已成功启用");
 					
 					setTimeout(function(){
 						$(_this).removeClass("action-active")
 								.addClass("action-stop")
-								.find(".icontext")
 								.text("停用");
-					}, 1000);
+					}, 500);
 				}else{
-					popUpTips(jsons.error);
+					$(_this).removeClass("activing").text("启用");
+					// popUpTips(jsons.error);
 				}
 			});
 		});
@@ -140,17 +139,22 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 			var id = $(this).attr("data-id"),
 				_this = this;
 				
-				$(this).find(".icontext").text("正在卸载..");
-				$(this).find(".iconfont").addClass("sending");
+				$(this).addClass("activing").text("正在卸载..");
 				
 			$.getJSON(config.ajaxUrl.server.pluginUnInstall, {id: id}, function(jsons){
 				if ( jsons.success ){
-					$(_this).find(".icontext").text("已卸载");
-					$(_this).find(".iconfont").removeClass("sending");
+					$(_this).removeClass("activing").text("已卸载");
 					$(_this).off("click");
-					setTimeout(function(){ window.location.reload() }, 1000);
+					setTimeout(function(){ 
+						$(_this).parents("li:first").animate({
+							opacity: 0
+						}, "fast", function(){
+							$(this).remove();
+						});
+					}, 1000);
 				}else{
-					popUpTips(jsons.error);
+					$(this).removeClass("activing").text("卸载");
+					//popUpTips(jsons.error);
 				}
 			});
 		});
@@ -159,14 +163,6 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 	return {
 		init: function(){
 			$(function(){
-				$(".tabs").tabs({
-					triggerDom : ".tabs-trigger",
-					contentDom : ".tabs-content",
-					event : "click",
-					currentClass : "current",
-					current : 0,
-					effect : "horizontalSlip"
-				});
 				init_setup();
 				init_configSetting();
 				init_pluginStop();

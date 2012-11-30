@@ -145,6 +145,24 @@
 	padding-bottom: 0px;
 }
 
+.ui-transition{
+	-webkit-transition-duration:.6s;
+	-webkit-transition-property:all;
+	-webkit-transition-timing-function:ease-in-out;
+	-moz-transition-duration:.6s;
+	-moz-transition-property:all;
+	-moz-transition-timing-function:ease-in-out;
+	-ms-transition-duration:.6s;
+	-ms-transition-property:all;
+	-ms-transition-timing-function:ease-in-out;
+	-o-transition-duration:.6s;
+	-o-transition-property:all;
+	-o-transition-timing-function:ease-in-out;
+	transition-duration:.6s;
+	transition-property:all;
+	transition-timing-function:ease-in-out;
+}
+
 .ui-body .ui-nav .ui-nav-list ul li a span{
 	-webkit-transition-duration:.6s;
 	-webkit-transition-property:all;
@@ -363,8 +381,11 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 	background-position:-1px -181px;
 }
 
-.fn-textoverhide{
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
+.ui-context a:link,
+.ui-context a:visited{
+	color:#2ba09e;
+}
+
+.ui-context a:hover{
+	color:#CF4467;
 }

@@ -38,7 +38,7 @@
 	<%
 		if ( types === "list" ){
 			(function(){
-				console.log('<ul class="theme-list fn-clear">');
+				console.log('<ul class="theme-list">');
 				var lists = fso.collect("profile/themes", true);
 					for ( var listItem = 0 ; listItem < lists.length ; listItem++ ){
 						var listFolder = lists[listItem],
@@ -69,13 +69,42 @@
 										listXMLThemeVersion = "";
 									}
 									
+								var listXMLThemeAuthor = xml("themeAuthor", xmlCustomLoader.root, xmlCustomLoader.object);
+									if ( listXMLThemeAuthor.size() > 0 ){
+										listXMLThemeAuthor = listXMLThemeAuthor.text();
+									}else{
+										listXMLThemeAuthor = "";
+									}
+									
+								var listXMLThemeMail = xml("themeEmail", xmlCustomLoader.root, xmlCustomLoader.object);
+									if ( listXMLThemeMail.size() > 0 ){
+										listXMLThemeMail = listXMLThemeMail.text();
+									}else{
+										listXMLThemeMail = "";
+									}
+								
+								var listXMLThemePubDate = xml("themePublishDate", xmlCustomLoader.root, xmlCustomLoader.object);
+									if ( listXMLThemePubDate.size() > 0 ){
+										listXMLThemePubDate = listXMLThemePubDate.text();
+									}else{
+										listXMLThemePubDate = "";
+									}
+									
+								var listXMLThemeWebsite = xml("themeWebSite", xmlCustomLoader.root, xmlCustomLoader.object);
+									if ( listXMLThemeWebsite.size() > 0 ){
+										listXMLThemeWebsite = listXMLThemeWebsite.text();
+									}else{
+										listXMLThemeWebsite = "";
+									}
+									
 		%>
-        						<li class="ui-wrapshadow">
-                                    <div class="list-zone">
-                                        <div class="data-pic-view"><img src="profile/themes/<%=listFolder%>/priview.jpg" /></div>
-                                    </div>
-                                    <div class="info">
-                                    	<div class="name fn-textoverhide"><%=listXMLThemeName%> ( <%=listXMLThemeVersion%> )</div>
+        						<li class="fn-clear">
+                                	<div class="theme-list-preview ui-wrapshadow fn-left"><img src="profile/themes/<%=listFolder%>/priview.jpg" /></div>
+                                    <div class="theme-list-info ui-transition">
+                                    	<div class="name"><%=listXMLThemeName%> <span>( <%=listXMLThemeVersion%> ) : { mark: <%=listFolder%> }</span></div>
+                                        <div class="date">时间： <%=listXMLThemePubDate%></div>
+                                        <div class="author">作者： <a href="mailto:<%=listXMLThemeMail%>"><%=listXMLThemeAuthor%></a> ( <a href="<%=listXMLThemeWebsite%>" target="_blank"><%=listXMLThemeWebsite%></a> ) </div>
+                                        <div class="info fn-textoverhide">详细： <%=listXMLThemeInfo%></div>
                                         <div class="action">
                                         	<a href="javascript:;" class="fn-clear">分享</a> 
                                             <a href="javascript:;" class="fn-clear action-setup" data-id="<%=listFolder%>">安装</a> 
@@ -165,7 +194,7 @@
 									for ( var stylesItem = 0 ; stylesItem < styles.length ; stylesItem++ ){
 										var _current = styles[stylesItem] === theme.style ? "current" : "";
 								%>
-								<li data-id="<%=styles[stylesItem]%>" class="ui-wrapshadow fn-left <%=_current%>"><img src="profile/themes/<%=theme.name%>/style/<%=styles[stylesItem]%>/priview.jpg" /></li>
+								<li data-id="<%=styles[stylesItem]%>" class="ui-wrapshadow fn-left <%=_current%>"><img src="profile/themes/<%=theme.name%>/style/<%=styles[stylesItem]%>/priview.jpg" title="This style name is <%=styles[stylesItem]%>" /></li>
 								<%
 									}
 								%>
@@ -184,6 +213,6 @@
 </div>
 <%
 	}else{
-		console.log('<div class="tpl-space fn-clear"><div class="theme-zone">数据库连接失败</div></div>');
+		console.log("数据库连接失败");
 	}
 %>
