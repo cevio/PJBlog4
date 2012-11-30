@@ -6,23 +6,105 @@
 }
 
 .theme-list li{
-	width: 220px;
-	height: 190px;
+	width: 100px;
 	background-color: #fff;
 	margin: 0px 20px 30px 0px;
 	float: left;
 	display: block;
+	padding:5px;
 }
 
-.list-zone{ padding: 10px;}
+.list-zone{}
 
 .theme-list li .data-pic-view{
-	width: 200px;
-	height: 150px;
+	width: 100px;
+	height: 100px;
 	overflow: hidden;
 }
 
+.theme-list li .info{
+}
+
+.theme-list li .info .name{
+	 text-align:center;
+	 height:30px;
+	 width:100px;
+	 margin-top:10px;
+}
+
+.theme-list li .info .action{ 
+	text-align:center;
+}
+.theme-list li .info .action a{
+	margin-right:4px;
+}
+
 .theme-list li .data-pic-view img{ 
-	width: 200px;
+	width: 100px;
+	height:100px;
 	border-radius: 3px;
+}
+
+.currentTheme{
+	margin-bottom:20px;
+}
+
+.ui-context a:link,
+.ui-context a:visited{
+	color:#2ba09e;
+}
+
+.ui-context a:hover{
+	color:#CF4467;
+}
+
+.currentTheme .theme-preview{
+	background:#fff;
+	width:100px;
+	height:100px;
+	padding:5px;
+	margin-right:15px;
+}
+
+.currentTheme .theme-preview img{
+	width:100px;
+	height:100px;
+	border-radius:3px;
+}
+.currentTheme .theme-info{}
+.currentTheme .theme-info .name{
+	height:30px;
+	line-height:30px;
+	font-size:14px;
+}
+.currentTheme .theme-info .version{
+	height:20px; line-height:20px;
+}
+.currentTheme .theme-info .url{
+	height:20px; line-height:20px;
+}
+.currentTheme .theme-info .infos{
+	line-height:20px;
+	margin-top:10px;
+}
+
+.current-theme-style{}
+.current-theme-style .title{
+	height:30px;
+	line-height:30px;
+	border-bottom:1px solid #ddd;
+}
+.current-theme-style .list{
+	margin-top:10px;
+}
+
+.current-theme-style .list li{
+	padding:5px;
+	background-color:#fff;
+	cursor:pointer;
+	margin:0px 10px 10px 0px;
+}
+
+.current-theme-style .list li.current{
+	background-color:#CF4467;
 }

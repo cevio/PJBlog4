@@ -87,6 +87,17 @@
 			include("server/web/page-login");
 		}
 	%>
+    <div class="ui-footer">
+    	<div class="ui-wrapper">
+        	<div class="ui-links">
+            	<a href="http://webkits.cn" target="_blank">Evio</a> | 
+                <a href="http://www.pjhome.net" target="_blank">PuterJam</a> | 
+                <a href="http://bbs.pjhome.net" target="_blank">BBS</a> | 
+                <a href="http://webkits.cn" target="_blank">Support</a>
+            </div>
+            <div class="ui-copyright">Copyright © 2004-2012 PJHOME LLC. All screenshots © their respective owners.<br />Evio in China, PuterJam in China.</div>
+        </div>
+    </div>
 <script language="javascript">
 require(['assets/js/config'], function( custom ){
 	if ( custom.status === true ){

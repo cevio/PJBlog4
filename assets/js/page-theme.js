@@ -31,24 +31,24 @@ define(['overlay'], function( require, exports, module ){
 				}
 			}
 		}).on("setup.start", function(){
-			$(this).find(".iconfont").addClass("sending");
-			$(this).find(".icontext").text("安装进行中..");
+			/*$(this).find(".iconfont").addClass("sending");
+			$(this).find(".icontext").text("安装进行中..");*/
 		}).on("setup.success", function(){
-			$(this).find(".iconfont").removeClass("sending");
+			/*$(this).find(".iconfont").removeClass("sending");
 			$(this).find(".icontext").text("安装成功");
 			setTimeout(function(){
 				window.location.reload();
-			}, 2000);
+			}, 2000);*/
 		}).on("setup.fail", function(event, msg){
-			popUpTips(msg);
+			/*popUpTips(msg);
 			$(this).find(".iconfont").removeClass("sending");
-			$(this).find(".icontext").text("安装");
+			$(this).find(".icontext").text("安装");*/
 		});
 	}
 	
 	function init_themeStyleSet(){
 		var setting = false;
-		$(".theme-style-list ul li").on("click", function(){
+		$(".current-theme-style .list li").on("click", function(){
 			var _this = this;
 			if ( setting === false ){
 				setting = true;
@@ -57,7 +57,7 @@ define(['overlay'], function( require, exports, module ){
 					$.getJSON(config.ajaxUrl.server.setupThemeStyle, { id: id }, function(jsons){
 						setting = false;
 						if ( jsons && jsons.success ){
-							$(".theme-style-list ul li").removeClass("current");
+							$(".current-theme-style .list li").removeClass("current");
 							$(_this).addClass("current");
 						}else{
 							popUpTips(jsons.error);

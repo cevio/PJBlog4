@@ -86,6 +86,37 @@
 
 .ui-body{
 	margin-top: 40px;
+	margin-bottom:40px;
+	min-height:500px;
+}
+
+.ui-footer{
+	border-top:1px solid #ddd;
+	background:#fff;
+	padding:40px 0px;
+}
+.ui-footer .ui-links{
+	color:#999;
+	height:30px; line-height:30px;
+}
+
+.ui-footer .ui-links a{
+	margin-right:10px;
+	margin-left:10px;
+}
+
+.ui-footer .ui-wrapper{ margin-top:0px;}
+
+.ui-footer .ui-copyright{
+	color:#999;
+	padding-left:10px;
+}
+
+.ui-footer .ui-links a:link, 
+.ui-footer .ui-links a:visited{
+	color:#777;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size:12px;
 }
 
 .ui-body .ui-nav{
@@ -166,6 +197,30 @@
 	line-height: 30px;
 	font-size: 14px;
 	color: #999;
+}
+
+.ui-position .ui-position-tools{
+}
+
+.ui-position .ui-position-tools a{
+	margin-right:10px;
+}
+
+.ui-position .ui-position-tools a:link,
+.ui-position .ui-position-tools a:visited{
+	color: #000;
+	background-image: url(../img/icon-meetup-2x.png);
+	background-repeat:no-repeat;
+	background-position:0px 0px;
+	background-size:16px 50px;
+	padding-left:20px;
+}
+
+.ui-position .ui-position-tools a:hover,
+.ui-position .ui-position-tools a.active:link,
+.ui-position .ui-position-tools a.active:visited{
+	color:#CF4467;
+	background-position:0px -34px;
 }
 
 .ui-context{
@@ -279,7 +334,9 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 	font-size: 12px;
 	height: auto;
 	padding: 2px 10px 3px 10px;
-	background: url(../img/buttons.png) -1px -1px no-repeat !important;
+	background-image:url(../img/buttons.png);
+	background-repeat:no-repeat;
+	background-position:-1px -1px;
 	margin: 0;
 	color: #fff !important;
 	text-shadow: none;
@@ -299,4 +356,15 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 	-webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 	-moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 	box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+	cursor:pointer;
+}
+
+.button:hover{
+	background-position:-1px -181px;
+}
+
+.fn-textoverhide{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
