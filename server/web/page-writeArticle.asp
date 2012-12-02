@@ -104,6 +104,32 @@ var articleCut = <%=articleCuts%>,
 	uploadmediatype = "<%=uploadmediatype%>";
 </script>
 
+<div class="ui-position fn-clear">
+  <div class="fn-left ui-position-title"><%=( mode === "add" ? "新建日志" : "编辑日志" )%></div>
+  <div class="fn-right ui-position-tools"></div>
+</div>
+<div class="ui-context">
+	<form action="<%=actionURL%>" method="post" style="margin:0; padding:0;">
+        <input type="hidden" value="<%=id%>" name="id" />
+        <input type="hidden" value="<%=log_category%>" name="log_category" />
+        <input type="hidden" value="<%=log_category%>" name="log_oldCategory" />
+        <textarea name="log_shortcontent" style="position:absolute; top:-99999px; left:-99999px;"></textarea>
+        <div class="article fn-clear">
+        	<div class="fn-right action-zone">324</div>
+        	<div class="write-zone">
+            	<div class="log-title"><input type="text" value="<%=log_title%>" name="log_title" placeholder="日志标题" /></div>
+                <div class="log-content"><textarea name="log_content"><%=log_content%></textarea></div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+<hr />
 <div class="tpl-space fn-clear">
 	<div class="article-zone">
     	<div class="write-area">

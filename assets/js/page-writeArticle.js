@@ -155,8 +155,7 @@ define(['editor', 'form', 'overlay', 'upload'], function(require, exports, modul
 			upFlashUrl: config.ajaxUrl.server.editorUpload,
 			upFlashExt: uploadswftype,
 			upMediaUrl: config.ajaxUrl.server.editorUpload,
-			upMediaExt: uploadmediatype,
-			debug:true
+			upMediaExt: uploadmediatype
 		});
 	}
 	

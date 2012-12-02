@@ -31,7 +31,7 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 						}
 					}else{
 						$(_this).removeClass("activing").text('安装');
-						//popUpTips(jsons.error);
+						popUpTips(jsons.error);
 					}
 				});
 			}
@@ -69,7 +69,7 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 													$(_this).find(".close").trigger("click");
 												}, 1000);
 											}else{
-												alert(datas.error);
+												popUpTips(datas.error);
 											}
 										},
 										error: function(){
@@ -104,7 +104,7 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 					}, 500);
 				}else{
 					$(_this).removeClass("activing").text("停用");
-					// popUpTips(jsons.error);
+					popUpTips(jsons.error);
 				}
 			});
 		});
@@ -128,7 +128,7 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 					}, 500);
 				}else{
 					$(_this).removeClass("activing").text("启用");
-					// popUpTips(jsons.error);
+					popUpTips(jsons.error);
 				}
 			});
 		});
@@ -154,7 +154,7 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 					}, 1000);
 				}else{
 					$(this).removeClass("activing").text("卸载");
-					//popUpTips(jsons.error);
+					popUpTips(jsons.error);
 				}
 			});
 		});

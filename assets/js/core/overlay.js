@@ -57,7 +57,7 @@ define(function(require, exports, module){
 		options = $.extend({
 			mask: true,
 			opacity: .5,
-			background: "#000",
+			background: "#fff",
 			content: '',
 			effect: 'fadeIn',
 			callback: null
@@ -74,7 +74,7 @@ define(function(require, exports, module){
 		}
 		
 		var $overlayer = $(document.createElement("div"));
-			$overlayer.appendTo("body").addClass("fixed").html(options.content);
+			$overlayer.appendTo("body").addClass("fixed").addClass("ui-wrapshadow").html(options.content);
 			
 		function getTL(){
 			var left = ($(window).width() - $overlayer.outerWidth()) / 2;
@@ -112,12 +112,12 @@ define(function(require, exports, module){
 	}
 	
 	$.dialog = function( options ){
-		options.content = '<div class="dialog fn-clear"><div class="title fn-clear"><div class="fn-left mtitle">提示</div><a href="javascript:;" class="fn-right close"><span class="iconfont">&#223;</span></a></div><div class="content">' + options.content + '</div><div class="bom"><input type="button" value="确定" class="tpl-button-blue close" /></div></div>';
+		options.content = '<div class="dialog fn-clear"><div class="title fn-clear"><div class="fn-left mtitle">提示</div><a href="javascript:;" class="fn-right close">关闭</a></div><div class="content">' + options.content + '</div><div class="bom"><input type="button" value="确定" class="tpl-button-blue close" /></div></div>';
 		$.overlay(options);
 	}
 	
 	$.dialogSet = function( options ){
-		options.content = '<div class="dialog fn-clear"><form action="' + options.action + '" method="post" style="margin:0; padding:0;"><div class="title fn-clear"><div class="fn-left mtitle">设置</div><a href="javascript:;" class="fn-right close"><span class="iconfont">&#223;</span></a></div><div class="content">' + options.content + '</div><div class="bom"><input type="submit" value="保存" class="tpl-button-blue" /></div></form></div>';
+		options.content = '<div class="dialog fn-clear"><form action="' + options.action + '" method="post" style="margin:0; padding:0;"><div class="title fn-clear"><div class="fn-left mtitle">设置</div><a href="javascript:;" class="fn-right close">关闭</a></div><div class="content">' + options.content + '</div><div class="bom"><input type="submit" value="保存" class="button" /></div></form></div>';
 		$.overlay(options);
 	}
 	

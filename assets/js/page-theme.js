@@ -44,6 +44,7 @@ define(['overlay'], function( require, exports, module ){
 			})
 			.on("setup.fail", function(event, msg){
 				$(this).removeClass("activing").text("安装");
+				popUpTips(msg);
 			});
 	}
 	
@@ -92,7 +93,7 @@ define(['overlay'], function( require, exports, module ){
 									$(this).remove();
 								});
 							}else{
-								//popUpTips(jsons.error);
+								popUpTips(jsons.error);
 								$(_this).removeClass("activing").text("删除");
 							}
 						});

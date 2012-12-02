@@ -5,7 +5,7 @@
 		
 		var j = req.query.j, callbacks = {};
 		
-		var id = http.get("id");
+		var id = req.query.id;
 			
 		if ( !id || id.length === 0 ){
 			return {
@@ -194,6 +194,50 @@
 					return {
 						success: false,
 						error: e.message
+					}
+				}
+			}else{
+				return {
+					success: false,
+					error: "数据库连接失败"
+				}
+			}
+		}
+		
+		callbacks.searchuser = function(){
+			var dbo = require("DBO"),
+				connecte = require("openDataBase");
+
+			if ( connecte === true ){
+				var keyword = req.form.keyword;
+
+				if ( keyword.length > 0 ){
+					var ret = [];
+					
+					dbo.trave({
+						conn: config.conn,
+						sql: "Select * From blog_member Where nickName like '%" + keyword + "%' Order By logindate DESC",
+						callback: function(rs){
+							this.each(function(){
+								ret.push({
+									photo: this("photo").value,
+									nickname: this("nickName").value,
+									isadmin: this("isAdmin").value,
+									canlogin: this("canlogin").value,
+									id: this("id").value
+								});
+							});
+						}
+					});
+					
+					return {
+						success: true,
+						data: ret
+					}
+				}else{
+					return {
+						success: false,
+						error: "参数错误"
 					}
 				}
 			}else{
