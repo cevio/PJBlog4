@@ -30,7 +30,7 @@ define(["assets/js/core/jQuery"], function(){
 	config.ajaxUrl.server.setupTheme = "server/theme.asp?j=setup";
 	config.ajaxUrl.server.setupThemeStyle = "server/theme.asp?j=setupstyle";
 	config.ajaxUrl.server.setupThemeDelete = "server/theme.asp?j=themedelete";
-	config.ajaxUrl.server.editorUpload = "server/upload.asp?immediate=1";
+	config.ajaxUrl.server.editorUpload = "server/upload.asp?immediate=1&uid=" + userid + "&hash=" + userhashkey;
 	config.ajaxUrl.server.memDelete = "server/member.asp?j=mdelete";
 	config.ajaxUrl.server.memForce = "server/member.asp?j=mforce";
 	config.ajaxUrl.server.memUnForce = "server/member.asp?j=munforce";

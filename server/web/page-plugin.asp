@@ -46,9 +46,7 @@
 					conn: config.conn,
 					sql: "Select * From blog_plugin Order By pluginstatus Desc",
 					callback: function( rs ){
-						if ( rs.Bof || rs.Eof ){
-							console.log("没有已安装的插件");
-						}else{
+						if ( rs.Bof || rs.Eof ){}else{
 							this.each(function(){
 								pluginMarkArray.push(this("pluginmark").value);
 							});

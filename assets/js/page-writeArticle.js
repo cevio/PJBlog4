@@ -6,21 +6,15 @@ define(['editor', 'form', 'overlay', 'upload'], function(require, exports, modul
 	function init_choose_cates(){
 		
 		if ( $(".choose-current").size() > 0 ){
-			$(".click-cate").text($(".choose-current").children().eq(0).text());
+			$(".ui-position-tools").text($(".choose-current td:eq(" + $(".choose-current").attr("data-eq") + ")").text());
 		}
 		
 		$("body").on("click", ".choose-cate", function(){
-			$(".items-bar").removeClass("choose-current");
-			$(this).parents(".items-bar:first").addClass("choose-current");
+			var trParent = $(this).parents("tr:first");
+			$(".side-category tr").removeClass("choose-current");
+			trParent.addClass("choose-current");
 			$("input[name='log_category']").val($(this).attr("data-id"));
-			$(".click-cate").text($(this).parent().prev().prev().text());
-			$(".log-cate").slideUp("fast", function(){
-				$(".log-cate").hide();
-			});
-		});
-		
-		$(".click-cate").on("click", function(){
-			$(".log-cate").toggle();	
+			$(".ui-position-tools").text(trParent.find("td").eq(Number(trParent.attr("data-eq"))).text());
 		});
 	}
 	
@@ -71,7 +65,7 @@ define(['editor', 'form', 'overlay', 'upload'], function(require, exports, modul
 						tipPopUp("保存日志成功了。");
 						if ( $("form input[name='id']").val().length === 0 ) { 
 							$("form").resetForm();
-							$(".click-cate").text("请选择分类");
+							$(".ui-position-tools").text("请选择分类");
 							$(".choose-current").removeClass("choose-current");
 							$("input[name='log_category'], input[name='log_oldCategory']").val('');
 							$("#cover-img").attr("src", "_blank");
@@ -172,7 +166,7 @@ define(['editor', 'form', 'overlay', 'upload'], function(require, exports, modul
 			buttonText: "请选择封面图片",
 			uploader: config.ajaxUrl.server.editorUpload,
 			multi: false,
-			fileTypeExts: cons.join("") + "*.txt;",
+			fileTypeExts: cons.join(""),
 			onUploadSuccess: function(file, data, response){
 				var imgURL = $.parseJSON(data).msg.replace(/^\!/, "");
 				$("#cover-img").attr("src", imgURL);

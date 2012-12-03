@@ -3,21 +3,62 @@
 
 .article{}
 .write-zone{
-	margin-right:270px;
+	/*margin-right:270px;*/
 }
 .write-zone .log-title{
-	margin-bottom:20px;
+	margin-bottom:10px;
 }
 .write-zone .log-title input{
-	width:95%;
+	width:100%;
 	padding:5px inherit;
 	text-align:center;
 	color:#000;
+	border:none;
 }
 .write-zone textarea{
 	width:100%;
-	height:550px;
+	height:300px;
 }
 .action-zone{
 	width:250px;
+	display:none;
 }
+
+table.xheLayout{
+	border:0px;
+	border-radius:3px;
+	background-color:transparent;
+}
+table.xheLayout tr:first-child td{
+	border-radius:3px 3px 0 0;
+}
+
+.log-tools{ margin-top:20px;}
+.log-tools-title{ height:30px; line-height:30px; margin-top:10px;}
+.log-tools li{ width:50%; overflow:hidden; margin-bottom:10px;}
+.log-tools li.fn-left .content{ padding:0px 10px 0px 0px;}
+.log-tools li.fn-right .content{ padding:0px 0px 0px 10px;}
+.log-tools li .content .pannel{ background:#fff;}
+.log-tools li .content .pannel .title{ height:30px;}
+.log-tools li .content .pannel .title span{ display:block;  padding:0px 10px; background-color:#ddd; height:30px; line-height:30px; border-radius:3px 0px 3px 0px; color:#fff;}
+.log-tools li .content .pannel .zone{ padding:10px;}
+
+.side-category table{}
+.side-category table td{ text-align:left; padding:5px; border-top:1px dashed #eee;}
+.side-category table td.c{ text-align:center;}
+.side-category table tr:first-child td{ border-top:0px;}
+.side-category .zone{ padding:10px 30px;}
+
+.side-category tr.choose-current td{background-color:#f5f5f5;}
+.side-category tr.choose-current td:first-child{ background-color:#f5f5f5; border-radius:3px 0px 0px 3px;}
+.side-category tr.choose-current td:last-child{ background-color:#f5f5f5; border-radius:0px 3px 3px 0px;}
+
+.side-cover{}
+.side-cover .zone{}
+.side-cover .zone .imgs{ margin-right:10px; width:100px; height:100px; padding:2px; border:1px solid #ddd; border-radius:3px;}
+.side-cover .zone .imgs img{ width:100px; height:100px; border:none;border-radius:3px;}
+.side-cover .zone .actions{}
+.side-cover .zone .actions .ins{ height:30px; line-height:30px; margin-top:10px; margin-bottom:10px;}
+
+.side-tags .ins{ height:30px; line-height:30px;}
+.submit{ margin-top:10px;}

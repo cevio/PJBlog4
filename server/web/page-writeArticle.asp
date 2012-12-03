@@ -21,13 +21,12 @@
 					if ( ret.Bof || ret.Eof ){}else{
 						this.each(function(){
 		%>
-		<li class="second-bar-items">
-        	<div class="second-bar-items-area fn-clear items-bar<%=((log_category + "") === (this("id").value + "") ? " choose-current" : "")%>">
-                <div class="second-bar-items-name fn-left fn-wordWrap"><%=this("cate_name").value%></div>
-                <div class="second-bar-items-info fn-left fn-wordWrap"><%=this("cate_info").value%></div>
-                <div class="second-bar-items-action fn-left"><a href="javascript:;" class="choose-cate" data-id="<%=this("id").value%>">选定</a></div>
-            </div>
-        </li>
+        <tr class="<%=((log_category + "") === (this("id").value + "") ? "choose-current" : "")%>" data-eq="2">
+        	<td>2: </td>
+            <td></td>
+            <td><%=this("cate_name").value%></td>
+            <td class="c"><a href="javascript:;" data-id="<%=this("id").value%>" class="choose-cate">选定</a></td>
+        </tr>
 		<%
 						});
 					}
@@ -101,7 +100,9 @@ var articleCut = <%=articleCuts%>,
 	uploadimagetype = "<%=uploadimagetype%>",
 	uploadlinktype = "<%=uploadlinktype%>",
 	uploadswftype = "<%=uploadswftype%>",
-	uploadmediatype = "<%=uploadmediatype%>";
+	uploadmediatype = "<%=uploadmediatype%>",
+	userid = <%=config.user.id%>,
+	userhashkey = '<%=config.user.hashkey%>';
 </script>
 
 <div class="ui-position fn-clear">
@@ -113,42 +114,24 @@ var articleCut = <%=articleCuts%>,
         <input type="hidden" value="<%=id%>" name="id" />
         <input type="hidden" value="<%=log_category%>" name="log_category" />
         <input type="hidden" value="<%=log_category%>" name="log_oldCategory" />
+        <input type="hidden" value="<%=log_cover%>" name="log_cover" />
         <textarea name="log_shortcontent" style="position:absolute; top:-99999px; left:-99999px;"></textarea>
         <div class="article fn-clear">
-        	<div class="fn-right action-zone">324</div>
         	<div class="write-zone">
             	<div class="log-title"><input type="text" value="<%=log_title%>" name="log_title" placeholder="日志标题" /></div>
                 <div class="log-content"><textarea name="log_content"><%=log_content%></textarea></div>
             </div>
         </div>
-    </form>
-</div>
-
-
-
-
-
-
-<hr />
-<div class="tpl-space fn-clear">
-	<div class="article-zone">
-    	<div class="write-area">
-        	<form action="<%=actionURL%>" method="post" style="margin:0; padding:0;">
-            	<input type="hidden" value="<%=id%>" name="id" />
-                <textarea name="log_shortcontent" style="position:absolute; top:-99999px; left:-99999px;"></textarea>
-                <h3><span class="iconfont">&#367;</span> <%console.log( mode === "add" ? "新建日志" : "编辑日志" )%></h3>
-                <div class="write-zone">
-                	<!--标题以及分类选择-->
-                    <div class="log-title fn-clear maginbom">
-                    	<div class="fn-left title-name"><input type="text" value="<%=log_title%>" name="log_title" placeholder="日志标题" /></div>
-                        <div class="fn-right category-name tpl-button-green"><a href="javascript:;" class="fn-wordWrap click-cate">选择分类</a></div>
-                    </div>
-                    
-                    <!--分类选择-->
-                    <div class="log-cate maginbom">
-                    	<input type="hidden" value="<%=log_category%>" name="log_category" />
-                        <input type="hidden" value="<%=log_category%>" name="log_oldCategory" />
-                        <ul class="first-bar">
+     
+        <ul class="fn-clear log-tools">
+        	<li class="fn-left side-category">
+            	<div class="content">
+                	<div class="pannel ui-wrapshadow">
+                    	<div class="title fn-clear">
+                        	<span class="fn-left">选择分类</span>
+                        </div>
+                        <div class="zone">
+                        	<table cellpadding="0" cellspacing="0" width="100%">
                         	<%
 								dbo.trave({
 									conn: config.conn,
@@ -157,68 +140,57 @@ var articleCut = <%=articleCuts%>,
 										if ( rs.Bof || rs.Eof ){}else{
 											this.each(function(){
 							%>
-                        	<li class="first-bar-items">
-                            	<div class="first-bar-items-area fn-clear items-bar<%=((log_category + "") === (this("id").value + "") ? " choose-current" : "")%>">
-                                    <div class="first-bar-items-name fn-left fn-wordWrap"><%=this("cate_name").value%></div>
-                                    <div class="first-bar-items-info fn-left fn-wordWrap"><%=this("cate_info").value%></div>
-                                    <div class="first-bar-items-action fn-left"><a href="javascript:;" class="choose-cate" data-id="<%=this("id").value%>">选定</a></div>
-                                </div>
-                                <ul class="second-bar">
-                                	<%getSecondDatas(rs("id").value)%>
-                                </ul>
-                            </li>
+                            	<tr class="<%=((log_category + "") === (this("id").value + "") ? "choose-current" : "")%>" data-eq="1">
+                                	<td>1: </td>
+                                	<td><%=this("cate_name").value%></td>
+                                    <td></td>
+                                    <td width="60" class="c"><a href="javascript:;" data-id="<%=this("id").value%>" class="choose-cate">选定</a></td>
+                                </tr>
+                                <%getSecondDatas(rs("id").value)%>
                             <%
 											});
 										}
 									}
 								});
 							%>
-                        </ul>
-                    </div>
-                    
-                    <!--内容书写-->
-                    <div class="log-content maginbom">
-                        <!--<div class="fn-clear head"><div class="tip-title fn-left">内容区域</div><div class="fn-right tags"><input type="text" value="<%=log_tags%>" name="log_tags" placeholder="标签..."></div></div>-->
-                        <textarea style="height:550px;" name="log_content"><%=log_content%></textarea>
-                    </div>
-               		<div class="tools-configure fn-clear">
-                    	<div class="fn-left tools-configure-left">
-                            <div class="sidepannel maginbom">
-                                <div class="leader-box">
-                                    <div class="heads fn-clear">
-                                        <div class="main-point fn-left">文章标签设置</div>
-                                        <div class="other-point fn-left"><a href="javascript:;">从库中选取标签</a></div>
-                                    </div>
-                                    <div class="bodys">
-                                        <div class="infos">标签填写以英文逗号或者空格分隔</div>
-                                        <input type="text" value="<%=log_tags%>" name="log_tags" placeholder="标签..." style="width:370px;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="fn-right tools-configure-right">
-                            <div class="sidepannel maginbom log-coverside">
-                                <div class="leader-box">
-                                    <div class="heads fn-clear">
-                                        <div class="main-point fn-left">日志封面</div>
-                                        <div class="other-point fn-left"><a href="javascript:;">从本站库中选取</a></div>
-                                    </div>
-                                    <div class="bodys fn-clear">
-                                    	<input type="hidden" value="<%=log_cover%>" name="log_cover" />
-                                        <div class="fn-left imgs"><img src="<%=log_cover%>" id="cover-img" /></div>
-                                        <div class="fn-left actions"><input type="file" id="upload" /></div>
-                                    </div>
-                                </div>
-                            </div>
+                            </table>
                         </div>
                     </div>
-                    
-                    <div class="log-actions"><input type="button" value="提交" class="tpl-button-blue log-submit" id="submit" /></div>
                 </div>
-            </form>
-        </div>
-    </div>
+            </li>
+            <li class="fn-right side-cover">
+            	<div class="content">
+                	<div class="pannel ui-wrapshadow">
+                    	<div class="title fn-clear">
+                        	<span class="fn-left">封面图片</span>
+                        </div>
+                        <div class="zone fn-clear">
+                        	<div class="fn-left imgs ui-wrapshadow"><img src="<%=log_cover%>" id="cover-img" /></div>
+                           	<div class="fn-left actions"><div class="ins">从服务器上选取已经存在的图片作为封面</div><input type="file" id="upload" /></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        
+        <ul class="fn-clear log-tools">
+        	<li class="fn-left side-tags">
+            	<div class="content">
+                	<div class="pannel ui-wrapshadow">
+                    	<div class="title fn-clear">
+                        	<span class="fn-left">标签设置</span>
+                        </div>
+                        <div class="zone">
+                        	<div class="ins">标签填写以英文逗号或者空格分隔</div>
+                        	<input type="text" value="<%=log_tags%>" name="log_tags" placeholder="标签..." style="width:370px;">
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        
+        <div class="submit"><input type="button" value="提交" class="button" id="submit" /></div>
+    </form>
 </div>
 <%
 	}else{
