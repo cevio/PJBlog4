@@ -65,7 +65,7 @@ define(['editor', 'form', 'overlay', 'upload'], function(require, exports, modul
 						tipPopUp("保存日志成功了。");
 						if ( $("form input[name='id']").val().length === 0 ) { 
 							$("form").resetForm();
-							$(".ui-position-tools").text("请选择分类");
+							$(".ui-position-tools").text("");
 							$(".choose-current").removeClass("choose-current");
 							$("input[name='log_category'], input[name='log_oldCategory']").val('');
 							$("#cover-img").attr("src", "_blank");
