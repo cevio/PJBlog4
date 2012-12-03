@@ -1,5 +1,5 @@
 // JavaScript Document
-define(['tabs'], function(){
+define(['syntax', 'tabs'], function(){
 	
 	function init_documentsListTabs(){
 		$(".documents-list").tabs({
