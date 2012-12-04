@@ -38,7 +38,8 @@
 						cateIcon: cateIcon,
 						cateIsShow: cateIsShow,
 						cateOutLink: cateOutLink,
-						cateOutLinkText: cateOutLinkText
+						cateOutLinkText: cateOutLinkText,
+						id: id
 					}
 				}
 			}else{
@@ -47,59 +48,6 @@
 					error: "打开数据库失败"
 				}
 			}
-		};
-		
-		callbacks.addcates = function(){
-			var cate_name = req.form.cateName,
-				cate_info = req.form.cateInfo,
-				cate_order = req.form.cateOrder,
-				cate_root = req.form.cateRoot,
-				cate_count = req.form.cateCount,
-				cate_icon = req.form.cateIcon,
-				cate_isshow = req.form.cateIsShow,
-				cate_outlink = req.form.cateOutLink,
-				cate_outlinktext = req.form.cateOutLinkText;
-				
-			var status = this.addCategory({
-				cate_name: cate_name,
-				cate_info: cate_info,
-				cate_order: Number(cate_order) || 0,
-				cate_root: Number(cate_root) || 0,
-				cate_count: Number(cate_count) || 0,
-				cate_icon: cate_icon,
-				cate_show: cate_isshow === "1" ? true : false,
-				cate_outlink: cate_outlink === "1" ? true : false,
-				cate_outlinktext: cate_outlinktext
-			});
-			
-			var cache = require.async("cache");	
-				cache.build("category");
-			
-			return {
-				success: true,
-				data: {
-					id: status
-				}
-			}
-		};
-		
-		callbacks.addCategory = function(options){
-			var dbo = require("DBO"),
-				connecte = require("openDataBase"),
-				id = 0;
-				
-			if ( connecte === true ){
-				dbo.add({
-					data: options,
-					table: "blog_category",
-					conn: config.conn,
-					callback: function(){
-						id = this("id").value;
-					}
-				});
-			}
-			
-			return id;
 		};
 		
 		callbacks.updateCategory = function(id, options){
@@ -190,6 +138,52 @@
 		
 		callbacks.iconlist = function(){
 			return require.async("icon");
+		}
+		
+		callbacks.addnewcategorybyname = function(){
+			var root = req.query.root,
+				name = req.query.name,
+				icon = req.query.icon,
+				dbo = require("DBO"),
+				connecte = require("openDataBase"),
+				_id = 0;
+			
+			if ( connecte === true ){
+				dbo.add({
+					data: {
+						cate_name: name,
+						cate_root: Number(root),
+						cate_icon: icon
+					},
+					table: "blog_category",
+					conn: config.conn,
+					callback: function(){
+						_id = this("id").value;
+					}
+				});
+				
+				if ( _id > 0 ){
+					var cache = require.async("cache");	
+						cache.build("category");
+						
+					return {
+						success: true,
+						data: {
+							id: _id
+						}
+					}
+				}else{
+					return {
+						success: false,
+						error: "新建分类失败"
+					}
+				}
+			}else{
+				return {
+					success: false,
+					error: "数据库打开失败"
+				}
+			}
 		}
 		
 		if ( Session("admin") === true ){

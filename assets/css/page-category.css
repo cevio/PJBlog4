@@ -1,0 +1,28 @@
+@charset "utf-8";
+/* CSS Document */
+
+.categorylist{}
+.categorylist li{ margin-bottom:10px;}
+.categorylist li .icon{ width:16px; height:16px; padding:5px; background:#fff;}
+.categorylist li .icon img{ width:16px; height:16px;}
+
+.categorylist li .info{ line-height:26px; margin-left:36px; background:#fff; padding:0px 10px;}
+.categorylist li .info .action a{ margin-left:5px;}
+.categorylist li ul li{ margin-top:10px;}
+.categorylist li ul{ margin-left:36px;}
+li.updating{}
+li.updating .icon, li.updating .info{ background:#009CD8;}
+li.updating .info .action{ display:none;}
+li.updating .info input.text{ background:none; box-shadow:none; border:none; height:26px; line-height:26px; color:#fff; padding:0; margin:0; width:300px;}
+li.updating button{margin-top:2px; margin-left:5px;}
+.editbox .edit-area{ padding:5px 10px 10px 10px;}
+.editbox .edit-area .edit-zone{ border:1px solid #eee; border-radius:3px}
+.editbox .edit-area .edit-zone .title{ height:24px; line-height:24px;}
+.editbox .edit-area .edit-zone .title span{ padding:0px 15px; background:#eee; color:#fff; border-radius:3px 0px 3px 0px;}
+.editbox .edit-area .edit-zone .context{ padding:5px 15px;}
+.editbox .edit-area .edit-zone .context form{ padding:0; margin:0;}
+.editbox .edit-area .edit-zone .context form td{ padding:3px 10px;}
+.editbox .edit-area .edit-zone .context form td .long{ width:400px;}
+.editbox .edit-area .edit-zone .context form td .longer{ width:500px;}
+.editbox .edit-area .edit-zone .context form td .short{ width:200px;}
+.editbox .edit-area .edit-zone .context form td .shorter{ width: 50px;}

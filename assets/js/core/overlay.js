@@ -65,7 +65,7 @@ define(function(require, exports, module){
 		
 		var $masker;
 		
-		if ( options.mask === true ){
+		if ( options.mask === true && $(".fixedMasker").size() === 0 ){
 			$masker = $(document.createElement("div"));
 			$masker.appendTo("body")
 				   .addClass("fixedMasker")

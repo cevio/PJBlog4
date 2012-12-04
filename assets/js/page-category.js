@@ -1,12 +1,9 @@
 // JavaScript Document
 define(['form', 'overlay'], function(require, exports, module){
-	var tpl = require("tpl-category"),
-		isAdding = false;
-		
-	function cantContinueToEditor(){
-		popUpTips("请先完成编辑或者添加过程。");
-	}
 	
+	var isMakingData = false,
+		iconList = [];
+		
 	function popUpTips( words, callback ){
 		$.dialog({
 			content: words,
@@ -15,263 +12,251 @@ define(['form', 'overlay'], function(require, exports, module){
 		});
 	}
 	
-	function editComplete(jsons){
-		$(this).find(".view [data-id]").attr("data-id", jsons.data.id);
-		$(this).find(".view .label .box span").text($(this).find("input[name='cateName']").val());
-		$(this).find(".view .edit-info").text($(this).find("input[name='cateInfo']").val());
-		$(".list").trigger("cate.abort");
-	}
-	
-	function copyData(jsons){
-		$(this).find("input[name='cateName']").val(jsons.data.cateName);
-		$(this).find("input[name='cateInfo']").val(jsons.data.cateInfo);
-		$(this).find("input[name='cateOrder']").val(jsons.data.cateOrder);
-		$(this).find("input[name='cateRoot']").val(jsons.data.cateRoot);
-		$(this).find("input[name='cateCount']").val(jsons.data.cateCount);
-		$(this).find("input[name='cateIcon']").val(jsons.data.cateIcon);
-		$(this).find(".updateCategoryInfo .chooseIconImg").attr("src", "profile/icons/" + jsons.data.cateIcon);
-		$(this).find("input[name='cateIsShow'][value='" + (jsons.data.cateIsShow === true ? "1" : "0") + "']").attr("checked", true);
-		$(this).find("input[name='cateOutLink'][value='" + (jsons.data.cateOutLink === true ? "1" : "0") + "']").attr("checked", true);
-		$(this).find("input[name='cateOutLinkText']").val(jsons.data.cateOutLinkText);
-	}
-	
-	function beforeSubmitCallback(){
-		var canPost = true, 
-			error = "";
-		
-		if ( this.find("input[name='cateName']").val().length === 0 ){
-			canPost = false;
-			error = "分类名不能为空。";
-		}
-		
-		if ( this.find("input[name='cateInfo']").val().length === 0 ){
-			canPost = false;
-			error = "分类说明不能为空。";
-		}
-		
-		if ( /^\d+$/.test(this.find("input[name='cateOrder']").val()) === false ){
-			canPost = false;
-			error = "分类排序必须为数字类型。";
-		}
-		
-		if ( /^\d+$/.test(this.find("input[name='cateCount']").val()) === false ){
-			canPost = false;
-			error = "日志数必须为数字类型。";
-		}else{
-			if ( Number(this.find("input[name='cateCount']").val()) < 0 ){
-				canPost = false;
-				error = "日志数必须大于等于零。";
-			}
-		}
-		
-		if ( this.find("input[name='cateIcon']").val().length === 0 ){
-			canPost = false;
-			error = "请选择分类图标。";
-		}
-		
-		if ( this.find("input[name='cateOutLink']") === "1" ){
-			if ( this.find("input[name='cateOutLinkText']").val().length === 0 ){
-				canPost = false;
-				error = "外部链接地址不能为空。";
-			}
-		}
-		
-		return {
-			success: canPost,
-			error: error
-		}
-	}
-	
-	function init_bindEvents(){
-		
-		$("body")
-		
-		// 向上滚动
-		.on("cate.scrollTop", ".items", function(event, callback){
-			$(this).find(".scroll-wrap").animate({ "margin-top": "-" + $(this).find(".view").outerHeight() + "px" }, "fast", callback);
-		})
-		
-		// 向下滚动
-		.on("cate.scrollBom", ".items", function(event, callback){
-			$(this).find(".scroll-wrap").animate({ "margin-top": "0px" }, "fast", callback);
-		})
-		
-		// 编辑事件
-		.on("cate.edit", ".items", function(event, id){
-			if ( isAdding === false ){
-				var _this = this;
-				$.getJSON(config.ajaxUrl.server.getCateInfo, { id: id }, function(jsons){		
-					if ( jsons && jsons.success ){
-						$(".list").trigger("cate.abort", function(){
-							isAdding = true;
-							var height = $(_this).find(".editzone").html(tpl.editCategorySimple()).outerHeight();
-								$(_this).css("height", height + "px");
-								copyData.call(_this, jsons);
-								$(_this).find("input[name='id']").val(id);
-							
-							$(_this).trigger("cate.scrollTop", function(){
-								$(_this).addClass("actived");
-								$(_this).find("form").ajaxForm({
-									dataType: "json",
-									beforeSubmit: function(){
-										var h = beforeSubmitCallback.call($(_this).find("form"));
-										if ( h.success === false ){
-											popUpTips(h.error);
-											return false;
-										}
-									},
-									success: function(datas){
-										if ( jsons && jsons.success ){
-											editComplete.call(_this, datas);
-										}else{
-											popUpTips(jsons.error);
-										}
-									}
-								});
-							});
-							
-						});
-						
-					}else{
-						popUpTips(jsons.error);
-					}	
-				});
-			}else{
-				cantContinueToEditor();
-			}
-		})
-		
-		// 撤销事件
-		.on("cate.abort", ".list", function(event, callback){
-			var obj = $(this).find(".actived"), dataidElement;
-			if ( obj.size() > 0 ){
-				obj.find(".scroll-wrap").animate({
-					"margin-top" : "0px"
-				}, "fast", function(){
-					obj.animate({
-						height: "31px"
-					}, "fast", function(){
-						obj.removeClass("actived").find(".editzone").empty();
-						dataidElement = obj.find("[data-id]").eq(0);
-						if ( Number(dataidElement.attr("data-id")) === 0 ){
-							obj.remove();
-						}
-						isAdding = false;
-						$.isFunction(callback) && callback();
-					});
-				});
-			}else{
-				dataidElement = obj.find("[data-id]").eq(0);
-				if ( Number(dataidElement.attr("data-id")) === 0 ){
-					obj.remove();
-				}
-				$.isFunction(callback) && callback();
-			}
-		})
-		
-		.on("click", ".updateCategoryInfo .updateCategoryInfoClose", function(){
-			$(".list").trigger("cate.abort");
-		})
-		
-		.on("click", ".action-add", function(){
-			if ( isAdding === false ){
-				var id = Number($(this).attr("data-id")) || 0,
-					parent = null, 
-					cls, 
-					label, 
-					_cls, 
-					cb;
+	function addFirstCategory(){
+		$("#addFirstCategory").on("click", function(){
+			if ( isMakingData === false ){
+					isMakingData = true;
+					var li = document.createElement("li");
+					var html = 		'<div class="data-value fn-clear">'
+						+				'<div class="icon fn-left ui-wrapshadow"><img src="profile/icons/' + iconList[0] + '" /></div>'
+						+				'<div class="info ui-wrapshadow fn-clear">'
+						+					'<div class="submit fn-right"><button class="button submitbutton">保存</button><button class="button cancelbutton">取消</button></div>'
+						+					'<div class="action fn-right">'
+						+						'<a href="javascript:;" class="ac-add">添加</a>'
+						+						'<a href="javascript:;" class="ac-edit">编辑</a>' 
+						+						'<a href="javascript:;" class="ac-del">删除</a>'
+						+					'</div>'
+						+					'<span title=""><input type="text" value="" name="categoryName" class="text" placeholder="分类名称.."></span>'
+						+					'<div class="editbox"></div>'
+						+				'</div>'
+						+			'</div><ul></ul>';
 					
-				if ( id === 0 ){
-					parent = $(".list .items:last");
-					cls = "one";
-					_cls = "tpl-button-gray";
-					cb = function(){
-						this.find(".action-add").hide();
-					};
+					$(this).parents("li:first").before(li);
+					$(li).addClass("updating").attr("data-id", "0").attr("data-root", "0").html(html);
+			}
+		});
+	}
+	
+	function addSecondCategory(){
+		$("body").on("click", ".ac-add", function(){
+			if ( isMakingData === false ){
+				isMakingData = true;
+				var li = document.createElement("li");
+				var parent = $(this).parents("li:first");
+				var ul = parent.find("ul");
+				var root = parent.attr("data-id");
+				var html = 		'<div class="data-value fn-clear">'
+					+				'<div class="icon fn-left ui-wrapshadow"><img src="profile/icons/' + iconList[0] + '" /></div>'
+					+				'<div class="info ui-wrapshadow fn-clear">'
+					+					'<div class="submit fn-right"><button class="button submitbutton">保存</button><button class="button cancelbutton">取消</button></div>'
+					+					'<div class="action fn-right">'
+					+						'<a href="javascript:;" class="ac-edit">编辑</a>' 
+					+						'<a href="javascript:;" class="ac-del">删除</a>'
+					+					'</div>'
+					+					'<span title=""><input type="text" value="" name="categoryName" class="text" placeholder="分类名称.."></span>'
+					+					'<div class="editbox"></div>'
+					+				'</div>'
+					+			'</div>';
+				
+				ul.append(li);
+				$(li).addClass("updating").attr("data-id", "0").attr("data-root", root).html(html);
+			}
+		});
+	}
+	
+	function getIconList(){
+		$.getJSON(config.ajaxUrl.server.iconList, {}, function( params ){
+			iconList = params
+		});
+	}
+	
+	function addNewCategory(){
+		$("body").on("click", ".submitbutton", function(){
+			var name = $(this).parents(".info:first").find("input[name='categoryName']").val(),
+				parent = $(this).parents("li:first"),
+				dataValue = parent.find(".data-value:first"),
+				root = parent.attr("data-root"),
+				_this = this;
+
+			$.getJSON(config.ajaxUrl.server.addNewCategory, {root: root, name: name, icon: iconList[0]}, function( params ){
+					isMakingData = false;
+				if ( params.success ){
+					dataValue.find(".submit:first").remove();
+					dataValue.find("span").text(name);
+					parent.attr("data-id", params.data.id);
+					parent.removeClass("updating");
 				}else{
-					parent = $(this).parents(".items:first");
-					cls = "two";
-					_cls = "tpl-button-green";
-					cb = function(){
-						this.find(".action-add").remove();
-					};
+					popUpTips(params.error);
+				}  
+			});
+		});
+	}
+	
+	function destoryCategory(){
+		$("body").on("click", ".ac-del", function(){
+			if ( isMakingData === false ){
+				if ( confirm("确定要删除这条分类吗？") ){
+					isMakingData = true;
+					var id = $(this).parents("li:first").attr("data-id"),
+						_this = this;
+						
+					$.getJSON(config.ajaxUrl.server.destoryCate, {id: id}, function( params ){
+						isMakingData = false;
+						if ( params.success ){
+							$(_this).parents("li:first").remove();
+						}else{
+							popUpTips(params.error);
+						}
+					});
+				}
+			}
+		});
+	}
+	
+	function cancelNewCategory(){
+		$("body").on("click", ".cancelbutton", function(){
+			var parent = $(this).parents("li:first");
+			parent.remove();
+			isMakingData = false;
+		});
+	}
+	
+	function editCategory(){
+		$("body").on("click", ".ac-edit", function(){
+			var parent = $(this).parents("li:first"),
+				dataValue = parent.find(".data-value:first"),
+				id = parent.attr("data-id");
+			
+			if ( isMakingData === false ){
+				isMakingData = true;
+				console.log(id);
+				$.getJSON(config.ajaxUrl.server.getCateInfo, {id: id}, function(params){
+					console.log(params);
+					if ( params.success ){
+						dataValue.find(".info .action").hide();
+						fileInData.call(dataValue, params.data);
+					}else{
+						popUpTips(params.error);
+					}
+				});	
+			}	
+		});
+	}
+	
+	function fileInData(data){
+		var _this = this;
+		var editbox = this.find(".editbox");
+		var html = 	'<div class="edit-area">'
+			+			'<div class="edit-zone">'
+			+				'<div class="title fn-clear"><span class="fn-left">编辑该分类</span></div>'
+			+				'<div class="context">'
+			+					'<form action="' + config.ajaxUrl.server.updateCate + '" method="post">'
+			+						'<input type="hidden" value="' + data.id + '" name="id" />'
+			+						'<input type="hidden" value="' + data.cateRoot + '" name="cateRoot" />'
+			+						'<input type="hidden" value="' + data.cateIcon + '" name="cateIcon" />'
+			+						'<table cellspacing="0" class="table">'
+			+							'<tr>'
+			+								'<td>分类名</td>'
+			+								'<td><input type="text" value="" name="cateName" class="long"></td>'
+			+							'</tr>'
+			+							'<tr>'
+			+								'<td>分类说明</td>'
+			+								'<td><input type="text" value="" name="cateInfo" class="long"></td>'
+			+							'</tr>'
+			+							'<tr>'
+			+								'<td>分类排序</td>'
+			+								'<td><input type="text" value="" name="cateOrder" class="shorter"></td>'
+			+							'</tr>'
+			+							'<tr>'
+			+								'<td>日志数</td>'
+			+								'<td><input type="text" value="" name="cateCount" class="shorter"></td>'
+			+							'</tr>'
+			+							'<tr>'
+			+								'<td>是否隐藏</td>'
+			+								'<td>'
+			+									'<input type="radio" value="1" name="cateIsShow"> 隐藏 '
+			+									'<input type="radio" value="0" name="cateIsShow"> 显示 '
+			+								'</td>'
+			+							'</tr>'
+			+							'<tr>'
+			+								'<td>是否外链</td>'
+			+								'<td>'
+			+									'<input type="radio" value="1" name="cateOutLink"> 是 '
+			+									'<input type="radio" value="0" name="cateOutLink"> 否 '
+			+								'</td>'
+			+							'</tr>'
+			+							'<tr>'
+			+								'<td>外链地址</td>'
+			+								'<td><input type="text" value="" name="cateOutLinkText" class="longer"></td>'
+			+							'</tr>'
+			+							'<tr>'
+			+								'<td>&nbsp;</td>'
+			+								'<td><input type="submit" value="保存" class="button" /> <input type="button" value="取消" class="button close" /></td>'
+			+							'</tr>'
+			+						'</table>'
+			+					'</form>'
+			+				'</div>'
+			+			'</div>'
+			+		'</div>';
+			
+		editbox.html(html);
+		
+		editbox.find("input[name='cateName']").val(data.cateName);
+		editbox.find("input[name='cateInfo']").val(data.cateInfo);
+		editbox.find("input[name='cateOrder']").val(data.cateOrder);
+		editbox.find("input[name='cateCount']").val(data.cateCount);
+		if ( data.cateIsShow ){
+			editbox.find("input[name='cateIsShow'][value='1']").attr("checked", true);
+		}else{
+			editbox.find("input[name='cateIsShow'][value='0']").attr("checked", true);
+		}
+		if ( data.cateOutLink ){
+			editbox.find("input[name='cateOutLink'][value='1']").attr("checked", true);
+		}else{
+			editbox.find("input[name='cateOutLink'][value='0']").attr("checked", true);
+		}
+		editbox.find("input[name='cateOutLinkText']").val(data.cateOutLinkText);
+		
+		
+		var form = editbox.find("form");
+		
+		form.find(".close").on("click", function(){
+			editbox.empty();
+			isMakingData = false;
+			_this.find(".info .action").show();
+		});
+		
+		form.ajaxForm({
+			dataType: "json",
+			beforeSubmit: function(){
+				if ( form.find("input[name='cateName']").val().length === 0 ){
+					popUpTips("请填写分类名");
+					return false;
 				}
 				
-				$(".list").trigger("cate.abort", function(){
-					isAdding = true;
-					parent.after(tpl.addCategory());
-					label = parent.next();
-					label.addClass(cls).find(".view .label").addClass(_cls);
-					label.find("input[name='cateRoot']").val(id);
-					label.find("form").attr("action", config.ajaxUrl.server.addCate).ajaxForm({
-						dataType: "json",
-						beforeSubmit: function(){
-							var h = beforeSubmitCallback.call(label.find("form"));
-							if ( h.success === false ){
-								popUpTips(h.error);
-								return false;
-							}
-						},
-						success: function(jsons){
-							if ( jsons && jsons.success ){
-								editComplete.call(label, jsons);
-							}else{
-								popUpTips(jsons.error);
-							}
-						}
-					});
-					$.isFunction(cb) && cb.call(label);
-					label.css("height", label.find(".editzone").outerHeight() + "px");
-					label.trigger("cate.scrollTop", function(){
-						label.addClass("actived");
-					});
-				});
-			}else{
-				cantContinueToEditor();
-			}
-		})
-		
-		.on("click", ".chooseIcon", function(){
-			var _this = this;
-			$.getJSON(config.ajaxUrl.server.iconList, {}, function(arrays){
-				if ( arrays.length > 0 ){
-					var itemHTML = '';
-					for ( var i = 0 ; i < arrays.length ; i++ ){
-						itemHTML += tpl.iconTPL.items(arrays[i]);
-					}
-					$(_this).after(tpl.iconTPL.global(itemHTML));
-					$(_this).parents(".items:first").css("height", $(_this).parents(".editzone:first").outerHeight() + "px");
+				if ( form.find("input[name='cateInfo']").val().length === 0 ){
+					popUpTips("请填写分类说明");
+					return false;
 				}
-			});
-		})
-		
-		.on("click", ".iconChooseItem", function(){
-			var value = $(this).attr("data-value"),
-				img = $(this).parents(".iconChooseArea:first").prev().prev(),
-				input = img.prev();
-			
-			img.attr("src", "profile/icons/" + value);
-			input.val(value);
-		})
-		
-		.on("cate.destory", ".items", function(event, id){
-			var _this = this;
-			if ( isAdding === false ){
-				$.getJSON(config.ajaxUrl.server.destoryCate, {id: id}, function( jsons ){
-					if ( jsons && jsons.success ){
-						$(_this).animate({
-							height: "0px",
-							opacity: "0"
-						}, "fast", function(){
-							$(_this).remove();
-						});
-					}else{
-						popUpTips(jsons.error);
-					}
-				});
-			}else{
-				cantContinueToEditor();
+				
+				if ( isNaN(form.find("input[name='cateOrder']").val()) ){
+					popUpTips("请将分类排序填写正确");
+					return false;
+				}
+			},
+			success: function( params ){
+				if ( params.success ){
+					_this.find("span")
+						.text(form.find("input[name='cateName']").val())
+						.attr("title", form.find("input[name='cateInfo']").val());
+						
+					_this.find(".close").trigger("click");
+				}else{
+					popUpTips(params.error);
+				}
+			},
+			error: function(){
+				popUpTips("网络出错");
 			}
 		});
 	}
@@ -279,19 +264,13 @@ define(['form', 'overlay'], function(require, exports, module){
 	return {
 		init: function(){
 			$(function(){
-				init_bindEvents();
-				$("body").on("click", ".action-edit", function(){
-					var id = $(this).attr("data-id"), 
-						parent = $(this).parents(".items:first");
-						
-					parent.trigger("cate.edit", id);
-				})
-				.on("click", ".action-del", function(){
-					var id = $(this).attr("data-id");
-						parent = $(this).parents(".items:first");
-					
-					parent.trigger("cate.destory", id);
-				});
+				addFirstCategory();
+				getIconList();
+				addNewCategory();
+				destoryCategory();
+				addSecondCategory();
+				cancelNewCategory();
+				editCategory();
 			});
 		}
 	}

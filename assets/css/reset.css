@@ -43,6 +43,7 @@ html{
 
 a:link, a:visited{ 
 	text-decoration: none;
+	outline:none;
 };
 table {
   	*border-collapse: collapse; /* IE7 and lower */

@@ -95,7 +95,10 @@
                 <a href="http://bbs.pjhome.net" target="_blank">BBS</a> | 
                 <a href="http://webkits.cn" target="_blank">Support</a>
             </div>
-            <div class="ui-copyright">Copyright © 2004-2012 PJHOME LLC. All screenshots © their respective owners.<br />Evio in China, PuterJam in China.</div>
+            <div class="ui-copyright fn-clear">
+            	<div class="fn-left">Copyright © 2004-2012 PJHOME LLC. All screenshots © their respective owners.</div>
+                <div class="fn-right">Evio in China, PuterJam in China.</div>
+            </div>
         </div>
     </div>
 <script language="javascript">
