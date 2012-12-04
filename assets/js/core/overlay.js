@@ -112,7 +112,7 @@ define(function(require, exports, module){
 	}
 	
 	$.dialog = function( options ){
-		options.content = '<div class="dialog fn-clear"><div class="title fn-clear"><div class="fn-left mtitle">提示</div><a href="javascript:;" class="fn-right close">关闭</a></div><div class="content">' + options.content + '</div><div class="bom"><input type="button" value="确定" class="tpl-button-blue close" /></div></div>';
+		options.content = '<div class="dialog fn-clear" style="width:250px;"><div class="title fn-clear"><div class="fn-left mtitle">提示</div><a href="javascript:;" class="fn-right close">关闭</a></div><div class="content">' + options.content + '</div><div class="bom"><input type="button" value="确定" class="button close" /></div></div>';
 		$.overlay(options);
 	}
 	
