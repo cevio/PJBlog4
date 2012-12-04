@@ -19,7 +19,6 @@ define(["assets/js/core/jQuery"], function(){
 	config.ajaxUrl.server.getCateInfo = "server/category.asp?j=getcateinfo";
 	config.ajaxUrl.server.addNewCategory = "server/category.asp?j=addnewcategorybyname";
 	config.ajaxUrl.server.updateCate = "server/category.asp?j=updatecate";
-	config.ajaxUrl.server.addCate = "server/category.asp?j=addcates";
 	config.ajaxUrl.server.destoryCate = "server/category.asp?j=destorycates";
 	config.ajaxUrl.server.iconList = "server/category.asp?j=iconlist";
 	config.ajaxUrl.server.delArticles = "server/article.asp?j=delarticle";
@@ -89,13 +88,6 @@ define(["assets/js/core/jQuery"], function(){
 			return false;
 		}
 	}
-
-	$("body")
-	
-	// 全局绑定事件之跳转全局设置页面
-	.on("click", ".sdk-globalconfigure", function(){
-		window.location.href = "?p=globalConfigure";
-	});
 	
 	return {
 		status : true,

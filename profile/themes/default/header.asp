@@ -7,7 +7,7 @@
     <meta name="Author" content="<%=pageCustomParams.global.nickname%> - <%=pageCustomParams.global.authoremail%>" />
     <link rel="stylesheet" href="<%=pageCustomParams.global.website + "/" + pageCustomParams.global.styleFolder%>/common.css" type="text/css" />
     <script language="javascript" src="<%=pageCustomParams.global.website + "/assets/js/core/sizzle.js"%>"> </script>
-    <script language="javascript" src="<%=pageCustomParams.global.website + "/assets/js/configure.js"%>"> </script>
+    <script language="javascript" src="<%=pageCustomParams.global.website + "/profile/handler/configure.js"%>"> </script>
     <title><%=pageCustomParams.global.seotitle%></title>
 </head>
 <body>
