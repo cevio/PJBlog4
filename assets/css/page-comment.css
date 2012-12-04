@@ -9,9 +9,9 @@ li.comment-li{ margin-bottom:20px;}
 .comment-zone .comment-photo .user-photo img{ width:50px; height:50px; border-radius:3px;}
 .comment-zone .comment-context{ margin-left:80px;}
 .comment-zone .comment-context .comment-content{}
-.comment-zone .comment-context .comment-content .comment-name{ height:28px; line-height:28px;}
-.comment-zone .comment-context .comment-content .comment-word{ line-height:20px;}
-.comment-zone .comment-context .comment-content .comment-else{ line-height:20px; margin-top:5px;}
+.comment-zone .comment-context .comment-content .comment-name{ height:22px; line-height:22px;}
+.comment-zone .comment-context .comment-content .comment-word{ line-height:18px;}
+.comment-zone .comment-context .comment-content .comment-else{ line-height:18px; margin-top:3px;}
 .comment-zone .comment-context .comment-content .comment-else a{ margin-right:10px;}
 
 .comment-children{ margin-top:10px;}
