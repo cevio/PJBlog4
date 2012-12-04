@@ -3,10 +3,4 @@
   <div class="fn-right ui-position-tools"></div>
 </div>
 <div class="ui-context">
-<pre class="brush: js;" data-type="syntax">
-function helloSyntaxHighlighter()
-{
-	return "hi!";
-}
-</pre>
 </div>
