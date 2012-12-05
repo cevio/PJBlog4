@@ -12,7 +12,6 @@ define(["assets/js/core/jQuery"], function(){
 	config.map("easing", "assets/js/core/jQuery.easing.1.3");
 	config.map("article", "assets/js/article");
 	config.map("tips", "assets/js/lib/tips/tips");
-	config.map("syntax", "assets/js/lib/dllighter/proxy");
 	
 	config.ajaxUrl = { assets: {}, server: {} }
 	

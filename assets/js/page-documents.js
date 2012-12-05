@@ -1,5 +1,5 @@
 // JavaScript Document
-define(['syntax', 'tabs'], function(){
+define(function(){
 	
 	return {
 		init: function(){
