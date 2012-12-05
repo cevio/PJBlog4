@@ -34,7 +34,7 @@
 				if ( Session("admin") === true ){ 
 			%>
             <div class="icon-user fn-rightspace fn-left"><%=config.user.name%></div>
-			<a href="#" class="fn-rightspace fn-left">修改密码</a>
+			<a href="javascript:;" class="fn-rightspace fn-left modify-password">修改密码</a>
 			<a href="?p=writeArticle" class="fn-rightspace fn-left">写新日志</a>
 			<a href="server/logout.asp" class="fn-left">退出</a>
             <%

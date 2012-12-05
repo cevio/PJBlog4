@@ -450,3 +450,8 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 	background-size:16px 16px;
 	margin-right:10px;
 }
+
+.oldpass{ margin-bottom:5px;}
+.newpass{ margin-bottom:5px;}
+.repeatepass{}
+.passinfo{ margin-left:10px; color:#ff0000;}

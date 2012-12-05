@@ -91,6 +91,57 @@ http.async(function(req){
 		}
 	}
 	
+	callbacks.password = function(){
+		var dbo = require("DBO"),
+			connecte = require("openDataBase"),
+			SHA1 = require("SHA1");
+			
+		if ( connecte === true ){
+		
+			var oldpass = req.form.oldpass,
+				newpass = req.form.newpass,
+				repass = req.form.repass,
+				checked = false;
+				
+			dbo.trave({
+				conn: config.conn,
+				sql: "Select * From blog_global Where id=1",
+				callback: function(rs){
+					if ( SHA1(oldpass) === rs("password").value ){
+						checked = true;
+					}
+				}
+			});
+			
+			if ( checked === false ){
+				return {
+					success: false,
+					error: "旧密码验证不正确"
+				}
+			}
+			
+			if ( newpass !== repass ){
+				return {
+					success: false,
+					error: "两次密码输入不相同"
+				}
+			}
+		
+			dbo.update({ data: {
+				password: SHA1(newpass)
+			}, table: "blog_global", conn: config.conn, key: "id", keyValue: "1" });
+			
+			return {
+				success: true
+			};
+		}else{
+			return {
+				success: false,
+				error: "连接数据库失败"
+			}
+		}	
+	}
+	
 	if ( Session("admin") === true ){
 		if ( callbacks[j] !== undefined ){
 			return callbacks[j]();

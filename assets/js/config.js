@@ -47,6 +47,8 @@ define(["assets/js/core/jQuery"], function(){
 	config.ajaxUrl.server.passComment = "server/comment.asp?j=pass";
 	config.ajaxUrl.server.unPassComment = "server/comment.asp?j=unpass";
 	
+	config.ajaxUrl.server.password = "server/configure.asp?j=password";
+	
 	
 	function cookie(key, value, options) {
         // key and at least value given, set cookie...
@@ -93,6 +95,59 @@ define(["assets/js/core/jQuery"], function(){
 			return false;
 		}
 	}
+	
+	$(".modify-password").on("click", function(){
+		require.async(['form', 'overlay'], function(){
+			
+			var options = {
+				effect: "deformationZoom",
+				callback: function(){
+					var _this = this;
+					$(this).find("form").ajaxForm({
+						dataType: "json",
+						beforeSubmit: function(){
+							if ( $(_this).find("input[name='oldpass']").val().length === 0 ){
+								$(_this).find(".passinfo").text("请填写旧密码");
+								return false;
+							}
+							if ( $(_this).find("input[name='newpass']").val().length === 0 ){
+								$(_this).find(".passinfo").text("请填写新密码");
+								return false;
+							}
+							if ( $(_this).find("input[name='repass']").val().length === 0 ){
+								$(_this).find(".passinfo").text("请重复填写新密码");
+								return false;
+							}
+						},
+						success: function(params){
+							if ( params.success ){
+								$(_this).find(".passinfo").text("修改密码成功");
+								setTimeout(function(){
+									$(_this).find(".close:first").trigger("click");
+								}, 500);
+							}else{
+								$(_this).find(".passinfo").text(params.error);	
+							}
+						}
+					})
+				}
+			}
+			
+			options.content = '<div class="dialog fn-clear" style="width:300px;"><form action="' + config.ajaxUrl.server.password + '" method="post" style="margin:0;padding:0;">'
+			+					'<div class="title fn-clear">'
+			+						'<div class="fn-left mtitle">修改密码</div>'
+			+						'<a href="javascript:;" class="fn-right close">取消</a>'
+			+					'</div>'
+			+					'<div class="content">'
+			+						'<div class="oldpass">旧密码：<input type="password" name="oldpass" value="" placeholder="旧密码" /></div>'
+			+						'<div class="newpass">新密码：<input type="password" name="newpass" value="" placeholder="新密码" /></div>'
+			+						'<div class="repeatepass">重复密码：<input type="password" name="repass"value="" placeholder="重复密码" /></div>'
+			+					'</div>'
+			+					'<div class="bom"><input type="submit" value="提交" class="button" /><input type="button" value="取消" class="button close" /><span class="passinfo"></span></div></form></div>';
+			
+			$.overlay(options);
+		});
+	});
 	
 	return {
 		status : true,
