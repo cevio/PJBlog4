@@ -57,7 +57,7 @@ define(function(require, exports, module){
 		options = $.extend({
 			mask: true,
 			opacity: .5,
-			background: "#fff",
+			background: "#777",
 			content: '',
 			effect: 'fadeIn',
 			callback: null

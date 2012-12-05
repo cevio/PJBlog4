@@ -41,6 +41,10 @@ define(["assets/js/core/jQuery"], function(){
 	config.ajaxUrl.server.memUnForce = "server/member.asp?j=munforce";
 	config.ajaxUrl.server.memToAdmin = "server/member.asp?j=toadmin";
 	config.ajaxUrl.server.memUnToAdmin = "server/member.asp?j=untoadmin";
+	config.ajaxUrl.server.replyComment = "server/comment.asp?j=reply";
+	config.ajaxUrl.server.delComment = "server/comment.asp?j=destory";
+	config.ajaxUrl.server.passComment = "server/comment.asp?j=pass";
+	config.ajaxUrl.server.unPassComment = "server/comment.asp?j=unpass";
 	
 	
 	function cookie(key, value, options) {

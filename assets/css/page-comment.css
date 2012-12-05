@@ -15,6 +15,16 @@ li.comment-li{ margin-bottom:20px;}
 .comment-zone .comment-context .comment-content .comment-else a{ margin-right:10px;}
 
 .comment-children{ margin-top:10px;}
-.comment-children .comment-children-area{ background:#fff; padding:10px 15px 0px 15px; margin-left:80px;}
-.comment-children .comment-children-area li.comment-li{ padding-bottom:10px;}
-.comment-children .comment-children-area li.comment-li .user-photo{ border:1px solid #eee;}
+.comment-children .comment-children-area{ padding:10px 15px 0px 15px; margin-left:60px;}
+.comment-children .comment-children-area li.comment-li{ padding-bottom:10px; margin-bottom:0px;}
+.comment-children .comment-children-area li.comment-li .user-photo{ border:1px solid #eee; width:30px; height:30px;}
+.comment-children .comment-children-area li.comment-li .user-photo img{ width:30px; height:30px;}
+.comment-children .comment-children-area li.comment-li .comment-context{ margin-left:60px;}
+
+.replyBox{ background:#fff; padding:10px 20px; margin-top:5px; width:500px;}
+.replyBox .replyArea{}
+.replyBox .replyArea .reply-title{ height:30px; line-height:30px;}
+.replyBox .replyArea .reply-content textarea{ width:500px; height:80px;}
+.replyBox .replyArea .reply-submit{ margin-top:10px;}
+.replyBox .replyArea .reply-submit span.reply-info{ margin-left:10px; color:#F30;}
+.replyBox .replyArea .reply-submit input{ margin-right:2px;}

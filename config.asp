@@ -127,4 +127,37 @@
 		tempParams: {},
 		tempModules: {}
 	};
+	
+	http.service = function( callback ){
+		http.async(function(req){
+			require("status");
+			var j = req.query.j, callbacks = {};
+			if ( Session("admin") === true && config.user.login === true ){
+				var dbo = require("DBO"),
+					connecte = require("openDataBase");		
+				if ( connecte === true ){
+					callback.call(callbacks, req, dbo);
+					if ( callbacks[j] !== undefined ){
+						return callbacks[j]();
+					}else{
+						return {
+							success: false,
+							error: "未找到对应处理模块"
+						}
+					}
+				}else{
+					return {
+						success: false,
+						error: "数据库连接失败"
+					}
+				}
+			}else{
+				return {
+					success: false,
+					error: "非法权限操作"
+				}
+			}
+		});
+		CloseConnect();
+	}
 %>

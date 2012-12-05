@@ -54,7 +54,7 @@
 							userData = getUserInfo(this("commentuserid").value);
 						}
 %>
-		<li class="comment-li" data-id="<%=this("id").value%>">
+		<li class="comment-li comment-root" data-id="<%=this("id").value%>" data-logid="<%=this("commentlogid").value%>">
         	<div class="comment-zone fn-clear">
             	<div class="comment-photo fn-left">
                 	<div class="user-photo ui-wrapshadow"><img src="<%=userData.type==="guest" ? userData.photo : userData.photo + "/50"%>" /></div>
@@ -69,11 +69,11 @@
                             <%
 								if ( this("commentaudit").value ){
 							%>
-                            <a href="javascript:;">取消</a>
+                            <a href="javascript:;" class="ac-noaduit">取消</a>
                             <%
 								}else{
 							%>
-                             <a href="javascript:;">通过</a>
+                            <a href="javascript:;" class="ac-aduit">通过</a>
                             <%	
 								}
 							%>
@@ -89,7 +89,7 @@
                         callback: function(ts){
                             if ( ts.Bof || ts.Eof ){}else{
                 %>
-                <ul class="comment-children-area ui-wrapshadow">
+                <ul class="comment-children-area">
                 <%
                                 this.each(function(){
                                     var _user = this("commentuserid").value,
@@ -104,10 +104,10 @@
 										_userData = getUserInfo(this("commentuserid").value);
 									}
 				%>
-                	<li class="comment-li" data-id="<%=this("id").value%>">
+                	<li class="comment-li" data-id="<%=this("id").value%>" data-logid="<%=this("commentlogid").value%>">
                     	<div class="comment-zone fn-clear">
                             <div class="comment-photo fn-left">
-                                <div class="user-photo ui-wrapshadow"><img src="<%=_userData.type==="guest" ? _userData.photo : _userData.photo + "/50"%>" /></div>
+                                <div class="user-photo ui-wrapshadow"><img src="<%=_userData.type==="guest" ? _userData.photo : _userData.photo + "/30"%>" /></div>
                             </div>
                             <div class="comment-context">
                                 <div class="comment-content">
@@ -119,11 +119,11 @@
                                         <%
 											if ( this("commentaudit").value ){
 										%>
-										<a href="javascript:;">取消</a>
+										<a href="javascript:;" class="ac-noaduit">取消</a>
 										<%
 											}else{
 										%>
-										 <a href="javascript:;">通过</a>
+										<a href="javascript:;" class="ac-aduit">通过</a>
 										<%	
 											}
 										%>
