@@ -186,6 +186,39 @@
 			}
 		}
 		
+		callbacks.seticon = function(){
+			var dbo = require("DBO"),
+				connecte = require("openDataBase");
+				
+			if ( connecte === true ){
+				var id = req.query.id,
+					icon = req.query.icon;
+			
+				dbo.update({
+					conn: config.conn,
+					table: "blog_category",
+					data: {
+						cate_icon: icon
+					},
+					key: "id",
+					keyValue: id,
+					callback: function(){}
+				});
+				
+				var cache = require.async("cache");	
+					cache.build("category");
+				
+				return {
+					success: true
+				}
+			}else{
+				return {
+					success: false,
+					error: "连接数据库失败"
+				}
+			}
+		}
+		
 		if ( Session("admin") === true ){
 			if ( callbacks[j] !== undefined ){
 				return callbacks[j]();

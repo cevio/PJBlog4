@@ -261,6 +261,43 @@ define(['form', 'overlay'], function(require, exports, module){
 		});
 	}
 	
+	function editIcons(){
+		$("body").on("click", ".categorylist li .icon", function(){
+			if ( isMakingData === true ){
+				return;
+			}
+			isMakingData = true;
+			var ul = document.createElement("ul");
+			var id = $(this).parents("li:first").attr("data-id");
+			var htmls = "";
+			for ( var i = 0 ; i< iconList.length ; i++ ){
+				htmls += '<li class="ui-wrapshadow" data-value="' + iconList[i] + '"><img src="profile/icons/' + iconList[i] + '"></li>';
+			}
+			
+			$(ul).appendTo("body");
+			var $ul = $(ul);
+			$ul.addClass("iconlistbox").attr("data-id", id).html(htmls);
+			var offset = $(this).offset();
+			$ul.css({
+				top: offset.top + "px",
+				left: (offset.left + 36) + "px"
+			});
+			var _this = this;
+			$ul.find("li").on("click", function(){
+				var dataValue = $(this).attr("data-value");
+				$.getJSON(config.ajaxUrl.server.setCateIcon, {id: id, icon: dataValue}, function(params){
+					isMakingData = false;
+					if ( params.success ){
+						$(_this).find("img").attr("src", "profile/icons/" + dataValue);
+						$ul.remove();
+					}else{
+						popUpTips(params.error);
+					}
+				});
+			});
+		});
+	}
+	
 	return {
 		init: function(){
 			$(function(){
@@ -271,6 +308,7 @@ define(['form', 'overlay'], function(require, exports, module){
 				addSecondCategory();
 				cancelNewCategory();
 				editCategory();
+				editIcons();
 			});
 		}
 	}

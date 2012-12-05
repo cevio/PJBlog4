@@ -95,27 +95,30 @@ define(['form', 'overlay'], function(require, exports, module){
 			if ( making === true ){
 				return;
 			}
-			making = true;
 			
-			var parentli = $(this).parents("li:first"),
-				id = parentli.attr("data-id"),
-				logid = parentli.attr("data-logid"),
-				_this = this;
+			if ( confirm("确定删除这条评论？") ){
+				making = true;
 				
-			$(this).text("正在删除..");
-				
-			$.getJSON(config.ajaxUrl.server.delComment, {id: id, logid: logid}, function( params ){
-				if ( params.success ){
-					parentli.slideUp("fast", function(){
-						$(this).remove();
+				var parentli = $(this).parents("li:first"),
+					id = parentli.attr("data-id"),
+					logid = parentli.attr("data-logid"),
+					_this = this;
+					
+				$(this).text("正在删除..");
+					
+				$.getJSON(config.ajaxUrl.server.delComment, {id: id, logid: logid}, function( params ){
+					if ( params.success ){
+						parentli.slideUp("fast", function(){
+							$(this).remove();
+							making = false;
+						});
+					}else{
+						popUpTips(params.error);
 						making = false;
-					});
-				}else{
-					popUpTips(params.error);
-					making = false;
-					$(_this).text("删除");
-				}
-			});
+						$(_this).text("删除");
+					}
+				});
+			}
 		});
 	}
 	

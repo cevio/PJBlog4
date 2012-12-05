@@ -19,6 +19,7 @@ define(["assets/js/core/jQuery"], function(){
 	config.ajaxUrl.server.getCateInfo = "server/category.asp?j=getcateinfo";
 	config.ajaxUrl.server.addNewCategory = "server/category.asp?j=addnewcategorybyname";
 	config.ajaxUrl.server.updateCate = "server/category.asp?j=updatecate";
+	config.ajaxUrl.server.setCateIcon = "server/category.asp?j=seticon";
 	config.ajaxUrl.server.destoryCate = "server/category.asp?j=destorycates";
 	config.ajaxUrl.server.iconList = "server/category.asp?j=iconlist";
 	config.ajaxUrl.server.delArticles = "server/article.asp?j=delarticle";

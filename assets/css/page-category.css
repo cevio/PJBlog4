@@ -3,7 +3,7 @@
 
 .categorylist{}
 .categorylist li{ margin-bottom:10px;}
-.categorylist li .icon{ width:16px; height:16px; padding:5px; background:#fff;}
+.categorylist li .icon{ width:16px; height:16px; padding:5px; background:#fff; cursor:pointer;}
 .categorylist li .icon img{ width:16px; height:16px;}
 
 .categorylist li .info{ line-height:26px; margin-left:36px; background:#fff; padding:0px 10px;}
@@ -26,3 +26,6 @@ li.updating button{margin-top:2px; margin-left:5px;}
 .editbox .edit-area .edit-zone .context form td .longer{ width:500px;}
 .editbox .edit-area .edit-zone .context form td .short{ width:200px;}
 .editbox .edit-area .edit-zone .context form td .shorter{ width: 50px;}
+
+.iconlistbox{ background:#009CD8; border-radius:3px; padding:5px 0px 0px 5px; position:absolute; width:186px;}
+.iconlistbox li{ float:left; margin-right:5px; background:#fff; margin-bottom:5px; padding:5px; width:16px; height:16px; cursor:pointer;}
