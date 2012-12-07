@@ -1,2 +1,76 @@
 @charset "utf-8";
 /* CSS Document */
+
+.ui-context{ position:relative;}
+.topbar{ 
+
+	height: 30px; 
+	line-height:30px; 
+	border-top: 1px solid #eee; 
+	border-left: 1px solid #eee;
+	border-radius:3px;
+	background:#fff;
+}
+.topbar li{ 
+	padding:0px 15px; 
+	line-height:30px; 
+	border-right: 1px solid #eee; 
+	border-bottom:1px solid #eee;
+}
+
+.topbar li:first-child{
+	border-top-left-radius:3px;
+	border-bottom-left-radius:3px;
+}
+.topbar li:last-child{
+	border-top-right-radius:3px;
+	border-bottom-right-radius:3px;
+}
+
+.rightbar{
+	position:absolute;
+	top:40px;
+	right:0px;
+	border-top: 1px solid #eee; 
+	border-left: 1px solid #eee;
+	background:#fff;
+	border-radius:3px;
+}
+
+.rightbar li{
+	height:30px;
+	line-height:30px;
+	padding:0px 15px;
+	width:60px;
+	overflow:hidden;
+	text-align:center;
+	border-right: 1px solid #eee; 
+	border-bottom:1px solid #eee;
+}
+
+.rightbar li:first-child{
+	border-top-left-radius:3px;
+	border-top-right-radius:3px;
+}
+.rightbar li:last-child{
+	border-bottom-left-radius:3px;
+	border-bottom-right-radius:3px;
+}
+
+.document-content{
+	margin-top:10px;
+	margin-right:101px;
+	background:#fff;
+	padding:10px 15px;
+}
+
+.document-content p{
+	text-indent:2em;
+	margin-bottom:20px;
+}
+
+.active{ background:#000;}
+.active a:link,
+.active a:visited{
+	color:#fff;
+}

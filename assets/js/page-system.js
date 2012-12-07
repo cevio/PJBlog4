@@ -28,10 +28,9 @@ define(['overlay'], function( require, exports, module ){
 				return;
 			}
 			
-			isMakingData = true;
-			
 			var $checkElements = $(".cache input[type='checkbox']:checked");
 			if ( $checkElements.size() > 0 ){
+				isMakingData = true;
 				clearItem($checkElements, 0, function(){
 					$(".cache ul li").removeClass("active");
 					popUpTips("全部清理完毕");
