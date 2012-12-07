@@ -187,28 +187,28 @@
                     <div class="titles"><%=this("pluginname").value%></div>
                     <div class="msg fn-textoverhide" title="<%=this("plugininfo").value%>">详细：<%=this("plugininfo").value%></div>
                     <div class="author">此插件由 <%=this("pluginauthor").value%> 于 <%=date.format(this("pluginpublishdate").value, "y-m-d h:i:s")%> 发布版本 <%=this("pluginversion").value%></div>
-                    <div class="tools">
+                    <div class="tools fn-clear">
                         <%
                             if ( fso.exsit("profile/plugins/" + this("pluginfolder").value + "/config.xml") ){
                         %>
-                        <a href="javascript:;" class="action-set fn-clear" data-id="<%=this("id").value%>">设置</a>
+                        <a href="javascript:;" class="action-set fn-left" data-id="<%=this("id").value%>">设置</a>
                         <%
                             }
                             if ( this("pluginstatus").value === true ){
                         %>
-                        <a href="javascript:;" class="action-stop fn-clear" data-id="<%=this("id").value%>">停用</a>
+                        <a href="javascript:;" class="action-stop fn-left" data-id="<%=this("id").value%>">停用</a>
                         <%
                             }else{
                         %>
-                        <a href="javascript:;" class="action-active fn-clear" data-id="<%=this("id").value%>">启用</a>
+                        <a href="javascript:;" class="action-active fn-left" data-id="<%=this("id").value%>">启用</a>
                         <%
                             }
                         %>
-                        <a href="javascript:;" class="action-uninstall fn-clear" data-id="<%=this("id").value%>">卸载</a> 
+                        <a href="javascript:;" class="action-uninstall fn-left" data-id="<%=this("id").value%>">卸载</a> 
                         <%
                             if ( fso.exsit("profile/plugins/" + this("pluginfolder").value + "/configure.asp") ){
                         %>
-                        <a href="?p=plugin-configure&id=<%=this("id").value%>" class="action-use fn-clear" data-id="<%=this("id").value%>">高级应用</a> 
+                        <a href="?p=plugin-configure&id=<%=this("id").value%>" class="action-use fn-left" data-id="<%=this("id").value%>">高级应用</a> 
                         <%}%>
                     </div>
                 </div>
