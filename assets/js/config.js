@@ -48,6 +48,8 @@ define(["assets/js/core/jQuery"], function(){
 	
 	config.ajaxUrl.server.password = "server/configure.asp?j=password";
 	
+	config.ajaxUrl.server.system = "server/system.asp?j=clean";
+	
 	
 	function cookie(key, value, options) {
         // key and at least value given, set cookie...

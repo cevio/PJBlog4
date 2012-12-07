@@ -87,5 +87,41 @@ define(function(require, exports, module){
 		
 		return ret;
 	}
+	
+	exports.share = function( token, openid, appid, title, fromurl, imageurl ){
+		var qqObject = require.async("XMLHTTP"),
+			url = "https://graph.qq.com/share/add_share",
+			data = {
+				access_token: token,
+				oauth_consumer_key: appid,
+				openid: openid,
+				title: encodeURIComponent(title),
+				images: encodeURIComponent(imageurl),
+				url: encodeURIComponent(url),
+				site: "",
+				fromurl: fromurl,
+				format: "json"
+			},
+			ret;
+			
+		qqObject.post(url, data, function(text){
+			ret = qqObject.compentJSON(text);
+		});
+		
+		if ( ret.ret === 0 ){
+			ret = {
+				success : true,
+				data : ret
+			}
+		}else{
+			ret = {
+				success : false,
+				error : ret.ret,
+				msg : ret.msg
+			}
+		}
+		
+		return ret;
+	}
 });
 %>

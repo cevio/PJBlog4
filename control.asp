@@ -49,6 +49,7 @@
 				<li><a href="default.asp" target="_blank">前台</a></li>
 				<li><a href="control.asp">首页</a></li>
 				<li><a href="?p=globalconfigure">设置</a></li>
+                <li><a href="?p=system">系统</a></li>
 				<li><a href="?p=documents">文档</a></li>
 				<li><a href="http://webkits.cn" target="_blank">官方</a></li>
 			</ul>
