@@ -46,9 +46,11 @@ define(function( require, exports, module ){
 						for ( var i = 0 ; i < arr.length ; i++ ){
 							if ( arr[i].length > 0 ){
 								r = r + "\\" + arr[i];
-								if ( !this.FolderExists(r) ){
-									this.CreateFolder(r);
-								}
+								try{
+									if ( !this.FolderExists(r) ){
+										this.CreateFolder(r);
+									}
+								}catch(e){}
 							}else{
 								break;
 							}
