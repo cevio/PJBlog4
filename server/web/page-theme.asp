@@ -38,6 +38,21 @@
 	<%
 		if ( types === "list" ){
 			(function(){
+	%>
+    	<div class="ui-wrapshadow uploadnewtheme">
+        	<div class="info">上传主题包请注意：</div>
+            <ul>
+            	<li>1. 请尽量选择官方提供的主题包上传。</li>
+                <li>2. 主题文件包格式为 *.pbd 格式，请不要上传非法文件。</li>
+                <li>3. 更多主题包下载请前往官方支持平台。</li>
+            </ul>
+            <div class="uploadFile">
+    		<input type="file" value="" id="uploadFile" />
+            </div>
+            <div class="info">请点击以上按钮选择本地主题包文件后点击以下按钮进行上传（可以批量上传）。</div>
+            <div class="startupload"><a href="javascript:;" id="upload" class="button">上传新主题</a></div>
+        </div>
+    <%
 				console.log('<ul class="theme-list">');
 				var lists = fso.collect("profile/themes", true);
 					for ( var listItem = 0 ; listItem < lists.length ; listItem++ ){

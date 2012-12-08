@@ -40,6 +40,19 @@
 	if ( types === "list" ){
 		(function(){
 %>
+		<div class="ui-wrapshadow uploadnewtheme">
+        	<div class="info">上传插件包请注意：</div>
+            <ul>
+            	<li>1. 请尽量选择官方提供的插件包上传。</li>
+                <li>2. 插件文件包格式为 *.pbd 格式，请不要上传非法文件。</li>
+                <li>3. 更多插件包下载请前往官方支持平台。</li>
+            </ul>
+            <div class="uploadFile">
+    		<input type="file" value="" id="uploadFile" />
+            </div>
+            <div class="info">请点击以上按钮选择本地插件包文件后点击以下按钮进行上传（可以批量上传）。</div>
+            <div class="startupload"><a href="javascript:;" id="upload" class="button">上传新插件</a></div>
+        </div>
 		<ul class="setuped-list">
         	<%
 				dbo.trave({

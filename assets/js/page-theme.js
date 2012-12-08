@@ -1,5 +1,5 @@
 // JavaScript Document
-define(['overlay'], function( require, exports, module ){
+define(['overlay', 'upload'], function( require, exports, module ){
 	
 	function popUpTips( words, callback ){
 		$.dialog({
@@ -105,12 +105,37 @@ define(['overlay'], function( require, exports, module ){
 		});
 	}
 	
+	function init_uploadNewTheme(){
+		$("#uploadFile").upload({
+			auto: false,
+			buttonText: "请选择主题文件包",
+			uploader: config.ajaxUrl.server.themeUpload,
+			multi: true,
+			fileTypeExts: "*.pbd;",
+			onUploadSuccess: function(file, data, response){
+				var data = $.parseJSON(data);
+				if ( data.err.length === 0 ){
+					if ( confirm("上传成功，是否刷新列表？") ){
+						window.location.reload();
+					}
+				}else{
+					popUpTips(data.err);
+				}
+			}
+		});
+		
+		$("#upload").on("click", function(){
+			$("#uploadFile").uploadify("upload", "*");
+		});
+	}
+	
 	return {
 		init: function(){
 			$(function(){
 				init_setup();
 				init_themeStyleSet();
 				init_themeDelete();
+				init_uploadNewTheme();
 			});
 		}
 	}

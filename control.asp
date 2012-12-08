@@ -26,6 +26,10 @@
 <link rel="stylesheet" href="assets/css/page-<%=checkStatusAndCustomPage()%>.css" media="all" />
 <script language="javascript" src="assets/js/core/sizzle.js"></script>
 <script language="javascript" src="profile/handler/configure.js"></script>
+<script language="javascript">
+var userid = <%=config.user.id%>,
+	userhashkey = '<%=config.user.hashkey%>';
+</script>
 </head>
 <body>
 	<div class="ui-header fn-clear">

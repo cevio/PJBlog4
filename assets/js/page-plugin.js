@@ -1,5 +1,5 @@
 // JavaScript Document
-define(['tabs', 'overlay'], function( require, exports, module ){
+define(['tabs', 'overlay', 'upload'], function( require, exports, module ){
 	
 	function popUpTips( words, callback ){
 		$.dialog({
@@ -160,6 +160,30 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 		});
 	}
 	
+	function init_uploadNewPlugin(){
+		$("#uploadFile").upload({
+			auto: false,
+			buttonText: "请选择插件文件包",
+			uploader: config.ajaxUrl.server.pluginUpload,
+			multi: true,
+			fileTypeExts: "*.pbd;",
+			onUploadSuccess: function(file, data, response){
+				var data = $.parseJSON(data);
+				if ( data.err.length === 0 ){
+					if ( confirm("上传成功，是否刷新列表？") ){
+						window.location.reload();
+					}
+				}else{
+					popUpTips(data.err);
+				}
+			}
+		});
+		
+		$("#upload").on("click", function(){
+			$("#uploadFile").uploadify("upload", "*");
+		});
+	}
+	
 	return {
 		init: function(){
 			$(function(){
@@ -168,6 +192,7 @@ define(['tabs', 'overlay'], function( require, exports, module ){
 				init_pluginStop();
 				init_pluginActive();
 				init_unInstall();
+				init_uploadNewPlugin();
 			});	
 		}
 	}

@@ -50,3 +50,13 @@
 .activing:visited{
 	color:#CF4467!important;
 }
+
+.uploadnewtheme{
+	background-color:#fff;
+	padding:10px 30px;
+	margin-bottom:20px;
+}
+.uploadnewtheme .info{ line-height:20px; margin-bottom:10px;}
+.uploadnewtheme ul{ margin-bottom:10px;}
+.uploadnewtheme ul li{ height:20px; line-height:20px; padding-left:20px;}
+.uploadnewtheme .startupload{ margin-bottom:10px; padding-left:20px;}
