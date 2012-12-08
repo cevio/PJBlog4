@@ -11,7 +11,7 @@
 		size,
 		ContentType,
 		whiteAllowIPArray = [String(Request.ServerVariables("SERVER_NAME"))],
-		needForbit = true;
+		isImage = false;
 
 	function CHECKURLREFERER(){
 		var refererURL = String(Request.ServerVariables("HTTP_REFERER")),
@@ -79,27 +79,27 @@
 					break;
     			case "gif":
     				ContentType = "image/gif";
-					needForbit = false;
+					isImage = true;
 					break;
     			case "jpg":
     				ContentType = "image/jpeg";
-					needForbit = false
+					isImage = true;
 					break;
 				case "jpeg":
     				ContentType = "image/jpeg";
-					needForbit = false;
+					isImage = true;
 					break;
 				case "png":
     				ContentType = "image/png";
-					needForbit = false;
+					isImage = true;
 					break;
 				case "bmp":
     				ContentType = "image/bmp";
-					needForbit = false;
+					isImage = true;
 					break;
 				case "gif":
     				ContentType = "image/gif";
-					needForbit = false;
+					isImage = true;
 					break;
     			case "wav":
     				ContentType = "audio/wav";
@@ -129,9 +129,11 @@
     				ContentType = "application/octet-stream";
 			}
 			
-			if ( needForbit && !CHECKURLREFERER() ){
-				console.log("Prohibit Hotlinking!");
-				return;
+			if ( !isImage ){
+				if ( !CHECKURLREFERER() ){
+					console.log("Prohibit Hotlinking!");
+					return;
+				}
 			}
 			
 			var stream = new ActiveXObject(config.nameSpace.stream);
