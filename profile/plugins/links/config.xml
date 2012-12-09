@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<key name="top" value="10" type="text" des="单页调用条数"></key>
+	<key name="per" value="10" type="text" des="每页显示条数"></key>
+	<key name="aduit" type="radio" des="留言是否需要审核" value="1">
+		<option value="1">审核</option>
+		<option value="0">不审核</option>
+	</key>
+</config>

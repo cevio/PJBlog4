@@ -1,0 +1,52 @@
+@charset "utf-8";
+/* CSS Document */
+.links {
+}
+.links .link-title {
+    margin-bottom: 20px;
+}
+.links .link-title h3 {
+    color: #000000;
+    font-size: 14px;
+    font-weight: bold;
+}
+.link .link-list {
+}
+.pagebar span, .pj-article-pagebar a {
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 1px 1px 5px #CCCCCC;
+    color: #999999;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    margin-right: 8px;
+    text-align: center;
+    width: 30px;
+}
+.pagebar a:hover {
+    background: none repeat scroll 0 0 #EFEFEF;
+    color: #666666;
+    text-decoration: none;
+}
+.postlinkzone {
+    background: none repeat scroll 0 0 #FFFFFF;
+    box-shadow: 0 0 5px #CCCCCC;
+    padding: 10px 20px;
+}
+.postlinkzone .textarea {
+    margin-top: 10px;
+}
+.postlinkzone .textarea textarea {
+    border: 1px solid #DDDDDD;
+    height: 100px;
+    width: 400px;
+}
+.postlinkzone .submit {
+    margin-top: 10px;
+}
+.postlinkzone .submit input {
+    background: none repeat scroll 0 0 transparent;
+    border: 1px solid #DDDDDD;
+    color: #999999;
+    padding: 5px 10px;
+}

@@ -1,4 +1,4 @@
-<%
+﻿																																			 <%
 define(function( require, exports, module ){
 	if ( config.plugin.addCategory("guestbook", {
 		cate_name: "留言本",
@@ -18,7 +18,9 @@ define(function( require, exports, module ){
 		]);
 		
 		config.plugin.copyStyleFiles([
-			{ from: "guestbook.css", to: "." }
+			{ from: "guestbook.css", to: "." },
+			{ from: "detail_11.jpg", to: "." },
+			{ from: "detail_05.jpg", to: "." }
 		]);
 	}
 });

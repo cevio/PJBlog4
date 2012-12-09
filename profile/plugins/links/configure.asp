@@ -2,21 +2,18 @@
 define(function(){
 });
 %>
-
 <div class="ui-table ui-table-custom">
 <table cellspacing="0" class="table">
 <!-- cellspacing='0' is important, must stay -->
 <tbody>
 	<tr>
-		<th width="30">编号</th>
-		<th width="100">用户名</th>
-		<th width="100">邮箱</th>
-		<th width="250">留言内容</th>
-		<th width="80">时间</th>
-		<th width="80">IP</th>
-		<th width="80">网址</th>
-		<th width="30">审核</th>
-		<th width="30">管理</th>
+		<th width="40">编号</th>
+		<th width="100">网站名</th>
+		<th width="180">简介</th>
+		<th width="230">网址</th>
+		<th width="160">LOGO</th>
+		<th width="40">审核</th>
+		<th width="40">管理</th>
 	</tr>
 	<!-- Table Header -->
 <%
@@ -43,7 +40,7 @@ var dbo = require("DBO"),
 		var categoryBeyondArray = {};
 		dbo.trave({
 			conn: config.conn,
-			sql: "Select * From blog_guestbook Order By id DESC",
+			sql: "Select * From blog_link Order By id DESC",
 			callback: function(rs){
 				if ( !(rs.Bof || rs.Eof) ){
 					pageInfo = this.serverPage(_page, _top, function(i){
@@ -54,27 +51,28 @@ var dbo = require("DBO"),
 %>
 	<tr<%=even%>>
 		<td><%=this("id").value%></td>
-		<td><%=this("bookusername").value%></td>
-		<td><%=this("bookusermail").value%></td>
-		<td><%=this("bookcontent").value%></td>
-		<td><%=__date.format(this("bookposttime").value,_date)%></td>
-		<td><%=this("bookpostip").value%></td>	
-		<td><%=this("bookwebsite").value%></td>
-		<td><a href="javascript:;" data-id="<%=this("id").value%>" class="action-aduit"><%if (this("bookaduit").value === true){%><span style="color:#0000FF">√</span><%}else{%><span style="color:#FF0000">×</span><%}%></a></td>
+		<td><%=this("linkname").value%></td>
+		<td><%=this("linkinfo").value%></td>
+		<td><a href='<%=this("linkurl").value%>' target='_blank'><%=this("linkurl").value%></a></td>
+		<td><%if (this("linkurl").value!="")
+		{
+			console.log('<img src="'+this("linkimage").value+'"/>');
+		}%></td>
+		<td><a href="javascript:;" data-id="<%=this("id").value%>" class="action-aduit"><%if (this("linkaduit").value === true){%><span style="color:#0000FF">√</span><%}else{%><span style="color:#FF0000">×</span><%}%></a></td>
 		<td><a href="javascript:;" data-id="<%=this("id").value%>" class="action-del">删除</a></td>
 	</tr>
 <%	
 					});
 				}else{
 %>
-	<tr><td colspan="9">亲,PJ需要用心来经营，快来叫你们朋友来抢楼吧。</td></tr>
+	<tr><td colspan="7">亲,还没有博主申请友情链接哦。</td></tr>
 <%
 				}
 			}
 		});
 	}else{
 %>
-	<tr><td colspan="9">数据库连接失败，请检查数据库连接配置文件。</td></tr>
+	<tr><td colspan="7">数据库连接失败，请检查数据库连接配置文件。</td></tr>
 <%		
 	}
 %>

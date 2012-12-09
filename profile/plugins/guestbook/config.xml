@@ -6,4 +6,6 @@
 		<option value="1">审核</option>
 		<option value="0">不审核</option>
 	</key>
+	<key name="series" value="2" type="text" des="显示几级留言，0为无限（谨慎选择）"></key>
+	<key name="seriesnum" value="5" type="text" des="每级显示留言条数"></key>
 </config>
