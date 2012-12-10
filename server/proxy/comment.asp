@@ -8,6 +8,7 @@ http.async(function(req){
 		require("status");
 	
 		var date = require("DATE"),
+			sap = require("sap"),
 			logid = req.form.logid,
 			commid = req.form.commid,
 			userid = config.user.id,
@@ -42,6 +43,8 @@ http.async(function(req){
 			
 		if ( connecte === true ){
 			
+			sap.proxy("assets.comment.post.begin");
+			
 			dbo.add({
 				conn: config.conn,
 				table: "blog_comment",
@@ -49,7 +52,7 @@ http.async(function(req){
 					commentid: commid,
 					commentlogid: logid,
 					commentuserid: userid,
-					commentcontent: fns.SQLStr(content),
+					commentcontent: fns.textareaStr(fns.HTMLStr(fns.SQLStr(content))),
 					commentpostdate: date.format(new Date(), "y/m/d h:i:s"),
 					commentpostip: ip,
 					commentaudit: false,
@@ -65,6 +68,8 @@ http.async(function(req){
 				
 				var cache = require("cache");
 					cache.build("artcomm", logid);
+				
+				sap.proxy("assets.comment.post.end");
 				
 				return {
 					success: true,
