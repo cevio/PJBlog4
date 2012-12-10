@@ -201,7 +201,7 @@ var articleCut = <%=articleCuts%>,
 						console.log(dataparams);
 					}
 				}
-			})
+			});
 		%>
         
         <div class="submit"><input type="button" value="提交" class="button" id="submit" /></div>
@@ -209,8 +209,6 @@ var articleCut = <%=articleCuts%>,
 </div>
 <%
 	}else{
-%>
-	<div class="tpl-space fn-clear" style="padding:60px 80px;">打开数据库失败</div>
-<%	
+		console.log("连接数据库失败");
 	}
 %>

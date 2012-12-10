@@ -1,8 +1,8 @@
 <%
-define(function(require, exports, module){
+;define(function(require, exports, module){
 	var fso = require.async("FSO"),
 		stream = require.async("STREAM");
-		
+
 	exports.formatActionType = function(actionType){
 		var actionArray = actionType.split("."),
 			fo = "profile/handler";
@@ -15,12 +15,12 @@ define(function(require, exports, module){
 		}
 		
 		return fo;
-	}
+	};
 	
 	exports.addProxy = function(actionType, options){
 		if ( !actionType || actionType.length === 0 ){
 			return false;
-		}
+		};
 		
 		var d = "%",
 			_this = this,
@@ -46,15 +46,16 @@ define(function(require, exports, module){
 		}
 		
 		return true;
-	}
-	
-	exports.proxy = fucntion(actionType){
+	};
+
+
+	exports.proxy = function(actionType){
 		var ports = this.getPorts(actionType);
 		
 		if ( ports.length > 0 ){
 			require.async(ports);
 		}
-	}
+	};
 	
 	exports.exec = function(arr, options, i){
 		if ( i === undefined ) { i = 0; }
@@ -69,7 +70,7 @@ define(function(require, exports, module){
 			}
 			this.exec(arr, options, i + 1);
 		}
-	}
+	};
 	
 	exports.getPorts = function(actionType){
 		var fo = this.formatActionType(actionType),
@@ -83,7 +84,7 @@ define(function(require, exports, module){
 		}
 		
 		return arr;
-	}
+	};
 	
 	exports.destory = function(actionType, fileArrays){
 		var fo = this.formatActionType(actionType),
@@ -112,6 +113,6 @@ define(function(require, exports, module){
 				fso.destory( fo + "/" + fileArrays[i] );
 			}
 		}
-	}
+	};
 });
 %>

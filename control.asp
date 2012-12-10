@@ -81,7 +81,7 @@ var userid = <%=config.user.id%>,
                 try{
                     include("server/web/page-" + checkStatusAndCustomPage());
                 }catch(e){
-                    console.log("未找到模板。 [" + e.message + "]");
+                    console.log("语法错误或者未找到模板。 [" + e.message + "]");
                 }
             %>
     		</div>
