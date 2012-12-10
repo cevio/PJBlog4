@@ -2,7 +2,8 @@
 <%
 	http.service(function(req, dbo){
 		var fns = require("fn"),
-			date = require("DATE");
+			date = require("DATE"),
+			sap = require.async("sap");
 		
 		this.reply = function(){
 			var id = req.form.id,
@@ -11,6 +12,8 @@
 				_id = 0,
 				_date = new Date(),
 				_ip = fns.getIP();
+			
+			sap.proxy("system.comment.reply.begin");
 				
 			dbo.add({
 				conn: config.conn,
@@ -35,6 +38,7 @@
 				cache.build("artcomm", logid);
 				
 			if ( _id > 0 ){
+				sap.proxy("system.comment.reply.end");
 				return {
 					success: true,
 					data: {
@@ -59,6 +63,7 @@
 				logid = req.query.logid;
 			
 			try{
+				sap.proxy("system.comment.destory.begin");
 				dbo.trave({
 					conn: config.conn,
 					sql: "select * From blog_comment Where commentid=" + id,
@@ -73,6 +78,8 @@
 				
 				var cache = require("cache");
 					cache.build("artcomm", logid);
+					
+				sap.proxy("system.comment.destory.end");
 					
 				return {
 					success: true
@@ -90,6 +97,7 @@
 				logid = req.query.logid;
 				
 			try{
+				sap.proxy("system.comment.pass.begin");
 				dbo.update({
 					conn: config.conn,
 					table: "blog_comment",
@@ -103,6 +111,8 @@
 				
 				var cache = require("cache");
 					cache.build("artcomm", logid);
+				
+				sap.proxy("system.comment.pass.end");
 					
 				return {
 					success: true
@@ -120,6 +130,7 @@
 				logid = req.query.logid;
 				
 			try{
+				sap.proxy("system.comment.unpass.begin");
 				dbo.update({
 					conn: config.conn,
 					table: "blog_comment",
@@ -133,6 +144,8 @@
 				
 				var cache = require("cache");
 					cache.build("artcomm", logid);
+				
+				sap.proxy("system.comment.unpass.end");
 					
 				return {
 					success: true

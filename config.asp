@@ -44,7 +44,7 @@
 	map["tags"] = "server/tags";
 	map["xmltable"] = "server/xmltable";
 	map["pluginCustom"] = "server/pluginCustom";
-	
+	map["sap"] = "server/SystemActionProxy";
 	map["member"] = "server/member";
 	map["article"] = "server/article";
 	map["comment"] = "server/comment";

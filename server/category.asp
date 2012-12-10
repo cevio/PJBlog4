@@ -1,7 +1,9 @@
 <!--#include file="../config.asp" -->
 <%
 	http.async(function(req){
-		var j = req.query.j, callbacks = {};
+		var j = req.query.j, 
+			callbacks = {},
+			sap = require.async("sap");
 		
 		callbacks.getcateinfo = function(){
 			var id = req.query.id,
@@ -81,6 +83,8 @@
 				cate_outlink = req.form.cateOutLink,
 				cate_outlinktext = req.form.cateOutLinkText;
 			
+			sap.proxy("system.category.update.begin");
+			
 			var status = this.updateCategory(id, {
 				cate_name: cate_name,
 				cate_info: cate_info,
@@ -95,6 +99,8 @@
 			
 			var cache = require.async("cache");	
 				cache.build("category");
+				
+			sap.proxy("system.category.update.end");
 			
 			return { success: status, data: { id: id }, error: "数据库打开失败" }
 				
@@ -105,6 +111,7 @@
 				connecte = require("openDataBase");
 				
 			if ( connecte === true ){
+				sap.proxy("system.category.destroy.begin");
 				var len = String(config.conn.Execute("Select Count(*) From blog_category Where cate_root=" + id)(0));
 
 				if ( len === "0" ){
@@ -112,6 +119,9 @@
 						config.conn.Execute("Delete From blog_category Where id=" + id);
 						var cache = require.async("cache");	
 							cache.build("category");
+							
+						sap.proxy("system.category.destroy.end");
+						
 						return {
 							success: true
 						}
@@ -149,6 +159,7 @@
 				_id = 0;
 			
 			if ( connecte === true ){
+				sap.proxy("system.category.add.begin");
 				dbo.add({
 					data: {
 						cate_name: name,
@@ -165,6 +176,8 @@
 				if ( _id > 0 ){
 					var cache = require.async("cache");	
 						cache.build("category");
+						
+					sap.proxy("system.category.add.end");
 						
 					return {
 						success: true,
@@ -193,6 +206,8 @@
 			if ( connecte === true ){
 				var id = req.query.id,
 					icon = req.query.icon;
+					
+				sap.proxy("system.category.icon.begin");
 			
 				dbo.update({
 					conn: config.conn,
@@ -207,6 +222,8 @@
 				
 				var cache = require.async("cache");	
 					cache.build("category");
+				
+				sap.proxy("system.category.icon.end");
 				
 				return {
 					success: true

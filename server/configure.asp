@@ -1,7 +1,9 @@
 <!--#include file="../config.asp" -->
 <%
 http.async(function(req){
-	var j = req.query.j, callbacks = {};
+	var j = req.query.j, 
+		callbacks = {},
+		sap = require.async("sap");
 	
 	callbacks.normal = function(){
 		var title = req.form.title,
@@ -40,6 +42,8 @@ http.async(function(req){
 		}else{
 			commentaduit = false;
 		}
+		
+		sap.proxy("system.global.save.begin");
 			
 		var ret = this.saveNormal({
 			title: title,
@@ -71,6 +75,8 @@ http.async(function(req){
 			error = "";
 			var cache = require.async("cache");
 				cache.build("global");
+				
+			sap.proxy("system.global.save.end");
 		}
 		
 		return {
@@ -126,10 +132,14 @@ http.async(function(req){
 					error: "两次密码输入不相同"
 				}
 			}
+			
+			sap.proxy("system.global.password.begin");
 		
 			dbo.update({ data: {
 				password: SHA1(newpass)
 			}, table: "blog_global", conn: config.conn, key: "id", keyValue: "1" });
+			
+			sap.proxy("system.global.password.end");
 			
 			return {
 				success: true

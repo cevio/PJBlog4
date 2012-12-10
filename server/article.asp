@@ -1,7 +1,9 @@
 <!--#include file="../config.asp" -->
 <%
 	http.async(function(req){
-		var j = req.query.j, callbacks = {};
+		var j = req.query.j, 
+			callbacks = {},
+			sap = require.async("sap");
 		
 		callbacks.add = function(){
 			var log_title = req.form.log_title,
@@ -49,6 +51,8 @@
 					}
 				}
 			}
+			
+			sap.proxy("system.article.add.begin");
 				
 			var status = this.addArticle({
 				log_title: log_title,
@@ -67,6 +71,8 @@
 				cache.build("article_pages");
 				cache.build("article_pages_cate", log_category);
 				cache.build("article", Number(status));
+			
+			sap.proxy("system.article.add.end");
 			
 			return {
 				success: true,
@@ -151,6 +157,8 @@
 					}
 				}
 			}
+			
+			sap.proxy("system.article.update.begin");
 				
 			var status = this.updateArticle(id, {
 				log_title: log_title,
@@ -166,6 +174,8 @@
 				cache.build("article_pages_cate", log_oldCategory);
 				cache.build("article_pages_cate", log_category);
 				cache.build("article", Number(status));
+			
+			sap.proxy("system.article.update.end");
 			
 			return {
 				success: true,
@@ -260,6 +270,8 @@
 					try{
 						var cateid = 0;
 						
+						sap.proxy("system.article.destory.begin");
+						
 						dbo.trave({
 							conn: config.conn,
 							sql: "Select * From blog_article Where id=" + id,
@@ -274,6 +286,8 @@
 							cache.build("article_pages");
 							cache.build("article_pages_cate", cateid);
 							cache.destory("article", id);
+						
+						sap.proxy("system.article.destory.end");
 						
 						return {
 							success: true

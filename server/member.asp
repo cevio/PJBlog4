@@ -3,7 +3,9 @@
 	http.async(function(req){
 		require("status");
 		
-		var j = req.query.j, callbacks = {};
+		var j = req.query.j, 
+			callbacks = {},
+			sap = require.async("sap");
 		
 		var id = req.query.id;
 			
@@ -24,6 +26,8 @@
 				try{
 					var cache = require("cache");
 					
+					sap.proxy("system.member.destory.begin");
+					
 					config.conn.Execute("Delete From blog_member Where id=" + id);
 					dbo.trave({
 						conn: config.conn,
@@ -39,7 +43,9 @@
 								});
 						}
 					});
+					
 					cache.destory("user", id);
+					sap.proxy("system.member.destory.end");
 						
 					return {
 						success: true	
@@ -65,6 +71,7 @@
 				
 			if ( connecte === true ){
 				try{
+					sap.proxy("system.member.force.begin");
 					var cache = require("cache");
 					dbo.trave({
 						type: 3,
@@ -75,8 +82,10 @@
 							rs.Update();
 						}
 					});
+					
 					cache.destory("user", id);
-						
+					sap.proxy("system.member.force.end");
+					
 					return {
 						success: true	
 					}
@@ -101,6 +110,7 @@
 				
 			if ( connecte === true ){
 				try{
+					sap.proxy("system.member.unforce.begin");
 					var cache = require("cache");
 					dbo.trave({
 						type: 3,
@@ -111,7 +121,9 @@
 							rs.Update();
 						}
 					});
+					
 					cache.destory("user", id);
+					sap.proxy("system.member.unforce.end");
 						
 					return {
 						success: true	
@@ -138,6 +150,7 @@
 				
 			if ( connecte === true ){
 				try{
+					sap.proxy("system.member.admin.begin");
 					var cache = require("cache");
 					dbo.trave({
 						type: 3,
@@ -148,7 +161,9 @@
 							rs.Update();
 						}
 					});
+					
 					cache.destory("user", id);
+					sap.proxy("system.member.admin.end");
 						
 					return {
 						success: true	
@@ -174,6 +189,7 @@
 				
 			if ( connecte === true ){
 				try{
+					sap.proxy("system.member.unadmin.begin");
 					var cache = require("cache");
 					dbo.trave({
 						type: 3,
@@ -184,7 +200,9 @@
 							rs.Update();
 						}
 					});
+					
 					cache.destory("user", id);
+					sap.proxy("system.member.unadmin.end");
 						
 					return {
 						success: true	
@@ -214,6 +232,7 @@
 				if ( keyword.length > 0 ){
 					var ret = [];
 					
+					sap.proxy("system.member.search.begin");
 					dbo.trave({
 						conn: config.conn,
 						sql: "Select * From blog_member Where nickName like '%" + keyword + "%' Order By logindate DESC",
@@ -229,6 +248,7 @@
 							});
 						}
 					});
+					sap.proxy("system.member.search.end");
 					
 					return {
 						success: true,
