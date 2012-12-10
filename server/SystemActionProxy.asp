@@ -36,11 +36,11 @@ define(function(require, exports, module){
 		
 		if ( options.func !== undefined ){
 			var text = '<' + d + '\ndefine(function(require,exports,module){\nreturn ' + options.func.toString() + '\n});\n' + d + '>';
-			stream.save(text, fo + "/" + options.filename + ".asp");
+			stream.save(text, fo + "/" + this.mark + "." + options.filename + ".asp");
 		}
 		
 		if ( options.file !== undefined ){
-			fso.copy(_this.folder + "/" + options.file, fo);
+			fso.copy(_this.folder + "/" + options.file, fo, false, this.mark + "." + options.file);
 		}
 		
 		return true;
@@ -54,6 +54,35 @@ define(function(require, exports, module){
 		
 		if ( files.length > 0 && fso.exsit(fo, true) ){	
 			require.async(files);
+		}
+	}
+	
+	exports.destory = function(actionType, fileArrays){
+		var fo = this.formatActionType(actionType),
+			_this = this;
+			
+		if ( fileArrays === undefined ){
+			fileArrays = [];
+		}
+		
+		if ( typeof fileArrays === "string" ){
+			fileArrays = [fileArrays];
+		}
+		
+		if ( fileArrays.length === 0 ){
+			fileArrays = fso.collect(fo, false, function(name){
+				if ( name.split(".")[0] === _this.mark ){
+					return name;
+				}else{
+					return null;
+				}
+			});
+		}
+		
+		for ( var i = 0 ; i < fileArrays.length ; i++ ){
+			if ( fso.exsit(fo + "/" + fileArrays[i]) ){
+				fso.destory( fo + "/" + fileArrays[i] );
+			}
 		}
 	}
 });

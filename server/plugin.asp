@@ -174,6 +174,7 @@
 												pluginCustom.themeFolder = String(config.conn.Execute("Select theme From blog_global Where id=1")(0));
 												pluginCustom.styleFolder = String(config.conn.Execute("Select style From blog_global Where id=1")(0));
 												pluginCustom.folder = folder;
+												pluginCustom.mark = pluginMark;
 												config.plugin = pluginCustom;
 												require("profile/plugins/" + folder + "/install");
 											});
@@ -387,7 +388,8 @@
 					id = Number(id);
 				}
 				
-				var folder = String(config.conn.Execute("Select pluginfolder From blog_plugin Where id=" + id)(0));
+				var folder = String(config.conn.Execute("Select pluginfolder From blog_plugin Where id=" + id)(0)),
+					mark = String(config.conn.Execute("Select pluginmark From blog_plugin Where id=" + id)(0));
 				
 				config.conn.Execute("Delete From blog_plugin Where id=" + id);
 				config.conn.Execute("Delete From blog_moden Where modemark=" + id);
@@ -398,6 +400,7 @@
 						pluginCustom.themeFolder = String(config.conn.Execute("Select theme From blog_global Where id=1")(0));
 						pluginCustom.styleFolder = String(config.conn.Execute("Select style From blog_global Where id=1")(0));
 						pluginCustom.folder = folder;
+						pluginCustom.mark = mark;
 						config.plugin = pluginCustom;
 						require("profile/plugins/" + folder + "/uninstall");
 					});

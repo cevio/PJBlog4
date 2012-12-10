@@ -157,5 +157,15 @@ define(function( require, exports, module ){
 			fso.destory("profile/themes/" + this.themeFolder + "/style/" + this.styleFolder + "/" + arrays[i]);
 		}
 	}
+	
+	exports.SAP = function(){
+		var sap = require.async("sap");
+			sap.folder = this.folder;
+			sap.mark = this.mark;
+			sap.themeFolder = this.themeFolder;
+			sap.styleFolder = this.styleFolder;
+			
+		return sap;
+	}
 });
 %>
