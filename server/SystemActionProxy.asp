@@ -24,7 +24,8 @@ define(function(require, exports, module){
 		
 		var d = "%",
 			_this = this,
-			fo = this.formatActionType(actionType);
+			fo = this.formatActionType(actionType),
+			text;
 		
 		if ( typeof options === "string" ){
 			options = { file: options };
@@ -35,11 +36,12 @@ define(function(require, exports, module){
 		}
 		
 		if ( options.func !== undefined ){
-			var text = '<' + d + '\ndefine(function(require,exports,module){\nreturn ' + options.func.toString() + '\n});\n' + d + '>';
+			text = '<' + d + '\ndefine(function(require,exports,module){\nreturn ' + options.func.toString() + '\n});\n' + d + '>';
 			stream.save(text, fo + "/" + this.mark + "." + options.filename + ".asp");
-		}
-		
-		if ( options.file !== undefined ){
+		}else if ( options.str !== undefined ) {
+			text = '<' + d + '\ndefine(function(require,exports,module){\nreturn ' + options.str + '\n});\n' + d + '>';
+			stream.save(text, fo + "/" + this.mark + "." + options.filename + ".asp");
+		}else{
 			fso.copy(_this.folder + "/" + options.file, fo, false, this.mark + "." + options.file);
 		}
 		
@@ -47,14 +49,40 @@ define(function(require, exports, module){
 	}
 	
 	exports.proxy = fucntion(actionType){
+		var ports = this.getPorts(actionType);
+		
+		if ( ports.length > 0 ){
+			require.async(ports);
+		}
+	}
+	
+	exports.exec = function(arr, options, i){
+		if ( i === undefined ) { i = 0; }
+		if ( arr[i] === undefined ){
+			if ( typeof options.success === "function" ){
+				options.success();
+			}
+		}else{
+			var tmpparams = require.async(arr[i]);
+			if ( typeof options.callback === "function" ){
+				options.callback(tmpparams, i);
+			}
+			this.exec(arr, options, i + 1);
+		}
+	}
+	
+	exports.getPorts = function(actionType){
 		var fo = this.formatActionType(actionType),
 			files = fso.collect(fo, false, function(name){
 				return fo + "/" + name;
-			});
+			}),
+			arr = [];
 		
 		if ( files.length > 0 && fso.exsit(fo, true) ){	
-			require.async(files);
+			arr.push(files);
 		}
+		
+		return arr;
 	}
 	
 	exports.destory = function(actionType, fileArrays){

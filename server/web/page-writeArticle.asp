@@ -189,6 +189,21 @@ var articleCut = <%=articleCuts%>,
             </li>
         </ul>
         
+        <%
+			var sap = require("sap"),
+				proxys = sap.getPorts("response.article.write.plugin");
+			
+			sap.exec(proxys, {
+				callback: function( dataparams ){
+					if ( typeof dataparams === "function" ){
+						console.log(dataparams());
+					}else{
+						console.log(dataparams);
+					}
+				}
+			})
+		%>
+        
         <div class="submit"><input type="button" value="提交" class="button" id="submit" /></div>
     </form>
 </div>

@@ -40,3 +40,5 @@ system.member.unadmin.begin 后台用户降阶开始
 system.member.unadmin.end 后台用户降阶结束
 system.member.search.begin 后台用户搜索开始
 system.member.search.end 后台用户搜索结束
+
+response.article.write.plugin 后台输出日志页面插件兼容接口
