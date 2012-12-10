@@ -29,6 +29,7 @@ http.async(function(req){
 			uploadswftype = req.form.uploadswftype,
 			uploadmediatype = req.form.uploadmediatype,
 			binarywhitelist = req.form.binarywhitelist,
+			canregister = req.form.canregister,
 			error = "处理过程中发生错误。";
 			
 		if ( webstatus === "1" ){
@@ -41,6 +42,12 @@ http.async(function(req){
 			commentaduit = true;
 		}else{
 			commentaduit = false;
+		}
+		
+		if ( canregister === "1" ){
+			canregister = true;
+		}else{
+			canregister = false;
 		}
 		
 		sap.proxy("system.global.save.begin");
@@ -68,7 +75,8 @@ http.async(function(req){
 			uploadlinktype: uploadlinktype,
 			uploadswftype: uploadswftype,
 			uploadmediatype: uploadmediatype,
-			binarywhitelist: binarywhitelist
+			binarywhitelist: binarywhitelist,
+			canregister: canregister
 		});
 		
 		if ( ret === true ){

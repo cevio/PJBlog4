@@ -97,7 +97,7 @@
 		}
 
 		categoryArray = categoryArray.sort(function( A, B ){
-			return A.order > B.order;
+			return A.order - B.order;
 		});
 		
 		pageCustomParams.categorys = categoryArray;

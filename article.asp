@@ -61,7 +61,7 @@
 				
 				// '排序
 				pageCustomParams.categorys = categoryArray.sort(function( A, B ){
-					return A.order > B.order;
+					return A.order - B.order;
 				});
 				
 				// '获取category具体信息的方法

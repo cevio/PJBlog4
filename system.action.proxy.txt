@@ -42,3 +42,6 @@ system.member.search.begin 后台用户搜索开始
 system.member.search.end 后台用户搜索结束
 
 response.article.write.plugin 后台输出日志页面插件兼容接口
+
+assets.comment.post.begin 前台评论开始
+assets.comment.post.end 前台评论结束

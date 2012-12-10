@@ -2,7 +2,7 @@
 define(function(require, exports, module){
 	exports["global"] = function(){
 		return {
-			sql: "Select title, qq_appid, qq_appkey, website, description, theme, style, nickname, webstatus, articleprivewlength, articleperpagecount, webdescription, webkeywords, authoremail, seotitle, themename, themeauthor, themewebsite, themeemail, themeversion, commentaduit, commentperpagecount, gravatarS, gravatarR, gravatarD, binarywhitelist From blog_global Where id=1",
+			sql: "Select title, qq_appid, qq_appkey, website, description, theme, style, nickname, webstatus, articleprivewlength, articleperpagecount, webdescription, webkeywords, authoremail, seotitle, themename, themeauthor, themewebsite, themeemail, themeversion, commentaduit, commentperpagecount, gravatarS, gravatarR, gravatarD, binarywhitelist, canregister From blog_global Where id=1",
 			callback: function( cacheData ){
 				return {
 					title: cacheData[0][0],
@@ -30,7 +30,8 @@ define(function(require, exports, module){
 					gravatarS: cacheData[0][22],
 					gravatarR: cacheData[0][23],
 					gravatarD: cacheData[0][24],
-					binarywhitelist: cacheData[0][25]
+					binarywhitelist: cacheData[0][25],
+					canregister: cacheData[0][26]
 				}
 			}
 		};
@@ -126,7 +127,7 @@ define(function(require, exports, module){
 	}
 	
 	exports["article_pages_cate"] = function(id){
-		return "Select id From blog_article Where log_category=" + id;
+		return "Select id From blog_article Where log_category=" + id + " Order By log_updatetime DESC";
 	}
 	
 	exports["article"] = function( id ){

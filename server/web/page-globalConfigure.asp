@@ -32,6 +32,7 @@
 				blog_global.uploadswftype = rs("uploadswftype").value;
 				blog_global.uploadmediatype = rs("uploadmediatype").value;
 				blog_global.binarywhitelist = rs("binarywhitelist").value;
+				blog_global.canregister = rs("canregister").value;
 			}
 		});
 %>
@@ -193,6 +194,13 @@
     <fieldset>
       <legend>安全设置</legend>
       <table>
+      	<tr>
+          <td class="key">开启本站注册</td>
+          <td class="keyvalue">
+          	<input type="radio" value="1" name="canregister" <%=(blog_global.canregister === true ? "checked": "")%> /> 开放 
+            <input type="radio" value="0" name="canregister" <%=(blog_global.canregister === false ? "checked": "")%> /> 关闭
+          </td>
+        </tr>
         <tr>
           <td class="key">附件防盗链白名单</td>
           <td class="keyvalue"><input type="text" value="<%=blog_global.binarywhitelist%>" name="binarywhitelist" class="longer"></td>
