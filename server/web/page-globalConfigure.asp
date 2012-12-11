@@ -12,8 +12,6 @@
 				blog_global.title = rs("title").value;
 				blog_global.description = rs("description").value;
 				blog_global.website = rs("website").value;
-				blog_global.qq_appid = rs("qq_appid").value;
-				blog_global.qq_appkey = rs("qq_appkey").value;
 				blog_global.nickname = rs("nickname").value;
 				blog_global.webstatus = rs("webstatus").value;
 				blog_global.articleprivewlength = rs("articleprivewlength").value;
@@ -91,22 +89,6 @@
               关闭
               <div class="info">如果选择关闭，网站将无法访问。但是可以通过输入后台地址进行访问，来解除整站限制。<br />
                 <span>选择需慎重。</span></div></td>
-          </tr>
-        </table>
-      </fieldset>
-    </div>
-    <div class="ui-table ui-table-custom configure-list">
-      <fieldset>
-        <legend>QQ登入设置</legend>
-        <p class="info">QQ登入需要博主自己在 <a href="http://connect.qq.com/manage/" target="_blank">QQ互联开放平台</a> 申请自己的OPENID和OPENKEY。在那里请先注册成为开发者，然后点击 添加网站/应用 。添加网站将为你生成这2个关键字符串，你只需要填写到下面即可。注意的是，网站需要验证，你可以通过对首页文件稍作修改，验证完毕后还原即可（具体看提示说明），而回调地址则根据说明填写，在这里你需要写入你的网站域名即可，如果是二级域名则填写二级域名。如有疑问，请移步至 <a href="http://bbs.pjhome.net" target="_blank">官方</a> 求助。</p>
-        <table>
-          <tr>
-            <td class="key">QQ APP ID</td>
-            <td class="keyvalue"><input type="text" value="<%=blog_global.qq_appid%>" name="qq_appid" class="long"></td>
-          </tr>
-          <tr>
-            <td class="key">QQ APP KEY</td>
-            <td class="keyvalue"><input type="text" value="<%=blog_global.qq_appkey%>" name="qq_appkey" class="longer"></td>
           </tr>
         </table>
       </fieldset>

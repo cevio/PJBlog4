@@ -64,15 +64,17 @@
 	map["cache_article_detail"] = "server/module/article-detail";
 	map["cache_comment"] = "server/module/comment";
 	
-	http.service = function( callback ){
+	http.service = function( callback, isposter ){
 		http.async(function(req){
-			require("status");
+			require("status")();
 			var j = req.query.j, callbacks = {};
-			if ( Session("admin") === true && config.user.login === true ){
+			if ( config.user.admin === true || ( (isposter === true) && (config.user.poster === true) ) ){
 				var dbo = require("DBO"),
-					connecte = require("openDataBase");		
+					connecte = require("openDataBase"),
+					sap = require("sap");
+							
 				if ( connecte === true ){
-					callback.call(callbacks, req, dbo);
+					callback.call(callbacks, req, dbo, sap);
 					if ( callbacks[j] !== undefined ){
 						return callbacks[j]();
 					}else{
