@@ -1,17 +1,11 @@
 ﻿<!--#include file="config.asp" --><%
-	require("status");
-	if ( (!config.user.login) || (config.user.isAdmin === false) ){
-		Response.Redirect("default.asp");
-	}
-	
+	require("status")();
 	var page = http.get("p");
 	function checkStatusAndCustomPage(){
-		if ( Session("admin") !== true ){
+		if ( config.user.poster !== true ){
 			return "login";
-		}else if ( page.length === 0 ){
-			return "index";
 		}else{
-			return page;
+			return page.length === 0 ? "index" : page;
 		}
 	}
 %><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -34,18 +28,12 @@ var userid = <%=config.user.id%>,
 <body>
 	<div class="ui-header fn-clear">
 		<div class="ui-user fn-right fn-clear">
-			<%
-				if ( Session("admin") === true ){ 
-			%>
             <div class="icon-user fn-rightspace fn-left"><%=config.user.name%></div>
-			<a href="javascript:;" class="fn-rightspace fn-left modify-password">修改密码</a>
-			<a href="?p=writeArticle" class="fn-rightspace fn-left">写新日志</a>
-			<a href="server/logout.asp" class="fn-left">退出</a>
-            <%
-				}else{
-					console.log("请先登入");
-				}
-			%>
+			<%if ( config.user.admin === true ){%><a href="javascript:;" class="fn-rightspace fn-left modify-password">修改密码</a><%}%>
+			<%if ( config.user.poster === true ){%>
+            	<a href="?p=writeArticle" class="fn-rightspace fn-left">写新日志</a>
+				<a href="server/logout.asp" class="fn-left">退出</a>
+			<%}%>
 		</div>
 		<div class="ui-guide">
 			<a class="ui-logo fn-left fn-rightspace">PJBlog4</a>
@@ -61,7 +49,7 @@ var userid = <%=config.user.id%>,
 	</div>
     
     <%
-		if ( Session("admin") === true ){
+		if ( config.user.poster === true ){
 	%>
     <div class="ui-body fn-clear">
 		<div class="ui-nav">

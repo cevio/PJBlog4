@@ -1,6 +1,17 @@
 // JavaScript Document
 define(['form'], function(require, exports, module){
 	
+	function slidebar(){
+		$(".pannel li").on("click", function(){
+			$(".pannel li").removeClass("active");
+			$(this).addClass("active");
+			var i = $.inArray(this, $(".pannel li").toArray());
+			$(".wrap").animate({
+				"margin-left": "-" + (i * 400) + "px"
+			}, "fast");
+		});
+	}
+	
 	function ajaxFormBind(){
 		var sending = false;
 		$('form').ajaxForm({
@@ -34,7 +45,9 @@ define(['form'], function(require, exports, module){
 	exports.init = function(){
 		$(function(){
 			ajaxFormBind();
+			slidebar();
 			$("input[name='password']").focus();
+			$(".pannel li:first").trigger("click");
 		});
 	}
 });

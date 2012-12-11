@@ -1,53 +1,55 @@
 <!--#include file="../config.asp" -->
 <%
-	require("status");
+	require("status")();
 	http.async(function( req ){
-		if ( !config.user.login ){
-			return {
-				success: false,
-				error: "请先登入"
-			}
-		}
-		
-		if ( !config.user.isAdmin ){
-			return {
-				success: false,
-				error: "您没有权限登入"
-			}
-		}
-		var tmpConnection = require.async("openDataBase");
-		
-		if ( tmpConnection === true ){
-			var dbo = require.async("DBO"),
-				sha1 = require.async("SHA1"),
-				fn = require.async("fn"),
-				date = require.async("DATE"),
-				password = req.form.password,
-				ip = fn.getIP(),
-				res = { success: false, error: "" };
+		var dbo = require("DBO"),
+			connecte = require("openDataBase"),
+			fns = require("fn"),
+			SHA1 = require("SHA1"),
+			cookie = require("COOKIE");
+
+		if ( connecte === true ){
+			var username = fns.HTMLStr(fns.SQLStr(req.form.username)),
+				password = fns.HTMLStr(fns.SQLStr(req.form.password)),
+				salt = fns.randoms(6),
+				rets = {},
+				_hashkey;
 			
 			dbo.trave({
 				type: 3,
 				conn: config.conn,
 				sql: "Select * From blog_global Where id=1",
-				callback: function( Rs ){
-					if ( sha1(password) === Rs("password").value ){
-						res.success = true;
-						Rs("loginip") = ip;
-						Rs("logindate") = date.format(new Date(), "y-m-d h:i:s");
-						Rs.Update();
-						Session("admin") = true;
+				callback: function(rs){
+					if ( rs("nickname").value === username ){
+						if ( SHA1(password + rs("salt").value) === rs("hashkey").value ){
+							rets.success = true;
+							rs("salt") = salt;
+							_hashkey = SHA1(password + salt);
+							rs("hashkey") = _hashkey;
+							rs.Update();
+						}else{
+							rets.success = false;
+							rets.error = "密码错误";
+						}
 					}else{
-						res.error = "密码错误，无法登入。";
+						rets.success = false;
+						rets.error = "未找到该用户";
 					}
 				}
 			});
 			
-			return res;
+			if ( rets.success === true ){
+				cookie.set(config.cookie + "_user", "id", -1);
+				cookie.set(config.cookie + "_user", "hashkey", _hashkey);
+				cookie.set(config.cookie + "_user", "oauth", "system")
+				cookie.expire(config.cookie + "_user", 30 * 24 * 60 * 60 * 1000);
+			}
+			
+			return rets;
 		}else{
 			return {
 				success: false,
-				error: "打开数据库失败"
+				error: "连接数据库失败"
 			}
 		}
 	});

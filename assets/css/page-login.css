@@ -1,52 +1,19 @@
 @charset "utf-8";
 /* CSS Document */
-
-.login-box{
-	width:300px;
-	margin:0 auto;
-	background:#fff;
-	margin-top:200px;
-}
-
-.login-box .login-user{
-	padding:20px;
-}
-
-.login-box .login-user img{
-	border-radius:3px;
-	width:50px;
-	height:50px;
-}
-
-.login-box .login-user .imgs{ 
-	margin-right:20px;
-}
-
-.login-box .login-user .action{
-}
-
-.login-box .login-user .action .name{
-	 height:20px;
-	 line-height:20px;
-	 font-size:14px;
-}
-
-.login-box .login-user .action .put{
-	margin-top:6px;
-}
-
-.login-box .login-user .action .pass{
-	width:150px;
-}
-.login-box .login-user .action .submit{
-	background-image:url(../img/icon-rebound-2x.png);
-	background-repeat:no-repeat;
-	background-size:16px 16px;
-	background-color:#fff;
-	width: 16px; height:16px;
-	border:none;
-	margin-left:5px;
-}
-
-.login-info{ display:none; padding:0px 20px 10px 20px; color:#777;}
 .ui-footer{ display:none;}
+.login-box{ background-color:#fff; width:400px; margin:0 auto; margin-top:200px; position:relative; border-top-left-radius:0px;}
+.login-box .pannel{ height:26px; overflow:hidden; position:absolute; top:-26px; background:#ccc; border-radius:3px 3px 0px 0px;}
+.login-box .pannel li{ height:26px; line-height:26px; float:left; color:#fff; width:100px; text-align:center; border-right:1px solid #bbb; cursor:pointer;}
+.login-box .pannel li.none{ border-right:none;}
+.login-box .pannel li:hover{ background:#aaa; border-radius:3px 0px 0px 0px;}
+.login-box .pannel li.none:hover{background:#aaa; border-radius:0px 3px 0px 0px;}
+.login-box .pannel li.active{background:#aaa;border-radius:3px 0px 0px 0px;}
+.login-box .pannel li.none.active{background:#aaa; border-radius:0px 3px 0px 0px;}
+.login-box .login-user{ height:150px; width:400px; overflow:hidden;}
+.login-box .login-user .wrap{ width:800px; height:150px;}
+.login-box .login-user .contents{ float:left; width:400px; height:150px;}
+.login-box .login-user .contents .zone{ padding:20px 15px;}
+.login-box .login-user table td{ padding:5px 5px 10px 5px;}
+.login-box .login-user table td input{ width:200px;}
+.login-box .login-user table td .button{ width:60px;}
+.login-box .login-user table td .login-info{ color:#F90; display:none;}
