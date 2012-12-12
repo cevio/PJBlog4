@@ -34,23 +34,10 @@
 		}
 			
 		if ( connecte === true ){
-			if ( uid.length > 0 ){
-				dbo.trave({
-					conn : config.conn,
-					sql : "Select * From blog_member Where id=" + uid,
-					callback : function(rs){
-						if ( !(rs.Bof || rs.Eof) ){
-							if ( hash === SHA1(rs("hashkey").value) ){
-								isLogin = true;
-								isAdmin = rs("isAdmin").value;
-							}
-						}
-					}
-				});
-			}else{
-				isLogin = config.user.login;
-				isAdmin = Session("admin");
-			}
+			require("status")(uid, hash);
+		
+			isLogin = config.user.login;
+			isAdmin = config.user.poster;
 			
 			if ( isLogin === true && isAdmin === true ){
 				var folder = "";

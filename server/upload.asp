@@ -10,24 +10,11 @@ require(["UPLOAD", "DATE", "FSO", "cache", "SHA1"], function(upload, _date, fso,
 			isImmediate = http.get("immediate"),
 			isLogin = false,
 			isAdmin = false;
+			
+		require("status")(uid, hash);
 		
-		if ( uid.length > 0 ){
-			dbo.trave({
-				conn : config.conn,
-				sql : "Select * From blog_member Where id=" + uid,
-				callback : function(rs){
-					if ( !(rs.Bof || rs.Eof) ){
-						if ( hash === SHA1(rs("hashkey").value) ){
-							isLogin = true;
-							isAdmin = rs("isAdmin").value;
-						}
-					}
-				}
-			});
-		}else{
-			isLogin = config.user.login;
-			isAdmin = Session("admin");
-		}
+		isLogin = config.user.login;
+		isAdmin = config.user.poster;
 		
 		if ( isLogin === true && isAdmin === true ){
 			var extArray = [];

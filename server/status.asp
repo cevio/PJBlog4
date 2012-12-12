@@ -3,6 +3,15 @@ define(function(require, exports, module){
 	var cookie = require.async("COOKIE"),
 		SHA1 = require.async("SHA1"),
 		GRA = require.async("gra"),
+		clearStatus = function(){
+			config.user.id = 0;
+			config.user.login = false;
+			config.user.hashkey = "";
+			config.user.name = "";
+			config.user.photo = "_blank";
+			config.user.admin = false;
+			config.user.poster = false;
+		}
 		status = function(id, hashkey){
 			var _id = unescape(cookie.get(config.cookie + "_user", "id")),
 				_hashkey = cookie.get(config.cookie + "_user", "hashkey"),
@@ -23,6 +32,12 @@ define(function(require, exports, module){
 					sql: sql,
 					callback: function(rs){
 						if ( rs("hashkey").value === hashkey ){
+							if ( _oauth !== "system" ){
+								if ( rs("canlogin") !== true ){
+									clearStatus();
+									return;
+								}
+							}
 							config.user.id = _oauth === "system" ? -1 : rs("id").value;
 							config.user.login = true;
 							config.user.hashkey = hashkey;
@@ -31,13 +46,7 @@ define(function(require, exports, module){
 							config.user.admin = _oauth === "system" ? true : false;
 							config.user.poster = _oauth === "system" ? true : rs("isposter").value;
 						}else{
-							config.user.id = 0;
-							config.user.login = false;
-							config.user.hashkey = "";
-							config.user.name = "";
-							config.user.photo = "_blank";
-							config.user.admin = false;
-							config.user.poster = false;
+							clearStatus();
 						}
 					}
 				});

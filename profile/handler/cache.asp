@@ -122,18 +122,6 @@ define(function(require, exports, module){
 		};
 	}
 	
-	exports["article_pages"] = function(){
-		return "Select id From blog_article Order By log_updatetime DESC";
-	}
-	
-	exports["article_pages_cate"] = function(id){
-		return "Select id From blog_article Where log_category=" + id + " Order By log_updatetime DESC";
-	}
-	
-	exports["article"] = function( id ){
-		return "Select log_title, log_category, log_content, log_tags, log_views, log_posttime, log_updatetime, log_shortcontent, log_cover From blog_article Where id=" + id;
-	}
-	
 	exports["tags"] = function(){
 		return {
 			sql: "Select id, tagname, tagcount From blog_tags",
@@ -157,10 +145,6 @@ define(function(require, exports, module){
 	
 	exports["plugin"] = function(){
 		return "Select id, pluginname, pluginmark, pluginfolder, pluginstatus, plugininfo, pluginauthor, pluginemail, pluginwebsite, pluginqqweibo, pluginsinaweibo, pluginpublishdate, pluginversion, pluginwebpage From blog_plugin";
-	}
-	
-	exports["artcomm"] = function(id){
-		return "Select id, commentid, commentuserid, commentcontent, commentpostdate, commentpostip, commentaudit, commentusername, commentusermail From blog_comment Where commentlogid=" + id + " Order By commentpostdate DESC";
 	}
 	
 	exports["user"] = function(id){
