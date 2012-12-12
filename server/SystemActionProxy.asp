@@ -1,7 +1,8 @@
 <%
 ;define(function(require, exports, module){
 	var fso = require.async("FSO"),
-		stream = require.async("STREAM");
+		stream = require.async("STREAM"),
+		fns = require.async("fn");
 
 	exports.formatActionType = function(actionType){
 		var actionArray = actionType.split("."),
@@ -25,7 +26,8 @@
 		var d = "%",
 			_this = this,
 			fo = this.formatActionType(actionType),
-			text;
+			text,
+			filename = fns.randoms(20);
 		
 		if ( typeof options === "string" ){
 			options = { file: options };
@@ -37,23 +39,31 @@
 		
 		if ( options.func !== undefined ){
 			text = '<' + d + '\ndefine(function(require,exports,module){\nreturn ' + options.func.toString() + '\n});\n' + d + '>';
-			stream.save(text, fo + "/" + this.mark + "." + options.filename + ".asp");
+			stream.save(text, fo + "/" + this.mark + "." + filename + ".asp");
 		}else if ( options.str !== undefined ) {
 			text = '<' + d + '\ndefine(function(require,exports,module){\nreturn ' + options.str + '\n});\n' + d + '>';
-			stream.save(text, fo + "/" + this.mark + "." + options.filename + ".asp");
+			stream.save(text, fo + "/" + this.mark + "." + filename + ".asp");
 		}else{
-			fso.copy(_this.folder + "/" + options.file, fo, false, this.mark + "." + options.file);
+			fso.copy(_this.folder + "/" + options.file, fo, false, this.mark + "." + filename + ".asp");
 		}
 		
 		return true;
 	};
 
 
-	exports.proxy = function(actionType){
-		var ports = this.getPorts(actionType);
+	exports.proxy = function(actionType, arrArguments){
+		var ports = this.getPorts(actionType),
+			_this = this;
+		
+		arrArguments = arrArguments === undefined ? [] : arrArguments;
+		arrArguments = typeof arrArguments !== "array" ? [arrArguments] : arrArguments;
 		
 		if ( ports.length > 0 ){
-			require.async(ports);
+			this.exec(ports, {
+				callback: function(moden){
+					moden.apply(_this, arrArguments);
+				}
+			});
 		}
 	};
 	

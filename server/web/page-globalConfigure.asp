@@ -190,6 +190,20 @@
       </table>
     </fieldset>
     </div>
+    <%
+		var sap = require("sap"),
+			proxys = sap.getPorts("response.global.save.plugin");
+		
+		sap.exec(proxys, {
+			callback: function( dataparams ){
+				if ( typeof dataparams === "function" ){
+					console.log(dataparams());
+				}else{
+					console.log(dataparams);
+				}
+			}
+		});
+	%>
     <div class="submit-area">
       <input type="submit" value="保存设置" class="button" />
     </div>

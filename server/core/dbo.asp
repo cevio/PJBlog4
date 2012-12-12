@@ -106,7 +106,6 @@ define(function( require, exports, module ){
 		if ( options === undefined ){ options = {} };
 		if ( options.rs === undefined ){ options.rs = this.createRecordSet(); }
 
-		try{
 			options.rs.Open("Select * From " + options.table + " Where " + options.key + "=" + options.keyValue, options.conn, 3, 3);
 			for ( var items in options.data ){
 				options.rs(items) = options.data[items];
@@ -114,9 +113,6 @@ define(function( require, exports, module ){
 			options.rs.Update();
 			(typeof options.callback === "function") && options.callback.call(options.rs);
 			options.rs.Close();
-		}catch(e){
-			console.push(e.message);
-		}
 
 		return this;
 	}

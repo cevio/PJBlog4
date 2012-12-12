@@ -1,6 +1,6 @@
 <!--#include file="../config.asp" -->
 <%
-http.service(function( req, dbo ){
+http.service(function( req, dbo, sap ){
 	this.normal = function(){
 		var title = req.form.title,
 			description = req.form.description,
@@ -26,14 +26,7 @@ http.service(function( req, dbo ){
 			canregister = req.form.canregister,
 			error = "处理过程中发生错误。";
 			
-		sap.proxy("system.global.save.begin");
-		
-		dbo.update({ 
-			table: "blog_global", 
-			conn: config.conn, 
-			key: "id", 
-			keyValue: "1",
-			data: {
+		var insSQLData = {
 			title: title,
 			description: description,
 			nickname: nickname,
@@ -56,6 +49,16 @@ http.service(function( req, dbo ){
 			uploadmediatype: uploadmediatype,
 			binarywhitelist: binarywhitelist,
 			canregister: canregister
+		}
+			
+		sap.proxy("system.global.save.begin", insSQLData);
+		
+		dbo.update({
+			table: "blog_global", 
+			conn: config.conn, 
+			key: "id", 
+			keyValue: "1",
+			data: insSQLData
 		});
 		
 		var cache = require.async("cache");
@@ -64,7 +67,7 @@ http.service(function( req, dbo ){
 		sap.proxy("system.global.save.end");
 		
 		return {
-			success: ret,
+			success: true,
 			error: error
 		}
 	}
@@ -73,13 +76,15 @@ http.service(function( req, dbo ){
 		var oldpass = req.form.oldpass,
 			newpass = req.form.newpass,
 			repass = req.form.repass,
-			checked = false;
+			checked = false,
+			fns = require("fn"),
+			SHA1 = require("SHA1");
 			
 		dbo.trave({
 			conn: config.conn,
 			sql: "Select * From blog_global Where id=1",
 			callback: function(rs){
-				if ( SHA1(oldpass) === rs("password").value ){
+				if ( SHA1(oldpass + rs("salt").value) === rs("hashkey").value ){
 					checked = true;
 				}
 			}
@@ -99,13 +104,12 @@ http.service(function( req, dbo ){
 			}
 		}
 		
-		sap.proxy("system.global.password.begin");
+		var salt = fns.randoms(6);
 	
 		dbo.update({ data: {
-			password: SHA1(newpass)
+			hashkey: SHA1(newpass + salt),
+			salt: salt
 		}, table: "blog_global", conn: config.conn, key: "id", keyValue: "1" });
-		
-		sap.proxy("system.global.password.end");
 		
 		return {
 			success: true
