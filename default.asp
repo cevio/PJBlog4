@@ -1,23 +1,22 @@
 <!--#include file="config.asp" -->
 <%
-	// '加载用户登入状态
-	require("status");
-	
-	// '加载全局变量模块
+	pageCustomParams.tempModules.cache = require("cache");
+	pageCustomParams.tempModules.dbo = require("DBO");
+	pageCustomParams.tempModules.connect = require("openDataBase");
+	pageCustomParams.tempModules.fns = require("fn");
 	pageCustomParams.tempCaches.globalCache = require("cache_global");
 	
-	// '加载fn模块
-	pageCustomParams.tempModules.fns = require("fn");
+	if ( pageCustomParams.tempModules.connect !== true ){
+		console.end("连接数据库失败");
+	}
 	
-	// '获取页面page参数
+	require("status")();
+	
 	pageCustomParams.page = http.get("page");
-	// 'Page参数的逻辑判断和过滤
 	if ( pageCustomParams.page.length === 0 ){ 
 		pageCustomParams.page = 1; 
 	}else{
-		// '判断是否是数字类型（包括字符串）
 		if ( !isNaN( pageCustomParams.page ) ){
-			// '统一转成数字类型
 			pageCustomParams.page = Number(pageCustomParams.page);
 			if ( pageCustomParams.page < 1 ){
 				pageCustomParams.page = 1;
@@ -26,8 +25,7 @@
 			console.end("page params error.");
 		}
 	};
-	
-	// '当前页面分类参数（进入category筛选模式）
+
 	pageCustomParams.cateID = http.get("c");
 	if ( pageCustomParams.cateID.length === 0 ){
 		pageCustomParams.cateID = 0;
@@ -42,13 +40,32 @@
 		}
 	};
 	
-	pageCustomParams.article = {
+	pageCustomParams.tempParams.category = require("cache_category");
+	
+	pageCustomParams.articles = {
 		list: [],
 		pagebar: []
 	};
 	
+	(function(dbo){
+		var sql = "";
+		if ( pageCustomParams.cateID > 0 ){
+			sql = "Select * From "
+		}else{
+		
+		}
+		return;
+		dbo.trave({
+			conn: config.conn,
+			sql: sql,
+			callback: function(rs){
+				
+			}
+		});
+	})(pageCustomParams.tempModules.dbo);
+
 	// '处理日志列表
-	;(function(){
+	/*;(function(){
 		var cache = require("cache"),
 			tagsCacheData = require("tags"),
 			fns = require("fn"),
@@ -140,12 +157,12 @@
 			}
 		}
 		
-	})();
+	})();*/
 	
 	delete pageCustomParams.tempCaches;
 	delete pageCustomParams.tempModules;
 	delete pageCustomParams.tempParams;
-	
-	include("profile/themes/" + pageCustomParams.global.theme + "/default.asp");
+	console.log(JSON.stringify(pageCustomParams));
+	//include("profile/themes/" + pageCustomParams.global.theme + "/default.asp");
 	CloseConnect();
 %>

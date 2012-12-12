@@ -1,13 +1,10 @@
 <%
 define(function(require, exports, module){
-	var cache = require("cache"),
-		sys_cache_global = cache.load("global");
+	var sys_cache_global = pageCustomParams.tempModules.cache.load("global");
 
 		pageCustomParams.global = {};
 		pageCustomParams.global.title = sys_cache_global.title; // '标题
 		pageCustomParams.global.description = sys_cache_global.description; // '描述
-		pageCustomParams.global.qq_appid = sys_cache_global.qq_appid; // 'qq openid
-		pageCustomParams.global.qq_appkey = sys_cache_global.qq_appkey; // 'qq openkey
 		pageCustomParams.global.theme = sys_cache_global.theme; // '主题
 		pageCustomParams.global.style = sys_cache_global.style; // '样式
 		pageCustomParams.global.nickname = sys_cache_global.nickname; // '昵称
