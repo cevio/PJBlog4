@@ -1,5 +1,22 @@
 <!--#include file="config.asp" -->
 <%
+	pageCustomParams.tempModules.cache = require("cache");
+	pageCustomParams.tempModules.dbo = require("DBO");
+	pageCustomParams.tempModules.connect = require("openDataBase");
+	pageCustomParams.tempModules.fns = require("fn");
+	pageCustomParams.tempModules.tags = require("tags");
+	pageCustomParams.tempCaches.globalCache = require("cache_global");
+	
+	if ( pageCustomParams.tempModules.connect !== true ){
+		console.end("连接数据库失败");
+	}
+	
+	require("status")();
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 	// '加载用户登入状态
 	require("status");
 	

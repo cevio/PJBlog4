@@ -6,8 +6,8 @@
 	<div class="pj-article-list fn-left">
     	<%
 			(function(){
-				var tplList = pageCustomParams.article.list,
-					tplPagebar = pageCustomParams.article.pagebar,
+				var tplList = pageCustomParams.articles.lists,
+					tplPagebar = pageCustomParams.articles.pages,
 					i, j;
 					
 				for ( i = 0 ; i < tplList.length ; i++ ){

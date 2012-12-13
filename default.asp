@@ -4,6 +4,7 @@
 	pageCustomParams.tempModules.dbo = require("DBO");
 	pageCustomParams.tempModules.connect = require("openDataBase");
 	pageCustomParams.tempModules.fns = require("fn");
+	pageCustomParams.tempModules.tags = require("tags");
 	pageCustomParams.tempCaches.globalCache = require("cache_global");
 	
 	if ( pageCustomParams.tempModules.connect !== true ){
@@ -43,126 +44,114 @@
 	pageCustomParams.tempParams.category = require("cache_category");
 	
 	pageCustomParams.articles = {
-		list: [],
-		pagebar: []
+		lists: [],
+		pages: []
 	};
+
+	function getCategoryName( id ){
+		var rets = {},
+			categoryJSON = pageCustomParams.tempParams.category;
+			
+		if ( categoryJSON[id + ""] !== undefined ){
+			rets.id = id;
+			rets.name = categoryJSON[id + ""].name;
+			rets.info = categoryJSON[id + ""].info;
+			rets.icon = "profile/icons/" + categoryJSON[id + ""].icon;
+			rets.url = "default.asp?c=" + id;
+		}
+		
+		return rets;
+	}
+	
+	function getTags( tagStr ){
+		var tagsCacheData = pageCustomParams.tempModules.tags,
+			tagStrArrays = tagsCacheData.reFormatTags(tagStr),
+			keeper = [];
+				
+		for ( var j = 0 ; j < tagStrArrays.length ; j++ ){
+			var rets = tagsCacheData.readTagFromCache( Number(tagStrArrays[j]) );
+			if ( rets !== undefined ){
+				keeper.push({ 
+					id: Number(tagStrArrays[j]), 
+					name: rets.name,
+					url: "tags.asp?id=" + tagStrArrays[j],
+					count: rets.count
+				});
+			}
+		}
+		
+		return keeper;
+	}
 	
 	(function(dbo){
-		var sql = "";
+		var sql = "",
+			perpage = pageCustomParams.tempCaches.globalCache.articleperpagecount,
+			totalSum = 0,
+			_pages = 0,
+			_mod = 0,
+			totalPages = 0;
+			
 		if ( pageCustomParams.cateID > 0 ){
-			sql = "Select * From "
+			totalSum = Number(String(config.conn.Execute("Select count(id) From blog_article Where log_category=" + pageCustomParams.cateID)(0)));
 		}else{
-		
+			totalSum = Number(String(config.conn.Execute("Select count(id) From blog_article")(0)));
 		}
-		return;
+		
+		if ( totalSum < perpage ){ perpage = totalSum; }
+		_mod = totalSum % perpage;
+		_pages = Math.floor(totalSum / perpage);
+		if ( _mod > 0 ){ totalPages = _pages + 1; }else{ totalPages = _pages; }
+		if ( pageCustomParams.page > totalPages ){ pageCustomParams.page = totalPages;}
+
+		if ( pageCustomParams.page > _pages ){
+			if ( pageCustomParams.cateID > 0 ){
+				sql = "Select top " + _mod + " * From blog_article Where log_category=" + pageCustomParams.cateID + " Order By id ASC";
+			}else{	
+				sql = "Select top " + _mod + " * From blog_article Order By id ASC";
+			}
+			sql = "Select * From (" + sql + ") Order By id DESC";
+		}else{
+			if ( pageCustomParams.cateID > 0 ){
+				sql = "Select top " 
+					+ (pageCustomParams.page * perpage) 
+					+ " * From blog_article Where log_category=" 
+					+ pageCustomParams.cateID 
+					+ " Order By id DESC";
+			}else{
+				sql = "Select top " 
+					+ (pageCustomParams.page * perpage) 
+					+ " * From blog_article Order By id DESC";
+			}
+			sql = "Select * From (Select top " + perpage + " * From (" + sql + ") Order By id) Order By id DESC";
+		}
+		
+		pageCustomParams.articles.pages = pageCustomParams.tempModules.fns.pageAnalyze(pageCustomParams.page, totalPages);
+
 		dbo.trave({
 			conn: config.conn,
 			sql: sql,
-			callback: function(rs){
-				
-			}
-		});
-	})(pageCustomParams.tempModules.dbo);
-
-	// '处理日志列表
-	/*;(function(){
-		var cache = require("cache"),
-			tagsCacheData = require("tags"),
-			fns = require("fn"),
-			perPage = pageCustomParams.tempCaches.globalCache.articleperpagecount,
-			categoryCacheData = cache.load("category"),
-			articleCurrentPage = pageCustomParams.page,
-			modules,
-			articlesArray = [],
-			categoryJSON = categoryCacheData.list,
-			categoryArray = categoryCacheData.arrays,
-			i = 0;
-
-		function getTags( tagStr ){
-			var tagStrArrays = tagsCacheData.reFormatTags(tagStr),
-				keeper = [];	
-			for ( var j = 0 ; j < tagStrArrays.length ; j++ ){
-				var rets = tagsCacheData.readTagFromCache( Number(tagStrArrays[j]) );
-				if ( rets !== undefined ){
-					keeper.push({ 
-						id: Number(tagStrArrays[j]), 
-						name: rets.name,
-						url: "tags.asp?id=" + tagStrArrays[j],
-						count: rets.count
+			callback: function(){
+				this.each(function(){
+					pageCustomParams.articles.lists.push({
+						id: this("id").value,
+						title: this("log_title").value,
+						postDate: this("log_posttime").value,
+						editDate: this("log_updatetime").value,
+						category: getCategoryName(this("log_category").value),
+						tags: getTags(this("log_tags").value),
+						content: this("log_content").value,
+						url: "article.asp?id=" + this("id").value
 					});
-				}
-			}
-			return keeper;
-		}
-		
-		function getCategoryName( id ){
-			var rets = {};
-			if ( categoryJSON[id + ""] !== undefined ){
-				rets.id = id;
-				rets.name = categoryJSON[id + ""].name;
-				rets.info = categoryJSON[id + ""].info;
-				rets.icon = "profile/icons/" + categoryJSON[id + ""].icon;
-				rets.url = "default.asp?c=" + id;
-			}
-			return rets;
-		}
-		
-		if ( pageCustomParams.cateID === undefined || pageCustomParams.cateID === 0 ){
-			modules = cache.load("article_pages");
-		}else{
-			modules = cache.load("article_pages_cate", pageCustomParams.cateID);
-		}
-
-		categoryArray = categoryArray.sort(function( A, B ){
-			return A.order - B.order;
-		});
-		
-		pageCustomParams.categorys = categoryArray;
-		
-		if ( modules.length > 0 ){
-			var articleContainerParams = pageCustomParams.tempModules.fns.pageFormTo( articleCurrentPage, perPage, modules.length );
-			for ( i = articleContainerParams.from ; i <= articleContainerParams.to ; i++ ){
-				var articleCacheDatas = cache.load("article", Number(modules[i][0]));
-				articlesArray.push({
-					id: Number(modules[i][0]),
-					title: articleCacheDatas[0][0],
-					postDate: articleCacheDatas[0][5],
-					editDate: articleCacheDatas[0][6],
-					category: getCategoryName(articleCacheDatas[0][1]),
-					tags: getTags(articleCacheDatas[0][3]),
-					content: articleCacheDatas[0][7],
-					url: "article.asp?id=" + modules[i][0]
 				});
 			}
-			pageCustomParams.article.list = articlesArray;
-			
-			var articlePagebar = pageCustomParams.tempModules.fns.pageAnalyze(articleCurrentPage, Math.ceil(modules.length / perPage));
-			if ( (pageCustomParams.article.list.length > 0) && ( (articlePagebar.to - articlePagebar.from) > 0 ) ){
-				for ( i = articlePagebar.from ; i <= articlePagebar.to ; i++ ){
-					var url = pageCustomParams.cateID > 0 ? 
-									"default.asp?c=" + pageCustomParams.cateID + "&page=" + i :
-									"default.asp?page=" + i;
-									
-					if ( articlePagebar.current === i ){
-						pageCustomParams.article.pagebar.push({
-							key: n
-						});
-					}else{
-						pageCustomParams.article.pagebar.push({
-							key: n,
-							url : url
-						});
-					}				
-				}
-			}
-		}
+		});
 		
-	})();*/
+	})(pageCustomParams.tempModules.dbo);
 	
 	delete pageCustomParams.tempCaches;
 	delete pageCustomParams.tempModules;
 	delete pageCustomParams.tempParams;
-	console.log(JSON.stringify(pageCustomParams));
-	//include("profile/themes/" + pageCustomParams.global.theme + "/default.asp");
+
+	include("profile/themes/" + pageCustomParams.global.theme + "/default.asp");
 	CloseConnect();
 %>
