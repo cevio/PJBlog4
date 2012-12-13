@@ -137,7 +137,22 @@
 			sql = "Select * From (Select top " + perpage + " * From (" + sql + ") Order By id) Order By id DESC";
 		}
 		
-		pageCustomParams.comments.pages = pageCustomParams.tempModules.fns.pageAnalyze(pageCustomParams.page, totalPages);
+		pageCustomParams.tempParams.pages = pageCustomParams.tempModules.fns.pageAnalyze(pageCustomParams.page, totalPages);
+		
+		if ( 
+			( pageCustomParams.comments.lists.length > 0 ) && 
+			( (pageCustomParams.tempParams.pages.to - pageCustomParams.tempParams.pages.from) > 0 ) 
+		){
+			for ( i = pageCustomParams.tempParams.pages.from ; i <= pageCustomParams.tempParams.pages.to ; i++ ){
+				var url = "article.asp?id=" + pageCustomParams.id + "&page=" + i;
+								
+				if ( pageCustomParams.tempParams.pages.current === i ){
+					pageCustomParams.comments.pages.push({ key: n });
+				}else{
+					pageCustomParams.comments.pages.push({ key: n, url : url });
+				}				
+			}
+		}
 		
 		function getCommentReplyList(root){
 			var commentReplyList = [];

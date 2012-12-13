@@ -125,7 +125,22 @@
 			sql = "Select * From (Select top " + perpage + " * From (" + sql + ") Order By id) Order By id DESC";
 		}
 		
-		pageCustomParams.articles.pages = pageCustomParams.tempModules.fns.pageAnalyze(pageCustomParams.page, totalPages);
+		pageCustomParams.tempParams.pages = pageCustomParams.tempModules.fns.pageAnalyze(pageCustomParams.page, totalPages);
+		
+		if ( 
+			( pageCustomParams.articles.lists.length > 0 ) && 
+			( (pageCustomParams.tempParams.pages.to - pageCustomParams.tempParams.pages.from) > 0 ) 
+		){
+			for ( i = pageCustomParams.tempParams.pages.from ; i <= pageCustomParams.tempParams.pages.to ; i++ ){
+				var url = "default.asp?c=" + pageCustomParams.cateID + "&page=" + i;
+								
+				if ( pageCustomParams.tempParams.pages.current === i ){
+					pageCustomParams.articles.pages.push({ key: n });
+				}else{
+					pageCustomParams.articles.pages.push({ key: n, url : url });
+				}				
+			}
+		}
 
 		dbo.trave({
 			conn: config.conn,
