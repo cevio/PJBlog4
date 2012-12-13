@@ -1,6 +1,95 @@
 <!--#include file="config.asp" -->
 <%
-	// '加载用户登入状态
+	pageCustomParams.tempModules.cache = require("cache");
+	pageCustomParams.tempModules.dbo = require("DBO");
+	pageCustomParams.tempModules.connect = require("openDataBase");
+	pageCustomParams.tempModules.fns = require("fn");
+	pageCustomParams.tempModules.tags = require("tags");
+	pageCustomParams.tempCaches.globalCache = require("cache_global");
+	
+	if ( pageCustomParams.tempModules.connect !== true ){
+		console.end("连接数据库失败");
+	}
+	
+	require("status")();
+	
+	pageCustomParams.page = http.get("page");
+	if ( pageCustomParams.page.length === 0 ){ 
+		pageCustomParams.page = 1; 
+	}else{
+		if ( !isNaN( pageCustomParams.page ) ){
+			pageCustomParams.page = Number(pageCustomParams.page);
+			if ( pageCustomParams.page < 1 ){
+				pageCustomParams.page = 1;
+			}
+		}else{
+			console.end("page params error.");
+		}
+	}
+
+	pageCustomParams.id = http.get("id");
+	if ( pageCustomParams.id.length === 0 ){
+		console.end("article id error.");
+	}else{
+		if ( !isNaN( pageCustomParams.id ) ){
+			pageCustomParams.id = Number(pageCustomParams.id);
+			if ( pageCustomParams.id < 1 ){
+				console.end("article id can not find");
+			}
+		}else{
+			console.end("article ids type error.");
+		}
+	}
+	
+	pageCustomParams.tempParams.category = require("cache_category");
+	pageCustomParams.tags = {
+		name: "",
+		id: pageCustomParams.id,
+		lists: [],
+		pages: []
+	};
+	
+	function getCategoryName( id ){
+		var rets = {},
+			categoryJSON = pageCustomParams.tempParams.category;
+			
+		if ( categoryJSON[id + ""] !== undefined ){
+			rets.id = id;
+			rets.name = categoryJSON[id + ""].name;
+			rets.info = categoryJSON[id + ""].info;
+			rets.icon = "profile/icons/" + categoryJSON[id + ""].icon;
+			rets.url = "default.asp?c=" + id;
+		}
+		
+		return rets;
+	}
+	
+	function getTags( tagStr ){
+		var tagsCacheData = pageCustomParams.tempModules.tags,
+			tagStrArrays = tagsCacheData.reFormatTags(tagStr),
+			keeper = [];
+				
+		for ( var j = 0 ; j < tagStrArrays.length ; j++ ){
+			var rets = tagsCacheData.readTagFromCache( Number(tagStrArrays[j]) );
+			if ( rets !== undefined ){
+				keeper.push({ 
+					id: Number(tagStrArrays[j]), 
+					name: rets.name,
+					url: "tags.asp?id=" + tagStrArrays[j],
+					count: rets.count
+				});
+			}
+		}
+		
+		return keeper;
+	}
+	
+	(function(dbo){
+		var keyName = pageCustomParams.tempModules.tags.readTagFromCache(pageCustomParams.id);
+		console.log(keyName);
+	})(pageCustomParams.tempModules.dbo);
+	
+/*	// '加载用户登入状态
 	require("status");
 	
 	// '加载全局变量模块
@@ -159,5 +248,5 @@
 
 	}else{
 		console.log("id not find");
-	}
+	}*/
 %>
