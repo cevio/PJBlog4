@@ -12,29 +12,12 @@
 	}
 	
 	require("status")();
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-	// '加载用户登入状态
-	require("status");
 	
-	// '加载全局变量模块
-	pageCustomParams.tempCaches.globalCache = require("cache_global");
-	
-	// '加载fn模块
-	pageCustomParams.tempModules.fns = require("fn");
-	
-	// '获取页面page参数
 	pageCustomParams.page = http.get("page");
-	// 'Page参数的逻辑判断和过滤
 	if ( pageCustomParams.page.length === 0 ){ 
 		pageCustomParams.page = 1; 
 	}else{
-		// '判断是否是数字类型（包括字符串）
 		if ( !isNaN( pageCustomParams.page ) ){
-			// '统一转成数字类型
 			pageCustomParams.page = Number(pageCustomParams.page);
 			if ( pageCustomParams.page < 1 ){
 				pageCustomParams.page = 1;
@@ -43,15 +26,12 @@
 			console.end("page params error.");
 		}
 	}
-	
-	// '获取页面ID参数（ID参数必须存在，否则无法读取文章数据）
+
 	pageCustomParams.id = http.get("id");
-	// 'id参数的逻辑判断和过滤
 	if ( pageCustomParams.id.length === 0 ){
 		console.end("article id error.");
 	}else{
 		if ( !isNaN( pageCustomParams.id ) ){
-			// '统一转成数字类型
 			pageCustomParams.id = Number(pageCustomParams.id);
 			if ( pageCustomParams.id < 1 ){
 				console.end("article id can not find");
@@ -61,205 +41,143 @@
 		}
 	}
 	
-	// '开始对文章页面进行数据处理
-	(function(){
-		try{
-			var cache = require("cache");
-			
-			// '处理文章数据
-			;(function(){
-				// '获取所有category数据列表
-				var categoryCacheData = cache.load("category"),
-					categoryJSON = categoryCacheData.list,
-					categoryArray = categoryCacheData.arrays,
-					tagsCacheData = require("tags"), // 'tags模块加载
-					singleArticleCacheData = cache.load( "article", pageCustomParams.id ), // '本文章具体缓存
-					singleArticleContainer = {}; // 文章解析容器
-				
-				// '排序
-				pageCustomParams.categorys = categoryArray.sort(function( A, B ){
-					return A.order - B.order;
-				});
-				
-				// '获取category具体信息的方法
-				function getCategoryName( id ){
-					var rets = {};
-					if ( categoryJSON[id + ""] !== undefined ){
-						rets.id = id;
-						rets.name = categoryJSON[id + ""].name;
-						rets.info = categoryJSON[id + ""].info;
-						rets.icon = "profile/icons/" + categoryJSON[id + ""].icon;
-						rets.url = "default.asp?c=" + id;
-					}
-					return rets;
-				}
-				
-				// '获取tag具体信息的方法
-				function getTags( tagStr ){
-					var tagStrArrays = tagsCacheData.reFormatTags(tagStr),
-						keeper = [];	
-					for ( var j = 0 ; j < tagStrArrays.length ; j++ ){
-						var rets = tagsCacheData.readTagFromCache( Number(tagStrArrays[j]) );
-						if ( rets !== undefined ){
-							keeper.push({ 
-								id: Number(tagStrArrays[j]), 
-								name: rets.name,
-								url: "tags.asp?id=" + tagStrArrays[j],
-								count: rets.count
-							});
-						}
-					}
-					return keeper;
-				}
-				
-				// '将缓存数据放入新容器
-				if ( singleArticleCacheData.length === 1 ){
-					singleArticleContainer.id = pageCustomParams.id;
-					singleArticleContainer.title = singleArticleCacheData[0][0];
-					singleArticleContainer.category = getCategoryName(singleArticleCacheData[0][1]);
-					singleArticleContainer.content = singleArticleCacheData[0][2];
-					singleArticleContainer.tags = getTags(singleArticleCacheData[0][3]);
-					singleArticleContainer.postDate = singleArticleCacheData[0][5];
-					singleArticleContainer.editDate = singleArticleCacheData[0][6];
-				}
-				
-				// '将新容器继承到全局数据变量 pageCustomParams.article.
-				pageCustomParams.article = singleArticleContainer;
-			})();
-			
-			// '评论列表数据处理
-			;(function(){
-				pageCustomParams.comments = {
-					list: [],
-					pagebar: []
-				};
-				
-				// '辅助变量和参数以及模块
-				var commentDataFromLogs = cache.load( "artcomm", pageCustomParams.id ), // '获取该文章下的评论数据
-					commentContainer = {},
-					commentOrderIDArray = [],
-					commentArrayData = [],
-					GRATE = require("gra"),
-					perPage = pageCustomParams.tempCaches.globalCache.commentperpagecount,
-					commentIdsFrom = 0,
-					commentIdsTo = 0,
-					commentCurrentPage = pageCustomParams.page,
-					commentDataAnyle,
-					commentDataAnyleFrom,
-					commentDataAnyleTo,
-					commentLists = [],
-					commentPageList;
-				
-				// '检测是否为空数据
-				if ( commentDataFromLogs.length === 0 ){
-					return;
-				};
-				
-				// '获取用户具体信息方法
-				function getUserGRA( id, name, mail ){
-					if ( Number(id) === 0 ){
-						return { name: name, photo: GRATE( mail ), id: 0 };
-					}else{
-						var user = cache.load( "user", id );
-						return { name: user[0][2], photo: user[0][1] + "/50", id: id }
-					}
-				}
-				
-				// '处理评论父子关系
-				for ( var i = 0 ; i < commentDataFromLogs.length ; i++ ){
-					var commentItemData = commentDataFromLogs[i],
-						commId = commentItemData[0],
-						commRootID = commentItemData[1],
-						commContent = commentItemData[3],
-						commUserInfo = getUserGRA( commentItemData[2], commentItemData[7], commentItemData[8] ),
-						commDate = commentItemData[4],
-						commIp = commentItemData[5],
-						commAduit = commentItemData[6];
-						
-					commentOrderIDArray.push(commId);
-					
-					if ( commRootID === 0 ){
-						if ( commentContainer[commId + ""] === undefined ){
-							commentContainer[commId + ""] = {
-								id: commId,
-								commid: commRootID,
-								content: commContent,
-								date: commDate,
-								ip: commIp,
-								aduit: commAduit,
-								user: commUserInfo,
-								items: []
-							};
-						}else{
-							commentContainer[commId + ""].id = commId;
-							commentContainer[commId + ""].commid = commRootID;
-							commentContainer[commId + ""].content = commContent;
-							commentContainer[commId + ""].date = commDate;
-							commentContainer[commId + ""].ip = commIp;
-							commentContainer[commId + ""].aduit = commAduit;
-							commentContainer[commId + ""].user = commUserInfo;
-						}
-					}else{
-						if ( commentContainer[commRootID + ""] === undefined ){
-							commentContainer[commRootID + ""] = {
-								items: []
-							}
-						}
-						
-						commentContainer[commRootID + ""].items.push({
-							id: commId,
-							commid: commRootID,
-							content: commContent,
-							date: commDate,
-							ip: commIp,
-							aduit: commAduit,
-							user: commUserInfo
-						});
-					}
-				}
-				
-				// '处理评论顺序
-				for ( i = 0 ; i < commentOrderIDArray.length ; i++ ){
-					if ( commentContainer[commentOrderIDArray[i] + ""] !== undefined ){
-						commentArrayData.push( commentContainer[commentOrderIDArray[i] + ""] );
-					}
-				}
-				
-				commentDataAnyle = pageCustomParams.tempModules.fns.pageFormTo( commentCurrentPage, perPage, commentArrayData.length);
-				commentDataAnyleFrom = commentDataAnyle.from;
-				commentDataAnyleTo = commentDataAnyle.to;
-				
-				for ( i = commentDataAnyleFrom ; i <= commentDataAnyleTo ; i++ ){
-					commentLists.push( commentArrayData[i] );
-				}
-				
-				pageCustomParams.comments.list = commentLists;
-				
-				// '处理分页列表数据
-				commentPageList = pageCustomParams.tempModules.fns.pageAnalyze( commentCurrentPage, Math.ceil(commentArrayData.length / perPage) );
-				if ( (pageCustomParams.comments.list.length > 0) && ( (commentPageList.to - commentPageList.from) > 0 ) ){
-					for ( i = commentPageList.from ; i <= commentPageList.to ; i++ ){
-						var url = "article.asp?id=" + pageCustomParams.id + "&page=" + i;
-										
-						if ( commentPageList.current === i ){
-							pageCustomParams.comments.pagebar.push({
-								key: i
-							});
-						}else{
-							pageCustomParams.comments.pagebar.push({
-								key: n,
-								url : url
-							});
-						}				
-					}
-				}
-			})();	
-		}catch(e){
-			console.end(e.message);
-		}
-	})();
+	pageCustomParams.tempParams.category = require("cache_category");
 	
-	pageCustomParams.global.seotitle = pageCustomParams.article.title;
+	pageCustomParams.article = {};
+	pageCustomParams.comments = {
+		lists: [],
+		pages: []
+	};
+	
+	function getCategoryName( id ){
+		var rets = {},
+			categoryJSON = pageCustomParams.tempParams.category;
+			
+		if ( categoryJSON[id + ""] !== undefined ){
+			rets.id = id;
+			rets.name = categoryJSON[id + ""].name;
+			rets.info = categoryJSON[id + ""].info;
+			rets.icon = "profile/icons/" + categoryJSON[id + ""].icon;
+			rets.url = "default.asp?c=" + id;
+		}
+		
+		return rets;
+	}
+	
+	function getTags( tagStr ){
+		var tagsCacheData = pageCustomParams.tempModules.tags,
+			tagStrArrays = tagsCacheData.reFormatTags(tagStr),
+			keeper = [];
+				
+		for ( var j = 0 ; j < tagStrArrays.length ; j++ ){
+			var rets = tagsCacheData.readTagFromCache( Number(tagStrArrays[j]) );
+			if ( rets !== undefined ){
+				keeper.push({ 
+					id: Number(tagStrArrays[j]), 
+					name: rets.name,
+					url: "tags.asp?id=" + tagStrArrays[j],
+					count: rets.count
+				});
+			}
+		}
+		
+		return keeper;
+	}
+	
+	(function(dbo){
+		var seArticleId = Session("readArticles");
+		dbo.trave({
+			type: 3,
+			conn: config.conn,
+			sql: "Select * From blog_article Where id=" + pageCustomParams.id,
+			callback: function( rs ){
+				if ( rs.Bof || rs.Eof ){
+				}else{
+					pageCustomParams.article.id = pageCustomParams.id;
+					pageCustomParams.article.title = rs("log_title").value;
+					pageCustomParams.article.category = getCategoryName(rs("log_category").value);
+					pageCustomParams.article.content = rs("log_content").value;
+					pageCustomParams.article.tags = getTags(rs("log_tags").value);
+					pageCustomParams.article.postDate = rs("log_posttime").value;
+					pageCustomParams.article.editDate = rs("log_updatetime").value;
+					pageCustomParams.global.seotitle = pageCustomParams.article.title;
+					if ( !seArticleId ){ seArticleId = []; }
+					if ( seArticleId.indexOf(pageCustomParams.article.id) === -1 ){
+						rs("log_views") = rs("log_views").value + 1;
+						rs.Update();
+						seArticleId.push(pageCustomParams.article.id);
+					}
+					Session("readArticles") = seArticleId;
+				}
+			}
+		});
+	})(pageCustomParams.tempModules.dbo);
+	
+	(function(dbo){
+		var totalSum = Number(String(config.conn.Execute("Select count(id) From blog_comment")(0))),
+			perpage = pageCustomParams.tempCaches.globalCache.commentperpagecount,
+			_mod = 0,
+			_pages = 0,
+			totalPages = 0,
+			sql = "";
+			
+		if ( totalSum < perpage ){ perpage = totalSum; }
+		_mod = totalSum % perpage;
+		_pages = Math.floor(totalSum / perpage);
+		if ( _mod > 0 ){ totalPages = _pages + 1; }else{ totalPages = _pages; }
+		if ( pageCustomParams.page > totalPages ){ pageCustomParams.page = totalPages;}	
+		
+		if ( pageCustomParams.page > _pages ){
+			sql = "Select top " + _mod + " * From blog_comment Where commentid=0 And commentlogid=" + pageCustomParams.article.id + " Order By id ASC";
+			sql = "Select * From (" + sql + ") Order By id DESC";
+		}else{
+			sql = "Select top " 
+				+ (pageCustomParams.page * perpage) 
+				+ " * From blog_comment Where commentid=0 And commentlogid=" + pageCustomParams.article.id + " Order By id DESC";
+			sql = "Select * From (Select top " + perpage + " * From (" + sql + ") Order By id) Order By id DESC";
+		}
+		
+		pageCustomParams.comments.pages = pageCustomParams.tempModules.fns.pageAnalyze(pageCustomParams.page, totalPages);
+		
+		function getCommentReplyList(root){
+			var commentReplyList = [];
+			dbo.trave({
+				conn: config.conn,
+				sql: "Select * From blog_comment Where commentid=" + root + " And commentlogid=" + pageCustomParams.article.id + " Order By commentpostdate DESC",
+				callback: function(){
+					this.each(function(){
+						commentReplyList.push({
+							id: this("id").value,
+							commid: this("commentid").value,
+							content: this("commentcontent").value,
+							date: this("commentpostdate").value,
+							ip: this("commentpostip").value,
+							user: this("commentuserid").value
+						});
+					});
+				}
+			});
+			return commentReplyList;
+		}
+		
+		dbo.trave({
+			conn: config.conn,
+			sql: sql,
+			callback: function(){
+				this.each(function(){
+					pageCustomParams.comments.lists.push({
+						id: this("id").value,
+						commid: this("commentid").value,
+						content: this("commentcontent").value,
+						date: this("commentpostdate").value,
+						ip: this("commentpostip").value,
+						user: this("commentuserid").value,
+						childrens: getCommentReplyList(this("id").value)
+					});
+				});
+			}
+		});
+	})(pageCustomParams.tempModules.dbo);
 	
 	delete pageCustomParams.tempCaches;
 	delete pageCustomParams.tempModules;

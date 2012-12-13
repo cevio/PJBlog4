@@ -39,15 +39,15 @@ var postid = <%=pageCustomParams.article.id%>;
             </div>
             <div class="comment-list">
             <%
-				var comsList = pageCustomParams.comments.list,
-					pages = pageCustomParams.comments.pagebar;
+				var comsList = pageCustomParams.comments.lists,
+					pages = pageCustomParams.comments.pages;
 				
 				if ( comsList.length > 0 ){
 			%>
             	<ul>
             <%
 					for ( var comsListItem = 0 ; comsListItem < comsList.length ; comsListItem++ ){
-						var items = comsList[comsListItem].items;
+						var items = comsList[comsListItem].childrens;
 			%>
             		<li class="fn-clear">
                     	<div class="img fn-left"><img src="<%=comsList[comsListItem].user.photo%>" /></div>
