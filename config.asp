@@ -52,7 +52,6 @@
 	map["guestbook"] = "server/guestbook";
 	map["theme"] = "server/theme";
 	map["plugin"] = "server/plugin";
-	
 	map["status"] = "server/status";
 	
 	// handler处理模块映射

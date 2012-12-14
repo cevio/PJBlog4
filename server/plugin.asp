@@ -171,7 +171,12 @@ http.service(function( req, dbo, sap ){
 										pluginCustom.folder = folder;
 										pluginCustom.mark = pluginMark;
 										config.plugin = pluginCustom;
-										require("profile/plugins/" + folder + "/install");
+										var tmpParams = require("profile/plugins/" + folder + "/install");
+										if ( tmpParams && tmpParams.init ){
+											tmpParams.sap = sap;
+											tmpParams.sap.mark = pluginMark;
+											tmpParams.init();
+										}
 									});
 								}
 								
@@ -363,7 +368,12 @@ http.service(function( req, dbo, sap ){
 					pluginCustom.folder = folder;
 					pluginCustom.mark = mark;
 					config.plugin = pluginCustom;
-					require("profile/plugins/" + folder + "/uninstall");
+					var tmpParams = require("profile/plugins/" + folder + "/uninstall");
+					if ( tmpParams && tmpParams.init ){
+						tmpParams.sap = sap;
+						tmpParams.sap.mark = mark;
+						tmpParams.init();
+					}
 				});
 			}
 			

@@ -56,12 +56,16 @@
 			_this = this;
 		
 		arrArguments = arrArguments === undefined ? [] : arrArguments;
-		arrArguments = typeof arrArguments !== "array" ? [arrArguments] : arrArguments;
+		arrArguments = Object.prototype.toString.apply(arrArguments) !== "[object Array]" ? [arrArguments] : arrArguments;
 		
 		if ( ports.length > 0 ){
 			this.exec(ports, {
 				callback: function(moden){
-					moden.apply(_this, arrArguments);
+					if ( typeof moden === "function" ){
+						moden.apply(_this, arrArguments);
+					}else{
+						console.log(moden);
+					}
 				}
 			});
 		}

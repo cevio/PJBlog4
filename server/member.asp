@@ -108,7 +108,7 @@ http.service(function( req, dbo, sap ){
 				conn: config.conn,
 				sql: "Select * From blog_member Where id=" + id,
 				callback: function(rs){
-					rs("isAdmin") = true;
+					rs("isposter") = true;
 					rs.Update();
 				}
 			});
@@ -142,7 +142,7 @@ http.service(function( req, dbo, sap ){
 				conn: config.conn,
 				sql: "Select * From blog_member Where id=" + id,
 				callback: function(rs){
-					rs("isAdmin") = false;
+					rs("isposter") = false;
 					rs.Update();
 				}
 			});

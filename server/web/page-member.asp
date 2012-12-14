@@ -2,6 +2,7 @@
 var dbo = require("DBO"),
 	connecte = require("openDataBase"),
 	_page = http.get("page"),
+	sap = require("sap"),
 	pageInfo = [];
 	
 	if ( _page.length === 0 ){
@@ -28,10 +29,14 @@ var dbo = require("DBO"),
 				sql: "Select * From blog_member Order By id DESC",
 				callback: function(){
 					pageInfo = this.serverPage(_page, 50, function(i){
+						var oauth = this("oauth").value,
+							photoCons = {};
+							
+						sap.proxy("system.member.list.photo", [photoCons, oauth, this("photo").value]);
 		%>
         <li class="fn-left userlist">
         	<div class="list clafn-clear">
-        		<div class="photo ui-wrapshadow fn-left"><img src="<%=this("photo").value + "/50"%>" /></div>
+        		<div class="photo ui-wrapshadow fn-left"><img src="<%=photoCons[oauth]%>" /></div>
             	<div class="info fn-left">
                 	<div class="name"><%=this("nickname").value%></div>
                     <div class="action">
@@ -50,7 +55,7 @@ var dbo = require("DBO"),
                         <%		
                             	};
                             
-                            	if ( this("isAdmin").value === true ){
+                            	if ( this("isposter").value === true ){
                         %>
                         <a href="javascript:;" class="action-down" data-id="<%=this("id").value%>" title="对该用户进行权限上的提升或者降阶，可以进入后台或者还原为普通用户。">降阶</a>
                         <%		

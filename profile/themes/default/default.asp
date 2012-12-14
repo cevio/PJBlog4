@@ -57,7 +57,7 @@
             <ul>
     <%
 	var qq = LoadPluginsCacheModule("qqoauth");
-	console.log('<a href="' + qq.url() + '">qq</a>')
+	
 	
 	if ( config.user.login === true ){
 	%>
@@ -65,12 +65,9 @@
         <li><a href="control.asp">管理后台（需要权限）</a></li>
     <%
 	}else{
-		var oauth = require("server/oAuth/qq/oauth"),
-			fns = require("fn");
-			
-	%>
-    	<li><a href="<%=oauth.url()%>">登入</a></li>
-    <%
+		LoadPluginsCacheModule("qqoauth", function(qq){
+			console.log('<li><a href="' + qq.url() + '">腾讯账号登入</a></li>');
+		});
 	}
     %>
     		</ul>
