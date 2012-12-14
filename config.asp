@@ -152,10 +152,12 @@
 			config.pluginModen = require("pluginCustom");
 		}
 		var ModuleCacheDatas = config.pluginModen.loadPlugin( ModuleName );
-		if ( typeof ModuleCallback === "function" ){
-			ModuleCallback( ModuleCacheDatas );
-		}else{
-			return ModuleCacheDatas;
+		if ( ModuleCacheDatas !== null ){
+			if ( typeof ModuleCallback === "function" ){
+				ModuleCallback( ModuleCacheDatas );
+			}else{
+				return ModuleCacheDatas;
+			}
 		}
 	}
 	
