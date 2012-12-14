@@ -3,7 +3,6 @@
 	require(["UPLOAD", "SHA1", "SPKPACKAGE", "FSO"], function(upload, SHA1, spkPackage, fso){
 		var dbo = require("DBO"),
 			connecte = require("openDataBase"),
-			uid = http.get("uid"),
 			hash = http.get("hash"),
 			j = http.get("j"),
 			isLogin = false,
@@ -34,7 +33,7 @@
 		}
 			
 		if ( connecte === true ){
-			require("status")(uid, hash);
+			require("status")("-1", hash);
 		
 			isLogin = config.user.login;
 			isAdmin = config.user.poster;

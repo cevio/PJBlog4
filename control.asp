@@ -21,7 +21,7 @@
 <script language="javascript" src="assets/js/core/sizzle.js"></script>
 <script language="javascript" src="profile/handler/configure.js"></script>
 <script language="javascript">
-var userid = <%=config.user.id%>,
+var userid = '<%=config.user.id%>',
 	userhashkey = '<%=config.user.hashkey%>';
 </script>
 </head>
@@ -67,7 +67,12 @@ var userid = <%=config.user.id%>,
 		<div class="ui-content">
 			<%
                 try{
-                    include("server/web/page-" + checkStatusAndCustomPage());
+					var __pages = checkStatusAndCustomPage();
+					if ( config.user.admin || ( config.user.poster && (__pages === "article" || __pages === "writeArticle") ) ){
+                    	include("server/web/page-" + __pages);
+					}else{
+						console.log("您无权进入该模块");
+					}
                 }catch(e){
                     console.log("语法错误或者未找到模板。 [" + e.message + "]");
                 }
@@ -94,6 +99,9 @@ var userid = <%=config.user.id%>,
             </div>
         </div>
     </div>
+<%
+	if ( config.user.admin || ( config.user.poster && (__pages === "article" || __pages === "writeArticle") ) ){
+%>
 <script language="javascript">
 require(['assets/js/config'], function( custom ){
 	if ( custom.status === true ){
@@ -107,6 +115,9 @@ require(['assets/js/config'], function( custom ){
 	}
 });
 </script>
+<%
+	}
+%>
 </body>
 </html>
 <%
