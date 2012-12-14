@@ -126,10 +126,8 @@
  */	
 	function CloseConnect(){
 		try{
-			if ( config.conn !== null ){
-				config.conn.Close();
-				config.conn = null;
-			}
+			config.conn.Close();
+			config.conn = null;
 		}catch(error){
 			console.push(error.message);
 		}

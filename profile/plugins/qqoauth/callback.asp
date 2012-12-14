@@ -33,11 +33,11 @@ try{
 								_uid = 0,
 								_salt = fns.randoms(6),
 								_hashkey = SHA1(_salt);
-								
+
 							dbo.trave({
 								type: 3,
 								conn: config.conn,
-								sql: "Select * From blog_member Where qq_openid=" + _openid + " And oauth='qq'",
+								sql: "Select * From blog_member Where qq_openid='" + _openid + "' And oauth='qq'",
 								callback: function( rs ){
 									if ( rs.Bof || rs.Eof ){
 										dbo.add({
