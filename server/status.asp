@@ -33,7 +33,7 @@ define(function(require, exports, module){
 					callback: function(rs){
 						if ( rs("hashkey").value === hashkey ){
 							if ( _oauth !== "system" ){
-								if ( rs("canlogin") !== true ){
+								if ( rs("canlogin").value !== true ){
 									clearStatus();
 									return;
 								}

@@ -56,6 +56,9 @@
         	<h3>登入信息</h3>
             <ul>
     <%
+	var qq = LoadPluginsCacheModule("qqoauth");
+	console.log('<a href="' + qq.url() + '">qq</a>')
+	
 	if ( config.user.login === true ){
 	%>
     	<li><a href="server/logout.asp">您已登入  退出登入</a></li>

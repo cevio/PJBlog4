@@ -12,9 +12,18 @@
 	}
 	
 	pageCustomParams.keyword = fns.HTMLStr(fns.SQLStr(http.form("keyword")));
+	pageCustomParams.keytype = fns.HTMLStr(fns.SQLStr(http.form("keytype"))); //' all | title | content | tag
 	
 	if ( pageCustomParams.keyword.length === 0 ){
 		console.end("非法参数");
+	}
+	
+	if ( pageCustomParams.keytype.length === 0 ){
+		keytype = "all";
+	}
+	
+	if ( ["title", "content", "tag"].indexOf(pageCustomParams.keytype) === -1 ){
+		pageCustomParams.keytype = "all";
 	}
 	
 	pageCustomParams.keyword = pageCustomParams.keyword
@@ -68,8 +77,19 @@
 		
 		return keeper;
 	}
-	//do hrere
+	
 	(function(dbo){
+		var condition = " Where ";
+		if ( pageCustomParams.keytype === "title" ){
+			condition += "instr(log_title, '" + pageCustomParams.keywird + "')";
+		}else if ( pageCustomParams.keytype === "content" ){
+			condition += "instr(log_content, '" + pageCustomParams.keywird + "')";
+		}else if ( pageCustomParams.keytype === "tag" ){
+			
+		}else{
+			condition += "instr(log_title, '" + pageCustomParams.keywird + "') or instr(log_content, '" + pageCustomParams.keywird + "')";
+		}
+
 		var totalSum = Number(String(config.conn.Execute("Select count(id) From blog_article Where log_title like '%{" + pageCustomParams.id + "}%'")(0))),
 			perpage = pageCustomParams.tempCaches.globalCache.articleperpagecount,
 			_mod = 0,

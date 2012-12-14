@@ -34,6 +34,7 @@
 	map["SHA1"] = "server/core/sha1";
 	map["PACKAGE"] = "server/core/package";
 	map["SPKPACKAGE"] = "server/core/spkPackage";
+	map["SQL"] = "server/core/sql";
 	
 	// 逻辑模块映射
 	map["fn"] = "server/fn";
@@ -154,6 +155,8 @@
 		var ModuleCacheDatas = config.pluginModen.loadPlugin( ModuleName );
 		if ( typeof ModuleCallback === "function" ){
 			ModuleCallback( ModuleCacheDatas );
+		}else{
+			return ModuleCacheDatas;
 		}
 	}
 	

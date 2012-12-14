@@ -41,7 +41,7 @@
 			if ( rets.success === true ){
 				cookie.set(config.cookie + "_user", "id", -1);
 				cookie.set(config.cookie + "_user", "hashkey", _hashkey);
-				cookie.set(config.cookie + "_user", "oauth", "system")
+				cookie.set(config.cookie + "_user", "oauth", "system");
 				cookie.expire(config.cookie + "_user", 30 * 24 * 60 * 60 * 1000);
 			}
 			

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<key name="appid" value="" type="text" des="APPID"></key>
+	<key name="appkey" value="" type="text" des="APPKEY"></key>
+</config>
