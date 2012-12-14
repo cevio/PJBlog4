@@ -8,6 +8,7 @@
 			return page.length === 0 ? "index" : page;
 		}
 	}
+	var __pages = checkStatusAndCustomPage();
 %><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -67,7 +68,6 @@ var userid = '<%=config.user.id%>',
 		<div class="ui-content">
 			<%
                 try{
-					var __pages = checkStatusAndCustomPage();
 					if ( config.user.admin || ( config.user.poster && (__pages === "article" || __pages === "writeArticle") ) ){
                     	include("server/web/page-" + __pages);
 					}else{
@@ -100,7 +100,7 @@ var userid = '<%=config.user.id%>',
         </div>
     </div>
 <%
-	if ( config.user.admin || ( config.user.poster && (__pages === "article" || __pages === "writeArticle") ) ){
+	if ( config.user.admin || ( config.user.poster && (__pages === "article" || __pages === "writeArticle") ) || (__pages === "login") ){
 %>
 <script language="javascript">
 require(['assets/js/config'], function( custom ){
