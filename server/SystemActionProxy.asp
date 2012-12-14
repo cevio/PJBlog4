@@ -111,7 +111,6 @@
 		if ( typeof fileArrays === "string" ){
 			fileArrays = [fileArrays];
 		}
-		
 		if ( fileArrays.length === 0 ){
 			fileArrays = fso.collect(fo, false, function(name){
 				if ( name.split(".")[0] === _this.mark ){
