@@ -11,6 +11,7 @@ define(function(require, exports, module){
 			config.user.photo = "_blank";
 			config.user.admin = false;
 			config.user.poster = false;
+			config.user.oauth = "";
 		}
 		status = function(id, hashkey){
 			var _id = unescape(cookie.get(config.cookie + "_user", "id")),
@@ -45,6 +46,7 @@ define(function(require, exports, module){
 							config.user.photo = _oauth === "system" ? GRA(rs("authoremail").value) : rs("photo").value;
 							config.user.admin = _oauth === "system" ? true : false;
 							config.user.poster = _oauth === "system" ? true : rs("isposter").value;
+							config.user.oauth = _oauth;
 						}else{
 							clearStatus();
 						}

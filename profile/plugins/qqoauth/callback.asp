@@ -10,7 +10,6 @@ try{
 		SHA1 = require("SHA1"),
 		date = require("DATE"),
 		cookie = require("COOKIE"),
-		loginQQ = false,
 		from = fns.HTMLStr(http.get("f"));
 	
 	if ( connect === true ){
@@ -79,7 +78,8 @@ try{
 								cookie.set(config.cookie + "_user", "hashkey", _hashkey);
 								cookie.set(config.cookie + "_user", "oauth", "qq");
 								cookie.expire(config.cookie + "_user", 30 * 24 * 60 * 60 * 1000);
-								loginQQ = true;
+								CloseConnect();
+								Response.Redirect(from);
 							}else{
 								console.end("数据处理出错");
 							}
@@ -100,9 +100,6 @@ try{
 		}
 	}else{
 		console.end("连接数据库失败");
-	}
-	if ( loginQQ === true ){
-		Response.Redirect(from);
 	}
 }catch(e){
 	console.end(e.message);
