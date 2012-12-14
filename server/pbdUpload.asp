@@ -4,6 +4,7 @@
 		var dbo = require("DBO"),
 			connecte = require("openDataBase"),
 			hash = http.get("hash"),
+			oauth = http.get("oauth"),
 			j = http.get("j"),
 			isLogin = false,
 			isAdmin = false;
@@ -33,7 +34,7 @@
 		}
 			
 		if ( connecte === true ){
-			require("status")("-1", hash);
+			require("status")("-1", hash, oauth);
 		
 			isLogin = config.user.login;
 			isAdmin = config.user.poster;

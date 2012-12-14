@@ -13,7 +13,7 @@ define(function(require, exports, module){
 			config.user.poster = false;
 			config.user.oauth = "";
 		}
-		status = function(id, hashkey){
+		status = function(id, hashkey, oauth){
 			var _id = unescape(cookie.get(config.cookie + "_user", "id")),
 				_hashkey = cookie.get(config.cookie + "_user", "hashkey"),
 				_oauth = cookie.get(config.cookie + "_user", "oauth");
@@ -21,11 +21,12 @@ define(function(require, exports, module){
 			if ( id === undefined ){
 				id = _id;
 				hashkey = _hashkey;
+				oauth = _oauth;
 			}
 
 			var dbo = require("DBO"),
 				connecte = require("openDataBase"),
-				sql = _oauth === "system" ? "Select * From blog_global Where id=1": "Select * From blog_member Where id=" + id;
+				sql = oauth === "system" ? "Select * From blog_global Where id=1": "Select * From blog_member Where id=" + id;
 	
 			if ( connecte === true ){
 				dbo.trave({
@@ -33,19 +34,19 @@ define(function(require, exports, module){
 					sql: sql,
 					callback: function(rs){
 						if ( rs("hashkey").value === hashkey ){
-							if ( _oauth !== "system" ){
+							if ( oauth !== "system" ){
 								if ( rs("canlogin").value !== true ){
 									clearStatus();
 									return;
 								}
 							}
-							config.user.id = _oauth === "system" ? -1 : rs("id").value;
+							config.user.id = oauth === "system" ? -1 : rs("id").value;
 							config.user.login = true;
 							config.user.hashkey = hashkey;
 							config.user.name = rs("nickname").value;
-							config.user.photo = _oauth === "system" ? GRA(rs("authoremail").value) : rs("photo").value;
-							config.user.admin = _oauth === "system" ? true : false;
-							config.user.poster = _oauth === "system" ? true : rs("isposter").value;
+							config.user.photo = oauth=== "system" ? GRA(rs("authoremail").value) : rs("photo").value;
+							config.user.admin = oauth === "system" ? true : false;
+							config.user.poster = oauth === "system" ? true : rs("isposter").value;
 							config.user.oauth = _oauth;
 						}else{
 							clearStatus();

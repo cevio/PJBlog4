@@ -23,7 +23,8 @@
 <script language="javascript" src="profile/handler/configure.js"></script>
 <script language="javascript">
 var userid = '<%=config.user.id%>',
-	userhashkey = '<%=config.user.hashkey%>';
+	userhashkey = '<%=config.user.hashkey%>',
+	useroauth = '<%=config.user.oauth%>';
 </script>
 </head>
 <body>

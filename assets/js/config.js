@@ -32,9 +32,9 @@ define(["assets/js/core/jQuery"], function(){
 	config.ajaxUrl.server.setupThemeStyle = "server/theme.asp?j=setupstyle";
 	config.ajaxUrl.server.setupThemeDelete = "server/theme.asp?j=themedelete";
 	try{
-	config.ajaxUrl.server.editorUpload = "server/upload.asp?immediate=1&uid=" + userid + "&hash=" + userhashkey;
-	config.ajaxUrl.server.themeUpload = "server/pbdUpload.asp?j=theme&uid=" + userid + "&hash=" + userhashkey;
-	config.ajaxUrl.server.pluginUpload = "server/pbdUpload.asp?j=plugin&uid=" + userid + "&hash=" + userhashkey;
+	config.ajaxUrl.server.editorUpload = "server/upload.asp?immediate=1&uid=" + userid + "&hash=" + userhashkey + "&oauth=" + useroauth;
+	config.ajaxUrl.server.themeUpload = "server/pbdUpload.asp?j=theme&uid=" + userid + "&hash=" + userhashkey + "&oauth=" + useroauth;
+	config.ajaxUrl.server.pluginUpload = "server/pbdUpload.asp?j=plugin&uid=" + userid + "&hash=" + userhashkey + "&oauth=" + useroauth;
 	}catch(e){}
 	config.ajaxUrl.server.memDelete = "server/member.asp?j=mdelete";
 	config.ajaxUrl.server.memForce = "server/member.asp?j=mforce";
