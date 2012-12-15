@@ -102,27 +102,31 @@ define(["assets/js/core/jQuery"], function(){
 	})(jQuery, document);
 	
 	config.isLogin = function(){
-		var loginKey = $.cookie(config.cookie + "_user").split("&"),
-			loginParams = {},
-			logined = false;
-			
-		for ( var i = 0 ; i < loginKey.length ; i++ ){
-			loginParams[loginKey[i].split("=")[0]] = loginKey[i].split("=")[1];
-		}
-		if ( loginParams.id !== undefined ){
-			if ( !isNaN(loginParams.id) ){
-				loginParams.id = Number(loginParams.id);
-				if ( (loginParams.id > 0) || (loginParams.id === -1) ){
-					if ( loginParams.oauth && loginParams.oauth.length > 0 ){
-						if ( loginParams.hashkey && loginParams.hashkey.length > 0 ){
-							logined = true;
+		try{
+			var loginKey = $.cookie(config.cookie + "_user").split("&"),
+				loginParams = {},
+				logined = false;
+				
+			for ( var i = 0 ; i < loginKey.length ; i++ ){
+				loginParams[loginKey[i].split("=")[0]] = loginKey[i].split("=")[1];
+			}
+			if ( loginParams.id !== undefined ){
+				if ( !isNaN(loginParams.id) ){
+					loginParams.id = Number(loginParams.id);
+					if ( (loginParams.id > 0) || (loginParams.id === -1) ){
+						if ( loginParams.oauth && loginParams.oauth.length > 0 ){
+							if ( loginParams.hashkey && loginParams.hashkey.length > 0 ){
+								logined = true;
+							}
 						}
 					}
 				}
 			}
+			
+			return logined;
+		}catch(e){
+			return false;
 		}
-		
-		return logined;
 	}
 	
 	$(".modify-password").on("click", function(){

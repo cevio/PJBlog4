@@ -6,6 +6,7 @@
 	pageCustomParams.tempModules.fns = require("fn");
 	pageCustomParams.tempModules.tags = require("tags");
 	pageCustomParams.tempModules.sap = require("sap");
+	pageCustomParams.tempModules.GRA = require("gra");
 	pageCustomParams.tempCaches.globalCache = require("cache_global");
 	
 	if ( pageCustomParams.tempModules.connect !== true ){
@@ -85,7 +86,7 @@
 		return keeper;
 	}
 	
-	function getUserPhoto(id){
+	function getUserPhoto(id, name, mail){
 		var userInfo = {};
 		
 		if ( id === -1 ){
@@ -96,7 +97,17 @@
 			userInfo.login = config.user.login;
 			userInfo.logindate = "";
 			userInfo.loginip = "";
-		}else{
+		}
+		else if ( id === 0 ){
+			userInfo.photo = pageCustomParams.tempModules.GRA(mail);
+			userInfo.name = name;
+			userInfo.poster = false;
+			userInfo.oauth = "";
+			userInfo.login = false;
+			userInfo.logindate = "";
+			userInfo.loginip = "";
+		}
+		else{
 			var userCache = pageCustomParams.tempModules.cache.load("user", id),
 				userInfo = {},
 				proxyPhoto = {};
@@ -224,7 +235,7 @@
 								content: this("commentcontent").value,
 								date: this("commentpostdate").value,
 								ip: this("commentpostip").value,
-								user: getUserPhoto(this("commentuserid").value)
+								user: getUserPhoto(this("commentuserid").value, this("commentusername").value, this("commentusermail").value)
 							});
 						}
 					});
@@ -259,7 +270,7 @@
 							content: this("commentcontent").value,
 							date: this("commentpostdate").value,
 							ip: this("commentpostip").value,
-							user: getUserPhoto(this("commentuserid").value),
+							user: getUserPhoto(this("commentuserid").value, this("commentusername").value, this("commentusermail").value),
 							childrens: getCommentReplyList(this("id").value)
 						});
 					}
