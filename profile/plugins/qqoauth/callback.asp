@@ -74,6 +74,7 @@ try{
 							});
 							
 							if ( _uid > 0 ){
+								cache.build("user", _uid);
 								cookie.set(config.cookie + "_user", "id", _uid);
 								cookie.set(config.cookie + "_user", "hashkey", _hashkey);
 								cookie.set(config.cookie + "_user", "oauth", "qq");

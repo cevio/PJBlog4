@@ -56,7 +56,7 @@ define(['form', 'overlay'], function(require, exports, module){
 						var _htmls = '<li class="comment-li" data-id="' + params.data.id + '" data-logid="' + logid + '">'
 						+				'<div class="comment-zone fn-clear">'
 						+					'<div class="comment-photo fn-left">'
-						+						'<div class="user-photo ui-wrapshadow"><img src="' + params.data.photo + '/30" /></div>'
+						+						'<div class="user-photo ui-wrapshadow"><img src="' + params.data.photo + '" /></div>'
 						+					'</div>'
 						+					'<div class="comment-context">'
 						+						'<div class="comment-content">'

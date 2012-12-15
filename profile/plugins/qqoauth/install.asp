@@ -11,6 +11,9 @@ define(function( require, exports, module ){
 				this.sap.addProxy("system.member.list.photo", function(rets, oauth, photo){
 					rets[oauth] = photo + "/50";
 				});
+				this.sap.addProxy("assets.member.list.photo", function(rets, oauth, photo, size){
+					rets[oauth] = photo + "/" + size;
+				});
 			}catch(e){}
 		}
 	}

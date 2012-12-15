@@ -8,7 +8,8 @@
 		connecte = require("openDataBase"),
 		GRA = require("gra"),
 		date = require("DATE"),
-		page = http.get("page");
+		page = http.get("page"),
+		sap = require("sap");
 		
 	if ( page.length === 0 ){ page = 1; }else{ page = Number(page); }
 	if ( page < 1 ){ page = 1; }
@@ -21,10 +22,9 @@
 				conn: config.conn,
 				sql: "Select * From blog_member Where id=" + id,
 				callback: function(rs){
-					userData.sex = rs("sex").value;
 					userData.photo = rs("photo").value;
 					userData.nickName = rs("nickName").value;
-					userData.type = "qq";
+					userData.oauth = rs("oauth").value;
 				}
 			});
 			return userData
@@ -44,20 +44,25 @@
 					pageInfo = this.serverPage(page, 10, function(){
 						var user = this("commentuserid").value,
 							userData = {};
-							
-						if ( !user ){
-							userData.type = "guest";
-							userData.sex = 0;
+						
+						if ( user > 0 ){
+							userData = getUserInfo(user);
+							var userPhotos = {};
+							sap.proxy("system.member.list.photo", [userPhotos, userData.oauth, userData.photo]);
+							userData.photo = userPhotos[userData.oauth];
+						}else{
 							userData.photo = GRA(this("commentusermail").value);
 							userData.nickName = this("commentusername").value;
-						}else{
-							userData = getUserInfo(this("commentuserid").value);
+							if ( user === -1 ){
+								userData.photo = config.user.photo;
+								userData.nickName = config.user.name;
+							}
 						}
 %>
 		<li class="comment-li comment-root" data-id="<%=this("id").value%>" data-logid="<%=this("commentlogid").value%>">
         	<div class="comment-zone fn-clear">
             	<div class="comment-photo fn-left">
-                	<div class="user-photo ui-wrapshadow"><img src="<%=userData.type==="guest" ? userData.photo : userData.photo + "/50"%>" /></div>
+                	<div class="user-photo ui-wrapshadow"><img src="<%=userData.type==="guest" ? userData.photo : userData.photo%>" /></div>
                 </div>
                 <div class="comment-context">
                 	<div class="comment-content">
@@ -94,20 +99,25 @@
                                 this.each(function(){
                                     var _user = this("commentuserid").value,
 										_userData = {};
-										
-									if ( !_user ){
-										_userData.type = "guest";
-										_userData.sex = 0;
+									
+									if ( _user > 0 ){
+										_userData = getUserInfo(_user);
+										var _userPhotos = {};
+										sap.proxy("system.member.list.photo", [_userPhotos, _userData.oauth, _userData.photo]);
+										_userData.photo = _userPhotos[userData.oauth];
+									}else{
 										_userData.photo = GRA(this("commentusermail").value);
 										_userData.nickName = this("commentusername").value;
-									}else{
-										_userData = getUserInfo(this("commentuserid").value);
+										if ( _user === -1 ){
+											_userData.photo = config.user.photo;
+											_userData.nickName = config.user.name;
+										}
 									}
 				%>
                 	<li class="comment-li" data-id="<%=this("id").value%>" data-logid="<%=this("commentlogid").value%>">
                     	<div class="comment-zone fn-clear">
                             <div class="comment-photo fn-left">
-                                <div class="user-photo ui-wrapshadow"><img src="<%=_userData.type==="guest" ? _userData.photo : _userData.photo + "/30"%>" /></div>
+                                <div class="user-photo ui-wrapshadow"><img src="<%=_userData.type==="guest" ? _userData.photo : _userData.photo%>" /></div>
                             </div>
                             <div class="comment-context">
                                 <div class="comment-content">

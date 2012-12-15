@@ -66,11 +66,19 @@ http.service(function( req, dbo, sap ){
 			}
 		});
 		
+		dbo.trave({
+			type: 3,
+			conn: config.conn,
+			sql: "Select * From blog_category Where id=" + rets.log_category,
+			callback: function( rs ){
+				rs("cate_count") = rs("cate_count").value + 1;
+				rs.Update();
+			}
+		});
+		
 		if ( id > 0 ){
 			var cache = require.async("cache");
-				cache.build("article_pages");
-				cache.build("article_pages_cate", rets.log_category);
-				cache.build("article", Number(id));
+				cache.build("category");
 				
 			return {
 				success: true,

@@ -1,22 +1,33 @@
-<!--#include file="../../config.asp" -->
+﻿<!--#include file="../../config.asp" -->
 <%
 http.async(function(req){
-	var j = req.query.j,
-		c = {};
+	var c = {},
+		date = require("DATE"),
+		sap = require("sap"),
+		fns = require("fn"),
+		dbo = require("DBO"),
+		connecte = require("openDataBase"),
+		j = fns.HTMLStr(fns.SQLStr(req.query.j));
+	
+	if ( connecte !== true ){
+		return {
+			success: false,
+			error: "连接数据库失败"
+		}
+	}
+	
+	require("status")();
 		
 	c.post = function(){
-		require("status");
-	
-		var date = require("DATE"),
-			sap = require("sap"),
-			logid = req.form.logid,
-			commid = req.form.commid,
+		var logid = fns.HTMLStr(fns.SQLStr(req.form.logid)),
+			commid = fns.HTMLStr(fns.SQLStr(req.form.commid)),
 			userid = config.user.id,
-			content = req.form.content,
-			username = req.form.username,
-			usermail = req.form.usermail,
-			fns = require("fn"),
-			ip = fns.getIP();
+			content = fns.textareaStr(fns.HTMLStr(fns.SQLStr(req.form.content))),
+			username = fns.HTMLStr(fns.SQLStr(req.form.username || "")),
+			usermail = fns.HTMLStr(fns.SQLStr(req.form.usermail || "")),
+			ip = fns.getIP(),
+			id = 0,
+			datas;
 			
 		if ( !logid || logid.length === 0 ){
 			return {
@@ -25,86 +36,63 @@ http.async(function(req){
 			}
 		}
 		
-		if ( !commid || commid.length === 0 ){
-			commid = 0;
+		if ( content.length === 0 ){
+			return {
+				success: false,
+				error: "请输入评论内容"
+			}
 		}
 		
-		if ( !userid || userid.toString().length === 0 || Number(userid) === 0 ){
-			userid = 0;
-		}
+		if ( !commid || commid.length === 0 ){ commid = 0; }
 
 		logid = Number(logid);
 		commid = Number(commid);
-		userid = Number(userid);
+		userid = userid;
 		
-		var dbo = require("DBO"),
-			connecte = require("openDataBase"),
-			id = 0;
+		datas = {
+			commentid: commid,
+			commentlogid: logid,
+			commentuserid: userid,
+			commentcontent: content,
+			commentpostdate: date.format(new Date(), "y/m/d h:i:s"),
+			commentpostip: ip,
+			commentaudit: false,
+			commentusername: username,
+			commentusermail: usermail
+		}
 			
-		if ( connecte === true ){
+		sap.proxy("assets.comment.post.begin", [datas, req]);
 			
-			sap.proxy("assets.comment.post.begin");
+		dbo.add({
+			conn: config.conn,
+			table: "blog_comment",
+			data: datas,
+			callback: function(){
+				id = this("id").value;
+			}
+		});
 			
-			dbo.add({
-				conn: config.conn,
-				table: "blog_comment",
+		if ( id > 0 ){
+			return {
+				success: true,
 				data: {
-					commentid: commid,
-					commentlogid: logid,
-					commentuserid: userid,
-					commentcontent: fns.textareaStr(fns.HTMLStr(fns.SQLStr(content))),
-					commentpostdate: date.format(new Date(), "y/m/d h:i:s"),
-					commentpostip: ip,
-					commentaudit: false,
-					commentusername: username,
-					commentusermail: usermail
-				},
-				callback: function(){
-					id = this("id").value;
-				}
-			});
-			
-			if ( id > 0 ){
-				
-				var cache = require("cache");
-					cache.build("artcomm", logid);
-				
-				sap.proxy("assets.comment.post.end");
-				
-				return {
-					success: true,
-					data: {
-						id: id
-					}
-				}
-			}else{
-				return {
-					success: false,
-					error: "数据存储失败"
+					id: id
 				}
 			}
-			
 		}else{
 			return {
 				success: false,
-				error: "连接数据库失败"
+				error: "数据存储失败"
 			}
 		}
 	}
 	
-	if ( config.user.login !== true ){
-		if ( c[j] !== undefined ){
-			return c[j]();
-		}else{
-			return {
-				success: false,
-				error: "参数错误"
-			}
-		}
+	if ( c[j] !== undefined ){
+		return c[j]();
 	}else{
 		return {
 			success: false,
-			error: "未登入，请先登入。"
+			error: "参数错误"
 		}
 	}
 });

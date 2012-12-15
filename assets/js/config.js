@@ -48,50 +48,81 @@ define(["assets/js/core/jQuery"], function(){
 	config.ajaxUrl.server.password = "server/configure.asp?j=password";
 	config.ajaxUrl.server.system = "server/system.asp?j=clean";
 	
-	function cookie(key, value, options) {
-        // key and at least value given, set cookie...
-        if (arguments.length > 1 && (!/Object/.test(Object.prototype.toString.call(value)) || value === null || value === undefined)) {
-            options = $.extend({}, options);
-    
-            if (value === null || value === undefined) {
-                options.expires = -1;
-            }
-    
-            if (typeof options.expires === 'number') {
-                var days = options.expires, t = options.expires = new Date();
-                t.setDate(t.getDate() + days);
-				options.expires = t;
-            }
-    
-            value = String(value);
-    
-            return (document.cookie = [
-                encodeURIComponent(key), '=', options.raw ? value : encodeURIComponent(value),
-                options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
-                options.path    ? '; path=' + options.path : '',
-                options.domain  ? '; domain=' + options.domain : '',
-                options.secure  ? '; secure' : ''
-            ].join(''));
-        }
-    
-        // key and possibly options given, get cookie...
-        options = value || {};
-        var decode = options.raw ? function(s) { return s; } : decodeURIComponent;
-    
-        var pairs = document.cookie.split('; ');
-        for (var i = 0, pair; pair = pairs[i] && pairs[i].split('='); i++) {
-            if (decode(pair[0]) === key) return decode(pair[1] || ''); // IE saves cookies with empty string as "c; ", e.g. without "=" as opposed to EOMB, thus pair[1] may be undefined
-        }
-        return null;
-    };
+	(function ($, document, undefined) {
+		var pluses = /\+/g;
+		function raw(s) { return s; }
+		function decoded(s) { return decodeURIComponent(s.replace(pluses, ' ')); }
+	
+		var iConfigs = $.cookie = function (key, value, options) {
+			if (value !== undefined) {
+				options = $.extend({}, iConfigs.defaults, options);
+	
+				if (value === null) { options.expires = -1; }
+	
+				if (typeof options.expires === 'number') {
+					var days = options.expires, t = options.expires = new Date();
+					t.setDate(t.getDate() + days);
+				}
+	
+				value = iConfigs.json ? JSON.stringify(value) : String(value);
+	
+				return (document.cookie = [
+					encodeURIComponent(key), '=', iConfigs.raw ? value : encodeURIComponent(value),
+					options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
+					options.path    ? '; path=' + options.path : '',
+					options.domain  ? '; domain=' + options.domain : '',
+					options.secure  ? '; secure' : ''
+				].join(''));
+			}
+	
+			// read
+			var decode = iConfigs.raw ? raw : decoded;
+			var cookies = document.cookie.split('; ');
+			for (var i = 0, l = cookies.length; i < l; i++) {
+				var parts = cookies[i].split('=');
+				if (decode(parts.shift()) === key) {
+					var cookie = decode(parts.join('='));
+					return iConfigs.json ? JSON.parse(cookie) : cookie;
+				}
+			}
+	
+			return null;
+		};
+	
+		iConfigs.defaults = {};
+	
+		$.removeCookie = function (key, options) {
+			if ($.cookie(key) !== null) {
+				$.cookie(key, null, options);
+				return true;
+			}
+			return false;
+		};
+	
+	})(jQuery, document);
 	
 	config.isLogin = function(){
-		var loginKey = cookie(config.cookie + "_login");
-		if ( loginKey && loginKey === "true" ){
-			return true;
-		}else{
-			return false;
+		var loginKey = $.cookie(config.cookie + "_user").split("&"),
+			loginParams = {},
+			logined = false;
+			
+		for ( var i = 0 ; i < loginKey.length ; i++ ){
+			loginParams[loginKey[i].split("=")[0]] = loginKey[i].split("=")[1];
 		}
+		if ( loginParams.id !== undefined ){
+			if ( !isNaN(loginParams.id) ){
+				loginParams.id = Number(loginParams.id);
+				if ( (loginParams.id > 0) || (loginParams.id === -1) ){
+					if ( loginParams.oauth && loginParams.oauth.length > 0 ){
+						if ( loginParams.hashkey && loginParams.hashkey.length > 0 ){
+							logined = true;
+						}
+					}
+				}
+			}
+		}
+		
+		return logined;
 	}
 	
 	$(".modify-password").on("click", function(){

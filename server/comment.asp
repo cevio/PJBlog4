@@ -7,21 +7,27 @@
 		this.reply = function(){
 			var id = req.form.id,
 				logid = req.form.logid,
-				content = fns.SQLStr(req.form.content)
+				content = fns.HTMLStr(fns.SQLStr(req.form.content)),
 				_id = 0,
 				_date = new Date(),
-				_ip = fns.getIP();
+				_ip = fns.getIP(),
+				rets = {};
 				
-			var rets = {};
-				rets.commentid = id;
-				rets.commentlogid = logid;
-				rets.commentuserid = config.user.id;
-				rets.commentcontent = content;
-				rets.commentpostdate = date.format(_date, "y/m/d h:i:s");
-				rets.commentpostip = _ip;
-				rets.commentaudit = true;
-				rets.commentusername = "";
-				rets.commentusermail = "";
+			dbo.trave({
+				conn: config.conn,
+				sql: "Select * From blog_global Where id=1",
+				callback: function(rs){
+					rets.commentid = id;
+					rets.commentlogid = logid;
+					rets.commentuserid = config.user.id;
+					rets.commentcontent = content;
+					rets.commentpostdate = date.format(_date, "y/m/d h:i:s");
+					rets.commentpostip = _ip;
+					rets.commentaudit = true;
+					rets.commentusername = rs("authoremail").value;
+					rets.commentusermail = rs("website").value;
+				}
+			});
 			
 			sap.proxy("system.comment.reply.begin", [rets, req]);
 				
@@ -33,9 +39,6 @@
 					_id = this("id").value;
 				}
 			});
-			
-			var cache = require("cache");
-				cache.build("artcomm", logid);
 				
 			if ( _id > 0 ){
 				return {

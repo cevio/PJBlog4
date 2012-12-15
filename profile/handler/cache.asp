@@ -146,7 +146,7 @@ define(function(require, exports, module){
 	}
 	
 	exports["user"] = function(id){
-		return "Select sex, photo, nickName, isAdmin From blog_member Where id=" + id;
+		return "Select photo, nickName, isposter, oauth, canlogin, logindate, loginip From blog_member Where id=" + id;
 	}
 	
 	exports["attachments"] = function(){

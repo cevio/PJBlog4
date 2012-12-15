@@ -63,7 +63,7 @@ var postid = <%=pageCustomParams.article.id%>;
 									for ( var ck = 0 ; ck < items.length ; ck++ ){
 							%>
                             	<div class="fn-clear cline">
-                                    <div class="cimg fn-left"><img src="<%=items[ck].user.photo%>/30" /></div>
+                                    <div class="cimg fn-left"><img src="<%=items[ck].user.photo%>" /></div>
                                     <div class="ccontent fn-left">
                                         <div class="cwho"><%=items[ck].user.name%></div>
                                         <div class="cinfo"><%=date.format(items[ck].date, "M d y - h:i")%></div>

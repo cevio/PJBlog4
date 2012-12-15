@@ -5,6 +5,7 @@
 	pageCustomParams.tempModules.connect = require("openDataBase");
 	pageCustomParams.tempModules.fns = require("fn");
 	pageCustomParams.tempModules.tags = require("tags");
+	pageCustomParams.tempModules.sap = require("sap");
 	pageCustomParams.tempCaches.globalCache = require("cache_global");
 	
 	if ( pageCustomParams.tempModules.connect !== true ){
@@ -84,8 +85,44 @@
 		return keeper;
 	}
 	
+	function getUserPhoto(id){
+		var userInfo = {};
+		
+		if ( id === -1 ){
+			userInfo.photo = config.user.photo;
+			userInfo.name = config.user.name;
+			userInfo.poster = true;
+			userInfo.oauth = "system";
+			userInfo.login = config.user.login;
+			userInfo.logindate = "";
+			userInfo.loginip = "";
+		}else{
+			var userCache = pageCustomParams.tempModules.cache.load("user", id),
+				userInfo = {},
+				proxyPhoto = {};
+				
+			if (userCache.length === 1){
+				userInfo.photo = userCache[0][0];
+				userInfo.name = userCache[0][1];
+				userInfo.poster = userCache[0][2];
+				userInfo.oauth = userCache[0][3];
+				userInfo.login = userCache[0][4];
+				userInfo.logindate = userCache[0][5];
+				userInfo.loginip = userCache[0][6];
+				pageCustomParams.tempModules.sap.proxy("assets.member.list.photo", [proxyPhoto, userInfo.oauth, userInfo.photo, 100]);
+				userInfo.photo = proxyPhoto[userInfo.oauth];
+			}
+		}
+		
+		return userInfo;
+	}
+	
+	function str2Array(str){
+		return (new Function("return " + str))();
+	}
+	
 	(function(dbo){
-		var seArticleId = Session("readArticles");
+		var seArticleId = str2Array(Session("readArticles") + "");
 		dbo.trave({
 			type: 3,
 			conn: config.conn,
@@ -103,23 +140,28 @@
 					pageCustomParams.global.seotitle = pageCustomParams.article.title;
 					if ( !seArticleId ){ seArticleId = []; }
 					if ( seArticleId.indexOf(pageCustomParams.article.id) === -1 ){
-						rs("log_views") = rs("log_views").value + 1;
+						var views = rs("log_views").value;
+						rs("log_views") = views + 1;
 						rs.Update();
 						seArticleId.push(pageCustomParams.article.id);
+						pageCustomParams.article.views = views + 1;
+						Session("readArticles") = JSON.stringify(seArticleId);
+					}else{
+						pageCustomParams.article.views = rs("log_views").value;
 					}
-					Session("readArticles") = seArticleId;
 				}
 			}
 		});
 	})(pageCustomParams.tempModules.dbo);
 	
 	(function(dbo){
-		var totalSum = Number(String(config.conn.Execute("Select count(id) From blog_comment")(0))),
+		var totalSum = Number(String(config.conn.Execute("Select count(id) From blog_comment Where commentid=0 And commentlogid=" + pageCustomParams.article.id)(0))),
 			perpage = pageCustomParams.tempCaches.globalCache.commentperpagecount,
 			_mod = 0,
 			_pages = 0,
 			totalPages = 0,
-			sql = "";
+			sql = "",
+			globalCommentAduit = pageCustomParams.tempCaches.globalCache.commentaduit === true;
 			
 		if ( totalSum < perpage ){ perpage = totalSum; }
 		_mod = totalSum % perpage;
@@ -161,14 +203,30 @@
 				sql: "Select * From blog_comment Where commentid=" + root + " And commentlogid=" + pageCustomParams.article.id + " Order By commentpostdate DESC",
 				callback: function(){
 					this.each(function(){
-						commentReplyList.push({
-							id: this("id").value,
-							commid: this("commentid").value,
-							content: this("commentcontent").value,
-							date: this("commentpostdate").value,
-							ip: this("commentpostip").value,
-							user: this("commentuserid").value
-						});
+						var canpush = true;
+						if ( globalCommentAduit === true ){
+							if ( this("commentaudit").value !== true ){
+								if ( config.user.id !== this("commentuserid").value ){
+									canpush = false;
+								}
+							}
+						}
+						if ( canpush === false ){
+							if ( config.user.admin === true ){
+								canpush = true;
+							}
+						}
+						
+						if ( canpush === true ){
+							commentReplyList.push({
+								id: this("id").value,
+								commid: this("commentid").value,
+								content: this("commentcontent").value,
+								date: this("commentpostdate").value,
+								ip: this("commentpostip").value,
+								user: getUserPhoto(this("commentuserid").value)
+							});
+						}
 					});
 				}
 			});
@@ -180,15 +238,31 @@
 			sql: sql,
 			callback: function(){
 				this.each(function(){
-					pageCustomParams.comments.lists.push({
-						id: this("id").value,
-						commid: this("commentid").value,
-						content: this("commentcontent").value,
-						date: this("commentpostdate").value,
-						ip: this("commentpostip").value,
-						user: this("commentuserid").value,
-						childrens: getCommentReplyList(this("id").value)
-					});
+					var canpush = true;
+					if ( globalCommentAduit === true ){
+						if ( this("commentaudit").value !== true ){
+							if ( config.user.id !== this("commentuserid").value ){
+								canpush = false;
+							}
+						}
+					}
+					if ( canpush === false ){
+						if ( config.user.admin === true ){
+							canpush = true;
+						}
+					}
+
+					if ( canpush === true ){
+						pageCustomParams.comments.lists.push({
+							id: this("id").value,
+							commid: this("commentid").value,
+							content: this("commentcontent").value,
+							date: this("commentpostdate").value,
+							ip: this("commentpostip").value,
+							user: getUserPhoto(this("commentuserid").value),
+							childrens: getCommentReplyList(this("id").value)
+						});
+					}
 				});
 			}
 		});
@@ -197,7 +271,7 @@
 	delete pageCustomParams.tempCaches;
 	delete pageCustomParams.tempModules;
 	delete pageCustomParams.tempParams;
-	
+
 	include("profile/themes/" + pageCustomParams.global.theme + "/article.asp");
 	CloseConnect();
 %>
