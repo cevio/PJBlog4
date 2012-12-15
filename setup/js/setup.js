@@ -105,8 +105,8 @@ function bindSetupAction(){
 		params.cangonext = false;
 		var postData = {
 			folder: $("input[name='folder']").val(),
-			openid: $("input[name='openid']").val(),
-			openkey: $("input[name='openkey']").val(),
+			username: $("input[name='username']").val(),
+			password: $("input[name='password']").val(),
 			website: $("input[name='website']").val()
 		};
 		$.getJSON("setup/setup.asp", postData, function( callers ){
@@ -114,7 +114,8 @@ function bindSetupAction(){
 				params.cangonext = true;
 				$("#goWeb").off("click");
 				$("#goWeb").on("click", function(){
-					window.location.href = postData.website + "/" + postData.folder;
+					window.location.href = postData.website + "/" 
+						+ ((postData.folder === "/" || postData.folder === "" || postData.folder === "." || postData.folder === "./") ? "control.asp" : postData.folder + "/control.asp");
 				});
 				$(".setuping").append('<div class="info">安装成功，点击下一步完成安装。<br />注意：请手动删除根目录下的安装文件，以免产生不必要的漏洞。</div>');
 			}else{

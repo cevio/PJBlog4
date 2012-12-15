@@ -26,38 +26,21 @@ define(function( require, exports, module ){
 	}
 
 	exports.create = function(path, auto, object){
+		var _this = this;
 		return this.auto(function(){
 			try{
 				if ( auto === true ){
-
 					path = selector.lock(path);
-					console.push(path);
-
-					var exec = /(\w)\:\\(.+)/.exec(path);
-					console.push(exec);
-
-					if ( exec ){
-						var _path = exec[2];
-						var r = exec[1];
-						var arr = _path.split("\\");
-
-						r = r + ":";
-
-						for ( var i = 0 ; i < arr.length ; i++ ){
-							if ( arr[i].length > 0 ){
-								r = r + "\\" + arr[i];
-								try{
-									if ( !this.FolderExists(r) ){
-										this.CreateFolder(r);
-									}
-								}catch(e){}
-							}else{
-								break;
-							}
+					var rootpath = Server.MapPath("/");
+					path = path.replace(rootpath, "").replace(/^\\/, "").replace(/\\/g, "|");
+					var pathArray = path.split("|"),
+						rootDemongePath = "";
+					
+					for ( var i = 0 ; i < pathArray.length ; i++ ){
+						rootDemongePath += "/" + pathArray[i];
+						if ( !_this.exsit(rootDemongePath, true) ){
+							this.CreateFolder(rootpath + rootDemongePath);
 						}
-
-					}else{
-						return false;
 					}
 				}else{
 					this.CreateFolder(selector.lock(path));

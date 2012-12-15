@@ -6,8 +6,8 @@ http.async(function(req){
 	try{
 		var dataParams = {
 			folder: req.query.folder,
-			openid: req.query.openid,
-			openkey: req.query.openkey,
+			username: req.query.username,
+			password: req.query.password,
 			website: req.query.website
 		},
 			randoms = function(n){
@@ -22,7 +22,7 @@ http.async(function(req){
 				return res;
 			};
 		
-		if ( dataParams.folder.length > 0 && dataParams.openid.length > 0 && dataParams.openkey.length > 0 ){
+		if ( dataParams.openid.length > 0 && dataParams.openkey.length > 0 ){
 			return (function(params){
 				var fso = require("setup/asp/fso"),
 					spk = require("setup/asp/spkPackage"),
@@ -31,16 +31,21 @@ http.async(function(req){
 					rand_AppName = require("setup/config"),
 					rand_CacheFileName = randoms(10),
 					rand_Cookie = randoms(10);
+					
+				if ( params.folder.length === 0 || params.folder === "./" || params.folder !== "." ){
+					params.folder = "/";
+				}
 				
-				fso.create(params.folder, true);
+				if ( params.folder !== "/" && params.folder !== "./" && params.folder.length > 0 && params.folder !== "." ){
+					fso.create(params.folder, true);
+				}
 				spkInstall = new spk("/setup/package.pbd", params.folder);
 				spkInstall.install();
 				
 				var percentFn = "%",
 					systemConfigureText = '<' + percentFn + 'config.base="' + params.folder + '";config.appName="' + rand_AppName + '";config.cacheFileNamePixer="' + rand_CacheFileName + '";config.access="profile/PBlog4/PJBlog4.asp";config.cookie="' + rand_Cookie + '";' + percentFn + '>', 
 					assetsConfigureText = 'config("debug", false);config("base", "' + params.folder + '");config.cookie = "' + rand_Cookie + '";';
-					
-				console.push("start save files");
+
 				stream.save(systemConfigureText, params.folder + "/profile/handler/config.asp");
 				stream.save(assetsConfigureText, params.folder + "/profile/handler/configure.js");
 				
@@ -63,7 +68,7 @@ http.async(function(req){
 						rs.Open("Select * From blog_global Where id=1", dbo, 3, 3);
 						rs("qq_appid") = params.openid;
 						rs("qq_appkey") = params.openkey;
-						rs("website") = params.website + ((params.folder === "" || params.folder === "." || params.folder === "./") ? "" : "/" + params.folder);
+						rs("website") = params.website + ((params.folder === "/") ? "" : "/" + params.folder);
 						rs.Update();
 						rs.Close();
 					
