@@ -34,13 +34,14 @@ http.async(function(req){
 					rand_Cookie = randoms(10),
 					salt = randoms(6);
 					
-				if ( params.folder.length === 0 || params.folder === "./" || params.folder !== "." ){
+				if ( params.folder.length === 0 || params.folder === "./" || params.folder === "." ){
 					params.folder = "/";
 				}
 				
 				if ( params.folder !== "/" && params.folder !== "./" && params.folder.length > 0 && params.folder !== "." ){
 					fso.create(params.folder, true);
 				}
+
 				spkInstall = new spk("/setup/package.pbd", params.folder);
 				spkInstall.install();
 				
