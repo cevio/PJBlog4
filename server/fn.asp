@@ -43,7 +43,7 @@ define(function(require, exports, module){
 		];
 		
 		for ( var i = 0 ; i < reglist.length ; i++ ){
-			str = str.replace( reglist[0], reglist[1] );
+			str = str.replace( reglist[i][0], reglist[i][1] );
 		}
 		
 		return str;
@@ -70,7 +70,7 @@ define(function(require, exports, module){
 		];
 		
 		for ( var i = 0 ; i < reglist.length ; i++ ){
-			str = str.replace( reglist[0], reglist[1] );
+			str = str.replace( reglist[i][0], reglist[i][1] );
 		}
 		
 		return str;
@@ -83,7 +83,7 @@ define(function(require, exports, module){
 		];
 		
 		for ( var i = 0 ; i < reglist.length ; i++ ){
-			str = str.replace( reglist[0], reglist[1] );
+			str = str.replace( reglist[i][0], reglist[i][1] );
 		}
 		
 		return str;
@@ -107,7 +107,7 @@ define(function(require, exports, module){
 		];
 		
 		for ( var i = 0 ; i < reglist.length ; i++ ){
-			str = str.replace( reglist[0], reglist[1] );
+			str = str.replace( reglist[i][0], reglist[i][1] );
 		}
 		
 		return str;
@@ -119,7 +119,7 @@ define(function(require, exports, module){
 		];
 		
 		for ( var i = 0 ; i < reglist.length ; i++ ){
-			str = str.replace( reglist[0], reglist[1] );
+			str = str.replace( reglist[i][0], reglist[i][1] );
 		}
 		
 		return str;
@@ -131,7 +131,7 @@ define(function(require, exports, module){
 		];
 		
 		for ( var i = 0 ; i < reglist.length ; i++ ){
-			str = str.replace( reglist[0], reglist[1] );
+			str = str.replace( reglist[i][0], reglist[i][1] );
 		}
 		
 		return str;
