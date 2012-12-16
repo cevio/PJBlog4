@@ -90,7 +90,7 @@
 		var userInfo = {};
 		
 		if ( id === -1 ){
-			userInfo.photo = config.user.photo;
+			userInfo.photo = config.user.login ? config.user.photo : pageCustomParams.tempModules.GRA(pageCustomParams.global.authoremail);
 			userInfo.name = config.user.name;
 			userInfo.poster = true;
 			userInfo.oauth = "system";
