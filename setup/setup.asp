@@ -22,7 +22,7 @@ http.async(function(req){
 				return res;
 			};
 		
-		if ( dataParams.openid.length > 0 && dataParams.openkey.length > 0 ){
+		if ( dataParams.username.length > 0 && dataParams.password.length > 0 ){
 			return (function(params){
 				var fso = require("setup/asp/fso"),
 					spk = require("setup/asp/spkPackage"),

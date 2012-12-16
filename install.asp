@@ -96,7 +96,7 @@
                 	<div class="area">
                     	<div class="yanzheng">
                         	<h1>管理员账号</h1>
-                            <div class="input"><input type="text" name=" username" style="width:300px;" placeholder="管理员账号" /></div>
+                            <div class="input"><input type="text" name="username" style="width:300px;" placeholder="管理员账号" /></div>
                             <h1>管理员密码</h1>
                             <div class="input"><input type="password" name="password" style="width:300px;" placeholder="管理员密码" /></div>
                             <div class="info">
