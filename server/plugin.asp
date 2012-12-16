@@ -391,5 +391,29 @@ http.service(function( req, dbo, sap ){
 			}
 		}
 	}
+	
+	this.plugindestory = function(){
+		var fo = req.query.fo;
+		if ( fo.length === 0 ){
+			return {
+				success: false,
+				error: "参数错误"
+			}
+		}
+		try{
+			var fso = require("FSO");
+			if ( fso.exsit("profile/plugins/" + fo, true) ){
+				fso.destory("profile/plugins/" + fo, true);
+			}
+			return {
+				success: true
+			}
+		}catch(e){
+			return {
+				success:false,
+				error: e.message
+			}
+		}
+	}
 });
 %>

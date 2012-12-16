@@ -34,7 +34,7 @@
 		}
 			
 		if ( connecte === true ){
-			require("status")("-1", hash, oauth);
+			(require("status"))("-1", hash, "system");
 		
 			isLogin = config.user.login;
 			isAdmin = config.user.poster;

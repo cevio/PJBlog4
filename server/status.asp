@@ -17,6 +17,8 @@ define(function(require, exports, module){
 			var _id = unescape(cookie.get(config.cookie + "_user", "id")),
 				_hashkey = cookie.get(config.cookie + "_user", "hashkey"),
 				_oauth = cookie.get(config.cookie + "_user", "oauth");
+				
+				
 
 			if ( id === undefined ){
 				id = _id;
@@ -24,10 +26,12 @@ define(function(require, exports, module){
 				oauth = _oauth;
 			}
 			
-			if ( !_oauth || _oauth === null || _oauth === undefined || _oauth.length === 0 ){
+			if ( !oauth || oauth === null || oauth === undefined || oauth.length === 0 ){
 				clearStatus();
 				return;
 			}
+			
+			
 
 			var dbo = require("DBO"),
 				connecte = require("openDataBase"),

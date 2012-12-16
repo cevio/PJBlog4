@@ -28,6 +28,7 @@ define(["assets/js/core/jQuery"], function(){
 	config.ajaxUrl.server.pluginStop = "server/plugin.asp?j=pluginstop";
 	config.ajaxUrl.server.pluginActive = "server/plugin.asp?j=pluginactive";
 	config.ajaxUrl.server.pluginUnInstall = "server/plugin.asp?j=pluginuninstall";
+	config.ajaxUrl.server.pluginDestory = "server/plugin.asp?j=plugindestory";
 	config.ajaxUrl.server.setupTheme = "server/theme.asp?j=setup";
 	config.ajaxUrl.server.setupThemeStyle = "server/theme.asp?j=setupstyle";
 	config.ajaxUrl.server.setupThemeDelete = "server/theme.asp?j=themedelete";

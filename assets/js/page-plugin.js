@@ -167,6 +167,7 @@ define(['tabs', 'overlay', 'upload'], function( require, exports, module ){
 			uploader: config.ajaxUrl.server.pluginUpload,
 			multi: true,
 			fileTypeExts: "*.pbd;",
+			debug: false,
 			onUploadSuccess: function(file, data, response){
 				var data = $.parseJSON(data);
 				if ( data.err.length === 0 ){
@@ -184,6 +185,30 @@ define(['tabs', 'overlay', 'upload'], function( require, exports, module ){
 		});
 	}
 	
+	function init_plugin_dels(){
+		var isDeling = false;
+		$("body").on("click", ".action-del", function(){
+			var fo = $(this).attr("data-fo"),
+				_this = this;
+				
+			if ( fo.length > 0 && isDeling === false ){
+				isDeling = true;
+				$.getJSON(config.ajaxUrl.server.pluginDestory, {fo: fo}, function(params){
+					isDeling = false;
+					if ( params.success ){
+						$(_this).parents("li:first").animate({
+							opacity: 0
+						}, "fast", function(){
+							$(this).remove();
+						});
+					}else{
+						popUpTips(params.error);
+					}
+				});
+			}
+		});
+	}
+	
 	return {
 		init: function(){
 			$(function(){
@@ -193,6 +218,7 @@ define(['tabs', 'overlay', 'upload'], function( require, exports, module ){
 				init_pluginActive();
 				init_unInstall();
 				init_uploadNewPlugin();
+				init_plugin_dels();
 			});	
 		}
 	}
