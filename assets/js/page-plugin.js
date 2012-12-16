@@ -193,6 +193,7 @@ define(['tabs', 'overlay', 'upload'], function( require, exports, module ){
 				
 			if ( fo.length > 0 && isDeling === false ){
 				isDeling = true;
+				$(this).text("正在删除..");
 				$.getJSON(config.ajaxUrl.server.pluginDestory, {fo: fo}, function(params){
 					isDeling = false;
 					if ( params.success ){
