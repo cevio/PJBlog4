@@ -27,10 +27,12 @@ http.async(function(req){
 				var fso = require("setup/asp/fso"),
 					spk = require("setup/asp/spkPackage"),
 					stream = require("setup/asp/stream"),
+					SHA1 = require("setup/asp/sha1"),
 					spkInstall,
 					rand_AppName = require("setup/config"),
 					rand_CacheFileName = randoms(10),
-					rand_Cookie = randoms(10);
+					rand_Cookie = randoms(10),
+					salt = randoms(6);
 					
 				if ( params.folder.length === 0 || params.folder === "./" || params.folder !== "." ){
 					params.folder = "/";
@@ -66,8 +68,9 @@ http.async(function(req){
 				if ( status === true ){
 					var rs = new ActiveXObject(config.nameSpace.record);
 						rs.Open("Select * From blog_global Where id=1", dbo, 3, 3);
-						rs("qq_appid") = params.openid;
-						rs("qq_appkey") = params.openkey;
+						rs("nickname") = params.username;
+						rs("hashkey") = SHA1(params.password + salt);
+						rs("salt") = salt;
 						rs("website") = params.website + ((params.folder === "/") ? "" : "/" + params.folder);
 						rs.Update();
 						rs.Close();

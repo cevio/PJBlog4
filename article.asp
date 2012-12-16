@@ -149,6 +149,7 @@
 					pageCustomParams.article.postDate = rs("log_posttime").value;
 					pageCustomParams.article.editDate = rs("log_updatetime").value;
 					pageCustomParams.global.seotitle = pageCustomParams.article.title;
+					pageCustomParams.article.user = getUserPhoto(rs("log_uid").value);
 					if ( !seArticleId ){ seArticleId = []; }
 					if ( seArticleId.indexOf(pageCustomParams.article.id) === -1 ){
 						var views = rs("log_views").value;

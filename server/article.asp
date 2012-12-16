@@ -40,6 +40,7 @@ http.service(function( req, dbo, sap ){
 		rets.log_posttime = time;
 		rets.log_updatetime = time;
 		rets.log_views = 0;
+		rets.log_uid = config.user.id;
 			
 		var tmp_remove_html = fns.removeHTML(rets.log_content);
 
@@ -172,11 +173,6 @@ http.service(function( req, dbo, sap ){
 			key: "id",
 			keyValue: id
 		});
-
-		var cache = require.async("cache");
-			cache.build("article_pages_cate", log_oldCategory);
-			cache.build("article_pages_cate", rets.log_category);
-			cache.build("article", Number(id));
 		
 		return {
 			success: true,
@@ -236,10 +232,18 @@ http.service(function( req, dbo, sap ){
 					}
 				});
 				
+				dbo.trave({
+					type: 3,
+					conn: config.conn,
+					sql: "Select * From blog_category Where id=" + cateid,
+					callback: function( rs ){
+						rs("cate_count") = rs("cate_count").value - 1;
+						rs.Update();
+					}
+				});
+				
 				var cache = require.async("cache");
-					cache.build("article_pages");
-					cache.build("article_pages_cate", cateid);
-					cache.destory("article", id);
+					cache.build("category");
 
 				return {
 					success: true
