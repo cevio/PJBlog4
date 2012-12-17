@@ -19,6 +19,7 @@
 
 .com .comlist{ margin-bottom:20px; margin-right:20px; width:200px; height:30px; line-height:30px; text-align:center;}
 .com .green{ background-color:#2ba09e; color:#fff; }
+.com .white{ background-color:#fff; color:#2ba09e;}
 .com .red{ background-color:#cf4467; color:#fff;}
 .com .intro{ width:14px; height:14px; border-radius:2px; margin-right:5px;}
 .com .words{ line-height:14px; height:14px; margin-right:15px;}

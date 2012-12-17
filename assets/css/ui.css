@@ -231,12 +231,8 @@
 
 .ui-position .ui-position-tools a:link,
 .ui-position .ui-position-tools a:visited{
-	color: #000;
-	background-image: url(../img/icon-meetup-2x.png);
-	background-repeat:no-repeat;
-	background-position:0px 0px;
-	background-size:16px 50px;
-	padding-left:20px;
+	color: #ccc;
+	padding-left:10px;
 }
 
 .ui-position .ui-position-tools a:hover,

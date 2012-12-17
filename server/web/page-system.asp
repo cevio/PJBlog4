@@ -5,7 +5,7 @@
 	}
 %>
 <div class="ui-position fn-clear">
-  <div class="fn-left ui-position-title">插件管理</div>
+  <div class="fn-left ui-position-title">系统管理</div>
   <div class="fn-right ui-position-tools">
   	<a href="?p=system" class="<%=( t == "com" ? "active" : "" )%>">组件支持</a> 
     <a href="?p=system&t=cache" class="<%=( t == "cache" ? "active" : "" )%>">缓存清理</a> 
@@ -41,7 +41,7 @@
 					var status = "";
 					 try{
                         new ActiveXObject(config.nameSpace[com]);
-                        status = "green";
+                        status = "white";
                     }catch(e){
                         status = "red";
                     }
@@ -52,7 +52,7 @@
 	%>
     	</div>
         <div class="fn-clear" style="margin-top:10px;">
-        	<div class="fn-left intro green"></div><div class="fn-left words">支持</div>
+        	<div class="fn-left intro white"></div><div class="fn-left words">支持</div>
             <div class="fn-left intro red"></div><div class="fn-left words">不支持</div>
         </div>
     <%
