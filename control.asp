@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="assets/css/page-<%=checkStatusAndCustomPage()%>.css" media="all" />
 <script language="javascript" src="assets/js/core/sizzle.js"></script>
 <script language="javascript" src="profile/handler/configure.js"></script>
+<script language="javascript" src="<%=config.platform%>/proxy/update.js"></script>
 <script language="javascript">
 var userid = '<%=config.user.id%>',
 	userhashkey = '<%=config.user.hashkey%>',

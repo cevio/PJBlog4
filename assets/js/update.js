@@ -89,21 +89,19 @@ define(function( require, exports, module ){
 	}
 	
 	$(function(){
-		require.async(config.platform + "/proxy/update.js", function( params ){
-			console.log(params);
-			if ( (config.limits.admin === true) && (checkVersion(params.version) === true) ){
-				if ( params.list && params.list[config.version] ){
-					$("#updateversionnumber").text(" v " + params.list[config.version].toVersion);
-					$("#hurryUpdate").on("click", function(){
-						openUpdateBox(params.list[config.version]);
-					});
-					$("#updateclose").on("click", function(){
-						$(".ui-updateArea").slideUp("slow");
-					});
-					$("#viewupdateinfo").attr("href", params.list[config.version].url);
-					$(".ui-updateArea").slideDown("slow");
-				}
+		var params = config.update;
+		if ( (config.limits.admin === true) && (checkVersion(params.version) === true) ){
+			if ( params.list && params.list[config.version] ){
+				$("#updateversionnumber").text(" v " + params.list[config.version].toVersion);
+				$("#hurryUpdate").on("click", function(){
+					openUpdateBox(params.list[config.version]);
+				});
+				$("#updateclose").on("click", function(){
+					$(".ui-updateArea").slideUp("slow");
+				});
+				$("#viewupdateinfo").attr("href", params.list[config.version].url);
+				$(".ui-updateArea").slideDown("slow");
 			}
-		});
+		}
 	});
 });
