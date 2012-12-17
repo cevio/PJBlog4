@@ -55,12 +55,9 @@ config.limits.admin = <%=config.user.admin ? "true" : "false"%>;
 			</ul>
 		</div>
         <div class="ui-updateArea">
-        	<div class="vers">发现新版本：<span id="updateversionnumber"></span></div>
-            <div class="goupdate">
-            	<a href="javascript:;" id="hurryUpdate">马上升级？</a> 
-                <a href="#" id="viewupdateinfo" target="_blank">详细</a> 
-                <a href="javascript:;" id="updateclose">关闭</a>
-            </div>
+        	<div class="vers">升级版本：<span id="updateversionnumber"></span></div>
+            <div class="vers">当前版本： v <%=config.version%></div>
+            <div class="goupdate"><a href="javascript:;" id="hurryUpdate">马上升级？</a><a href="#" id="viewupdateinfo" target="_blank">详细</a><a href="javascript:;" id="updateclose">关闭</a></div>
         </div>
 	</div>
     <%
@@ -100,16 +97,13 @@ config.limits.admin = <%=config.user.admin ? "true" : "false"%>;
 		}
 	%>
     <div class="ui-footer">
-    	<div class="ui-wrapper">
-        	<div class="ui-links">
-            	<a href="http://webkits.cn" target="_blank">Evio</a> | 
-                <a href="http://www.pjhome.net" target="_blank">PuterJam</a> | 
-                <a href="http://bbs.pjhome.net" target="_blank">BBS</a> | 
+    	<div class="ui-wrapper fn-clear">
+            <div class="ui-copyright fn-left">Copyright @ 2004-2012 PJHome.Net. All Rights Reserved.<br />Code Design By <a href="http://webkits.cn" target="_blank">Evio</a>, Blog CopyRight For <a href="http://www.pjhome.net" target="_blank">PuterJam</a>.</div>
+           <div class="ui-links fn-right">
+            	<a href="http://webkits.cn" target="_blank">Evio</a> - 
+                <a href="http://www.pjhome.net" target="_blank">PuterJam</a> - 
+                <a href="http://bbs.pjhome.net" target="_blank">BBS</a> - 
                 <a href="http://webkits.cn" target="_blank">Support</a>
-            </div>
-            <div class="ui-copyright fn-clear">
-            	<div class="fn-left">Copyright © 2004-2012 PJHOME LLC. All screenshots © their respective owners.</div>
-                <div class="fn-right">Evio in China, PuterJam in China.</div>
             </div>
         </div>
     </div>

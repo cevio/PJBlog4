@@ -17,5 +17,16 @@
 .configure-list table td{ padding:10px;}
 .configure-list .info{ color:#999; }
 
-.con-name{ width:100px; padding:10px; background:#fff; text-align:center;}
+.con-name{ width:100px; padding:10px; background:#fff; text-align:center; position:relative;}
 .configs{ margin-right:150px; background:#fff; padding:10px;}
+.con-name:before{
+	content:"";
+	position: absolute;
+	left: -6px;
+	width: 0;
+	height: 0;
+	border-top: 5px solid transparent;
+	border-right: 6px solid #fff;
+	border-bottom: 5px solid transparent;
+
+}

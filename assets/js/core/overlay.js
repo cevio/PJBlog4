@@ -21,6 +21,9 @@ define(function(require, exports, module){
 					top: "0px",
 					left: "0px",
 					opacity: 0
+				})
+				.children().css({
+					opacity: 0
 				});
 				
 				$(this).animate({
@@ -29,7 +32,12 @@ define(function(require, exports, module){
 					left: left + "px",
 					top: top + "px",
 					opacity: 1
-				}, "slow", callback);
+				}, "slow", function(){
+					$(this).children().animate({
+						opacity: 1
+					}, "fast");
+					$.isFunction(callback) && callback.call(this);
+				});
 			})
 			
 			.on("deformationZoom.drop", function(){
@@ -117,7 +125,7 @@ define(function(require, exports, module){
 	}
 	
 	$.dialogSet = function( options ){
-		options.content = '<div class="dialog fn-clear"><form action="' + options.action + '" method="post" style="margin:0; padding:0;"><div class="title fn-clear"><div class="fn-left mtitle">设置</div><a href="javascript:;" class="fn-right close">关闭</a></div><div class="content">' + options.content + '</div><div class="bom"><input type="submit" value="保存" class="button" /></div></form></div>';
+		options.content = '<div class="dialog fn-clear" style="width:300px;"><form action="' + options.action + '" method="post" style="margin:0; padding:0;"><div class="title fn-clear"><div class="fn-left mtitle">设置</div><a href="javascript:;" class="fn-right close">关闭</a></div><div class="content">' + options.content + '</div><div class="bom"><input type="submit" value="保存" class="button" /></div></form></div>';
 		$.overlay(options);
 	}
 	

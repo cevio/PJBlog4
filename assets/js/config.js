@@ -174,7 +174,7 @@ define(["assets/js/core/jQuery"], function(){
 			options.content = '<div class="dialog fn-clear" style="width:300px;"><form action="' + config.ajaxUrl.server.password + '" method="post" style="margin:0;padding:0;">'
 			+					'<div class="title fn-clear">'
 			+						'<div class="fn-left mtitle">修改密码</div>'
-			+						'<a href="javascript:;" class="fn-right close">取消</a>'
+//			+						'<a href="javascript:;" class="fn-right close">取消</a>'
 			+					'</div>'
 			+					'<div class="content">'
 			+						'<div class="oldpass">旧密码：<input type="password" name="oldpass" value="" placeholder="旧密码" /></div>'

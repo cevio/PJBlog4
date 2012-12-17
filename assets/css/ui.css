@@ -88,34 +88,38 @@
 .ui-body{
 	margin-top: 40px;
 	margin-bottom:40px;
-	min-height:500px;
+	min-height:550px;
 }
 
 .ui-footer{
-	border-top:1px solid #ddd;
+	border-top:1px solid #e7e7e7;
 	background:#fff;
-	padding:40px 0px;
+	padding:10px 0px;
 }
 .ui-footer .ui-links{
-	color:#999;
-	height:30px; line-height:30px;
+	color:#ccc;
+	height:30px; 
+	line-height:30px;
 }
 
-.ui-footer .ui-links a{
-	margin-right:10px;
-	margin-left:10px;
+.ui-footer .ui-links a:link,
+.ui-footer .ui-links a:visited{
+	color:#ccc;
+	font-family:"Comic Sans MS", cursive;
+	line-height:40px;
 }
+.ui-footer .ui-links a:hover{ color:#999;}
 
 .ui-footer .ui-wrapper{ margin-top:0px;}
 
 .ui-footer .ui-copyright{
-	color:#999;
-	padding-left:10px;
+	color: #ccc;
+	line-height:20px;
 }
 
-.ui-footer .ui-links a:link, 
-.ui-footer .ui-links a:visited{
-	color:#777;
+.ui-footer a:link, 
+.ui-footer a:visited{
+	color:#999;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size:12px;
 }
@@ -459,8 +463,9 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 
 .ui-updateArea{ padding:10px 20px; position:absolute; top:41px; right:30px; background:#222; box-shadow: 0px 1px 5px #000; border-radius:0px 0px 3px 3px; display:none;}
 .ui-updateArea .vers{ height:20px; line-height:20px;}
-.goupdate{ text-align:right;}
-#hurryUpdate:link, #hurryUpdate:visited{ background:url(../img/icon-grey-arrow.png) 0px 3px no-repeat; padding-left:14px; margin-right:10px;}
+.goupdate{ margin-top:5px;}
+.goupdate a{ margin-right:5px;}
+#hurryUpdate:link, #hurryUpdate:visited{ background:url(../img/icon-grey-arrow.png) 0px 3px no-repeat; padding-left:14px;}
 #hurryUpdate:hover{ background:url(../img/icon-grey-arrow.png) 0px -19px no-repeat; }
 .ui-updatebox{ background:#fff; width:400px; height:200px; padding:10px;}
 .update-header{ font-size:14px; font-weight:bold; height:30px; line-height:30px; border-bottom:1px solid #ccc; margin-bottom:20px;}
