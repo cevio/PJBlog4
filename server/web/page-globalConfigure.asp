@@ -41,9 +41,9 @@
 </div>
 <div class="ui-context">
   <form action="server/configure.asp?j=normal" method="post" id="postSetForm">
-    <div class="ui-table ui-table-custom configure-list">
-      <fieldset>
-        <legend>基本设置</legend>
+    <div class="fn-clear configure-list">
+      <div class="fn-right con-name ui-wrapshadow">基本设置</div>
+      <div class="configs ui-wrapshadow ui-table ui-table-custom">
         <table cellpadding="0" cellspacing="0">
           <tr>
             <td class="key">网站名称</td>
@@ -70,7 +70,7 @@
           </tr>
           <tr>
             <td class="key">博主昵称</td>
-            <td class="keyvalue"><input type="text" value="<%=blog_global.nickname%>" name="nickname" class="short"></td>
+            <td class="keyvalue"><input type="text" value="<%=blog_global.nickname%>" name="nickname" class="short"><div class="info">昵称修改后，后台登入的账号即为昵称账号。</div></td>
           </tr>
           <tr>
             <td class="key">博主邮箱</td>
@@ -91,104 +91,104 @@
                 <span>选择需慎重。</span></div></td>
           </tr>
         </table>
-      </fieldset>
+      </div>
     </div>
-    <div class="ui-table ui-table-custom configure-list">
-    <fieldset>
-      <legend>日志模块设置</legend>
-      <table>
-        <tr>
-          <td class="key">日志预览长度</td>
-          <td class="keyvalue"><input type="text" value="<%=blog_global.articleprivewlength%>" name="articleprivewlength" class="shorter"></td>
-        </tr>
-        <tr>
-          <td class="key">每页日志数量</td>
-          <td class="keyvalue"><input type="text" value="<%=blog_global.articleperpagecount%>" name="articleperpagecount" class="shorter"></td>
-        </tr>
-      </table>
-    </fieldset>
+    <div class="fn-clear configure-list">
+      <div class="fn-right con-name ui-wrapshadow">日志设置</div>
+      <div class="configs ui-wrapshadow ui-table ui-table-custom">
+        <table>
+          <tr>
+            <td class="key" width="100">日志预览长度</td>
+            <td class="keyvalue"><input type="text" value="<%=blog_global.articleprivewlength%>" name="articleprivewlength" class="shorter"> 个字符</td>
+          </tr>
+          <tr>
+            <td class="key">每页日志数量</td>
+            <td class="keyvalue"><input type="text" value="<%=blog_global.articleperpagecount%>" name="articleperpagecount" class="shorter">  篇</td>
+          </tr>
+        </table>
+      </div>
     </div>
-    <div class="ui-table ui-table-custom configure-list">
-    <fieldset>
-      <legend>评论模块设置</legend>
-      <table>
-        <tr>
-          <td class="key">需要审核?</td>
-          <td class="keyvalue"><input type="checkbox" value="1" name="commentaduit" <%=blog_global.commentaduit === true ? 'checked="checked"' : ''%>>
-            <span class="info">开启评论审核功能？</span></td>
-        </tr>
-        <tr>
-          <td class="key">评论每页条数</td>
-          <td class="keyvalue"><input type="text" name="commentperpagecount" value="<%=blog_global.commentperpagecount%>" class="shorter" /></td>
-        </tr>
-      </table>
-    </fieldset>
+    <div class="fn-clear configure-list">
+       <div class="fn-right con-name ui-wrapshadow">评论设置</div>
+       <div class="configs ui-wrapshadow ui-table ui-table-custom">
+        <table>
+          <tr>
+            <td class="key" width="100">需要审核?</td>
+            <td class="keyvalue"><input type="checkbox" value="1" name="commentaduit" <%=blog_global.commentaduit === true ? 'checked="checked"' : ''%>>
+              <span class="info">开启评论审核功能？</span></td>
+          </tr>
+          <tr>
+            <td class="key">评论每页条数</td>
+            <td class="keyvalue"><input type="text" name="commentperpagecount" value="<%=blog_global.commentperpagecount%>" class="shorter" /></td>
+          </tr>
+        </table>
+      </div>
     </div>
-    <div class="ui-table ui-table-custom configure-list">
-    <fieldset>
-      <legend>全球通用头像设置</legend>
-      <table>
-        <tr>
-          <td class="key">头像尺寸</td>
-          <td class="keyvalue"><input type="text" value="<%=blog_global.gravatarS%>" name="gravatarS" class="shorter">
-            <span class="info">请填写数字。这里是你头像的大小，他的规格在80-512之间。</span></td>
-        </tr>
-        <tr>
-          <td class="key">头像限制等级</td>
-          <td class="keyvalue"><input type="text" name="gravatarR" value="<%=blog_global.gravatarR%>" class="short" />
-            <div class="info"> 1. G: 使用所有网站。<br />
-              2. PG: 适用于含 ”粗鲁，挑逗，小暴力“的网站。<br />
-              3. R: 适用于”强暴力，裸露，毒品“等的网站。<br />
-              4. X: 适用于”性交，超强暴力“的网站。 </div></td>
-        </tr>
-        <tr>
-          <td class="key">头像容错地址</td>
-          <td class="keyvalue"><input type="text" name="gravatarD" value="<%=blog_global.gravatarD%>" class="long" />
-            <div class="info">如果该邮箱未注册GRA头像，那么将使用这里的头像地址作为头像。</div></td>
-        </tr>
-      </table>
-    </fieldset>
+     <div class="fn-clear configure-list">
+      <div class="fn-right con-name ui-wrapshadow">通用头像设置</div>
+       <div class="configs ui-wrapshadow ui-table ui-table-custom">
+        <table>
+          <tr>
+            <td class="key">头像尺寸</td>
+            <td class="keyvalue"><input type="text" value="<%=blog_global.gravatarS%>" name="gravatarS" class="shorter">
+              <span class="info">请填写数字。这里是你头像的大小，他的规格在80-512之间。</span></td>
+          </tr>
+          <tr>
+            <td class="key">头像限制等级</td>
+            <td class="keyvalue"><input type="text" name="gravatarR" value="<%=blog_global.gravatarR%>" class="short" />
+              <div class="info"> 1. G: 使用所有网站。<br />
+                2. PG: 适用于含 ”粗鲁，挑逗，小暴力“的网站。<br />
+                3. R: 适用于”强暴力，裸露，毒品“等的网站。<br />
+                4. X: 适用于”性交，超强暴力“的网站。 </div></td>
+          </tr>
+          <tr>
+            <td class="key">头像容错地址</td>
+            <td class="keyvalue"><input type="text" name="gravatarD" value="<%=blog_global.gravatarD%>" class="long" />
+              <div class="info">如果该邮箱未注册GRA头像，那么将使用这里的头像地址作为头像。</div></td>
+          </tr>
+        </table>
+      </div>
     </div>
-    <div class="ui-table ui-table-custom configure-list">
-    <fieldset>
-      <legend>上传设置</legend>
-      <table>
-        <tr>
-          <td class="key">图片类型</td>
-          <td class="keyvalue"><input type="text" value="<%=blog_global.uploadimagetype%>" name="uploadimagetype" class="long"></td>
-        </tr>
-        <tr>
-          <td class="key">附件类型</td>
-          <td class="keyvalue"><input type="text" value="<%=blog_global.uploadlinktype%>" name="uploadlinktype" class="long"></td>
-        </tr>
-        <tr>
-          <td class="key">FLASH类型</td>
-          <td class="keyvalue"><input type="text" value="<%=blog_global.uploadswftype%>" name="uploadswftype" class="long"></td>
-        </tr>
-        <tr>
-          <td class="key">多媒体类型</td>
-          <td class="keyvalue"><input type="text" value="<%=blog_global.uploadmediatype%>" name="uploadmediatype" class="long"></td>
-        </tr>
-      </table>
-    </fieldset>
+    <div class="fn-clear configure-list">
+      <div class="fn-right con-name ui-wrapshadow">附件上传设置</div>
+       <div class="configs ui-wrapshadow ui-table ui-table-custom">
+        <table>
+          <tr>
+            <td class="key">图片类型</td>
+            <td class="keyvalue"><input type="text" value="<%=blog_global.uploadimagetype%>" name="uploadimagetype" class="long"></td>
+          </tr>
+          <tr>
+            <td class="key">附件类型</td>
+            <td class="keyvalue"><input type="text" value="<%=blog_global.uploadlinktype%>" name="uploadlinktype" class="long"></td>
+          </tr>
+          <tr>
+            <td class="key">FLASH类型</td>
+            <td class="keyvalue"><input type="text" value="<%=blog_global.uploadswftype%>" name="uploadswftype" class="long"></td>
+          </tr>
+          <tr>
+            <td class="key">多媒体类型</td>
+            <td class="keyvalue"><input type="text" value="<%=blog_global.uploadmediatype%>" name="uploadmediatype" class="long"></td>
+          </tr>
+        </table>
+      </div>
     </div>
-    <div class="ui-table ui-table-custom configure-list">
-    <fieldset>
-      <legend>安全设置</legend>
-      <table>
-      	<tr>
-          <td class="key">开启本站注册</td>
-          <td class="keyvalue">
-          	<input type="radio" value="1" name="canregister" <%=(blog_global.canregister === true ? "checked": "")%> /> 开放 
-            <input type="radio" value="0" name="canregister" <%=(blog_global.canregister === false ? "checked": "")%> /> 关闭
-          </td>
-        </tr>
-        <tr>
-          <td class="key">附件防盗链白名单</td>
-          <td class="keyvalue"><input type="text" value="<%=blog_global.binarywhitelist%>" name="binarywhitelist" class="longer"></td>
-        </tr>
-      </table>
-    </fieldset>
+    <div class="fn-clear configure-list">
+      <div class="fn-right con-name ui-wrapshadow">网站安全</div>
+       <div class="configs ui-wrapshadow ui-table ui-table-custom">
+        <table>
+          <tr>
+            <td class="key">开启本站注册</td>
+            <td class="keyvalue"><input type="radio" value="1" name="canregister" <%=(blog_global.canregister === true ? "checked": "")%> />
+              开放
+              <input type="radio" value="0" name="canregister" <%=(blog_global.canregister === false ? "checked": "")%> />
+              关闭 </td>
+          </tr>
+          <tr>
+            <td class="key">附件防盗链白名单</td>
+            <td class="keyvalue"><input type="text" value="<%=blog_global.binarywhitelist%>" name="binarywhitelist" class="longer"></td>
+          </tr>
+        </table>
+      </div>
     </div>
     <%
 		var sap = require("sap"),

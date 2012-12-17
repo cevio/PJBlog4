@@ -12,6 +12,7 @@ define(["assets/js/core/jQuery"], function(){
 	config.map("easing", "assets/js/core/jQuery.easing.1.3");
 	config.map("article", "assets/js/article");
 	config.map("tips", "assets/js/lib/tips/tips");
+	config.map("update", "assets/js/update");
 	
 	config.ajaxUrl = { assets: {}, server: {} }
 	
@@ -48,6 +49,9 @@ define(["assets/js/core/jQuery"], function(){
 	config.ajaxUrl.server.unPassComment = "server/comment.asp?j=unpass";
 	config.ajaxUrl.server.password = "server/configure.asp?j=password";
 	config.ajaxUrl.server.system = "server/system.asp?j=clean";
+	config.ajaxUrl.server.package = "server/update.asp?j=package";
+	config.ajaxUrl.server.unpack = "server/update.asp?j=unpack";
+	config.ajaxUrl.server.cache = "server/update.asp?j=cache";
 	
 	(function ($, document, undefined) {
 		var pluses = /\+/g;
@@ -184,13 +188,13 @@ define(["assets/js/core/jQuery"], function(){
 	});
 	
 	return {
-		status : true,
-		load : function( args ){
+		status: true,
+		load: function( args ){
 			require.async(args, function( customs ){
 				if ( customs.init !== undefined ){
 					customs.init();
 				}
 			});
-		}
+		} 
 	};
 });

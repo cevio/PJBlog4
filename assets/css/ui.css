@@ -23,6 +23,7 @@
 	color: #aaa;
 	border-bottom: 1px solid #000;
 	box-shadow: 0px 1px 5px #000;
+	position:relative;
 }
 
 .ui-wrapshadow{
@@ -455,3 +456,13 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 .newpass{ margin-bottom:5px;}
 .repeatepass{}
 .passinfo{ margin-left:10px; color:#ff0000;}
+
+.ui-updateArea{ padding:10px 20px; position:absolute; top:41px; right:30px; background:#222; box-shadow: 0px 1px 5px #000; border-radius:0px 0px 3px 3px; display:none;}
+.ui-updateArea .vers{ height:20px; line-height:20px;}
+.goupdate{ text-align:right;}
+#hurryUpdate:link, #hurryUpdate:visited{ background:url(../img/icon-grey-arrow.png) 0px 3px no-repeat; padding-left:14px; margin-right:10px;}
+#hurryUpdate:hover{ background:url(../img/icon-grey-arrow.png) 0px -19px no-repeat; }
+.ui-updatebox{ background:#fff; width:400px; height:200px; padding:10px;}
+.update-header{ font-size:14px; font-weight:bold; height:30px; line-height:30px; border-bottom:1px solid #ccc; margin-bottom:20px;}
+.update-list{ margin-left:20px; height:140px; overflow:hidden;}
+.update-list li{ height:20px; line-height:20p0x; background:url(../img/icon-grey-arrow.png) 0px 3px no-repeat; padding-left:15px;}

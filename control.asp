@@ -25,6 +25,11 @@
 var userid = '<%=config.user.id%>',
 	userhashkey = '<%=config.user.hashkey%>',
 	useroauth = '<%=config.user.oauth%>';
+
+config.version = "<%=config.version%>";
+config.platform = "<%=config.platform%>";
+config.limits = {};
+config.limits.admin = <%=config.user.admin ? "true" : "false"%>;
 </script>
 </head>
 <body>
@@ -48,8 +53,15 @@ var userid = '<%=config.user.id%>',
 				<li><a href="http://webkits.cn" target="_blank">官方</a></li>
 			</ul>
 		</div>
+        <div class="ui-updateArea">
+        	<div class="vers">发现新版本：<span id="updateversionnumber"></span></div>
+            <div class="goupdate">
+            	<a href="javascript:;" id="hurryUpdate">马上升级？</a> 
+                <a href="#" id="viewupdateinfo" target="_blank">详细</a> 
+                <a href="javascript:;" id="updateclose">关闭</a>
+            </div>
+        </div>
 	</div>
-    
     <%
 		if ( config.user.poster === true ){
 	%>
@@ -106,7 +118,7 @@ var userid = '<%=config.user.id%>',
 <script language="javascript">
 require(['assets/js/config'], function( custom ){
 	if ( custom.status === true ){
-		custom.load(['assets/js/page-<%=checkStatusAndCustomPage()%>', 'tips']);
+		custom.load(['assets/js/page-<%=checkStatusAndCustomPage()%>', 'tips', 'update']);
 	}else{
 		if ( $.browser.msie ){
 			alert("Getting Config File Error.");

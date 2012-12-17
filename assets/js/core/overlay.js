@@ -121,5 +121,10 @@ define(function(require, exports, module){
 		$.overlay(options);
 	}
 	
+	$.updateBox = function(options){
+		options.content = '<div class="ui-updatebox ui-wrapshadow">' + options.content + '</div>';
+		$.overlay(options);
+	}
+	
 	return overlay;
 });
