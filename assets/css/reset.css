@@ -36,7 +36,7 @@ html, body{
 	font-family: Tahoma,Microsoft YaHei,Verdana,Arial,Helvetica,sans-serif;
 	font-size: 12px;
 }
-body{
+html{
 	background-image: url('../img/bg.gif');
 	background-color: #f0f0f0;
 }
