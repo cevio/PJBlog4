@@ -5,6 +5,7 @@
 	pageCustomParams.tempModules.connect = require("openDataBase");
 	pageCustomParams.tempModules.fns = require("fn");
 	pageCustomParams.tempModules.tags = require("tags");
+	pageCustomParams.tempModules.sap = require("sap");
 	pageCustomParams.tempCaches.globalCache = require("cache_global");
 	
 	if ( pageCustomParams.tempModules.connect !== true ){
@@ -119,6 +120,7 @@
 				userInfo.loginip = userCache[0][6];
 				pageCustomParams.tempModules.sap.proxy("assets.member.list.photo", [proxyPhoto, userInfo.oauth, userInfo.photo, 100]);
 				userInfo.photo = proxyPhoto[userInfo.oauth];
+				
 			}
 		}
 		
@@ -138,7 +140,7 @@
 		}else{
 			totalSum = Number(String(config.conn.Execute("Select count(id) From blog_article")(0)));
 		}
-		
+
 		if ( totalSum < perpage ){ perpage = totalSum; }
 		_mod = totalSum % perpage;
 		_pages = Math.floor(totalSum / perpage);
@@ -166,7 +168,7 @@
 			}
 			sql = "Select * From (Select top " + perpage + " * From (" + sql + ") Order By id) Order By id DESC";
 		}
-		
+
 		pageCustomParams.tempParams.pages = pageCustomParams.tempModules.fns.pageAnalyze(pageCustomParams.page, totalPages);
 		
 		if ( 

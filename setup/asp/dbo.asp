@@ -81,21 +81,15 @@ define(function( require, exports, module ){
 
 		if ( options === undefined ){ options = {} };
 		if ( options.rs === undefined ){ options.rs = this.createRecordSet(); }
-
-		try{
-			options.rs.Open( "Select * From " + options.table, options.conn, 3, 2 );
-			options.rs.AddNew();
-			(typeof options.callback === "function") && options.callback.call(options.rs);
-			for ( var items in options.data ){
-				console.push(items + ": " + options.data[items]);
-				options.rs(items) = options.data[items];
-			}
-			options.rs.Update();
-			options.rs.Close();
-		}catch(e){
-			console.push(e.message);
+		options.rs.Open( "Select * From " + options.table, options.conn, 3, 2 );
+		options.rs.AddNew();
+		(typeof options.callback === "function") && options.callback.call(options.rs);
+		for ( var items in options.data ){
+			console.push(items + ": " + options.data[items]);
+			options.rs(items) = options.data[items];
 		}
-
+		options.rs.Update();
+		options.rs.Close();
 		return this;
 
 	}
@@ -105,19 +99,13 @@ define(function( require, exports, module ){
 	exports.update = function( options ){
 		if ( options === undefined ){ options = {} };
 		if ( options.rs === undefined ){ options.rs = this.createRecordSet(); }
-
-		try{
-			options.rs.Open("Select * From " + options.table + " Where " + options.key + "=" + options.keyValue, options.conn, 3, 3);
-			for ( var items in options.data ){
-				options.rs(items) = options.data[items];
-			}
-			options.rs.Update();
-			(typeof options.callback === "function") && options.callback.call(options.rs);
-			options.rs.Close();
-		}catch(e){
-			console.push(e.message);
+		options.rs.Open("Select * From " + options.table + " Where " + options.key + "=" + options.keyValue, options.conn, 3, 3);
+		for ( var items in options.data ){
+			options.rs(items) = options.data[items];
 		}
-
+		options.rs.Update();
+		(typeof options.callback === "function") && options.callback.call(options.rs);
+		options.rs.Close();
 		return this;
 	}
 	
@@ -146,21 +134,14 @@ define(function( require, exports, module ){
 		if ( options === undefined ){ options = {} };
 		if ( options.rs === undefined ){ options.rs = this.createRecordSet(); }
 		if ( options.type === undefined ){ options.type = 1; }
-
 		var ret;
-
-		try{
-			if ( options.callback === undefined ){
-				ret = options.conn.Execute(options.sql);
-			}else{
-				options.rs.Open(options.sql, options.conn, 3, options.type);
-				ret = options.callback.call(new recordSetCoretions(options.rs), options.rs, options.conn);
-				options.rs.Close();
-			}
-		}catch(e){
-			console.push(e.message);
+		if ( options.callback === undefined ){
+			ret = options.conn.Execute(options.sql);
+		}else{
+			options.rs.Open(options.sql, options.conn, 3, options.type);
+			ret = options.callback.call(new recordSetCoretions(options.rs), options.rs, options.conn);
+			options.rs.Close();
 		}
-
 		return ret;
 	}
 

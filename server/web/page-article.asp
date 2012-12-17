@@ -75,9 +75,17 @@ var dbo = require("DBO"),
 	_cate = Number(_cate);
 	
 	if ( _cate > 0 ){
-		_sql = "Select * From blog_article Where log_category=" + _cate + " Order By log_posttime DESC";
+		if ( config.user.id > 0 ){
+			_sql = "Select * From blog_article Where log_category=" + _cate + " And log_uid=" + config.user.id + " Order By log_posttime DESC";
+		}else{
+			_sql = "Select * From blog_article Where log_category=" + _cate + " Order By log_posttime DESC";
+		}
 	}else{
-		_sql = "Select * From blog_article Order By log_posttime DESC";
+		if ( config.user.id > 0 ){
+			_sql = "Select * From blog_article Where log_uid=" + config.user.id + " Order By log_posttime DESC";
+		}else{
+			_sql = "Select * From blog_article Order By log_posttime DESC";
+		}
 	}
         
     
