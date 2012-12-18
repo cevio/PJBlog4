@@ -1,7 +1,11 @@
 <%
 define(function(require, exports, module){
-	exports.url = function(){
-		return 'https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=' + pageCustomParams.global.qq_appid + '&redirect_uri=' + escape(pageCustomParams.global.website + '/server/oauth.asp?type=qq&dir=' + pageCustomParams.global.website);
+	exports.url = function(appid, website){
+		if ( appid === undefined ){
+			appid = pageCustomParams.global.qq_appid;
+			website = pageCustomParams.global.website;
+		}
+		return 'https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=' + appid + '&redirect_uri=' + escape(website + '/server/oauth.asp?type=qq&dir=' + website);
 	}
 	
 	exports.token = function(APPID, APPKEY, code, website){

@@ -14,6 +14,17 @@ define(function( require, exports, module ){
 				this.sap.addProxy("assets.member.list.photo", function(rets, oauth, photo, size){
 					rets[oauth] = photo + "/" + size;
 				});
+				this.sap.addProxy("response.login", function(rets, custom){
+					var cmd = custom.loadPlugin("qqoauth");
+					if ( cmd !== null ){
+						var cache = require.async("cache"),
+							oauth = require.async("profile/plugins/" + cmd.folder + "/oauth"),
+							cacheConfigs = custom.configCache(cmd.id),
+							cacheGlobals = cache.load("global");
+						
+						rets.push('<a href="' + oauth.url(cacheConfigs.appid, cacheGlobals.website) + '" target="_blank">腾讯账号登入<a>');
+					}
+				});
 			}catch(e){}
 		}
 	}

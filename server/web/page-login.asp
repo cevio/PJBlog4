@@ -31,7 +31,19 @@
                     </form>
                 </div>
             </div>
-            <div class="contents"><div class="zone">2</div></div>
+            <div class="contents"><div class="zone">
+            	<%
+					var sap = require("sap"),
+						pluginCustom = require("pluginCustom"),
+						loginCharts = [];
+						
+					sap.proxy("response.login", [loginCharts, pluginCustom]);
+
+					for ( var i = 0 ; i < loginCharts.length ; i++ ){
+						console.log(loginCharts[i]);
+					}
+				%>
+            </div></div>
         </div>
     </div>
 </div>
