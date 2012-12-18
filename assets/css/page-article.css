@@ -11,3 +11,6 @@
 }
 
 .categoryList li{ background:#fff; padding:5px 10px; margin:0px 10px 10px 0px;}
+td.action a{ margin-right:5px;}
+td.action{ text-align:center;}
+td.action a:last-child{ margin-right:0px;}

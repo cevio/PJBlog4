@@ -23,6 +23,8 @@ define(["assets/js/core/jQuery"], function(){
 	config.ajaxUrl.server.destoryCate = "server/category.asp?j=destorycates";
 	config.ajaxUrl.server.iconList = "server/category.asp?j=iconlist";
 	config.ajaxUrl.server.delArticles = "server/article.asp?j=delarticle";
+	config.ajaxUrl.server.topArticles = "server/article.asp?j=toparticle";
+	config.ajaxUrl.server.unTopArticles = "server/article.asp?j=untoparticle";
 	config.ajaxUrl.server.setupPlugin = "server/plugin.asp?j=setup";
 	config.ajaxUrl.server.configSetPlugin = "server/plugin.asp?j=setconfig";
 	config.ajaxUrl.server.updateConfig = "server/plugin.asp?j=updateconfig";
@@ -33,11 +35,6 @@ define(["assets/js/core/jQuery"], function(){
 	config.ajaxUrl.server.setupTheme = "server/theme.asp?j=setup";
 	config.ajaxUrl.server.setupThemeStyle = "server/theme.asp?j=setupstyle";
 	config.ajaxUrl.server.setupThemeDelete = "server/theme.asp?j=themedelete";
-	try{
-	config.ajaxUrl.server.editorUpload = "server/upload.asp?immediate=1&uid=" + userid + "&hash=" + userhashkey + "&oauth=" + useroauth;
-	config.ajaxUrl.server.themeUpload = "server/pbdUpload.asp?j=theme&uid=" + userid + "&hash=" + userhashkey + "&oauth=" + useroauth;
-	config.ajaxUrl.server.pluginUpload = "server/pbdUpload.asp?j=plugin&uid=" + userid + "&hash=" + userhashkey + "&oauth=" + useroauth;
-	}catch(e){}
 	config.ajaxUrl.server.memDelete = "server/member.asp?j=mdelete";
 	config.ajaxUrl.server.memForce = "server/member.asp?j=mforce";
 	config.ajaxUrl.server.memUnForce = "server/member.asp?j=munforce";
@@ -52,6 +49,12 @@ define(["assets/js/core/jQuery"], function(){
 	config.ajaxUrl.server.package = "server/update.asp?j=package";
 	config.ajaxUrl.server.unpack = "server/update.asp?j=unpack";
 	config.ajaxUrl.server.cache = "server/update.asp?j=cache";
+	
+	try{
+		config.ajaxUrl.server.editorUpload = "server/upload.asp?immediate=1&uid=" + userid + "&hash=" + userhashkey + "&oauth=" + useroauth;
+		config.ajaxUrl.server.themeUpload = "server/pbdUpload.asp?j=theme&uid=" + userid + "&hash=" + userhashkey + "&oauth=" + useroauth;
+		config.ajaxUrl.server.pluginUpload = "server/pbdUpload.asp?j=plugin&uid=" + userid + "&hash=" + userhashkey + "&oauth=" + useroauth;
+	}catch(e){}
 	
 	(function ($, document, undefined) {
 		var pluses = /\+/g;

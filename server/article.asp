@@ -261,5 +261,67 @@ http.service(function( req, dbo, sap ){
 			}
 		}
 	}
+	
+	this.toparticle = function(){
+		var id = req.query.id;
+		if ( id.length > 0 ){
+			try{
+				dbo.trave({
+					type: 3,
+					conn: config.conn,
+					sql: "Select * From blog_article Where id=" + id,
+					callback: function( rs ){
+						rs("log_istop") = true;
+						rs.Update();
+					}
+				});
+
+				return {
+					success: true
+				}
+			}catch(e){
+				return {
+					success: false,
+					error: e.message
+				}
+			}
+		}else{
+			return {
+				success: false,
+				error: "参数错误"
+			}
+		}
+	}
+	
+	this.untoparticle = function(){
+		var id = req.query.id;
+		if ( id.length > 0 ){
+			try{
+				dbo.trave({
+					type: 3,
+					conn: config.conn,
+					sql: "Select * From blog_article Where id=" + id,
+					callback: function( rs ){
+						rs("log_istop") = false;
+						rs.Update();
+					}
+				});
+
+				return {
+					success: true
+				}
+			}catch(e){
+				return {
+					success: false,
+					error: e.message
+				}
+			}
+		}else{
+			return {
+				success: false,
+				error: "参数错误"
+			}
+		}
+	}
 }, true);
 %>

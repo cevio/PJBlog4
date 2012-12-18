@@ -104,7 +104,7 @@ var dbo = require("DBO"),
                 <tr<%=even%>>
                     <td><a href="article.asp?id=<%=this("id").value%>" target="_blank"><%=this("log_title").value%></a></td>
                     <td><a href="?p=article&c=<%=categorys.id%>"><%=categorys.name%></a></td>
-                    <td><a href="?p=writeArticle&id=<%=this("id").value%>">编辑</a> <a href="javascript:;" data-id="<%=this("id").value%>" class="action-del">删除</a></td>
+                    <td class="action"><%if ( this("log_istop").value === true ){%><a href="javascript:;" data-id="<%=this("id").value%>" class="action-untop">取消</a><%}else{%><a href="javascript:;" data-id="<%=this("id").value%>" class="action-top">置顶</a><%}%><a href="?p=writeArticle&id=<%=this("id").value%>">编辑</a><a href="javascript:;" data-id="<%=this("id").value%>" class="action-del">删除</a></td>
                 </tr>
 <%	
                     });
