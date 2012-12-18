@@ -1,4 +1,4 @@
-SPK 00023092 00 HEAD|article.asp>9636|config.asp>4623|control.asp>5037|default.asp>6754|plugin.asp>2095|search.asp>5436|tags.asp>5113|assets\css\fn.css>832|assets\css\icon.css>475|assets\css\page-article.css>250|assets\css\page-category.css>1872|assets\css\page-comment.css>1787|assets\css\page-documents.css>1344|assets\css\page-globalConfigure.css>372|assets\css\page-index.css>41|assets\css\page-login.css>1363|assets\css\page-member.css>631|assets\css\page-plugin-configure.css>41|assets\css\page-plugin.css>1216|assets\css\page-system.css>1907|assets\css\page-theme.css>2366|assets\css\page-writeArticle.css>2160|assets\css\reset.css>1708|assets\css\ui.css>11710|assets\img\bg.gif>2093|assets\img\buttons.png>3369|assets\img\home-icon.png>3156|assets\img\icon-blog-2x.png>1632|assets\img\icon-comments-2x.png>1407|assets\img\icon-geo-search.png>349|assets\img\icon-grey-arrow.png>182|assets\img\icon-hearts-2x.png>1463|assets\img\icon-meetup-2x.png>2609|assets\img\icon-newsletter-2x.png>1497|assets\img\icon-pin-2x.png>1558|assets\img\icon-rebound-2x.png>1884|assets\img\icon-rebound-source-2x.png>1219|assets\img\icon-search-retina.png>660|assets\img\icon-signup-hd.png>2475|assets\img\icon-skills.png>492|assets\img\icon-twitter-footer-2x.png>1418|assets\img\icon-views-sm-2x.png>1501|assets\img\socsprite.png>3493|assets\img\Thumb.jpg>2453|assets\js\article.js>349|assets\js\config.js>7883|assets\js\page-article.js>833|assets\js\page-category.js>10489|assets\js\page-comment.js>5927|assets\js\page-documents.js>4051|assets\js\page-globalConfigure.js>829|assets\js\page-index.js>228|assets\js\page-login.js>1228|assets\js\page-member.js>6199|assets\js\page-plugin-configure.js>233|assets\js\page-plugin.js>6080|assets\js\page-system.js>1809|assets\js\page-theme.js>3656|assets\js\page-writeArticle.js>4871|assets\js\upload.js>979|assets\js\core\form.js>13659|assets\js\core\html5.js>2396|assets\js\core\jQuery.easing.1.3.js>8303|assets\js\core\jQuery.js>94420|assets\js\core\overlay.js>3699|assets\js\core\sizzle-min.js>9100|assets\js\core\sizzle.js>30332|assets\js\core\tabs.js>8489|assets\js\lib\tips\jquery.tipTip.minified.js>5271|assets\js\lib\tips\tips.js>175|assets\js\lib\tips\tipTip.css>2544|assets\js\lib\uploadify\.htaccess>84|assets\js\lib\uploadify\jquery.uploadify-3.1-min.js>46283|assets\js\lib\uploadify\jquery.uploadify-3.1.js>65235|assets\js\lib\uploadify\uploadify-cancel.png>2960|assets\js\lib\uploadify\uploadify.css>2536|assets\js\lib\uploadify\uploadify.js>212|assets\js\lib\uploadify\uploadify.swf>12675|assets\js\lib\xheditor\editor.js>104|assets\js\lib\xheditor\ubb.js>13971|assets\js\lib\xheditor\xheditor-1.1.14-zh-cn.min.js>63866|assets\js\lib\xheditor\xheditor_emot\default\angry.gif>8033|assets\js\lib\xheditor\xheditor_emot\default\awkward.gif>3716|assets\js\lib\xheditor\xheditor_emot\default\bye.gif>1798|assets\js\lib\xheditor\xheditor_emot\default\config.txt>478|assets\js\lib\xheditor\xheditor_emot\default\crazy.gif>8137|assets\js\lib\xheditor\xheditor_emot\default\cry.gif>1866|assets\js\lib\xheditor\xheditor_emot\default\curse.gif>5174|assets\js\lib\xheditor\xheditor_emot\default\cute.gif>2362|assets\js\lib\xheditor\xheditor_emot\default\despise.gif>1755|assets\js\lib\xheditor\xheditor_emot\default\doubt.gif>7189|assets\js\lib\xheditor\xheditor_emot\default\envy.gif>1804|assets\js\lib\xheditor\xheditor_emot\default\fastcry.gif>3073|assets\js\lib\xheditor\xheditor_emot\default\knock.gif>1674|assets\js\lib\xheditor\xheditor_emot\default\laugh.gif>1736|assets\js\lib\xheditor\xheditor_emot\default\mad.gif>1413|assets\js\lib\xheditor\xheditor_emot\default\ohmy.gif>4006|assets\js\lib\xheditor\xheditor_emot\default\panic.gif>4014|assets\js\lib\xheditor\xheditor_emot\default\proud.gif>1977|assets\js\lib\xheditor\xheditor_emot\default\quiet.gif>4317|assets\js\lib\xheditor\xheditor_emot\default\sad.gif>1562|assets\js\lib\xheditor\xheditor_emot\default\shutup.gif>3929|assets\js\lib\xheditor\xheditor_emot\default\shy.gif>3556|assets\js\lib\xheditor\xheditor_emot\default\sleep.gif>4679|assets\js\lib\xheditor\xheditor_emot\default\smile.gif>1810|assets\js\lib\xheditor\xheditor_emot\default\struggle.gif>1780|assets\js\lib\xheditor\xheditor_emot\default\titter.gif>1808|assets\js\lib\xheditor\xheditor_emot\default\tongue.gif>2247|assets\js\lib\xheditor\xheditor_emot\default\wail.gif>3298|assets\js\lib\xheditor\xheditor_emot\default\wronged.gif>6361|assets\js\lib\xheditor\xheditor_emot\ipb\alien.gif>521|assets\js\lib\xheditor\xheditor_emot\ipb\angel.gif>859|assets\js\lib\xheditor\xheditor_emot\ipb\angry.gif>799|assets\js\lib\xheditor\xheditor_emot\ipb\bandit.gif>681|assets\js\lib\xheditor\xheditor_emot\ipb\biglaugh.gif>767|assets\js\lib\xheditor\xheditor_emot\ipb\blink.gif>785|assets\js\lib\xheditor\xheditor_emot\ipb\blush.gif>812|assets\js\lib\xheditor\xheditor_emot\ipb\config.txt>486|assets\js\lib\xheditor\xheditor_emot\ipb\cool.gif>790|assets\js\lib\xheditor\xheditor_emot\ipb\cry.gif>781|assets\js\lib\xheditor\xheditor_emot\ipb\depres.gif>800|assets\js\lib\xheditor\xheditor_emot\ipb\devil.gif>803|assets\js\lib\xheditor\xheditor_emot\ipb\glare.gif>796|assets\js\lib\xheditor\xheditor_emot\ipb\heart.gif>677|assets\js\lib\xheditor\xheditor_emot\ipb\joyful.gif>803|assets\js\lib\xheditor\xheditor_emot\ipb\kiss.gif>803|assets\js\lib\xheditor\xheditor_emot\ipb\laugh.gif>775|assets\js\lib\xheditor\xheditor_emot\ipb\magician.gif>968|assets\js\lib\xheditor\xheditor_emot\ipb\ninja.gif>731|assets\js\lib\xheditor\xheditor_emot\ipb\pinch.gif>806|assets\js\lib\xheditor\xheditor_emot\ipb\police.gif>754|assets\js\lib\xheditor\xheditor_emot\ipb\sad.gif>801|assets\js\lib\xheditor\xheditor_emot\ipb\sick.gif>795|assets\js\lib\xheditor\xheditor_emot\ipb\sideways.gif>796|assets\js\lib\xheditor\xheditor_emot\ipb\sleep.gif>833|assets\js\lib\xheditor\xheditor_emot\ipb\smile.gif>809|assets\js\lib\xheditor\xheditor_emot\ipb\surprised.gif>801|assets\js\lib\xheditor\xheditor_emot\ipb\tongue.gif>792|assets\js\lib\xheditor\xheditor_emot\ipb\unsure.gif>792|assets\js\lib\xheditor\xheditor_emot\ipb\w00t.gif>693|assets\js\lib\xheditor\xheditor_emot\ipb\whistling.gif>841|assets\js\lib\xheditor\xheditor_emot\ipb\wondering.gif>810|assets\js\lib\xheditor\xheditor_emot\ipb\wub.gif>792|assets\js\lib\xheditor\xheditor_emot\msn\1.gif>1034|assets\js\lib\xheditor\xheditor_emot\msn\10.gif>1070|assets\js\lib\xheditor\xheditor_emot\msn\11.gif>1052|assets\js\lib\xheditor\xheditor_emot\msn\12.gif>1056|assets\js\lib\xheditor\xheditor_emot\msn\13.gif>1045|assets\js\lib\xheditor\xheditor_emot\msn\14.gif>1047|assets\js\lib\xheditor\xheditor_emot\msn\15.gif>1155|assets\js\lib\xheditor\xheditor_emot\msn\16.gif>1149|assets\js\lib\xheditor\xheditor_emot\msn\17.gif>1167|assets\js\lib\xheditor\xheditor_emot\msn\18.gif>1161|assets\js\lib\xheditor\xheditor_emot\msn\19.gif>1107|assets\js\lib\xheditor\xheditor_emot\msn\2.gif>1057|assets\js\lib\xheditor\xheditor_emot\msn\20.gif>1167|assets\js\lib\xheditor\xheditor_emot\msn\21.gif>544|assets\js\lib\xheditor\xheditor_emot\msn\22.gif>1680|assets\js\lib\xheditor\xheditor_emot\msn\23.gif>1318|assets\js\lib\xheditor\xheditor_emot\msn\24.gif>1436|assets\js\lib\xheditor\xheditor_emot\msn\25.gif>708|assets\js\lib\xheditor\xheditor_emot\msn\26.gif>1015|assets\js\lib\xheditor\xheditor_emot\msn\27.gif>987|assets\js\lib\xheditor\xheditor_emot\msn\28.gif>992|assets\js\lib\xheditor\xheditor_emot\msn\29.gif>1013|assets\js\lib\xheditor\xheditor_emot\msn\3.gif>1055|assets\js\lib\xheditor\xheditor_emot\msn\30.gif>1027|assets\js\lib\xheditor\xheditor_emot\msn\31.gif>975|assets\js\lib\xheditor\xheditor_emot\msn\32.gif>1056|assets\js\lib\xheditor\xheditor_emot\msn\33.gif>953|assets\js\lib\xheditor\xheditor_emot\msn\34.gif>1016|assets\js\lib\xheditor\xheditor_emot\msn\35.gif>972|assets\js\lib\xheditor\xheditor_emot\msn\36.gif>989|assets\js\lib\xheditor\xheditor_emot\msn\37.gif>1102|assets\js\lib\xheditor\xheditor_emot\msn\38.gif>617|assets\js\lib\xheditor\xheditor_emot\msn\39.gif>601|assets\js\lib\xheditor\xheditor_emot\msn\4.gif>1055|assets\js\lib\xheditor\xheditor_emot\msn\40.gif>630|assets\js\lib\xheditor\xheditor_emot\msn\5.gif>1868|assets\js\lib\xheditor\xheditor_emot\msn\6.gif>1032|assets\js\lib\xheditor\xheditor_emot\msn\7.gif>1031|assets\js\lib\xheditor\xheditor_emot\msn\8.gif>1032|assets\js\lib\xheditor\xheditor_emot\msn\9.gif>3531|assets\js\lib\xheditor\xheditor_emot\pidgin\angry.gif>864|assets\js\lib\xheditor\xheditor_emot\pidgin\bad.gif>705|assets\js\lib\xheditor\xheditor_emot\pidgin\blush.gif>878|assets\js\lib\xheditor\xheditor_emot\pidgin\brokenheart.gif>783|assets\js\lib\xheditor\xheditor_emot\pidgin\bye.gif>913|assets\js\lib\xheditor\xheditor_emot\pidgin\coffee.gif>789|assets\js\lib\xheditor\xheditor_emot\pidgin\config.txt>464|assets\js\lib\xheditor\xheditor_emot\pidgin\cool.gif>872|assets\js\lib\xheditor\xheditor_emot\pidgin\cry.gif>886|assets\js\lib\xheditor\xheditor_emot\pidgin\curse.gif>902|assets\js\lib\xheditor\xheditor_emot\pidgin\cute.gif>851|assets\js\lib\xheditor\xheditor_emot\pidgin\devil.gif>902|assets\js\lib\xheditor\xheditor_emot\pidgin\envy.gif>899|assets\js\lib\xheditor\xheditor_emot\pidgin\gift.gif>729|assets\js\lib\xheditor\xheditor_emot\pidgin\good.gif>678|assets\js\lib\xheditor\xheditor_emot\pidgin\kiss.gif>903|assets\js\lib\xheditor\xheditor_emot\pidgin\laugh.gif>869|assets\js\lib\xheditor\xheditor_emot\pidgin\love.gif>717|assets\js\lib\xheditor\xheditor_emot\pidgin\music.gif>706|assets\js\lib\xheditor\xheditor_emot\pidgin\question.gif>934|assets\js\lib\xheditor\xheditor_emot\pidgin\rose.gif>689|assets\js\lib\xheditor\xheditor_emot\pidgin\sad.gif>904|assets\js\lib\xheditor\xheditor_emot\pidgin\shocked.gif>868|assets\js\lib\xheditor\xheditor_emot\pidgin\shout.gif>896|assets\js\lib\xheditor\xheditor_emot\pidgin\sick.gif>903|assets\js\lib\xheditor\xheditor_emot\pidgin\sleepy.gif>927|assets\js\lib\xheditor\xheditor_emot\pidgin\smile.gif>857|assets\js\lib\xheditor\xheditor_emot\pidgin\soccer.gif>828|assets\js\lib\xheditor\xheditor_emot\pidgin\sweat.gif>886|assets\js\lib\xheditor\xheditor_emot\pidgin\tired.gif>879|assets\js\lib\xheditor\xheditor_emot\pidgin\tongue.gif>881|assets\js\lib\xheditor\xheditor_emot\pidgin\victory.gif>919|assets\js\lib\xheditor\xheditor_emot\pidgin\wink.gif>896|assets\js\lib\xheditor\xheditor_plugins\ubb.min.js>10751|assets\js\lib\xheditor\xheditor_plugins\multiupload\multiupload.css>1392|assets\js\lib\xheditor\xheditor_plugins\multiupload\multiupload.html>5042|assets\js\lib\xheditor\xheditor_plugins\multiupload\multiupload.js>3808|assets\js\lib\xheditor\xheditor_plugins\multiupload\img\add.gif>1342|assets\js\lib\xheditor\xheditor_plugins\multiupload\img\bg1.gif>856|assets\js\lib\xheditor\xheditor_plugins\multiupload\img\bg2.gif>816|assets\js\lib\xheditor\xheditor_plugins\multiupload\img\btnbg.gif>416|assets\js\lib\xheditor\xheditor_plugins\multiupload\img\btnbgr.gif>206|assets\js\lib\xheditor\xheditor_plugins\multiupload\img\clear.gif>638|assets\js\lib\xheditor\xheditor_plugins\multiupload\img\progressbg.gif>103|assets\js\lib\xheditor\xheditor_plugins\multiupload\img\start.gif>239|assets\js\lib\xheditor\xheditor_plugins\multiupload\swfupload\swfupload.js>38669|assets\js\lib\xheditor\xheditor_plugins\multiupload\swfupload\swfupload.swf>12787|assets\js\lib\xheditor\xheditor_skin\blank.gif>43|assets\js\lib\xheditor\xheditor_skin\default\iframe.css>2277|assets\js\lib\xheditor\xheditor_skin\default\ui.css>9983|assets\js\lib\xheditor\xheditor_skin\default\img\anchor.gif>184|assets\js\lib\xheditor\xheditor_skin\default\img\close.gif>128|assets\js\lib\xheditor\xheditor_skin\default\img\flash.gif>241|assets\js\lib\xheditor\xheditor_skin\default\img\icons.gif>4813|assets\js\lib\xheditor\xheditor_skin\default\img\loading.gif>1480|assets\js\lib\xheditor\xheditor_skin\default\img\progress.gif>94|assets\js\lib\xheditor\xheditor_skin\default\img\progressbg.gif>93|assets\js\lib\xheditor\xheditor_skin\default\img\tag-address.gif>108|assets\js\lib\xheditor\xheditor_skin\default\img\tag-div.gif>89|assets\js\lib\xheditor\xheditor_skin\default\img\tag-h1.gif>84|assets\js\lib\xheditor\xheditor_skin\default\img\tag-h2.gif>86|assets\js\lib\xheditor\xheditor_skin\default\img\tag-h3.gif>86|assets\js\lib\xheditor\xheditor_skin\default\img\tag-h4.gif>86|assets\js\lib\xheditor\xheditor_skin\default\img\tag-h5.gif>86|assets\js\lib\xheditor\xheditor_skin\default\img\tag-h6.gif>86|assets\js\lib\xheditor\xheditor_skin\default\img\tag-p.gif>80|assets\js\lib\xheditor\xheditor_skin\default\img\tag-pre.gif>90|assets\js\lib\xheditor\xheditor_skin\default\img\waiting.gif>597|assets\js\lib\xheditor\xheditor_skin\default\img\wmp.gif>415|assets\js\lib\xheditor\xheditor_skin\default\img\wordimg.gif>2684|assets\js\lib\xheditor\xheditor_skin\nostyle\iframe.css>2164|assets\js\lib\xheditor\xheditor_skin\nostyle\ui.css>10651|assets\js\lib\xheditor\xheditor_skin\nostyle\img\anchor.gif>184|assets\js\lib\xheditor\xheditor_skin\nostyle\img\close.gif>128|assets\js\lib\xheditor\xheditor_skin\nostyle\img\flash.gif>241|assets\js\lib\xheditor\xheditor_skin\nostyle\img\icons.gif>5351|assets\js\lib\xheditor\xheditor_skin\nostyle\img\loading.gif>1480|assets\js\lib\xheditor\xheditor_skin\nostyle\img\progress.gif>94|assets\js\lib\xheditor\xheditor_skin\nostyle\img\progressbg.gif>93|assets\js\lib\xheditor\xheditor_skin\nostyle\img\tag-address.gif>108|assets\js\lib\xheditor\xheditor_skin\nostyle\img\tag-div.gif>89|assets\js\lib\xheditor\xheditor_skin\nostyle\img\tag-h1.gif>84|assets\js\lib\xheditor\xheditor_skin\nostyle\img\tag-h2.gif>86|assets\js\lib\xheditor\xheditor_skin\nostyle\img\tag-h3.gif>86|assets\js\lib\xheditor\xheditor_skin\nostyle\img\tag-h4.gif>86|assets\js\lib\xheditor\xheditor_skin\nostyle\img\tag-h5.gif>86|assets\js\lib\xheditor\xheditor_skin\nostyle\img\tag-h6.gif>86|assets\js\lib\xheditor\xheditor_skin\nostyle\img\tag-p.gif>80|assets\js\lib\xheditor\xheditor_skin\nostyle\img\tag-pre.gif>90|assets\js\lib\xheditor\xheditor_skin\nostyle\img\waiting.gif>597|assets\js\lib\xheditor\xheditor_skin\nostyle\img\wmp.gif>415|assets\js\lib\xheditor\xheditor_skin\nostyle\img\wordimg.gif>2684|assets\js\lib\xheditor\xheditor_skin\o2007blue\iframe.css>2176|assets\js\lib\xheditor\xheditor_skin\o2007blue\ui.css>10203|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\anchor.gif>184|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\buttonbg.gif>844|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\close.gif>128|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\flash.gif>241|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\icons.gif>4813|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\loading.gif>1480|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\progress.gif>94|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\progressbg.gif>93|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\tag-address.gif>108|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\tag-div.gif>89|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\tag-h1.gif>84|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\tag-h2.gif>86|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\tag-h3.gif>86|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\tag-h4.gif>86|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\tag-h5.gif>86|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\tag-h6.gif>86|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\tag-p.gif>80|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\tag-pre.gif>90|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\waiting.gif>628|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\wmp.gif>415|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\wordimg.gif>2684|assets\js\lib\xheditor\xheditor_skin\o2007silver\iframe.css>2176|assets\js\lib\xheditor\xheditor_skin\o2007silver\ui.css>10300|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\anchor.gif>184|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\buttonbg.gif>735|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\close.gif>128|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\flash.gif>241|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\icons.gif>4813|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\loading.gif>1480|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\progress.gif>94|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\progressbg.gif>93|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\tag-address.gif>108|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\tag-div.gif>89|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\tag-h1.gif>84|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\tag-h2.gif>86|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\tag-h3.gif>86|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\tag-h4.gif>86|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\tag-h5.gif>86|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\tag-h6.gif>86|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\tag-p.gif>80|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\tag-pre.gif>90|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\waiting.gif>628|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\wmp.gif>415|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\wordimg.gif>2684|assets\js\lib\xheditor\xheditor_skin\vista\iframe.css>2176|assets\js\lib\xheditor\xheditor_skin\vista\ui.css>10033|assets\js\lib\xheditor\xheditor_skin\vista\img\anchor.gif>184|assets\js\lib\xheditor\xheditor_skin\vista\img\buttonbg.gif>916|assets\js\lib\xheditor\xheditor_skin\vista\img\close.gif>1210|assets\js\lib\xheditor\xheditor_skin\vista\img\flash.gif>241|assets\js\lib\xheditor\xheditor_skin\vista\img\icons.gif>4813|assets\js\lib\xheditor\xheditor_skin\vista\img\loading.gif>1480|assets\js\lib\xheditor\xheditor_skin\vista\img\progress.gif>94|assets\js\lib\xheditor\xheditor_skin\vista\img\progressbg.gif>93|assets\js\lib\xheditor\xheditor_skin\vista\img\tag-address.gif>108|assets\js\lib\xheditor\xheditor_skin\vista\img\tag-div.gif>89|assets\js\lib\xheditor\xheditor_skin\vista\img\tag-h1.gif>84|assets\js\lib\xheditor\xheditor_skin\vista\img\tag-h2.gif>86|assets\js\lib\xheditor\xheditor_skin\vista\img\tag-h3.gif>86|assets\js\lib\xheditor\xheditor_skin\vista\img\tag-h4.gif>86|assets\js\lib\xheditor\xheditor_skin\vista\img\tag-h5.gif>86|assets\js\lib\xheditor\xheditor_skin\vista\img\tag-h6.gif>86|assets\js\lib\xheditor\xheditor_skin\vista\img\tag-p.gif>80|assets\js\lib\xheditor\xheditor_skin\vista\img\tag-pre.gif>90|assets\js\lib\xheditor\xheditor_skin\vista\img\titlebg.gif>153|assets\js\lib\xheditor\xheditor_skin\vista\img\waiting.gif>628|assets\js\lib\xheditor\xheditor_skin\vista\img\wmp.gif>415|assets\js\lib\xheditor\xheditor_skin\vista\img\wordimg.gif>2684|profile\caches\README.md>70|profile\handler\cache.asp>4846|profile\icons\1.gif>354|profile\icons\10.gif>623|profile\icons\11.gif>334|profile\icons\12.gif>635|profile\icons\13.gif>560|profile\icons\14.gif>624|profile\icons\15.gif>327|profile\icons\16.gif>604|profile\icons\17.gif>556|profile\icons\18.gif>627|profile\icons\19.gif>218|profile\icons\2.gif>588|profile\icons\20.gif>251|profile\icons\21.gif>123|profile\icons\22.gif>157|profile\icons\23.gif>158|profile\icons\24.gif>167|profile\icons\3.gif>576|profile\icons\4.gif>331|profile\icons\5.gif>563|profile\icons\6.gif>281|profile\icons\7.gif>340|profile\icons\8.gif>554|profile\icons\9.gif>352|profile\PBlog4\PJBlog4.asp>540672|profile\plugins\README.md>46|profile\plugins\guestbook\ajax.asp>2631|profile\plugins\guestbook\config.xml>554|profile\plugins\guestbook\configure.asp>3117|profile\plugins\guestbook\configure.js>658|profile\plugins\guestbook\detail_05.jpg>313|profile\plugins\guestbook\detail_11.jpg>487|profile\plugins\guestbook\guestbook.asp>3807|profile\plugins\guestbook\guestbook.css>1776|profile\plugins\guestbook\guestbook.js>2748|profile\plugins\guestbook\install.asp>713|profile\plugins\guestbook\install.xml>557|profile\plugins\guestbook\noavatar_small.gif>3021|profile\plugins\guestbook\proxy.asp>223|profile\plugins\guestbook\system.asp>1777|profile\plugins\guestbook\system.css>442|profile\plugins\guestbook\uninstall.asp>272|profile\plugins\HotArticles\config.xml>274|profile\plugins\HotArticles\install.asp>59|profile\plugins\HotArticles\install.xml>674|profile\plugins\HotArticles\proxy.asp>834|profile\plugins\links\ajax.asp>1578|profile\plugins\links\config.xml>366|profile\plugins\links\configure.asp>3036|profile\plugins\links\configure.js>656|profile\plugins\links\install.asp>647|profile\plugins\links\install.xml>547|profile\plugins\links\links.asp>4124|profile\plugins\links\links.css>1120|profile\plugins\links\links.js>2469|profile\plugins\links\linkxlogo.jpg>15602|profile\plugins\links\proxy.asp>223|profile\plugins\links\system.asp>1767|profile\plugins\links\system.css>442|profile\plugins\links\uninstall.asp>172|profile\plugins\qqoauth\callback.asp>3544|profile\plugins\qqoauth\config.xml>181|profile\plugins\qqoauth\install.asp>655|profile\plugins\qqoauth\install.xml>559|profile\plugins\qqoauth\logic.asp>4212|profile\plugins\qqoauth\oauth.asp>2929|profile\plugins\qqoauth\proxy.asp>700|profile\plugins\qqoauth\uninstall.asp>403|profile\smiles\README.md>48|profile\themes\README.md>45|profile\themes\default\article.asp>4763|profile\themes\default\default.asp>2640|profile\themes\default\footer.asp>602|profile\themes\default\header.asp>3057|profile\themes\default\install.xml>402|profile\themes\default\priview.jpg>17062|profile\themes\default\tags.asp>2675|profile\themes\default\js\article.js>4247|profile\themes\default\style\default\common.css>11757|profile\themes\default\style\default\priview.jpg>708|profile\uploads\README.md>52|server\article.asp>5791|server\binary.asp>3738|server\cache.asp>5950|server\category.asp>4064|server\comment.asp>3101|server\configure.asp>3098|server\dataBaseOperation.asp>471|server\fn.asp>5959|server\getIcons.asp>128|server\gravatar.asp>430|server\login.asp>1485|server\logout.asp>192|server\member.asp>3597|server\pbdUpload.asp>2457|server\plugin.asp>10509|server\pluginCustom.asp>4640|server\status.asp>1970|server\system.asp>1869|server\SystemActionProxy.asp>3361|server\tags.asp>3051|server\theme.asp>3705|server\upload.asp>2743|server\xmltable.asp>3370|server\core\cookie.asp>1449|server\core\date.asp>1282|server\core\dbo.asp>4577|server\core\fso.asp>7052|server\core\md5.asp>7171|server\core\obay.asp>23830|server\core\package.asp>3860|server\core\sha1.asp>2187|server\core\spkPackage.asp>1942|server\core\sql.asp>3936|server\core\stream.asp>1302|server\core\upload.asp>8006|server\core\xml.asp>8522|server\core\xmlhttp.asp>3924|server\documents\welcome-index.html>2096|server\module\category.asp>222|server\module\global.asp>1706|server\proxy\comment.asp>3531|server\web\page-article.asp>3871|server\web\page-category.asp>2974|server\web\page-comment.asp>6989|server\web\page-documents.asp>185|server\web\page-globalConfigure.asp>9612|server\web\page-index.asp>216|server\web\page-login.asp>1804|server\web\page-member.asp>3857|server\web\page-plugin-configure.asp>2074|server\web\page-plugin.asp>9149|server\web\page-system.asp>2659|server\web\page-theme.asp>10117|server\web\page-writeArticle.asp>7464| <!--#include file="config.asp" -->
+SPK 00023141 00 HEAD|article.asp>9636|config.asp>4655|control.asp>5738|default.asp>6809|plugin.asp>2095|search.asp>5436|tags.asp>5113|assets\css\fn.css>832|assets\css\icon.css>475|assets\css\page-article.css>250|assets\css\page-category.css>1872|assets\css\page-comment.css>1787|assets\css\page-documents.css>1344|assets\css\page-globalConfigure.css>706|assets\css\page-index.css>41|assets\css\page-login.css>1363|assets\css\page-member.css>631|assets\css\page-plugin-configure.css>41|assets\css\page-plugin.css>1216|assets\css\page-system.css>1960|assets\css\page-theme.css>2366|assets\css\page-writeArticle.css>2160|assets\css\reset.css>1708|assets\css\ui.css>12594|assets\img\bg.gif>2093|assets\img\buttons.png>3369|assets\img\home-icon.png>3156|assets\img\icon-blog-2x.png>1632|assets\img\icon-comments-2x.png>1407|assets\img\icon-geo-search.png>349|assets\img\icon-grey-arrow.png>182|assets\img\icon-hearts-2x.png>1463|assets\img\icon-meetup-2x.png>2609|assets\img\icon-newsletter-2x.png>1497|assets\img\icon-pin-2x.png>1558|assets\img\icon-rebound-2x.png>1884|assets\img\icon-rebound-source-2x.png>1219|assets\img\icon-search-retina.png>660|assets\img\icon-signup-hd.png>2475|assets\img\icon-skills.png>492|assets\img\icon-twitter-footer-2x.png>1418|assets\img\icon-views-sm-2x.png>1501|assets\img\socsprite.png>3493|assets\img\Thumb.jpg>2453|assets\js\article.js>349|assets\js\config.js>8117|assets\js\page-article.js>833|assets\js\page-category.js>10489|assets\js\page-comment.js>5927|assets\js\page-documents.js>4051|assets\js\page-globalConfigure.js>829|assets\js\page-index.js>228|assets\js\page-login.js>1228|assets\js\page-member.js>6199|assets\js\page-plugin-configure.js>233|assets\js\page-plugin.js>6080|assets\js\page-system.js>1809|assets\js\page-theme.js>3656|assets\js\page-writeArticle.js>4871|assets\js\update.js>3101|assets\js\upload.js>979|assets\js\core\form.js>13659|assets\js\core\html5.js>2396|assets\js\core\jQuery.easing.1.3.js>8303|assets\js\core\jQuery.js>94420|assets\js\core\overlay.js>4061|assets\js\core\sizzle-min.js>9100|assets\js\core\sizzle.js>30332|assets\js\core\tabs.js>8489|assets\js\lib\tips\jquery.tipTip.minified.js>5271|assets\js\lib\tips\tips.js>175|assets\js\lib\tips\tipTip.css>2544|assets\js\lib\uploadify\.htaccess>84|assets\js\lib\uploadify\jquery.uploadify-3.1-min.js>46283|assets\js\lib\uploadify\jquery.uploadify-3.1.js>65235|assets\js\lib\uploadify\uploadify-cancel.png>2960|assets\js\lib\uploadify\uploadify.css>2536|assets\js\lib\uploadify\uploadify.js>212|assets\js\lib\uploadify\uploadify.swf>12675|assets\js\lib\xheditor\editor.js>104|assets\js\lib\xheditor\ubb.js>13971|assets\js\lib\xheditor\xheditor-1.1.14-zh-cn.min.js>63866|assets\js\lib\xheditor\xheditor_emot\default\angry.gif>8033|assets\js\lib\xheditor\xheditor_emot\default\awkward.gif>3716|assets\js\lib\xheditor\xheditor_emot\default\bye.gif>1798|assets\js\lib\xheditor\xheditor_emot\default\config.txt>478|assets\js\lib\xheditor\xheditor_emot\default\crazy.gif>8137|assets\js\lib\xheditor\xheditor_emot\default\cry.gif>1866|assets\js\lib\xheditor\xheditor_emot\default\curse.gif>5174|assets\js\lib\xheditor\xheditor_emot\default\cute.gif>2362|assets\js\lib\xheditor\xheditor_emot\default\despise.gif>1755|assets\js\lib\xheditor\xheditor_emot\default\doubt.gif>7189|assets\js\lib\xheditor\xheditor_emot\default\envy.gif>1804|assets\js\lib\xheditor\xheditor_emot\default\fastcry.gif>3073|assets\js\lib\xheditor\xheditor_emot\default\knock.gif>1674|assets\js\lib\xheditor\xheditor_emot\default\laugh.gif>1736|assets\js\lib\xheditor\xheditor_emot\default\mad.gif>1413|assets\js\lib\xheditor\xheditor_emot\default\ohmy.gif>4006|assets\js\lib\xheditor\xheditor_emot\default\panic.gif>4014|assets\js\lib\xheditor\xheditor_emot\default\proud.gif>1977|assets\js\lib\xheditor\xheditor_emot\default\quiet.gif>4317|assets\js\lib\xheditor\xheditor_emot\default\sad.gif>1562|assets\js\lib\xheditor\xheditor_emot\default\shutup.gif>3929|assets\js\lib\xheditor\xheditor_emot\default\shy.gif>3556|assets\js\lib\xheditor\xheditor_emot\default\sleep.gif>4679|assets\js\lib\xheditor\xheditor_emot\default\smile.gif>1810|assets\js\lib\xheditor\xheditor_emot\default\struggle.gif>1780|assets\js\lib\xheditor\xheditor_emot\default\titter.gif>1808|assets\js\lib\xheditor\xheditor_emot\default\tongue.gif>2247|assets\js\lib\xheditor\xheditor_emot\default\wail.gif>3298|assets\js\lib\xheditor\xheditor_emot\default\wronged.gif>6361|assets\js\lib\xheditor\xheditor_emot\ipb\alien.gif>521|assets\js\lib\xheditor\xheditor_emot\ipb\angel.gif>859|assets\js\lib\xheditor\xheditor_emot\ipb\angry.gif>799|assets\js\lib\xheditor\xheditor_emot\ipb\bandit.gif>681|assets\js\lib\xheditor\xheditor_emot\ipb\biglaugh.gif>767|assets\js\lib\xheditor\xheditor_emot\ipb\blink.gif>785|assets\js\lib\xheditor\xheditor_emot\ipb\blush.gif>812|assets\js\lib\xheditor\xheditor_emot\ipb\config.txt>486|assets\js\lib\xheditor\xheditor_emot\ipb\cool.gif>790|assets\js\lib\xheditor\xheditor_emot\ipb\cry.gif>781|assets\js\lib\xheditor\xheditor_emot\ipb\depres.gif>800|assets\js\lib\xheditor\xheditor_emot\ipb\devil.gif>803|assets\js\lib\xheditor\xheditor_emot\ipb\glare.gif>796|assets\js\lib\xheditor\xheditor_emot\ipb\heart.gif>677|assets\js\lib\xheditor\xheditor_emot\ipb\joyful.gif>803|assets\js\lib\xheditor\xheditor_emot\ipb\kiss.gif>803|assets\js\lib\xheditor\xheditor_emot\ipb\laugh.gif>775|assets\js\lib\xheditor\xheditor_emot\ipb\magician.gif>968|assets\js\lib\xheditor\xheditor_emot\ipb\ninja.gif>731|assets\js\lib\xheditor\xheditor_emot\ipb\pinch.gif>806|assets\js\lib\xheditor\xheditor_emot\ipb\police.gif>754|assets\js\lib\xheditor\xheditor_emot\ipb\sad.gif>801|assets\js\lib\xheditor\xheditor_emot\ipb\sick.gif>795|assets\js\lib\xheditor\xheditor_emot\ipb\sideways.gif>796|assets\js\lib\xheditor\xheditor_emot\ipb\sleep.gif>833|assets\js\lib\xheditor\xheditor_emot\ipb\smile.gif>809|assets\js\lib\xheditor\xheditor_emot\ipb\surprised.gif>801|assets\js\lib\xheditor\xheditor_emot\ipb\tongue.gif>792|assets\js\lib\xheditor\xheditor_emot\ipb\unsure.gif>792|assets\js\lib\xheditor\xheditor_emot\ipb\w00t.gif>693|assets\js\lib\xheditor\xheditor_emot\ipb\whistling.gif>841|assets\js\lib\xheditor\xheditor_emot\ipb\wondering.gif>810|assets\js\lib\xheditor\xheditor_emot\ipb\wub.gif>792|assets\js\lib\xheditor\xheditor_emot\msn\1.gif>1034|assets\js\lib\xheditor\xheditor_emot\msn\10.gif>1070|assets\js\lib\xheditor\xheditor_emot\msn\11.gif>1052|assets\js\lib\xheditor\xheditor_emot\msn\12.gif>1056|assets\js\lib\xheditor\xheditor_emot\msn\13.gif>1045|assets\js\lib\xheditor\xheditor_emot\msn\14.gif>1047|assets\js\lib\xheditor\xheditor_emot\msn\15.gif>1155|assets\js\lib\xheditor\xheditor_emot\msn\16.gif>1149|assets\js\lib\xheditor\xheditor_emot\msn\17.gif>1167|assets\js\lib\xheditor\xheditor_emot\msn\18.gif>1161|assets\js\lib\xheditor\xheditor_emot\msn\19.gif>1107|assets\js\lib\xheditor\xheditor_emot\msn\2.gif>1057|assets\js\lib\xheditor\xheditor_emot\msn\20.gif>1167|assets\js\lib\xheditor\xheditor_emot\msn\21.gif>544|assets\js\lib\xheditor\xheditor_emot\msn\22.gif>1680|assets\js\lib\xheditor\xheditor_emot\msn\23.gif>1318|assets\js\lib\xheditor\xheditor_emot\msn\24.gif>1436|assets\js\lib\xheditor\xheditor_emot\msn\25.gif>708|assets\js\lib\xheditor\xheditor_emot\msn\26.gif>1015|assets\js\lib\xheditor\xheditor_emot\msn\27.gif>987|assets\js\lib\xheditor\xheditor_emot\msn\28.gif>992|assets\js\lib\xheditor\xheditor_emot\msn\29.gif>1013|assets\js\lib\xheditor\xheditor_emot\msn\3.gif>1055|assets\js\lib\xheditor\xheditor_emot\msn\30.gif>1027|assets\js\lib\xheditor\xheditor_emot\msn\31.gif>975|assets\js\lib\xheditor\xheditor_emot\msn\32.gif>1056|assets\js\lib\xheditor\xheditor_emot\msn\33.gif>953|assets\js\lib\xheditor\xheditor_emot\msn\34.gif>1016|assets\js\lib\xheditor\xheditor_emot\msn\35.gif>972|assets\js\lib\xheditor\xheditor_emot\msn\36.gif>989|assets\js\lib\xheditor\xheditor_emot\msn\37.gif>1102|assets\js\lib\xheditor\xheditor_emot\msn\38.gif>617|assets\js\lib\xheditor\xheditor_emot\msn\39.gif>601|assets\js\lib\xheditor\xheditor_emot\msn\4.gif>1055|assets\js\lib\xheditor\xheditor_emot\msn\40.gif>630|assets\js\lib\xheditor\xheditor_emot\msn\5.gif>1868|assets\js\lib\xheditor\xheditor_emot\msn\6.gif>1032|assets\js\lib\xheditor\xheditor_emot\msn\7.gif>1031|assets\js\lib\xheditor\xheditor_emot\msn\8.gif>1032|assets\js\lib\xheditor\xheditor_emot\msn\9.gif>3531|assets\js\lib\xheditor\xheditor_emot\pidgin\angry.gif>864|assets\js\lib\xheditor\xheditor_emot\pidgin\bad.gif>705|assets\js\lib\xheditor\xheditor_emot\pidgin\blush.gif>878|assets\js\lib\xheditor\xheditor_emot\pidgin\brokenheart.gif>783|assets\js\lib\xheditor\xheditor_emot\pidgin\bye.gif>913|assets\js\lib\xheditor\xheditor_emot\pidgin\coffee.gif>789|assets\js\lib\xheditor\xheditor_emot\pidgin\config.txt>464|assets\js\lib\xheditor\xheditor_emot\pidgin\cool.gif>872|assets\js\lib\xheditor\xheditor_emot\pidgin\cry.gif>886|assets\js\lib\xheditor\xheditor_emot\pidgin\curse.gif>902|assets\js\lib\xheditor\xheditor_emot\pidgin\cute.gif>851|assets\js\lib\xheditor\xheditor_emot\pidgin\devil.gif>902|assets\js\lib\xheditor\xheditor_emot\pidgin\envy.gif>899|assets\js\lib\xheditor\xheditor_emot\pidgin\gift.gif>729|assets\js\lib\xheditor\xheditor_emot\pidgin\good.gif>678|assets\js\lib\xheditor\xheditor_emot\pidgin\kiss.gif>903|assets\js\lib\xheditor\xheditor_emot\pidgin\laugh.gif>869|assets\js\lib\xheditor\xheditor_emot\pidgin\love.gif>717|assets\js\lib\xheditor\xheditor_emot\pidgin\music.gif>706|assets\js\lib\xheditor\xheditor_emot\pidgin\question.gif>934|assets\js\lib\xheditor\xheditor_emot\pidgin\rose.gif>689|assets\js\lib\xheditor\xheditor_emot\pidgin\sad.gif>904|assets\js\lib\xheditor\xheditor_emot\pidgin\shocked.gif>868|assets\js\lib\xheditor\xheditor_emot\pidgin\shout.gif>896|assets\js\lib\xheditor\xheditor_emot\pidgin\sick.gif>903|assets\js\lib\xheditor\xheditor_emot\pidgin\sleepy.gif>927|assets\js\lib\xheditor\xheditor_emot\pidgin\smile.gif>857|assets\js\lib\xheditor\xheditor_emot\pidgin\soccer.gif>828|assets\js\lib\xheditor\xheditor_emot\pidgin\sweat.gif>886|assets\js\lib\xheditor\xheditor_emot\pidgin\tired.gif>879|assets\js\lib\xheditor\xheditor_emot\pidgin\tongue.gif>881|assets\js\lib\xheditor\xheditor_emot\pidgin\victory.gif>919|assets\js\lib\xheditor\xheditor_emot\pidgin\wink.gif>896|assets\js\lib\xheditor\xheditor_plugins\ubb.min.js>10751|assets\js\lib\xheditor\xheditor_plugins\multiupload\multiupload.css>1392|assets\js\lib\xheditor\xheditor_plugins\multiupload\multiupload.html>5042|assets\js\lib\xheditor\xheditor_plugins\multiupload\multiupload.js>3808|assets\js\lib\xheditor\xheditor_plugins\multiupload\img\add.gif>1342|assets\js\lib\xheditor\xheditor_plugins\multiupload\img\bg1.gif>856|assets\js\lib\xheditor\xheditor_plugins\multiupload\img\bg2.gif>816|assets\js\lib\xheditor\xheditor_plugins\multiupload\img\btnbg.gif>416|assets\js\lib\xheditor\xheditor_plugins\multiupload\img\btnbgr.gif>206|assets\js\lib\xheditor\xheditor_plugins\multiupload\img\clear.gif>638|assets\js\lib\xheditor\xheditor_plugins\multiupload\img\progressbg.gif>103|assets\js\lib\xheditor\xheditor_plugins\multiupload\img\start.gif>239|assets\js\lib\xheditor\xheditor_plugins\multiupload\swfupload\swfupload.js>38669|assets\js\lib\xheditor\xheditor_plugins\multiupload\swfupload\swfupload.swf>12787|assets\js\lib\xheditor\xheditor_skin\blank.gif>43|assets\js\lib\xheditor\xheditor_skin\default\iframe.css>2277|assets\js\lib\xheditor\xheditor_skin\default\ui.css>9983|assets\js\lib\xheditor\xheditor_skin\default\img\anchor.gif>184|assets\js\lib\xheditor\xheditor_skin\default\img\close.gif>128|assets\js\lib\xheditor\xheditor_skin\default\img\flash.gif>241|assets\js\lib\xheditor\xheditor_skin\default\img\icons.gif>4813|assets\js\lib\xheditor\xheditor_skin\default\img\loading.gif>1480|assets\js\lib\xheditor\xheditor_skin\default\img\progress.gif>94|assets\js\lib\xheditor\xheditor_skin\default\img\progressbg.gif>93|assets\js\lib\xheditor\xheditor_skin\default\img\tag-address.gif>108|assets\js\lib\xheditor\xheditor_skin\default\img\tag-div.gif>89|assets\js\lib\xheditor\xheditor_skin\default\img\tag-h1.gif>84|assets\js\lib\xheditor\xheditor_skin\default\img\tag-h2.gif>86|assets\js\lib\xheditor\xheditor_skin\default\img\tag-h3.gif>86|assets\js\lib\xheditor\xheditor_skin\default\img\tag-h4.gif>86|assets\js\lib\xheditor\xheditor_skin\default\img\tag-h5.gif>86|assets\js\lib\xheditor\xheditor_skin\default\img\tag-h6.gif>86|assets\js\lib\xheditor\xheditor_skin\default\img\tag-p.gif>80|assets\js\lib\xheditor\xheditor_skin\default\img\tag-pre.gif>90|assets\js\lib\xheditor\xheditor_skin\default\img\waiting.gif>597|assets\js\lib\xheditor\xheditor_skin\default\img\wmp.gif>415|assets\js\lib\xheditor\xheditor_skin\default\img\wordimg.gif>2684|assets\js\lib\xheditor\xheditor_skin\nostyle\iframe.css>2164|assets\js\lib\xheditor\xheditor_skin\nostyle\ui.css>10651|assets\js\lib\xheditor\xheditor_skin\nostyle\img\anchor.gif>184|assets\js\lib\xheditor\xheditor_skin\nostyle\img\close.gif>128|assets\js\lib\xheditor\xheditor_skin\nostyle\img\flash.gif>241|assets\js\lib\xheditor\xheditor_skin\nostyle\img\icons.gif>5351|assets\js\lib\xheditor\xheditor_skin\nostyle\img\loading.gif>1480|assets\js\lib\xheditor\xheditor_skin\nostyle\img\progress.gif>94|assets\js\lib\xheditor\xheditor_skin\nostyle\img\progressbg.gif>93|assets\js\lib\xheditor\xheditor_skin\nostyle\img\tag-address.gif>108|assets\js\lib\xheditor\xheditor_skin\nostyle\img\tag-div.gif>89|assets\js\lib\xheditor\xheditor_skin\nostyle\img\tag-h1.gif>84|assets\js\lib\xheditor\xheditor_skin\nostyle\img\tag-h2.gif>86|assets\js\lib\xheditor\xheditor_skin\nostyle\img\tag-h3.gif>86|assets\js\lib\xheditor\xheditor_skin\nostyle\img\tag-h4.gif>86|assets\js\lib\xheditor\xheditor_skin\nostyle\img\tag-h5.gif>86|assets\js\lib\xheditor\xheditor_skin\nostyle\img\tag-h6.gif>86|assets\js\lib\xheditor\xheditor_skin\nostyle\img\tag-p.gif>80|assets\js\lib\xheditor\xheditor_skin\nostyle\img\tag-pre.gif>90|assets\js\lib\xheditor\xheditor_skin\nostyle\img\waiting.gif>597|assets\js\lib\xheditor\xheditor_skin\nostyle\img\wmp.gif>415|assets\js\lib\xheditor\xheditor_skin\nostyle\img\wordimg.gif>2684|assets\js\lib\xheditor\xheditor_skin\o2007blue\iframe.css>2176|assets\js\lib\xheditor\xheditor_skin\o2007blue\ui.css>10203|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\anchor.gif>184|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\buttonbg.gif>844|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\close.gif>128|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\flash.gif>241|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\icons.gif>4813|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\loading.gif>1480|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\progress.gif>94|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\progressbg.gif>93|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\tag-address.gif>108|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\tag-div.gif>89|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\tag-h1.gif>84|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\tag-h2.gif>86|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\tag-h3.gif>86|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\tag-h4.gif>86|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\tag-h5.gif>86|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\tag-h6.gif>86|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\tag-p.gif>80|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\tag-pre.gif>90|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\waiting.gif>628|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\wmp.gif>415|assets\js\lib\xheditor\xheditor_skin\o2007blue\img\wordimg.gif>2684|assets\js\lib\xheditor\xheditor_skin\o2007silver\iframe.css>2176|assets\js\lib\xheditor\xheditor_skin\o2007silver\ui.css>10300|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\anchor.gif>184|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\buttonbg.gif>735|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\close.gif>128|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\flash.gif>241|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\icons.gif>4813|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\loading.gif>1480|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\progress.gif>94|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\progressbg.gif>93|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\tag-address.gif>108|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\tag-div.gif>89|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\tag-h1.gif>84|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\tag-h2.gif>86|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\tag-h3.gif>86|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\tag-h4.gif>86|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\tag-h5.gif>86|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\tag-h6.gif>86|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\tag-p.gif>80|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\tag-pre.gif>90|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\waiting.gif>628|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\wmp.gif>415|assets\js\lib\xheditor\xheditor_skin\o2007silver\img\wordimg.gif>2684|assets\js\lib\xheditor\xheditor_skin\vista\iframe.css>2176|assets\js\lib\xheditor\xheditor_skin\vista\ui.css>10033|assets\js\lib\xheditor\xheditor_skin\vista\img\anchor.gif>184|assets\js\lib\xheditor\xheditor_skin\vista\img\buttonbg.gif>916|assets\js\lib\xheditor\xheditor_skin\vista\img\close.gif>1210|assets\js\lib\xheditor\xheditor_skin\vista\img\flash.gif>241|assets\js\lib\xheditor\xheditor_skin\vista\img\icons.gif>4813|assets\js\lib\xheditor\xheditor_skin\vista\img\loading.gif>1480|assets\js\lib\xheditor\xheditor_skin\vista\img\progress.gif>94|assets\js\lib\xheditor\xheditor_skin\vista\img\progressbg.gif>93|assets\js\lib\xheditor\xheditor_skin\vista\img\tag-address.gif>108|assets\js\lib\xheditor\xheditor_skin\vista\img\tag-div.gif>89|assets\js\lib\xheditor\xheditor_skin\vista\img\tag-h1.gif>84|assets\js\lib\xheditor\xheditor_skin\vista\img\tag-h2.gif>86|assets\js\lib\xheditor\xheditor_skin\vista\img\tag-h3.gif>86|assets\js\lib\xheditor\xheditor_skin\vista\img\tag-h4.gif>86|assets\js\lib\xheditor\xheditor_skin\vista\img\tag-h5.gif>86|assets\js\lib\xheditor\xheditor_skin\vista\img\tag-h6.gif>86|assets\js\lib\xheditor\xheditor_skin\vista\img\tag-p.gif>80|assets\js\lib\xheditor\xheditor_skin\vista\img\tag-pre.gif>90|assets\js\lib\xheditor\xheditor_skin\vista\img\titlebg.gif>153|assets\js\lib\xheditor\xheditor_skin\vista\img\waiting.gif>628|assets\js\lib\xheditor\xheditor_skin\vista\img\wmp.gif>415|assets\js\lib\xheditor\xheditor_skin\vista\img\wordimg.gif>2684|profile\caches\README.md>70|profile\handler\cache.asp>4846|profile\icons\1.gif>354|profile\icons\10.gif>623|profile\icons\11.gif>334|profile\icons\12.gif>635|profile\icons\13.gif>560|profile\icons\14.gif>624|profile\icons\15.gif>327|profile\icons\16.gif>604|profile\icons\17.gif>556|profile\icons\18.gif>627|profile\icons\19.gif>218|profile\icons\2.gif>588|profile\icons\20.gif>251|profile\icons\21.gif>123|profile\icons\22.gif>157|profile\icons\23.gif>158|profile\icons\24.gif>167|profile\icons\3.gif>576|profile\icons\4.gif>331|profile\icons\5.gif>563|profile\icons\6.gif>281|profile\icons\7.gif>340|profile\icons\8.gif>554|profile\icons\9.gif>352|profile\PBlog4\PJBlog4.asp>540672|profile\plugins\README.md>46|profile\plugins\guestbook\ajax.asp>2631|profile\plugins\guestbook\config.xml>554|profile\plugins\guestbook\configure.asp>3117|profile\plugins\guestbook\configure.js>658|profile\plugins\guestbook\detail_05.jpg>313|profile\plugins\guestbook\detail_11.jpg>487|profile\plugins\guestbook\guestbook.asp>3807|profile\plugins\guestbook\guestbook.css>1776|profile\plugins\guestbook\guestbook.js>2748|profile\plugins\guestbook\install.asp>713|profile\plugins\guestbook\install.xml>557|profile\plugins\guestbook\noavatar_small.gif>3021|profile\plugins\guestbook\proxy.asp>223|profile\plugins\guestbook\system.asp>1777|profile\plugins\guestbook\system.css>442|profile\plugins\guestbook\uninstall.asp>272|profile\plugins\HotArticles\config.xml>274|profile\plugins\HotArticles\install.asp>59|profile\plugins\HotArticles\install.xml>674|profile\plugins\HotArticles\proxy.asp>834|profile\plugins\links\ajax.asp>1578|profile\plugins\links\config.xml>366|profile\plugins\links\configure.asp>3036|profile\plugins\links\configure.js>656|profile\plugins\links\install.asp>647|profile\plugins\links\install.xml>547|profile\plugins\links\links.asp>4124|profile\plugins\links\links.css>1120|profile\plugins\links\links.js>2469|profile\plugins\links\linkxlogo.jpg>15602|profile\plugins\links\proxy.asp>223|profile\plugins\links\system.asp>1767|profile\plugins\links\system.css>442|profile\plugins\links\uninstall.asp>172|profile\plugins\qqoauth\callback.asp>3544|profile\plugins\qqoauth\config.xml>181|profile\plugins\qqoauth\install.asp>655|profile\plugins\qqoauth\install.xml>559|profile\plugins\qqoauth\logic.asp>4212|profile\plugins\qqoauth\oauth.asp>2929|profile\plugins\qqoauth\proxy.asp>700|profile\plugins\qqoauth\uninstall.asp>403|profile\smiles\README.md>48|profile\themes\README.md>45|profile\themes\default\article.asp>4763|profile\themes\default\default.asp>2640|profile\themes\default\footer.asp>602|profile\themes\default\header.asp>3057|profile\themes\default\install.xml>402|profile\themes\default\priview.jpg>17062|profile\themes\default\tags.asp>2675|profile\themes\default\js\article.js>4247|profile\themes\default\style\default\common.css>11757|profile\themes\default\style\default\priview.jpg>708|profile\uploads\README.md>52|server\article.asp>5791|server\binary.asp>3738|server\cache.asp>5950|server\category.asp>4064|server\comment.asp>3101|server\configure.asp>3098|server\dataBaseOperation.asp>471|server\fn.asp>5959|server\getIcons.asp>128|server\gravatar.asp>430|server\login.asp>1485|server\logout.asp>192|server\member.asp>3597|server\pbdUpload.asp>2457|server\plugin.asp>10509|server\pluginCustom.asp>4640|server\status.asp>1970|server\system.asp>1869|server\SystemActionProxy.asp>3361|server\tags.asp>3051|server\theme.asp>3705|server\update.asp>1780|server\upload.asp>2743|server\xmltable.asp>3370|server\core\cookie.asp>1449|server\core\date.asp>1282|server\core\dbo.asp>4577|server\core\fso.asp>7052|server\core\md5.asp>7171|server\core\obay.asp>23830|server\core\package.asp>3860|server\core\sha1.asp>2187|server\core\spkPackage.asp>1942|server\core\sql.asp>3936|server\core\stream.asp>1302|server\core\upload.asp>8006|server\core\xml.asp>8522|server\core\xmlhttp.asp>3924|server\documents\welcome-index.html>2096|server\module\category.asp>222|server\module\global.asp>1706|server\proxy\comment.asp>3531|server\web\page-article.asp>4204|server\web\page-category.asp>2974|server\web\page-comment.asp>6989|server\web\page-documents.asp>185|server\web\page-globalConfigure.asp>10271|server\web\page-index.asp>216|server\web\page-login.asp>1804|server\web\page-member.asp>3857|server\web\page-plugin-configure.asp>2074|server\web\page-plugin.asp>9149|server\web\page-system.asp>2659|server\web\page-theme.asp>10117|server\web\page-writeArticle.asp>7464| <!--#include file="config.asp" -->
 <%
 	pageCustomParams.tempModules.cache = require("cache");
 	pageCustomParams.tempModules.dbo = require("DBO");
@@ -300,6 +300,7 @@ SPK 00023092 00 HEAD|article.asp>9636|config.asp>4623|control.asp>5037|default.a
 	config.useApp = true; // æ˜¯å¦ä½¿ç”¨APP
 	config.cacheAccess = "profile/caches"; // ç¼“å­˜æ–‡ä»¶å¤¹å
 	config.platform = "http://platform.pjhome.net";
+	config.version = "4.0.0.230";
 	
 /*
  * ç½‘ç«™æ¨¡å—æ˜ å°„
@@ -475,10 +476,16 @@ SPK 00023092 00 HEAD|article.asp>9636|config.asp>4623|control.asp>5037|default.a
 <link rel="stylesheet" href="assets/css/page-<%=checkStatusAndCustomPage()%>.css" media="all" />
 <script language="javascript" src="assets/js/core/sizzle.js"></script>
 <script language="javascript" src="profile/handler/configure.js"></script>
+<script language="javascript" src="<%=config.platform%>/proxy/update.js"></script>
 <script language="javascript">
 var userid = '<%=config.user.id%>',
 	userhashkey = '<%=config.user.hashkey%>',
 	useroauth = '<%=config.user.oauth%>';
+
+config.version = "<%=config.version%>";
+config.platform = "<%=config.platform%>";
+config.limits = {};
+config.limits.admin = <%=config.user.admin ? "true" : "false"%>;
 </script>
 </head>
 <body>
@@ -502,8 +509,12 @@ var userid = '<%=config.user.id%>',
 				<li><a href="http://webkits.cn" target="_blank">å®˜æ–¹</a></li>
 			</ul>
 		</div>
+        <div class="ui-updateArea">
+        	<div class="vers">å‡çº§ç‰ˆæœ¬ï¼š<span id="updateversionnumber"></span></div>
+            <div class="vers">å½“å‰ç‰ˆæœ¬ï¼š v <%=config.version%></div>
+            <div class="goupdate"><a href="javascript:;" id="hurryUpdate">é©¬ä¸Šå‡çº§ï¼Ÿ</a><a href="#" id="viewupdateinfo" target="_blank">è¯¦ç»†</a><a href="javascript:;" id="updateclose">å…³é—­</a></div>
+        </div>
 	</div>
-    
     <%
 		if ( config.user.poster === true ){
 	%>
@@ -541,16 +552,13 @@ var userid = '<%=config.user.id%>',
 		}
 	%>
     <div class="ui-footer">
-    	<div class="ui-wrapper">
-        	<div class="ui-links">
-            	<a href="http://webkits.cn" target="_blank">Evio</a> | 
-                <a href="http://www.pjhome.net" target="_blank">PuterJam</a> | 
-                <a href="http://bbs.pjhome.net" target="_blank">BBS</a> | 
+    	<div class="ui-wrapper fn-clear">
+            <div class="ui-copyright fn-left">Copyright @ 2004-2012 PJHome.Net. All Rights Reserved.<br />Code Design By <a href="http://webkits.cn" target="_blank">Evio</a>, Blog CopyRight For <a href="http://www.pjhome.net" target="_blank">PuterJam</a>.</div>
+           <div class="ui-links fn-right">
+            	<a href="http://webkits.cn" target="_blank">Evio</a> - 
+                <a href="http://www.pjhome.net" target="_blank">PuterJam</a> - 
+                <a href="http://bbs.pjhome.net" target="_blank">BBS</a> - 
                 <a href="http://webkits.cn" target="_blank">Support</a>
-            </div>
-            <div class="ui-copyright fn-clear">
-            	<div class="fn-left">Copyright Â© 2004-2012 PJHOME LLC. All screenshots Â© their respective owners.</div>
-                <div class="fn-right">Evio in China, PuterJam in China.</div>
             </div>
         </div>
     </div>
@@ -560,7 +568,7 @@ var userid = '<%=config.user.id%>',
 <script language="javascript">
 require(['assets/js/config'], function( custom ){
 	if ( custom.status === true ){
-		custom.load(['assets/js/page-<%=checkStatusAndCustomPage()%>', 'tips']);
+		custom.load(['assets/js/page-<%=checkStatusAndCustomPage()%>', 'tips', 'update']);
 	}else{
 		if ( $.browser.msie ){
 			alert("Getting Config File Error.");
@@ -584,6 +592,7 @@ require(['assets/js/config'], function( custom ){
 	pageCustomParams.tempModules.connect = require("openDataBase");
 	pageCustomParams.tempModules.fns = require("fn");
 	pageCustomParams.tempModules.tags = require("tags");
+	pageCustomParams.tempModules.sap = require("sap");
 	pageCustomParams.tempCaches.globalCache = require("cache_global");
 	
 	if ( pageCustomParams.tempModules.connect !== true ){
@@ -698,6 +707,7 @@ require(['assets/js/config'], function( custom ){
 				userInfo.loginip = userCache[0][6];
 				pageCustomParams.tempModules.sap.proxy("assets.member.list.photo", [proxyPhoto, userInfo.oauth, userInfo.photo, 100]);
 				userInfo.photo = proxyPhoto[userInfo.oauth];
+				
 			}
 		}
 		
@@ -717,7 +727,7 @@ require(['assets/js/config'], function( custom ){
 		}else{
 			totalSum = Number(String(config.conn.Execute("Select count(id) From blog_article")(0)));
 		}
-		
+
 		if ( totalSum < perpage ){ perpage = totalSum; }
 		_mod = totalSum % perpage;
 		_pages = Math.floor(totalSum / perpage);
@@ -745,7 +755,7 @@ require(['assets/js/config'], function( custom ){
 			}
 			sql = "Select * From (Select top " + perpage + " * From (" + sql + ") Order By id) Order By id DESC";
 		}
-		
+
 		pageCustomParams.tempParams.pages = pageCustomParams.tempModules.fns.pageAnalyze(pageCustomParams.page, totalPages);
 		
 		if ( 
@@ -1408,9 +1418,7 @@ li.comment-li{ margin-bottom:20px;}
 .shorter{ width:50px;}
 
 .configure-list{ 
-	padding:10px 15px;
 	margin-bottom:20px;
-	width:90%;
 }
 .configure-list legend{ 
 	font-size:14px;
@@ -1419,7 +1427,21 @@ li.comment-li{ margin-bottom:20px;}
 }
 
 .configure-list table td{ padding:10px;}
-.configure-list .info{ color:#999; }@charset "utf-8";
+.configure-list .info{ color:#999; }
+
+.con-name{ width:100px; padding:10px; background:#fff; text-align:center; position:relative;}
+.configs{ margin-right:150px; background:#fff; padding:10px;}
+.con-name:before{
+	content:"";
+	position: absolute;
+	left: -6px;
+	width: 0;
+	height: 0;
+	border-top: 5px solid transparent;
+	border-right: 6px solid #fff;
+	border-bottom: 5px solid transparent;
+
+}@charset "utf-8";
 /* CSS Document */
 
 @charset "utf-8";
@@ -1547,6 +1569,7 @@ li.comment-li{ margin-bottom:20px;}
 
 .com .comlist{ margin-bottom:20px; margin-right:20px; width:200px; height:30px; line-height:30px; text-align:center;}
 .com .green{ background-color:#2ba09e; color:#fff; }
+.com .white{ background-color:#fff; color:#2ba09e;}
 .com .red{ background-color:#cf4467; color:#fff;}
 .com .intro{ width:14px; height:14px; border-radius:2px; margin-right:5px;}
 .com .words{ line-height:14px; height:14px; margin-right:15px;}
@@ -1836,6 +1859,7 @@ table {
 	color: #aaa;
 	border-bottom: 1px solid #000;
 	box-shadow: 0px 1px 5px #000;
+	position:relative;
 }
 
 .ui-wrapshadow{
@@ -1900,34 +1924,38 @@ table {
 .ui-body{
 	margin-top: 40px;
 	margin-bottom:40px;
-	min-height:500px;
+	min-height:550px;
 }
 
 .ui-footer{
-	border-top:1px solid #ddd;
+	border-top:1px solid #e7e7e7;
 	background:#fff;
-	padding:40px 0px;
+	padding:10px 0px;
 }
 .ui-footer .ui-links{
-	color:#999;
-	height:30px; line-height:30px;
+	color:#ccc;
+	height:30px; 
+	line-height:30px;
 }
 
-.ui-footer .ui-links a{
-	margin-right:10px;
-	margin-left:10px;
+.ui-footer .ui-links a:link,
+.ui-footer .ui-links a:visited{
+	color:#ccc;
+	font-family:"Comic Sans MS", cursive;
+	line-height:40px;
 }
+.ui-footer .ui-links a:hover{ color:#999;}
 
 .ui-footer .ui-wrapper{ margin-top:0px;}
 
 .ui-footer .ui-copyright{
-	color:#999;
-	padding-left:10px;
+	color: #ccc;
+	line-height:20px;
 }
 
-.ui-footer .ui-links a:link, 
-.ui-footer .ui-links a:visited{
-	color:#777;
+.ui-footer a:link, 
+.ui-footer a:visited{
+	color:#999;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size:12px;
 }
@@ -2039,12 +2067,8 @@ table {
 
 .ui-position .ui-position-tools a:link,
 .ui-position .ui-position-tools a:visited{
-	color: #000;
-	background-image: url(../img/icon-meetup-2x.png);
-	background-repeat:no-repeat;
-	background-position:0px 0px;
-	background-size:16px 50px;
-	padding-left:20px;
+	color: #ccc;
+	padding-left:10px;
 }
 
 .ui-position .ui-position-tools a:hover,
@@ -2267,7 +2291,18 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 .oldpass{ margin-bottom:5px;}
 .newpass{ margin-bottom:5px;}
 .repeatepass{}
-.passinfo{ margin-left:10px; color:#ff0000;}GIF89a2 2 ³  õõõíííöööîîîïïïôôôóóóñññğğğòòò                  !ÿXMP DataXMP<?xpacket begin="ï»¿" id="W5M0MpCehiHzreSzNTczkc9d"?> <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.3-c011 66.145661, 2012/02/06-14:56:27        "> <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> <rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/" xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/" xmlns:stRef="http://ns.adobe.com/xap/1.0/sType/ResourceRef#" xmp:CreatorTool="Adobe Photoshop CS6 (Macintosh)" xmpMM:InstanceID="xmp.iid:D921FA83DB4311E198A9CFE07F9C8AB1" xmpMM:DocumentID="xmp.did:D921FA84DB4311E198A9CFE07F9C8AB1"> <xmpMM:DerivedFrom stRef:instanceID="xmp.iid:D921FA81DB4311E198A9CFE07F9C8AB1" stRef:documentID="xmp.did:D921FA82DB4311E198A9CFE07F9C8AB1"/> </rdf:Description> </rdf:RDF> </x:xmpmeta> <?xpacket end="r"?>ÿşıüûúùø÷öõôóòñğïîíìëêéèçæåäãâáàßŞİÜÛÚÙØ×ÖÕÔÓÒÑĞÏÎÍÌËÊÉÈÇÆÅÄÃÂÁÀ¿¾½¼»º¹¸·¶µ´³²±°¯®­¬«ª©¨§¦¥¤£¢¡ Ÿœ›š™˜—–•”“’‘Œ‹Š‰ˆ‡†…„ƒ‚€~}|{zyxwvutsrqponmlkjihgfedcba`_^]\[ZYXWVUTSRQPONMLKJIHGFEDCBA@?>=<;:9876543210/.-,+*)('&%$#"! 
+.passinfo{ margin-left:10px; color:#ff0000;}
+
+.ui-updateArea{ padding:10px 20px; position:absolute; top:41px; right:30px; background:#222; box-shadow: 0px 1px 5px #000; border-radius:0px 0px 3px 3px; display:none;}
+.ui-updateArea .vers{ height:20px; line-height:20px;}
+.goupdate{ margin-top:5px;}
+.goupdate a{ margin-right:5px;}
+#hurryUpdate:link, #hurryUpdate:visited{ background:url(../img/icon-grey-arrow.png) 0px 3px no-repeat; padding-left:14px;}
+#hurryUpdate:hover{ background:url(../img/icon-grey-arrow.png) 0px -19px no-repeat; }
+.ui-updatebox{ background:#fff; width:400px; height:200px; padding:10px;}
+.update-header{ font-size:14px; font-weight:bold; height:30px; line-height:30px; border-bottom:1px solid #ccc; margin-bottom:20px;}
+.update-list{ margin-left:20px; height:140px; overflow:hidden;}
+.update-list li{ height:20px; line-height:20p0x; background:url(../img/icon-grey-arrow.png) 0px 3px no-repeat; padding-left:15px;}GIF89a2 2 ³  õõõíííöööîîîïïïôôôóóóñññğğğòòò                  !ÿXMP DataXMP<?xpacket begin="ï»¿" id="W5M0MpCehiHzreSzNTczkc9d"?> <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.3-c011 66.145661, 2012/02/06-14:56:27        "> <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> <rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/" xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/" xmlns:stRef="http://ns.adobe.com/xap/1.0/sType/ResourceRef#" xmp:CreatorTool="Adobe Photoshop CS6 (Macintosh)" xmpMM:InstanceID="xmp.iid:D921FA83DB4311E198A9CFE07F9C8AB1" xmpMM:DocumentID="xmp.did:D921FA84DB4311E198A9CFE07F9C8AB1"> <xmpMM:DerivedFrom stRef:instanceID="xmp.iid:D921FA81DB4311E198A9CFE07F9C8AB1" stRef:documentID="xmp.did:D921FA82DB4311E198A9CFE07F9C8AB1"/> </rdf:Description> </rdf:RDF> </x:xmpmeta> <?xpacket end="r"?>ÿşıüûúùø÷öõôóòñğïîíìëêéèçæåäãâáàßŞİÜÛÚÙØ×ÖÕÔÓÒÑĞÏÎÍÌËÊÉÈÇÆÅÄÃÂÁÀ¿¾½¼»º¹¸·¶µ´³²±°¯®­¬«ª©¨§¦¥¤£¢¡ Ÿœ›š™˜—–•”“’‘Œ‹Š‰ˆ‡†…„ƒ‚€~}|{zyxwvutsrqponmlkjihgfedcba`_^]\[ZYXWVUTSRQPONMLKJIHGFEDCBA@?>=<;:9876543210/.-,+*)('&%$#"! 
 	  !ù     ,    2 2  ÿ”$A(™Yê6FuaÄUeguYHM*mÓK¼ë+UI£ÂàEA:.ƒqgÔkX)t4µÅ e„*—,QØ`|%;q;ˆ4çao‰szr)- a`1/W	V_q5oHn!3š@71Y€^lQ‹E c@!‹l¤6Eˆ<*“0!`_0a?Â€w†ZyÂÉ³;µXcœg¢¶› ¸‹{Nœ“Ş1V£2™{WÁ5€=JX,,ØCW%^¯'qZ¨h0Ö£À+Dß9¹ î†«7Xô8 `W MÑ¤˜Ò"Ì]›!RÿĞõàW£ƒ	Ó¬@|r€áœ,üÄAsJ¨ZZL1 Nÿ €PÆÉ›5GÆÙdbÉ¨CMö„$EŠX`ˆúöf“›mâ!‡i„æHä°“*ÏH+ è3F[¨z¤©e¢ƒÀ{ä*¡:ÅÔ)­Ó !Yˆ$>¸qªÏ "U)®$¥±ë‚xğ~.ö.'‚ ^†BÙ…Š	Zõ¼@Y‰µ¢ª’²¼Ç{’¯xxä€È`¥ ]„aÙ"ög1ßÌh¬ºˆ@:”9DJñÇŒ{ıP÷(ŠdQ¢öéè8«QËèyé‹ÁTÊé°~Ğ"˜°ˆÿrHÊS»äš0ûíT”`WU:|ÒÇU@1Ğ*@;µì1ÉS|,¢`:Ç]Ešæ|Õ“9dü£Â{$öO‰J9+´”× Ñde[i„MQÅˆÈ	"ŸUL-ƒ 15œuñ•6‘*íƒ%°ÑãE„Õ T$ƒ€¹pŸƒA&$à¹`N5å•E”=‘ÉDá¡”p1ÒLuÉ 	™¼=úá€(Õ¡ÃES…ÀEZn8LÓPéàÙAGm$,Üs_ø"ë=²}Ò•+ÀXÄ“¤Â›
 !`•FæAÔ†b³ôÊcLP(»I¼K.‘*Bµ`Óéx5]hT¢0•·R­°É‰â¦¥™|H”ªˆA^Q”)}*õ¬«”š"HÜÊÃ(Ãú '˜³Á'‡¡ ^-	j“)Ã€’‰ºÁ€C/Pİ(|èà’€.³ÈËE}Œbˆ£ÑQ•¦R
 
@@ -2422,6 +2457,7 @@ define(["assets/js/core/jQuery"], function(){
 	config.map("easing", "assets/js/core/jQuery.easing.1.3");
 	config.map("article", "assets/js/article");
 	config.map("tips", "assets/js/lib/tips/tips");
+	config.map("update", "assets/js/update");
 	
 	config.ajaxUrl = { assets: {}, server: {} }
 	
@@ -2458,6 +2494,9 @@ define(["assets/js/core/jQuery"], function(){
 	config.ajaxUrl.server.unPassComment = "server/comment.asp?j=unpass";
 	config.ajaxUrl.server.password = "server/configure.asp?j=password";
 	config.ajaxUrl.server.system = "server/system.asp?j=clean";
+	config.ajaxUrl.server.package = "server/update.asp?j=package";
+	config.ajaxUrl.server.unpack = "server/update.asp?j=unpack";
+	config.ajaxUrl.server.cache = "server/update.asp?j=cache";
 	
 	(function ($, document, undefined) {
 		var pluses = /\+/g;
@@ -2580,7 +2619,7 @@ define(["assets/js/core/jQuery"], function(){
 			options.content = '<div class="dialog fn-clear" style="width:300px;"><form action="' + config.ajaxUrl.server.password + '" method="post" style="margin:0;padding:0;">'
 			+					'<div class="title fn-clear">'
 			+						'<div class="fn-left mtitle">ä¿®æ”¹å¯†ç </div>'
-			+						'<a href="javascript:;" class="fn-right close">å–æ¶ˆ</a>'
+//			+						'<a href="javascript:;" class="fn-right close">å–æ¶ˆ</a>'
 			+					'</div>'
 			+					'<div class="content">'
 			+						'<div class="oldpass">æ—§å¯†ç ï¼š<input type="password" name="oldpass" value="" placeholder="æ—§å¯†ç " /></div>'
@@ -2594,14 +2633,14 @@ define(["assets/js/core/jQuery"], function(){
 	});
 	
 	return {
-		status : true,
-		load : function( args ){
+		status: true,
+		load: function( args ){
 			require.async(args, function( customs ){
 				if ( customs.init !== undefined ){
 					customs.init();
 				}
 			});
-		}
+		} 
 	};
 });// JavaScript Document
 define(['overlay'], function( require, exports, module ){
@@ -4234,6 +4273,112 @@ define(['editor', 'form', 'overlay', 'upload'], function(require, exports, modul
 		}
 	}
 });// JavaScript Document
+define(function( require, exports, module ){
+	
+	var isMakingData = false;
+	
+	function checkVersion( versions ){
+		var localVersionArr = config.version.split("."),
+			platfVersionArr = versions.split("."),
+			isUpdating = false;
+			
+		for ( var i = 0 ; i < platfVersionArr.length ; i++ ){
+			var n = Number(platfVersionArr[i]),
+				m = Number(localVersionArr[i]);
+				
+			if ( n > m ){
+				isUpdating = true;
+				break;
+			}
+		}
+		
+		return isUpdating;
+	}
+	
+	function addLine(html){
+		$(".update-list").append('<li>' + html + '</li>');
+	}
+	
+	function getPackage(packname){
+		if ( isMakingData === false ){
+			isMakingData = true;
+			addLine('æ­£åœ¨è·å–æ›´æ–°æ–‡ä»¶åŒ… ' + packname + ' ..');
+			$.getJSON(config.ajaxUrl.server.package, {packname: packname}, function( params ){
+				isMakingData = false;
+				if ( params && params.success ){
+					addLine('è·å–è¿œç¨‹èµ„æºæ–‡ä»¶åŒ…æˆåŠŸ(' + packname + ') ..');
+					unpack(packname);
+				}else{
+					addLine('è·å–è¿œç¨‹èµ„æºæ–‡ä»¶åŒ…å¤±è´¥ï¼Œè¯·å‰å¾€è®ºå›æ±‚åŠ©ä¸‹è½½æœ€æ–°ç¨‹åºã€‚');
+				}
+			});
+		}
+	}
+	
+	function unpack(packname){
+		if ( isMakingData === false ){
+			isMakingData = true;
+			addLine('æ­£åœ¨è§£å‹èµ„æºåŒ…åˆ°ç›®å½• ..');
+			$.getJSON(config.ajaxUrl.server.unpack, {packname: packname}, function( params ){
+				isMakingData = false;
+				if ( params && params.success ){
+					addLine('è§£å‹èµ„æºæˆåŠŸ ..');
+					clearCache();
+				}else{
+					addLine(params.error);
+				}
+			});
+		}
+	}
+	
+	function openUpdateBox(params){
+		var html = '<div class="update-header">æ–°ç‰ˆæœ¬å‡çº§</div><span class="close"></span><ul class="update-list"><li>å¯å‡çº§è‡³ç‰ˆæœ¬ v' + params.toVersion + ' ..</li></ul>';
+		require.async("overlay", function(){
+			$.updateBox({
+				content: html,
+				effect: "deformationZoom",
+				callback: function(){
+					getPackage(params.package);
+				}
+			});
+		});
+	}
+	
+	function clearCache(){
+		if ( isMakingData === false ){
+			isMakingData = true;
+			addLine('æ­£åœ¨æ¸…ç†æœåŠ¡å™¨ç¼“å­˜ ..');
+			$.getJSON(config.ajaxUrl.server.cache, {}, function( params ){
+				isMakingData = false;
+				if ( params && params.success ){
+					addLine('æ­å–œï¼Œå‡çº§æˆåŠŸï¼3ç§’åè‡ªåŠ¨å…³é—­æœ¬æç¤ºæ¡†ã€‚');
+					setTimeout(function(){
+						$(".ui-updatebox").find(".close").trigger("click");
+					}, 3000)
+				}else{
+					addLine('æŠ±æ­‰ï¼Œå‡çº§å¤±è´¥äº†ï¼');
+				}
+			});
+		}
+	}
+	
+	$(function(){
+		var params = config.update;
+		if ( (config.limits.admin === true) && (checkVersion(params.version) === true) ){
+			if ( params.list && params.list[config.version] ){
+				$("#updateversionnumber").text(" v " + params.list[config.version].toVersion);
+				$("#hurryUpdate").on("click", function(){
+					openUpdateBox(params.list[config.version]);
+				});
+				$("#updateclose").on("click", function(){
+					$(".ui-updateArea").slideUp("slow");
+				});
+				$("#viewupdateinfo").attr("href", params.list[config.version].url);
+				$(".ui-updateArea").slideDown("slow");
+			}
+		}
+	});
+});// JavaScript Document
 define(function(require,exports, module){
 	
 	function randoms(l){
@@ -4509,6 +4654,9 @@ define(function(require, exports, module){
 					top: "0px",
 					left: "0px",
 					opacity: 0
+				})
+				.children().css({
+					opacity: 0
 				});
 				
 				$(this).animate({
@@ -4517,7 +4665,12 @@ define(function(require, exports, module){
 					left: left + "px",
 					top: top + "px",
 					opacity: 1
-				}, "slow", callback);
+				}, "slow", function(){
+					$(this).children().animate({
+						opacity: 1
+					}, "fast");
+					$.isFunction(callback) && callback.call(this);
+				});
 			})
 			
 			.on("deformationZoom.drop", function(){
@@ -4605,7 +4758,12 @@ define(function(require, exports, module){
 	}
 	
 	$.dialogSet = function( options ){
-		options.content = '<div class="dialog fn-clear"><form action="' + options.action + '" method="post" style="margin:0; padding:0;"><div class="title fn-clear"><div class="fn-left mtitle">è®¾ç½®</div><a href="javascript:;" class="fn-right close">å…³é—­</a></div><div class="content">' + options.content + '</div><div class="bom"><input type="submit" value="ä¿å­˜" class="button" /></div></form></div>';
+		options.content = '<div class="dialog fn-clear" style="width:300px;"><form action="' + options.action + '" method="post" style="margin:0; padding:0;"><div class="title fn-clear"><div class="fn-left mtitle">è®¾ç½®</div><a href="javascript:;" class="fn-right close">å…³é—­</a></div><div class="content">' + options.content + '</div><div class="bom"><input type="submit" value="ä¿å­˜" class="button" /></div></form></div>';
+		$.overlay(options);
+	}
+	
+	$.updateBox = function(options){
+		options.content = '<div class="ui-updatebox ui-wrapshadow">' + options.content + '</div>';
 		$.overlay(options);
 	}
 	
@@ -17883,6 +18041,88 @@ http.service(function( req, dbo, sap ){
 });
 %><!--#include file="../config.asp" -->
 <%
+	http.service(function(req, dbo, sap){
+		this.package = function(){
+			var xmlhttp = require("XMLHTTP"),
+				stream = require("STREAM"),
+				fso = require("FSO"),
+				packname = req.query.packname;
+				
+			if ( !fso.exsit("profile/store", true) ){
+				fso.create("profile/store");
+			}
+			
+			try{
+				if ( !fso.exsit("profile/store/" + packname) ){
+					var binData = xmlhttp.ajax({ method: "GET", url: config.platform + "/store/" + packname });
+					if ( binData === null ){
+						return {
+							success: false,
+							error: "è·å–è¿œç¨‹èµ„æºå¤±è´¥"
+						}
+					}else{
+						stream.save(binData, "profile/store/" + packname, true);
+						return {
+							success: true
+						}
+					}
+				}else{
+					return {
+						success: true
+					}
+				}
+			}catch(e){
+				return {
+					success: false,
+					error: e.message
+				}	
+			}
+		}
+		
+		this.unpack = function(){
+			var spk = require("SPKPACKAGE"),
+				fso = require("FSO"),
+				packname = req.query.packname;
+			
+			try{
+				var spkInstall = new spk("profile/store/" + packname, "/");
+				spkInstall.install();
+				fso.destory("profile/store/" + packname);
+				return {
+					success: true
+				}
+			}catch(e){
+				return {
+					success: false,
+					error: e.message
+				}
+			}
+		}
+		
+		this.cache = function(){
+			try{
+				Application.Lock();
+				Application.StaticObjects(config.appName).RemoveAll();
+				Application.UnLock();
+				var fso = require("FSO");
+				fso.destorys(config.cacheAccess);
+				fso.destorys(config.cacheAccess, true);
+				return {
+					success: true
+				}
+			}catch(e){
+				return {
+					success: false,
+					error: e.message
+				}
+			}
+			return {
+				success: true
+			}
+		}
+	});
+%><!--#include file="../config.asp" -->
+<%
 require(["UPLOAD", "DATE", "FSO", "cache", "SHA1"], function(upload, _date, fso, cache, SHA1){
 	var dbo = require("DBO"),
 		connecte = require("openDataBase");
@@ -21435,9 +21675,17 @@ var dbo = require("DBO"),
 	_cate = Number(_cate);
 	
 	if ( _cate > 0 ){
-		_sql = "Select * From blog_article Where log_category=" + _cate + " Order By log_posttime DESC";
+		if ( config.user.id > 0 ){
+			_sql = "Select * From blog_article Where log_category=" + _cate + " And log_uid=" + config.user.id + " Order By log_posttime DESC";
+		}else{
+			_sql = "Select * From blog_article Where log_category=" + _cate + " Order By log_posttime DESC";
+		}
 	}else{
-		_sql = "Select * From blog_article Order By log_posttime DESC";
+		if ( config.user.id > 0 ){
+			_sql = "Select * From blog_article Where log_uid=" + config.user.id + " Order By log_posttime DESC";
+		}else{
+			_sql = "Select * From blog_article Order By log_posttime DESC";
+		}
 	}
         
     
@@ -21802,9 +22050,9 @@ var dbo = require("DBO"),
 </div>
 <div class="ui-context">
   <form action="server/configure.asp?j=normal" method="post" id="postSetForm">
-    <div class="ui-table ui-table-custom configure-list">
-      <fieldset>
-        <legend>åŸºæœ¬è®¾ç½®</legend>
+    <div class="fn-clear configure-list">
+      <div class="fn-right con-name ui-wrapshadow">åŸºæœ¬è®¾ç½®</div>
+      <div class="configs ui-wrapshadow ui-table ui-table-custom">
         <table cellpadding="0" cellspacing="0">
           <tr>
             <td class="key">ç½‘ç«™åç§°</td>
@@ -21831,7 +22079,7 @@ var dbo = require("DBO"),
           </tr>
           <tr>
             <td class="key">åšä¸»æ˜µç§°</td>
-            <td class="keyvalue"><input type="text" value="<%=blog_global.nickname%>" name="nickname" class="short"></td>
+            <td class="keyvalue"><input type="text" value="<%=blog_global.nickname%>" name="nickname" class="short"><div class="info">æ˜µç§°ä¿®æ”¹åï¼Œåå°ç™»å…¥çš„è´¦å·å³ä¸ºæ˜µç§°è´¦å·ã€‚</div></td>
           </tr>
           <tr>
             <td class="key">åšä¸»é‚®ç®±</td>
@@ -21852,104 +22100,104 @@ var dbo = require("DBO"),
                 <span>é€‰æ‹©éœ€æ…é‡ã€‚</span></div></td>
           </tr>
         </table>
-      </fieldset>
+      </div>
     </div>
-    <div class="ui-table ui-table-custom configure-list">
-    <fieldset>
-      <legend>æ—¥å¿—æ¨¡å—è®¾ç½®</legend>
-      <table>
-        <tr>
-          <td class="key">æ—¥å¿—é¢„è§ˆé•¿åº¦</td>
-          <td class="keyvalue"><input type="text" value="<%=blog_global.articleprivewlength%>" name="articleprivewlength" class="shorter"></td>
-        </tr>
-        <tr>
-          <td class="key">æ¯é¡µæ—¥å¿—æ•°é‡</td>
-          <td class="keyvalue"><input type="text" value="<%=blog_global.articleperpagecount%>" name="articleperpagecount" class="shorter"></td>
-        </tr>
-      </table>
-    </fieldset>
+    <div class="fn-clear configure-list">
+      <div class="fn-right con-name ui-wrapshadow">æ—¥å¿—è®¾ç½®</div>
+      <div class="configs ui-wrapshadow ui-table ui-table-custom">
+        <table>
+          <tr>
+            <td class="key" width="100">æ—¥å¿—é¢„è§ˆé•¿åº¦</td>
+            <td class="keyvalue"><input type="text" value="<%=blog_global.articleprivewlength%>" name="articleprivewlength" class="shorter"> ä¸ªå­—ç¬¦</td>
+          </tr>
+          <tr>
+            <td class="key">æ¯é¡µæ—¥å¿—æ•°é‡</td>
+            <td class="keyvalue"><input type="text" value="<%=blog_global.articleperpagecount%>" name="articleperpagecount" class="shorter">  ç¯‡</td>
+          </tr>
+        </table>
+      </div>
     </div>
-    <div class="ui-table ui-table-custom configure-list">
-    <fieldset>
-      <legend>è¯„è®ºæ¨¡å—è®¾ç½®</legend>
-      <table>
-        <tr>
-          <td class="key">éœ€è¦å®¡æ ¸?</td>
-          <td class="keyvalue"><input type="checkbox" value="1" name="commentaduit" <%=blog_global.commentaduit === true ? 'checked="checked"' : ''%>>
-            <span class="info">å¼€å¯è¯„è®ºå®¡æ ¸åŠŸèƒ½ï¼Ÿ</span></td>
-        </tr>
-        <tr>
-          <td class="key">è¯„è®ºæ¯é¡µæ¡æ•°</td>
-          <td class="keyvalue"><input type="text" name="commentperpagecount" value="<%=blog_global.commentperpagecount%>" class="shorter" /></td>
-        </tr>
-      </table>
-    </fieldset>
+    <div class="fn-clear configure-list">
+       <div class="fn-right con-name ui-wrapshadow">è¯„è®ºè®¾ç½®</div>
+       <div class="configs ui-wrapshadow ui-table ui-table-custom">
+        <table>
+          <tr>
+            <td class="key" width="100">éœ€è¦å®¡æ ¸?</td>
+            <td class="keyvalue"><input type="checkbox" value="1" name="commentaduit" <%=blog_global.commentaduit === true ? 'checked="checked"' : ''%>>
+              <span class="info">å¼€å¯è¯„è®ºå®¡æ ¸åŠŸèƒ½ï¼Ÿ</span></td>
+          </tr>
+          <tr>
+            <td class="key">è¯„è®ºæ¯é¡µæ¡æ•°</td>
+            <td class="keyvalue"><input type="text" name="commentperpagecount" value="<%=blog_global.commentperpagecount%>" class="shorter" /></td>
+          </tr>
+        </table>
+      </div>
     </div>
-    <div class="ui-table ui-table-custom configure-list">
-    <fieldset>
-      <legend>å…¨çƒé€šç”¨å¤´åƒè®¾ç½®</legend>
-      <table>
-        <tr>
-          <td class="key">å¤´åƒå°ºå¯¸</td>
-          <td class="keyvalue"><input type="text" value="<%=blog_global.gravatarS%>" name="gravatarS" class="shorter">
-            <span class="info">è¯·å¡«å†™æ•°å­—ã€‚è¿™é‡Œæ˜¯ä½ å¤´åƒçš„å¤§å°ï¼Œä»–çš„è§„æ ¼åœ¨80-512ä¹‹é—´ã€‚</span></td>
-        </tr>
-        <tr>
-          <td class="key">å¤´åƒé™åˆ¶ç­‰çº§</td>
-          <td class="keyvalue"><input type="text" name="gravatarR" value="<%=blog_global.gravatarR%>" class="short" />
-            <div class="info"> 1. G: ä½¿ç”¨æ‰€æœ‰ç½‘ç«™ã€‚<br />
-              2. PG: é€‚ç”¨äºå« â€ç²—é²ï¼ŒæŒ‘é€—ï¼Œå°æš´åŠ›â€œçš„ç½‘ç«™ã€‚<br />
-              3. R: é€‚ç”¨äºâ€å¼ºæš´åŠ›ï¼Œè£¸éœ²ï¼Œæ¯’å“â€œç­‰çš„ç½‘ç«™ã€‚<br />
-              4. X: é€‚ç”¨äºâ€æ€§äº¤ï¼Œè¶…å¼ºæš´åŠ›â€œçš„ç½‘ç«™ã€‚ </div></td>
-        </tr>
-        <tr>
-          <td class="key">å¤´åƒå®¹é”™åœ°å€</td>
-          <td class="keyvalue"><input type="text" name="gravatarD" value="<%=blog_global.gravatarD%>" class="long" />
-            <div class="info">å¦‚æœè¯¥é‚®ç®±æœªæ³¨å†ŒGRAå¤´åƒï¼Œé‚£ä¹ˆå°†ä½¿ç”¨è¿™é‡Œçš„å¤´åƒåœ°å€ä½œä¸ºå¤´åƒã€‚</div></td>
-        </tr>
-      </table>
-    </fieldset>
+     <div class="fn-clear configure-list">
+      <div class="fn-right con-name ui-wrapshadow">é€šç”¨å¤´åƒè®¾ç½®</div>
+       <div class="configs ui-wrapshadow ui-table ui-table-custom">
+        <table>
+          <tr>
+            <td class="key">å¤´åƒå°ºå¯¸</td>
+            <td class="keyvalue"><input type="text" value="<%=blog_global.gravatarS%>" name="gravatarS" class="shorter">
+              <span class="info">è¯·å¡«å†™æ•°å­—ã€‚è¿™é‡Œæ˜¯ä½ å¤´åƒçš„å¤§å°ï¼Œä»–çš„è§„æ ¼åœ¨80-512ä¹‹é—´ã€‚</span></td>
+          </tr>
+          <tr>
+            <td class="key">å¤´åƒé™åˆ¶ç­‰çº§</td>
+            <td class="keyvalue"><input type="text" name="gravatarR" value="<%=blog_global.gravatarR%>" class="short" />
+              <div class="info"> 1. G: ä½¿ç”¨æ‰€æœ‰ç½‘ç«™ã€‚<br />
+                2. PG: é€‚ç”¨äºå« â€ç²—é²ï¼ŒæŒ‘é€—ï¼Œå°æš´åŠ›â€œçš„ç½‘ç«™ã€‚<br />
+                3. R: é€‚ç”¨äºâ€å¼ºæš´åŠ›ï¼Œè£¸éœ²ï¼Œæ¯’å“â€œç­‰çš„ç½‘ç«™ã€‚<br />
+                4. X: é€‚ç”¨äºâ€æ€§äº¤ï¼Œè¶…å¼ºæš´åŠ›â€œçš„ç½‘ç«™ã€‚ </div></td>
+          </tr>
+          <tr>
+            <td class="key">å¤´åƒå®¹é”™åœ°å€</td>
+            <td class="keyvalue"><input type="text" name="gravatarD" value="<%=blog_global.gravatarD%>" class="long" />
+              <div class="info">å¦‚æœè¯¥é‚®ç®±æœªæ³¨å†ŒGRAå¤´åƒï¼Œé‚£ä¹ˆå°†ä½¿ç”¨è¿™é‡Œçš„å¤´åƒåœ°å€ä½œä¸ºå¤´åƒã€‚</div></td>
+          </tr>
+        </table>
+      </div>
     </div>
-    <div class="ui-table ui-table-custom configure-list">
-    <fieldset>
-      <legend>ä¸Šä¼ è®¾ç½®</legend>
-      <table>
-        <tr>
-          <td class="key">å›¾ç‰‡ç±»å‹</td>
-          <td class="keyvalue"><input type="text" value="<%=blog_global.uploadimagetype%>" name="uploadimagetype" class="long"></td>
-        </tr>
-        <tr>
-          <td class="key">é™„ä»¶ç±»å‹</td>
-          <td class="keyvalue"><input type="text" value="<%=blog_global.uploadlinktype%>" name="uploadlinktype" class="long"></td>
-        </tr>
-        <tr>
-          <td class="key">FLASHç±»å‹</td>
-          <td class="keyvalue"><input type="text" value="<%=blog_global.uploadswftype%>" name="uploadswftype" class="long"></td>
-        </tr>
-        <tr>
-          <td class="key">å¤šåª’ä½“ç±»å‹</td>
-          <td class="keyvalue"><input type="text" value="<%=blog_global.uploadmediatype%>" name="uploadmediatype" class="long"></td>
-        </tr>
-      </table>
-    </fieldset>
+    <div class="fn-clear configure-list">
+      <div class="fn-right con-name ui-wrapshadow">é™„ä»¶ä¸Šä¼ è®¾ç½®</div>
+       <div class="configs ui-wrapshadow ui-table ui-table-custom">
+        <table>
+          <tr>
+            <td class="key">å›¾ç‰‡ç±»å‹</td>
+            <td class="keyvalue"><input type="text" value="<%=blog_global.uploadimagetype%>" name="uploadimagetype" class="long"></td>
+          </tr>
+          <tr>
+            <td class="key">é™„ä»¶ç±»å‹</td>
+            <td class="keyvalue"><input type="text" value="<%=blog_global.uploadlinktype%>" name="uploadlinktype" class="long"></td>
+          </tr>
+          <tr>
+            <td class="key">FLASHç±»å‹</td>
+            <td class="keyvalue"><input type="text" value="<%=blog_global.uploadswftype%>" name="uploadswftype" class="long"></td>
+          </tr>
+          <tr>
+            <td class="key">å¤šåª’ä½“ç±»å‹</td>
+            <td class="keyvalue"><input type="text" value="<%=blog_global.uploadmediatype%>" name="uploadmediatype" class="long"></td>
+          </tr>
+        </table>
+      </div>
     </div>
-    <div class="ui-table ui-table-custom configure-list">
-    <fieldset>
-      <legend>å®‰å…¨è®¾ç½®</legend>
-      <table>
-      	<tr>
-          <td class="key">å¼€å¯æœ¬ç«™æ³¨å†Œ</td>
-          <td class="keyvalue">
-          	<input type="radio" value="1" name="canregister" <%=(blog_global.canregister === true ? "checked": "")%> /> å¼€æ”¾ 
-            <input type="radio" value="0" name="canregister" <%=(blog_global.canregister === false ? "checked": "")%> /> å…³é—­
-          </td>
-        </tr>
-        <tr>
-          <td class="key">é™„ä»¶é˜²ç›—é“¾ç™½åå•</td>
-          <td class="keyvalue"><input type="text" value="<%=blog_global.binarywhitelist%>" name="binarywhitelist" class="longer"></td>
-        </tr>
-      </table>
-    </fieldset>
+    <div class="fn-clear configure-list">
+      <div class="fn-right con-name ui-wrapshadow">ç½‘ç«™å®‰å…¨</div>
+       <div class="configs ui-wrapshadow ui-table ui-table-custom">
+        <table>
+          <tr>
+            <td class="key">å¼€å¯æœ¬ç«™æ³¨å†Œ</td>
+            <td class="keyvalue"><input type="radio" value="1" name="canregister" <%=(blog_global.canregister === true ? "checked": "")%> />
+              å¼€æ”¾
+              <input type="radio" value="0" name="canregister" <%=(blog_global.canregister === false ? "checked": "")%> />
+              å…³é—­ </td>
+          </tr>
+          <tr>
+            <td class="key">é™„ä»¶é˜²ç›—é“¾ç™½åå•</td>
+            <td class="keyvalue"><input type="text" value="<%=blog_global.binarywhitelist%>" name="binarywhitelist" class="longer"></td>
+          </tr>
+        </table>
+      </div>
     </div>
     <%
 		var sap = require("sap"),
@@ -22439,7 +22687,7 @@ var dbo = require("DBO"),
 	}
 %>
 <div class="ui-position fn-clear">
-  <div class="fn-left ui-position-title">æ’ä»¶ç®¡ç†</div>
+  <div class="fn-left ui-position-title">ç³»ç»Ÿç®¡ç†</div>
   <div class="fn-right ui-position-tools">
   	<a href="?p=system" class="<%=( t == "com" ? "active" : "" )%>">ç»„ä»¶æ”¯æŒ</a> 
     <a href="?p=system&t=cache" class="<%=( t == "cache" ? "active" : "" )%>">ç¼“å­˜æ¸…ç†</a> 
@@ -22475,7 +22723,7 @@ var dbo = require("DBO"),
 					var status = "";
 					 try{
                         new ActiveXObject(config.nameSpace[com]);
-                        status = "green";
+                        status = "white";
                     }catch(e){
                         status = "red";
                     }
@@ -22486,7 +22734,7 @@ var dbo = require("DBO"),
 	%>
     	</div>
         <div class="fn-clear" style="margin-top:10px;">
-        	<div class="fn-left intro green"></div><div class="fn-left words">æ”¯æŒ</div>
+        	<div class="fn-left intro white"></div><div class="fn-left words">æ”¯æŒ</div>
             <div class="fn-left intro red"></div><div class="fn-left words">ä¸æ”¯æŒ</div>
         </div>
     <%
