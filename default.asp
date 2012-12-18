@@ -160,11 +160,11 @@
 					+ (pageCustomParams.page * perpage) 
 					+ " * From blog_article Where log_category=" 
 					+ pageCustomParams.cateID 
-					+ " Order By id DESC";
+					+ " Order By id DESC, log_istop DESC";
 			}else{
 				sql = "Select top " 
 					+ (pageCustomParams.page * perpage) 
-					+ " * From blog_article Order By id DESC";
+					+ " * From blog_article Order By id DESC, log_istop DESC";
 			}
 			sql = "Select * From (Select top " + perpage + " * From (" + sql + ") Order By id) Order By id DESC";
 		}
@@ -201,7 +201,8 @@
 						content: this("log_content").value,
 						url: "article.asp?id=" + this("id").value,
 						views: this("log_views").value,
-						uid: getUserPhoto(this("log_uid").value)
+						uid: getUserPhoto(this("log_uid").value),
+						istop: this("log_istop").value
 					});
 				});
 			}

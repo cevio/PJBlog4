@@ -174,7 +174,7 @@
 			totalPages = 0,
 			sql = "",
 			globalCommentAduit = pageCustomParams.tempCaches.globalCache.commentaduit === true;
-			
+
 		if ( totalSum < perpage ){ perpage = totalSum; }
 		_mod = totalSum % perpage;
 		_pages = Math.floor(totalSum / perpage);
@@ -187,7 +187,7 @@
 		}else{
 			sql = "Select top " 
 				+ (pageCustomParams.page * perpage) 
-				+ " * From blog_comment Where commentid=0 And commentlogid=" + pageCustomParams.article.id + " Order By id DESC, log_istop DESC";
+				+ " * From blog_comment Where commentid=0 And commentlogid=" + pageCustomParams.article.id + " Order By id DESC";
 			sql = "Select * From (Select top " + perpage + " * From (" + sql + ") Order By id) Order By id DESC";
 		}
 		
@@ -236,8 +236,7 @@
 								content: this("commentcontent").value,
 								date: this("commentpostdate").value,
 								ip: this("commentpostip").value,
-								user: getUserPhoto(this("commentuserid").value, this("commentusername").value, this("commentusermail").value),
-								istop: this("log_istop").value
+								user: getUserPhoto(this("commentuserid").value, this("commentusername").value, this("commentusermail").value)
 							});
 						}
 					});
@@ -245,7 +244,7 @@
 			});
 			return commentReplyList;
 		}
-		
+
 		dbo.trave({
 			conn: config.conn,
 			sql: sql,
