@@ -7,11 +7,12 @@ require(["UPLOAD", "DATE", "FSO", "cache", "SHA1"], function(upload, _date, fso,
 	if ( connecte === true ){
 		var uid = http.get("uid"),
 			hash = http.get("hash"),
+			oauth = http.get("oauth"),
 			isImmediate = http.get("immediate"),
 			isLogin = false,
 			isAdmin = false;
 			
-		require("status")(uid, hash);
+		(require("status"))(uid, hash, oauth);
 		
 		isLogin = config.user.login;
 		isAdmin = config.user.poster;
