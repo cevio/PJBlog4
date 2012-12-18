@@ -91,7 +91,7 @@
 		
 		if ( id === -1 ){
 			userInfo.photo = config.user.login ? config.user.photo : pageCustomParams.tempModules.GRA(pageCustomParams.global.authoremail);
-			userInfo.name = config.user.name;
+			userInfo.name = config.user.login ? config.user.name : pageCustomParams.global.nickname;
 			userInfo.poster = true;
 			userInfo.oauth = "system";
 			userInfo.login = config.user.login;
@@ -127,7 +127,7 @@
 		
 		return userInfo;
 	}
-	
+
 	function str2Array(str){
 		return (new Function("return " + str))();
 	}
