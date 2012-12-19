@@ -2,6 +2,7 @@
 	var id = http.get("id") || "",
 		dbo = require("DBO"),
 		connecte = require("openDataBase"),
+		fns = require("fn"),
 		mode,
 		actionURL;
 		
@@ -119,7 +120,7 @@ var articleCut = <%=articleCuts%>,
         <div class="article fn-clear">
         	<div class="write-zone">
             	<div class="log-title"><input type="text" value="<%=log_title%>" name="log_title" placeholder="日志标题" /></div>
-                <div class="log-content"><textarea name="log_content"><%=log_content%></textarea></div>
+                <div class="log-content"><textarea name="log_content"><%=fns.HTMLStr(log_content)%></textarea></div>
             </div>
         </div>
      

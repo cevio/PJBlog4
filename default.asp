@@ -198,7 +198,7 @@
 						editDate: this("log_updatetime").value,
 						category: getCategoryName(this("log_category").value),
 						tags: getTags(this("log_tags").value),
-						content: this("log_content").value,
+						content: this("log_shortcontent").value,
 						url: "article.asp?id=" + this("id").value,
 						views: this("log_views").value,
 						uid: getUserPhoto(this("log_uid").value),

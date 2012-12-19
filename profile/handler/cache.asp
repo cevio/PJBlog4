@@ -113,7 +113,9 @@ define(function(require, exports, module){
 				}
 				
 				return {
-					arrays: arrays,
+					arrays: arrays.sort(function(a, b){
+						return a.order - b.order;
+					}),
 					list: orders
 				};
 			}
