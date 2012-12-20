@@ -8,12 +8,6 @@ define(function( require, exports, module ){
 			try{
 				config.conn.Execute("alter table blog_member add qq_token varchar(255)");
 				config.conn.Execute("alter table blog_member add qq_openid varchar(255)");
-				this.sap.addProxy("system.member.list.photo", function(rets, oauth, photo){
-					rets[oauth] = photo + "/50";
-				});
-				this.sap.addProxy("assets.member.list.photo", function(rets, oauth, photo, size){
-					rets[oauth] = photo + "/" + size;
-				});
 				this.sap.addProxy("response.login", function(rets, custom){
 					var cmd = custom.loadPlugin("qqoauth");
 					if ( cmd !== null ){						

@@ -8,8 +8,6 @@ define(function(require, exports, module){
 			try{
 				config.conn.Execute("alter table blog_member drop qq_token");
 				config.conn.Execute("alter table blog_member drop qq_openid");
-				this.sap.destory("system.member.list.photo");
-				this.sap.destory("assets.member.list.photo");
 				this.sap.destory("response.login");
 			}catch(e){}
 		}
