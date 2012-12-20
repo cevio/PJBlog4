@@ -47,9 +47,6 @@
 						
 						if ( user > 0 ){
 							userData = getUserInfo(user);
-							var userPhotos = {};
-							sap.proxy("system.member.list.photo", [userPhotos, userData.oauth, userData.photo]);
-							userData.photo = userPhotos[userData.oauth];
 						}else{
 							userData.photo = GRA(this("commentusermail").value);
 							userData.nickName = this("commentusername").value;
@@ -62,7 +59,7 @@
 		<li class="comment-li comment-root" data-id="<%=this("id").value%>" data-logid="<%=this("commentlogid").value%>">
         	<div class="comment-zone fn-clear">
             	<div class="comment-photo fn-left">
-                	<div class="user-photo ui-wrapshadow"><img src="<%=userData.type==="guest" ? userData.photo : userData.photo%>" /></div>
+                	<div class="user-photo ui-wrapshadow"><img src="<%=userData.photo%>" /></div>
                 </div>
                 <div class="comment-context">
                 	<div class="comment-content">
@@ -102,9 +99,6 @@
 									
 									if ( _user > 0 ){
 										_userData = getUserInfo(_user);
-										var _userPhotos = {};
-										sap.proxy("system.member.list.photo", [_userPhotos, _userData.oauth, _userData.photo]);
-										_userData.photo = _userPhotos[userData.oauth];
 									}else{
 										_userData.photo = GRA(this("commentusermail").value);
 										_userData.nickName = this("commentusername").value;
@@ -117,7 +111,7 @@
                 	<li class="comment-li" data-id="<%=this("id").value%>" data-logid="<%=this("commentlogid").value%>">
                     	<div class="comment-zone fn-clear">
                             <div class="comment-photo fn-left">
-                                <div class="user-photo ui-wrapshadow"><img src="<%=_userData.type==="guest" ? _userData.photo : _userData.photo%>" /></div>
+                                <div class="user-photo ui-wrapshadow"><img src="<%=_userData.photo%>" /></div>
                             </div>
                             <div class="comment-context">
                                 <div class="comment-content">

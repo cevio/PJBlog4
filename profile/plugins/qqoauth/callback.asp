@@ -48,7 +48,7 @@ try{
 											data: {
 												hashkey: _hashkey,
 												isposter: false,
-												photo: info.data.figureurl.split("/").slice(0, -1).join("/"),
+												photo: info.data.figureurl_2,
 												nickName: info.data.nickname,
 												oauth: "qq",
 												canlogin: true,
@@ -62,7 +62,7 @@ try{
 									}else{
 										_uid = rs("id").value;
 										rs("hashkey") = _hashkey;
-										rs("photo") = info.data.figureurl.split("/").slice(0, -1).join("/");
+										rs("photo") = info.data.figureurl_2;
 										rs("nickname") = info.data.nickname;
 										rs("qq_token") = token.data.access_token;
 										rs("logindate") = date.format(new Date(), "y/m/d h:i:s");

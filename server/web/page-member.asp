@@ -29,14 +29,10 @@ var dbo = require("DBO"),
 				sql: "Select * From blog_member Order By id DESC",
 				callback: function(){
 					pageInfo = this.serverPage(_page, 50, function(i){
-						var oauth = this("oauth").value,
-							photoCons = {};
-							
-						sap.proxy("system.member.list.photo", [photoCons, oauth, this("photo").value]);
 		%>
         <li class="fn-left userlist">
         	<div class="list clafn-clear">
-        		<div class="photo ui-wrapshadow fn-left"><img src="<%=photoCons[oauth]%>" /></div>
+        		<div class="photo ui-wrapshadow fn-left"><img src="<%=this("photo").value%>" /></div>
             	<div class="info fn-left">
                 	<div class="name"><%=this("nickname").value%></div>
                     <div class="action">

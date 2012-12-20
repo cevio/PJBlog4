@@ -109,8 +109,7 @@
 		}
 		else{
 			var userCache = pageCustomParams.tempModules.cache.load("user", id),
-				userInfo = {},
-				proxyPhoto = {};
+				userInfo = {};
 				
 			if (userCache.length === 1){
 				userInfo.photo = userCache[0][0];
@@ -120,8 +119,6 @@
 				userInfo.login = userCache[0][4];
 				userInfo.logindate = userCache[0][5];
 				userInfo.loginip = userCache[0][6];
-				pageCustomParams.tempModules.sap.proxy("assets.member.list.photo", [proxyPhoto, userInfo.oauth, userInfo.photo, 100]);
-				userInfo.photo = proxyPhoto[userInfo.oauth];
 			}
 		}
 		

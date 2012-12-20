@@ -38,9 +38,6 @@
 						
 						if ( user > 0 ){
 							userData = getUserInfo(user);
-							var userPhotos = {};
-							sap.proxy("system.member.list.photo", [userPhotos, userData.oauth, userData.photo]);
-							userData.photo = userPhotos[userData.oauth];
 						}else{
 							userData.photo = GRA(this("commentusermail").value);
 							userData.nickName = this("commentusername").value;
@@ -80,13 +77,9 @@
 					sql: "Select top 5 * From blog_member Order By logindate DESC",
 					callback: function(){
 						this.each(function(){
-							var oauth = this("oauth").value,
-								photoCons = {};
-							
-							sap.proxy("system.member.list.photo", [photoCons, oauth, this("photo").value]);
 			%>
             	<li class="fn-left">
-                	<div class="photo ui-wrapshadow"><img src="<%=photoCons[oauth]%>" /></div>
+                	<div class="photo ui-wrapshadow"><img src="<%=this("photo").value%>" /></div>
                     <div class="name fn-textoverhide"><%=this("nickname").value%></div>
                 </li>
             <%
