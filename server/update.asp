@@ -13,7 +13,7 @@
 			
 			try{
 				if ( !fso.exsit("profile/store/" + packname) ){
-					var binData = xmlhttp.ajax({ method: "GET", url: config.platform + "/store/" + packname });
+					var binData = xmlhttp.ajax({ method: "GET", url: config.platform + "/store/versions/" + packname });
 					if ( binData === null ){
 						return {
 							success: false,
