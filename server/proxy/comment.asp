@@ -47,6 +47,15 @@ http.async(function(req){
 		}
 		
 		if ( !commid || commid.length === 0 ){ commid = 0; }
+		
+		if ( !config.user.login ){
+			if ( username.length === 0 ){
+				return {
+					success: false,
+					error: "昵称不能为空"
+				}
+			}
+		}
 
 		logid = Number(logid);
 		commid = Number(commid);
