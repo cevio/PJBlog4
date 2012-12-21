@@ -34,7 +34,7 @@ var dbo = require("DBO"),
         	<div class="list clafn-clear">
         		<div class="photo ui-wrapshadow fn-left"><img src="<%=this("photo").value%>" /></div>
             	<div class="info fn-left">
-                	<div class="name"><%=this("nickname").value%></div>
+                	<div class="name fn-textoverhide"><%=this("nickname").value%></div>
                     <div class="action">
                     	<%
 							if ( this("id").value !== config.user.id ){
