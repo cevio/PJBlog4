@@ -128,6 +128,12 @@ define(function(require, exports, module){
 			$(function(){
 				init_postcomment();
 				init_reply();
+				var width = 600;
+				$("img").each(function(){
+					if ( $(this).outerWidth() > width ){
+						$(this).css("width", "600px");
+					}
+				});
 			});
 		}
 	}

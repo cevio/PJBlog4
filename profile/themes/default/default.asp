@@ -98,4 +98,9 @@
 	%>
     </div>
 </div>
+<script language="javascript">
+	require("assets/js/config.js", function( route ){
+		route.load("<%=pageCustomParams.global.themeFolder%>/js/default");
+	});
+</script>
 <%include(pageCustomParams.global.themeFolder + "/footer")%>
