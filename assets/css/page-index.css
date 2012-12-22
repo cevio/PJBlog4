@@ -38,6 +38,25 @@
 .comment .lists .items .infos .word{ font-size:12px; color:#999; line-height:18px; word-wrap:break-word;}
 .comment .lists .items .infos .action{ margin-top:5px; border-top:1px dashed #ddd; padding:2px 0 0 0;}
 .comment .lists .items .infos .action a{ margin-right:5px; line-height:20px;}
+.comment .lists .items .infos .replybox{ display:none;}
+.comment .lists .items .infos .replybox .imgs{ width:30px; height:30px;}
+.comment .lists .items .infos .replybox .imgs img{ width:30px; height:30px; border-radius:3px;}
+.comment .lists .items .infos .replybox .masker{ background:#ddd; margin:10px 0px; margin-left:40px;}
+.comment .lists .items .infos .replybox .masker .replyarea{ border:1px solid #ccc; position:relative; top:-3px; left:-3px; background: #fff; padding:5px 5px;}
+.comment .lists .items .infos .replybox .masker .replyarea:after{
+	content:"";
+	position: absolute;
+	top: -6px;
+	right: 10px;
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 6px solid #ddd;
+}
+.comment .lists .items .infos .replybox .masker .replyarea .replycontent{ margin-bottom:5px;}
+.comment .lists .items .infos .replybox .masker .replyarea .replycontent textarea{ width:100%; height:60px;}
+.comment .lists .items .infos .replybox .masker .replyarea .replyaction{}
 
 .member{ margin-bottom:10px; height:85px;}
 .member li{ width:60px; height:85px; margin-right:10px;}

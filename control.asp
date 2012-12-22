@@ -25,7 +25,8 @@
 <script language="javascript">
 var userid = '<%=config.user.id%>',
 	userhashkey = '<%=config.user.hashkey%>',
-	useroauth = '<%=config.user.oauth%>';
+	useroauth = '<%=config.user.oauth%>',
+	userphoto = '<%=config.user.photo%>';
 
 config.version = "<%=config.version%>";
 config.platform = "<%=config.platform%>";

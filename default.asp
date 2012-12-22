@@ -8,6 +8,10 @@
 	pageCustomParams.tempModules.sap = require("sap");
 	pageCustomParams.tempCaches.globalCache = require("cache_global");
 	
+	if ( !pageCustomParams.tempCaches.globalCache.webstatus ){
+		console.end("抱歉，网站暂时被关闭。");
+	}
+	
 	if ( pageCustomParams.tempModules.connect !== true ){
 		console.end("连接数据库失败");
 	}

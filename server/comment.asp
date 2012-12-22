@@ -49,7 +49,9 @@
 						date: rets.commentpostdate,
 						ip: _ip,
 						aduit: true,
-						photo: config.user.photo
+						photo: config.user.photo,
+						logid: logid,
+						root: id
 					}
 				}
 			}else{

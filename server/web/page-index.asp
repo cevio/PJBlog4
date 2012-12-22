@@ -30,7 +30,7 @@
        	<%
 			dbo.trave({
 				conn: config.conn,
-				sql: "Select top 10 * From blog_comment Order By commentpostdate DESC",
+				sql: "Select top 5 * From blog_comment Order By commentpostdate DESC",
 				callback: function(){
 					this.each(function(){
 						var user = this("commentuserid").value,
@@ -53,7 +53,8 @@
                 	<div class="infocotent">
                         <div class="name"><%=userData.nickName%></div>
                         <div class="word"><%=this("commentcontent").value%></div>
-                        <div class="action fn-clear"><a href="javascript:;" class="action-reply fn-left">回复</a><a href="javascript:;" class="action-del fn-right">删除</a></div>
+                        <div class="action fn-clear"><a href="javascript:;" class="action-del fn-left">删除</a><a href="javascript:;" class="action-reply fn-right" data-logid="<%=this("commentlogid").value%>" data-root="<%=(this("commentid").value === 0 ? this("id").value : this("commentid").value)%>">回复</a></div>
+                        <div class="replybox"></div>
                     </div>
                 </div>
             </li>
@@ -74,7 +75,7 @@
            	<%
 				dbo.trave({
 					conn: config.conn,
-					sql: "Select top 5 * From blog_member Order By logindate DESC",
+					sql: "Select top 20 * From blog_member Order By logindate DESC",
 					callback: function(){
 						this.each(function(){
 			%>

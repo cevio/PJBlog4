@@ -1,5 +1,13 @@
 // JavaScript Document
-define(['overlay'],function(require, exports, module){
+define(['overlay', 'form'],function(require, exports, module){
+	
+	function popUpTips( words, callback ){
+		$.dialog({
+			content: words,
+			effect: "deformationZoom",
+			callback: callback
+		});
+	}
 	
 	var pickHTML = {
 		"n1": function(params){
@@ -51,7 +59,72 @@ define(['overlay'],function(require, exports, module){
 		});	
 	}
 	
+	function ajaxReply(){
+		$("body").on("click", ".action-reply", function(){
+			var root = $(this).attr("data-root"),
+				logid = $(this).attr("data-logid"),
+				replybox = $(this).parent().next();
+				
+			if ( !isNaN(root) && !isNaN(logid) ){
+				var html = '<div class="fn-clear">'
+				+			'<div class="fn-left imgs"><img src="' + userphoto + '" /></div>'
+				+			'<div class="masker">'
+				+				'<div class="replyarea">'
+				+					'<form action="' + config.ajaxUrl.server.replyComment + '" method="post" style="margin:0px; padding: 0px;">'
+				+						'<input type="hidden" name="id" value="' + root + '" /><input type="hidden" value="' + logid + '" name="logid" />'
+				+						'<div class="replycontent"><textarea name="content" placeholder="填写回复内容"></textarea></div>'
+				+						'<div class="replyaction"><input type="submit" value="保存" class="button" /> <input type="button" value="取消" class="button closereply"></div>'
+				+					'</form>'
+				+				'</div>'
+				+			'<div>'
+				+			'</div>';
+				replybox.html(html);
+				replybox.slideDown("fast", function(){
+					replybox.find("form").ajaxForm({
+						dataType: "json",
+						beforeSubmit: function(){
+							if ( replybox.find("textarea[name='content']").val().length === 0 ){
+								popUpTips("请填写回复内容");
+								return false;
+							}
+						},
+						success: function( params ){
+							if ( params && params.success ){
+								var chtml = '<li class="items fn-clear" style="display: none;">'
+								+				'<div class="photo fn-right ui-wrapshadow"><img src="' + params.data.photo + '" /></div>'
+								+				'<div class="infos fn-left ui-wrapshadow">'
+								+					'<div class="infocotent">'
+								+						'<div class="name">' + params.data.name + '</div>'
+								+						'<div class="word">' + replybox.find("textarea[name='content']").val() + '</div>'
+								+						'<div class="action fn-clear"><a href="javascript:;" class="action-del fn-left" data-id="' + params.data.id + '">删除</a><a href="javascript:;" class="action-reply fn-right" data-logid="' + params.data.logid + '" data-root="' + params.data.root + '">回复</a></div>'
+								+						'<div class="replybox"></div>'
+								+					'</div>'
+								+				'</div>'
+								+			'</li>';
+								
+								replybox.parents("ul:first").prepend(chtml);
+								replybox.parents("ul:first").find("li:first").slideDown("fast");
+								replybox.find(".closereply").trigger("click");
+							}else{
+								popUpTips(params.error);
+							}
+						},
+						error: function(){
+							popUpTips("网路出错");
+						}
+					});
+				});
+				replybox.find(".closereply").on("click", function(){
+					replybox.slideUp("fast", function(){
+						replybox.empty();
+					});
+				});
+			}
+		});
+	}
+	
 	exports.init = function(){
 		getNews(bindTabs);
+		ajaxReply();
 	}
 });
