@@ -102,9 +102,6 @@
                             <div class="input"><input type="text" name="username" style="width:300px;" placeholder="管理员账号" /></div>
                             <h1>管理员密码</h1>
                             <div class="input"><input type="password" name="password" style="width:300px;" placeholder="管理员密码" /></div>
-                            <div class="info">
-                            	从哪里获得这些数据？<a href="http://bbs.pjhome.net" target="_blank">请点击这里前往</a>。
-                            </div>
                         </div>
                     </div>
                 </div>

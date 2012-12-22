@@ -99,7 +99,7 @@ config.limits.admin = <%=config.user.admin ? "true" : "false"%>;
 	%>
     <div class="ui-footer">
     	<div class="ui-wrapper fn-clear">
-            <div class="ui-copyright fn-left">Copyright @ 2004-2012 PJHome.Net. All Rights Reserved.<br />Code Design By <a href="http://webkits.cn" target="_blank">Evio</a>, Blog CopyRight For <a href="http://www.pjhome.net" target="_blank">PuterJam</a>.</div>
+            <div class="ui-copyright fn-left">PJBlog v<%=config.version%> Copyright @ 2004-2012 PJHome.Net. All Rights Reserved.<br />Code Design By <a href="http://webkits.cn" target="_blank">Evio</a>, Blog CopyRight For <a href="http://www.pjhome.net" target="_blank">PuterJam</a>. Run Time <%=config.timers()%></div>
            <div class="ui-links fn-right">
             	<a href="http://webkits.cn" target="_blank">Evio</a> - 
                 <a href="http://www.pjhome.net" target="_blank">PuterJam</a> - 

@@ -96,7 +96,7 @@ define(['overlay', 'form'],function(require, exports, module){
 								+					'<div class="infocotent">'
 								+						'<div class="name">' + params.data.name + '</div>'
 								+						'<div class="word">' + replybox.find("textarea[name='content']").val() + '</div>'
-								+						'<div class="action fn-clear"><a href="javascript:;" class="action-del fn-left" data-id="' + params.data.id + '">删除</a><a href="javascript:;" class="action-reply fn-right" data-logid="' + params.data.logid + '" data-root="' + params.data.root + '">回复</a></div>'
+								+						'<div class="action fn-clear"><a href="javascript:;" class="action-del fn-left" data-id="' + params.data.id + '" data-logid="' + params.data.logid + '">删除</a><a href="javascript:;" class="action-reply fn-right" data-logid="' + params.data.logid + '" data-root="' + params.data.root + '">回复</a></div>'
 								+						'<div class="replybox"></div>'
 								+					'</div>'
 								+				'</div>'
@@ -123,8 +123,34 @@ define(['overlay', 'form'],function(require, exports, module){
 		});
 	}
 	
+	function commentDestory(){
+		$("body").on("click", ".action-del", function(){
+			if ( confirm("确定删除？") ){
+				var id = $(this).attr("data-id"),
+					logid = $(this).attr("data-logid"),
+					_this = this;
+				
+				if ( !isNaN(id) && !isNaN(logid) ){
+					$.getJSON(config.ajaxUrl.server.delComment, {id: id, logid: logid}, function(params){
+						if ( params && params.success ){
+							$(_this).parents("li:first").animate({
+								height: "0px",
+								opacity: 0
+							}, "slow", function(){
+								$(this).remove();
+							});
+						}else{
+							popUpTips(params.error);
+						}
+					});
+				}
+			}
+		});
+	}
+	
 	exports.init = function(){
 		getNews(bindTabs);
 		ajaxReply();
+		commentDestory();
 	}
 });
