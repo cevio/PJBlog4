@@ -23,6 +23,14 @@ define(function(require, exports, module){
 	}
 	
 	exports.SQLStr = function( str ){
+		if ( !str ){
+			return "";
+		}
+		try{
+			str = str + "";
+		}catch(e){
+			return "";
+		}
 		var reglist = [
 			[/(w)(here)/ig, "$1h&#101;re"],
 			[/(s)(elect)/ig, "$1el&#101;ct"],
@@ -50,6 +58,14 @@ define(function(require, exports, module){
 	}
 	
 	exports.unSQLStr = function( str ){
+		if ( !str ){
+			return "";
+		}
+		try{
+			str = str + "";
+		}catch(e){
+			return "";
+		}
 		var reglist = [
 			[/(w)(h&#101;re)/ig, "$1here"],
 			[/(s)(el&#101;ct)/ig, "$1elect"],
@@ -77,6 +93,14 @@ define(function(require, exports, module){
 	}
 	
 	exports.HTMLStr = function( str ){
+		if ( !str ){
+			return "";
+		}
+		try{
+			str = str + "";
+		}catch(e){
+			return "";
+		}
 		var reglist = [
 			[/\</g, "&#60;"],
 			[/\>/g, "&#62;"]
@@ -90,6 +114,14 @@ define(function(require, exports, module){
 	}
 	
 	exports.removeHTML = function(html){
+		if ( !html ){
+			return "";
+		}
+		try{
+			html = html + "";
+		}catch(e){
+			return "";
+		}
 		html = html.replace(/\<(\w+?)([^\>]+)?\>([\s\S]+?)\<\/\1\>/g, "$3")
 				   .replace(/<(\w+?)(\s([^\/]+)?)?\/>/g, "");
 				
@@ -101,6 +133,14 @@ define(function(require, exports, module){
 	}
 	
 	exports.unHTMLStr = function( str ){
+		if ( !str ){
+			return "";
+		}
+		try{
+			str = str + "";
+		}catch(e){
+			return "";
+		}
 		var reglist = [
 			[/&#60;/g, "<"],
 			[/&#62;/g, ">"]
@@ -114,6 +154,14 @@ define(function(require, exports, module){
 	}
 	
 	exports.textareaStr = function( str ){
+		if ( !str ){
+			return "";
+		}
+		try{
+			str = str + "";
+		}catch(e){
+			return "";
+		}
 		var reglist = [
 			[/textarea/ig, "t&#101;xtarea"]
 		];
@@ -126,6 +174,14 @@ define(function(require, exports, module){
 	}
 	
 	exports.unTextareaStr = function( str ){
+		if ( !str ){
+			return "";
+		}
+		try{
+			str = str + "";
+		}catch(e){
+			return "";
+		}
 		var reglist = [
 			[/t&#101;xtarea/ig, "textarea"]
 		];
@@ -144,6 +200,14 @@ define(function(require, exports, module){
 	 * r: 省略的符号
 	 */
 	exports.cutStr = function( s, n, c, r ){
+		if ( !s ){
+			return "";
+		}
+		try{
+			s = s + "";
+		}catch(e){
+			return "";
+		}
 		var _s = "", j = 0;
 		for ( var i = 0 ; i < s.length ; i++ ){
 			var t = s.charAt(i);

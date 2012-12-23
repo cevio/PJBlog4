@@ -21,37 +21,8 @@
 			});
 		}
 		
-		clear.article_pages = function(){
-			cache.destory("article_pages");
-		}
-		
-		clear.articles = function(){
-			dbo.trave({
-				conn: config.conn,
-				sql: "Select * From blog_article",
-				callback: function(){
-					this.each(function(){
-						cache.destory("article", this("id").value);
-						cache.destory("artcomm", this("id").value);
-					});
-				}
-			});
-		}
-		
 		clear.category = function(){
 			cache.destory("category");
-		}
-		
-		clear.article_pages_cate = function(){
-			dbo.trave({
-				conn: config.conn,
-				sql: "Select * From blog_category",
-				callback: function(){
-					this.each(function(){
-						cache.destory("article_pages_cate", this("id").value);
-					});
-				}
-			});
 		}
 		
 		clear.plugins = function(){

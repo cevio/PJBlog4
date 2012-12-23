@@ -26,6 +26,12 @@ http.service(function( req, dbo, sap ){
 			canregister = req.form.canregister,
 			error = "处理过程中发生错误。";
 			
+		if ( commentaduit === "1" ){
+			commentaduit = true;
+		}else{
+			commentaduit = false;
+		}
+			
 		var insSQLData = {
 			title: title,
 			description: description,

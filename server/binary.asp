@@ -147,6 +147,7 @@
 				stream = null;
 			
 			Response.AddHeader("Content-Length", size);
+			Response.AddHeader("Content-Disposition", "attachment; filename=" + file.split("/").slice(-1).join(""));
 			Response.Charset = "UTF-8";
 			Response.ContentType = ContentType;
 			

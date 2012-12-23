@@ -92,10 +92,20 @@
 	
 	function getUserPhoto(id, name, mail){
 		var userInfo = {};
-		
+		id = Number(id);
 		if ( id === -1 ){
-			userInfo.photo = config.user.login ? config.user.photo : pageCustomParams.tempModules.GRA(pageCustomParams.global.authoremail);
-			userInfo.name = config.user.login ? config.user.name : pageCustomParams.global.nickname;
+			if ( config.user.login ){
+				if ( config.user.id === -1 ){
+					userInfo.photo = config.user.photo;
+					userInfo.name = config.user.name;
+				}else{
+					userInfo.photo = pageCustomParams.tempModules.GRA(pageCustomParams.global.authoremail);
+					userInfo.name = pageCustomParams.global.nickname;
+				}
+			}else{
+				userInfo.photo = pageCustomParams.tempModules.GRA(pageCustomParams.global.authoremail);
+				userInfo.name = pageCustomParams.global.nickname;
+			}
 			userInfo.poster = true;
 			userInfo.oauth = "system";
 			userInfo.login = config.user.login;
@@ -191,24 +201,7 @@
 				+ " * From blog_comment Where commentid=0 And commentlogid=" + pageCustomParams.article.id + " Order By id DESC";
 			sql = "Select * From (Select top " + perpage + " * From (" + sql + ") Order By id) Order By id DESC";
 		}
-		
-		pageCustomParams.tempParams.pages = pageCustomParams.tempModules.fns.pageAnalyze(pageCustomParams.page, totalPages);
-		
-		if ( 
-			( pageCustomParams.comments.lists.length > 0 ) && 
-			( (pageCustomParams.tempParams.pages.to - pageCustomParams.tempParams.pages.from) > 0 ) 
-		){
-			for ( i = pageCustomParams.tempParams.pages.from ; i <= pageCustomParams.tempParams.pages.to ; i++ ){
-				var url = "article.asp?id=" + pageCustomParams.id + "&page=" + i;
-								
-				if ( pageCustomParams.tempParams.pages.current === i ){
-					pageCustomParams.comments.pages.push({ key: n });
-				}else{
-					pageCustomParams.comments.pages.push({ key: n, url : url });
-				}				
-			}
-		}
-		
+
 		function getCommentReplyList(root){
 			var commentReplyList = [];
 			dbo.trave({
@@ -219,7 +212,7 @@
 						var canpush = true;
 						if ( globalCommentAduit === true ){
 							if ( this("commentaudit").value !== true ){
-								if ( config.user.id !== this("commentuserid").value ){
+								if ( (config.user.id !== this("commentuserid").value) || (this("commentuserid").value === 0) ){
 									canpush = false;
 								}
 							}
@@ -254,7 +247,7 @@
 					var canpush = true;
 					if ( globalCommentAduit === true ){
 						if ( this("commentaudit").value !== true ){
-							if ( config.user.id !== this("commentuserid").value ){
+							if ( (config.user.id !== this("commentuserid").value) || (this("commentuserid").value === 0) ){
 								canpush = false;
 							}
 						}
@@ -279,6 +272,23 @@
 				});
 			}
 		});
+		
+		pageCustomParams.tempParams.pages = pageCustomParams.tempModules.fns.pageAnalyze(pageCustomParams.page, totalPages);
+		
+		if ( 
+			( pageCustomParams.comments.lists.length > 0 ) && 
+			( (pageCustomParams.tempParams.pages.to - pageCustomParams.tempParams.pages.from) > 0 ) 
+		){
+			for ( i = pageCustomParams.tempParams.pages.from ; i <= pageCustomParams.tempParams.pages.to ; i++ ){
+				var url = "article.asp?id=" + pageCustomParams.id + "&page=" + i;
+								
+				if ( pageCustomParams.tempParams.pages.current === i ){
+					pageCustomParams.comments.pages.push({ key: i });
+				}else{
+					pageCustomParams.comments.pages.push({ key: i, url : url });
+				}				
+			}
+		}
 	})(pageCustomParams.tempModules.dbo);
 	
 	delete pageCustomParams.tempCaches;

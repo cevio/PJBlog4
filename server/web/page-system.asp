@@ -19,9 +19,6 @@
     	<ul>
         	<li><input type="checkbox" value="global" /> 全局变量缓存清理<span></span></li>
             <li><input type="checkbox" value="user" /> 清理所有用户登入缓存<span></span></li>
-            <li><input type="checkbox" value="article_pages" /> 清理首页日志索引<span></span></li>
-            <li><input type="checkbox" value="article_pages_cate" /> 清理首页日志分类索引<span></span></li>
-            <li><input type="checkbox" value="articles" /> 清理所有日志缓存（同时清理该日志下的评论缓存）<span></span></li>
             <li><input type="checkbox" value="category" /> 清理所有分类列表缓存<span></span></li>
             <li><input type="checkbox" value="plugins" /> 清理插件列表缓存（同时清理插件下的信息缓存）<span></span></li>
             <li><input type="checkbox" value="tags" /> 清理所有TAG缓存<span></span></li>

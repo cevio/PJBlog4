@@ -46,7 +46,7 @@ define(['form'], function(require, exports, module){
 		$(function(){
 			ajaxFormBind();
 			slidebar();
-			$("input[name='password']").focus();
+			$("input[name='username']").focus();
 			$(".pannel li:first").trigger("click");
 		});
 	}
