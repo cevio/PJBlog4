@@ -45,6 +45,7 @@
 			
 			try{
 				var spkInstall = new spk("profile/store/" + packname, "/");
+				spkInstall.savePath = config.base;
 				spkInstall.install();
 				fso.destory("profile/store/" + packname);
 				return {
