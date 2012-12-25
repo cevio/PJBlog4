@@ -95,7 +95,7 @@ define(['form', 'overlay'], function(require, exports, module){
 	function destoryCategory(){
 		$("body").on("click", ".ac-del", function(){
 			if ( isMakingData === false ){
-				if ( confirm("确定要删除这条分类吗？") ){
+				if ( confirm("确定要删除这条分类吗？\n删除分类的同时将删除该分类下的所有文章，请慎重！") ){
 					isMakingData = true;
 					var id = $(this).parents("li:first").attr("data-id"),
 						_this = this;

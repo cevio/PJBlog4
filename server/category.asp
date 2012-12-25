@@ -94,6 +94,7 @@ http.service(function( req, dbo, sap ){
 		if ( len === "0" ){
 			try{
 				config.conn.Execute("Delete From blog_category Where id=" + id);
+				config.conn.Execute("Delete From blog_article Where log_category=" + id);
 				
 				var cache = require.async("cache");	
 					cache.build("category");
