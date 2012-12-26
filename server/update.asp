@@ -47,6 +47,9 @@
 				var spkInstall = new spk("profile/store/" + packname, "/");
 				spkInstall.savePath = config.base;
 				spkInstall.install();
+				if ( fso.exsit("update.asp") ){
+					include("update.asp");
+				}
 				fso.destory("profile/store/" + packname);
 				return {
 					success: true

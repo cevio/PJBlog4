@@ -67,6 +67,7 @@
 .document-content p{
 	text-indent:2em;
 	margin-bottom:20px;
+	line-height:20px;
 }
 
 .active{ background:#000;}
@@ -74,3 +75,5 @@
 .active a:visited{
 	color:#fff;
 }
+
+pre{ word-wrap:break-word;}

@@ -1,0 +1,107 @@
+<div class="ui-table ui-table-custom">
+  <table width="100%" cellpadding="0" cellspacing="0">
+		<tr>
+        	<td>本页SEO描述代码</td>
+            <td colspan="2">&lt;meta name=&quot;Description&quot; content=&quot;&lt;%=pageCustomParams.global.webdescription%&gt;&quot; /&gt;</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>SEO描述</td>
+            <td>pageCustomParams.global.webdescription</td>
+        </tr>
+        <tr>
+        	<td>本页SEO关键字代码</td>
+            <td colspan="2">&lt;meta name=&quot;Keywords&quot; content=&quot;&lt;%=pageCustomParams.global.webkeywords%&gt;&quot; /&gt;</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>SEO关键字</td>
+            <td>pageCustomParams.global.webkeywords</td>
+        </tr>
+        <tr>
+        	<td>头部作者信息</td>
+            <td colspan="2">&lt;meta name=&quot;Author&quot; content=&quot;&lt;%=pageCustomParams.global.nickname%&gt; - &lt;%=pageCustomParams.global.authoremail%&gt;&quot; /&gt;</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>博主昵称</td>
+            <td>pageCustomParams.global.nickname</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>博主邮箱</td>
+            <td>pageCustomParams.global.authoremail</td>
+        </tr>
+        <tr>
+        	<td>CSS引入</td>
+            <td colspan="2">&lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;%=pageCustomParams.global.website + &quot;/&quot; + pageCustomParams.global.styleFolder%&gt;/style.css&quot; type=&quot;text/css&quot; /&gt;</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>本站网站</td>
+            <td>pageCustomParams.global.website</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>当前主题所在文件夹</td>
+            <td>pageCustomParams.global.theme</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>当前主题样式所在文件夹</td>
+            <td>pageCustomParams.global.style</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>当前主题所在文件夹（全路径）</td>
+            <td>pageCustomParams.global.themeFolder</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>当前主题样式所在文件夹（全路径）</td>
+            <td>pageCustomParams.global.styleFolder</td>
+        </tr>
+        <tr>
+        	<td>必须引入的2个JS文件</td>
+            <td colspan="2">&lt;script language=&quot;javascript&quot; src=&quot;&lt;%=pageCustomParams.global.website + &quot;/assets/js/core/sizzle.js&quot;%&gt;&quot;&gt; &lt;/script&gt;<br />
+            &lt;script language=&quot;javascript&quot; src=&quot;&lt;%=pageCustomParams.global.website + &quot;/profile/handler/configure.js&quot;%&gt;&quot;&gt; &lt;/script&gt;</td>
+        </tr>
+        <tr>
+        	<td>网页title标签ASP代码</td>
+            <td colspan="2">pageCustomParams.global.seotitle</td>
+        </tr>
+        <tr>
+        	<td>博客标题ASP代码</td>
+            <td colspan="2">pageCustomParams.global.title</td>
+        </tr>
+        <tr>
+        	<td>博客副标题ASP代码</td>
+            <td colspan="2">pageCustomParams.global.description</td>
+        </tr>
+        <tr>
+        	<td>当前主题名ASP代码</td>
+            <td colspan="2">pageCustomParams.global.themeName</td>
+        </tr>
+        <tr>
+        	<td>当前主题作者ASP代码</td>
+            <td colspan="2">pageCustomParams.global.themeAuthor</td>
+        </tr>
+        <tr>
+        	<td>当前主题作者网站ASP代码</td>
+            <td colspan="2">pageCustomParams.global.themeWebSite</td>
+        </tr>
+        <tr>
+        	<td>当前主题作者邮箱ASP代码</td>
+            <td colspan="2">pageCustomParams.global.themeEmail</td>
+        </tr>
+        <tr>
+        	<td>当前主题版本ASP代码</td>
+            <td colspan="2">pageCustomParams.global.themeVersion</td>
+        </tr>
+	</table>
+</div>
+<br /><br />
+<p>分类列表HTML数据结构源绑定</p>
+<pre>
+&lt;%<br>;(function(cache_category){<br>	// 判断是否存在数据<br>	if ( cache_category.length &gt; 0 ){<br>%&gt;<br>	&lt;ul&gt;<br>&lt;%<br>		for ( var i = 0 ; i &lt; cache_category.length ; i++ ){<br>			/*<br>				一级分类数据结构：<br>				cache_category[i] = {<br>					id: id, 分类ID<br>					name: cate_name,分类名<br>					info: cate_info,分类说明<br>					count: cate_count, 分类下日志数量<br>					icon: cate_icon,分类图标<br>					link: &quot;&quot;, 分类连接URL<br>					order: order, 分类排序<br>					childrens: [] 二级分类数组<br>				}<br>			*/<br>%&gt;<br>		&lt;li&gt;&lt;a href=&quot;&lt;%=cache_category[i].link%&gt;&quot; title=&quot;&lt;%=cache_category[i].info%&gt;&quot;&gt;&lt;%=cache_category[i].name%&gt;&lt;/a&gt;<br>			&lt;%<br>				var childrens = cache_category[i].childrens;<br>				if ( childrens.length &gt; 0 ){	<br>			%&gt;<br>                &lt;ul&gt;<br>            &lt;%<br>				for ( var j = 0 ; j &lt; childrens.length ; j++ ){<br>					/*<br>						二级分类数据结构：<br>						childrens[j] = {<br>							id: id, 分类ID<br>							name: cate_name,分类名<br>							info: cate_info,分类说明<br>							count: cate_count, 分类下日志数量<br>							icon: cate_icon,分类图标<br>							link: &quot;&quot;, 分类连接URL<br>							order: order 分类排序<br>						}<br>					*/<br>			%&gt;<br>                    &lt;li&gt;&lt;a href=&quot;&lt;%=childrens[j].link%&gt;&quot; title=&quot;&lt;%=childrens[j].info%&gt;&quot;&gt;&lt;%=childrens[j].name%&gt;&lt;/a&gt;&lt;/li&gt;<br>            &lt;%}%&gt;<br>                &lt;/ul&gt;<br>            &lt;%}%&gt;<br>        &lt;/li&gt;<br>&lt;%	<br>		}<br>%&gt;<br>    &lt;/ul&gt;<br>&lt;%	<br>	}<br>})(pageCustomParams.categorys);<br>%&gt;
+</pre>

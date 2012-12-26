@@ -88,6 +88,49 @@
 		return keeper;
 	}
 	
+	function getUserPhoto(id, name, mail){
+		var userInfo = {};
+		
+		if ( id === -1 ){
+			userInfo.photo = config.user.photo;
+			userInfo.name = config.user.name;
+			userInfo.poster = true;
+			userInfo.oauth = "system";
+			userInfo.login = config.user.login;
+			userInfo.logindate = "";
+			userInfo.loginip = "";
+		}
+		else if ( id === 0 ){
+			userInfo.photo = pageCustomParams.tempModules.GRA(mail);
+			userInfo.name = name;
+			userInfo.poster = false;
+			userInfo.oauth = "";
+			userInfo.login = false;
+			userInfo.logindate = "";
+			userInfo.loginip = "";
+		}
+		else{
+			var userCache = pageCustomParams.tempModules.cache.load("user", id),
+				userInfo = {},
+				proxyPhoto = {};
+				
+			if (userCache.length === 1){
+				userInfo.photo = userCache[0][0];
+				userInfo.name = userCache[0][1];
+				userInfo.poster = userCache[0][2];
+				userInfo.oauth = userCache[0][3];
+				userInfo.login = userCache[0][4];
+				userInfo.logindate = userCache[0][5];
+				userInfo.loginip = userCache[0][6];
+				pageCustomParams.tempModules.sap.proxy("assets.member.list.photo", [proxyPhoto, userInfo.oauth, userInfo.photo, 100]);
+				userInfo.photo = proxyPhoto[userInfo.oauth];
+				
+			}
+		}
+		
+		return userInfo;
+	}
+	
 	(function(dbo){
 		var tagParams = pageCustomParams.tempModules.tags.readTagFromCache(pageCustomParams.id),
 			totalSum = Number(String(config.conn.Execute("Select count(id) From blog_article Where log_tags like '%{" + pageCustomParams.id + "}%'")(0))),
@@ -114,6 +157,29 @@
 				+ " * From blog_article Where log_tags like '%{" + pageCustomParams.id + "}%' Order By id DESC";
 			sql = "Select * From (Select top " + perpage + " * From (" + sql + ") Order By id) Order By id DESC";
 		}
+
+		dbo.trave({
+			conn: config.conn,
+			sql: sql,
+			callback: function(){
+				this.each(function(){
+					pageCustomParams.tags.lists.push({
+						id: this("id").value,
+						title: this("log_title").value,
+						postDate: this("log_posttime").value,
+						editDate: this("log_updatetime").value,
+						category: getCategoryName(this("log_category").value),
+						tags: getTags(this("log_tags").value),
+						content: this("log_content").value,
+						url: "article.asp?id=" + this("id").value,
+						views: this("log_views").value,
+						uid: getUserPhoto(this("log_uid").value),
+						istop: this("log_istop").value,
+						cover: this("log_cover").value
+					});
+				});
+			}
+		});
 		
 		pageCustomParams.tempParams.pages = pageCustomParams.tempModules.fns.pageAnalyze(pageCustomParams.page, totalPages);
 		
@@ -131,25 +197,6 @@
 				}				
 			}
 		}
-		
-		dbo.trave({
-			conn: config.conn,
-			sql: sql,
-			callback: function(){
-				this.each(function(){
-					pageCustomParams.tags.lists.push({
-						id: this("id").value,
-						title: this("log_title").value,
-						postDate: this("log_posttime").value,
-						editDate: this("log_updatetime").value,
-						category: getCategoryName(this("log_category").value),
-						tags: getTags(this("log_tags").value),
-						content: this("log_content").value,
-						url: "article.asp?id=" + this("id").value
-					});
-				});
-			}
-		});
 	})(pageCustomParams.tempModules.dbo);
 	
 				

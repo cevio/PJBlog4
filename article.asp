@@ -175,6 +175,37 @@
 				}
 			}
 		});
+		pageCustomParams.article.other = {};
+		dbo.trave({
+			conn: config.conn,
+			sql: "Select top 1 * From blog_article Where id<" + pageCustomParams.article.id + " Order By log_posttime DESC",
+			callback: function(rs){
+				if ( rs.Bof || rs.Eof ){
+				}else{
+					pageCustomParams.article.other.prev = {
+						title: rs("log_title").value,
+						id: rs("id").value,
+						url: "article.asp?id=" + rs("id").value,
+						cover: rs("log_cover").value
+					}
+				}
+			}
+		});
+		dbo.trave({
+			conn: config.conn,
+			sql: "Select top 1 * From blog_article Where id>" + pageCustomParams.article.id + " Order By log_posttime ASC",
+			callback: function(rs){
+				if ( rs.Bof || rs.Eof ){
+				}else{
+					pageCustomParams.article.other.next = {
+						title: rs("log_title").value,
+						id: rs("id").value,
+						url: "article.asp?id=" + rs("id").value,
+						cover: rs("log_cover").value
+					}
+				}
+			}
+		});
 	})(pageCustomParams.tempModules.dbo);
 	
 	(function(dbo){
