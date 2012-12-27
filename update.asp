@@ -37,7 +37,9 @@ define(function( require, exports, module ){
 			conn: config.conn,
 			sql: "Select * From blog_article",
 			callback: function(rs){
-				arr.push(rs("id").value);
+				this.each(function(){
+					arr.push(rs("id").value);
+				});
 			}
 		});
 		

@@ -2,7 +2,9 @@
 define(function( require, exports, module ){
 	var proxyCustom = require.async("pluginCustom"),
 		fns = require.async("fn"),
-		getUserPhoto = fns.getUserInfo;
+		getUserPhoto = fns.getUserInfo,
+		cache = require.async("cache"),
+		cache_global = cache.load("global");
 	
 	exports.datas = function(){
 		var dbo = require.async("DBO"),
@@ -21,10 +23,18 @@ define(function( require, exports, module ){
 			if ( isNaN(len) ){len = 0;}
 			len = Number(len);
 			if ( len < 0 ){ len = 0; }
+			
+			var sql = "";
+			
+			if ( cache_global.commentaduit === true ){
+				sql = "Select top " + tops + " * From blog_comment Where commentaudit=true Order By commentpostdate DESC";
+			}else{
+				sql = "Select top " + tops + " * From blog_comment Order By commentpostdate DESC";
+			}
 
 			dbo.trave({
 				conn: config.conn,
-				sql: "Select top " + tops + " * From blog_comment Order By commentpostdate DESC",
+				sql: sql,
 				callback: function(rs){
 					this.each(function(){
 						retDatas.push({
