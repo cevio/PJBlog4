@@ -15,7 +15,7 @@
         <div class="pj-wrapper">
             <div class="pj-top">
                 <div class="pj-title">
-                    <a href="/default.asp"><%=pageCustomParams.global.title%></a>
+                    <a href="default.asp"><%=pageCustomParams.global.title%></a>
                     <div class="pj-info"><%=pageCustomParams.global.description%></div>
                 </div>
                 <div class="pj-search">

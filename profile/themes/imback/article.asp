@@ -13,9 +13,10 @@ var postid = <%=pageCustomParams.article.id%>;
 			<h1><%=params.title%></a></h1>
             <div class="pj-article-infos">
             	<span class="date">作者：<%=params.user.name%></span>
-                <span class="date">发布：<%=date.format(params.postDate, "M d y")%></span>
+                <span class="date">发布：<%=date.format(params.postDate, "y-m-d")%></span>
             	<span class="category">分类：<a href="<%=params.category.url%>" title="<%=params.category.info%>"><%=params.category.name%></a></span>
             	<span class="date">阅读：<%=params.views%>次</span>
+            	<span class="date">评论：<%=params.comments%>条</span>
             </div>
             <div class="pj-content"><%=params.content%></div>
             <div class="information">除非注明，本站所有文章均为博主原创，转载请注明出处！
@@ -113,19 +114,19 @@ var postid = <%=pageCustomParams.article.id%>;
     	<div class="pj-sidepannel">
         	<h3>网站统计</h3>
             <ul class="fn-clear">
-    	    <li style="width:50%;">文章总数：88篇</li>
-    	    <li style="width:50%;">评论总数：88条</li>
-    	    <li style="width:50%;">浏览总数：8888次</li>
-            <li style="width:50%;">当前主题：imback</li>
+    	   <li style="width:50%;">文章总数：<%=pageCustomParams.global.totalarticles%>篇</li>
+    	    <li style="width:50%;">评论总数：<%=pageCustomParams.global.totalcomments%>条</li>
+            <li style="width:50%;">留言条数：85条</li>
+    	    <li style="width:50%;">浏览总数：3248次</li>
     	    </ul>
         </div>
     	<div class="pj-sidepannel">
         	<h3>友情链接</h3>
             <ul>
-    	<li style="width:50%;"><a href="http://www.maosay.com" target="_blank">猫言猫语</a></li>
-        <li style="width:50%;"><a href="/old" target="_blank">林肆随笔</a></li>
-    	<li style="width:50%;"><a href="http://www.izhu.org" target="_blank">大猪博客</a></li>
-        <li style="width:50%;"><a href="http://blog.goeswell.cn/" target="_blank">生活笔谈</a></li>
+        <li style="width:50%;"><a href="/old" target="_blank" title="林肆的PJblog3博客">林肆随笔</a></li>
+    	<li style="width:50%;"><a href="http://www.maosay.com" target="_blank" title="xiaoxian的zblog">猫言猫语</a></li>
+        <li style="width:50%;"><a href="http://www.pjhome.net" target="_blank" title="PJblog程序创建者">瞬子博客</a></li>
+    	<li style="width:50%;"><a href="http://bbs.pjhome.net" target="_blank" title="访问PJblog论坛">官方论坛</a></li>
         <div class="fn-clear"></div>
     	    </ul>
     	</div>
@@ -160,7 +161,7 @@ var postid = <%=pageCustomParams.article.id%>;
         <div class="comment-content fn-left">
             <div class="comment-who fn-clear">
             	<span class="fn-left"><%=lists[i].user.name%></span>
-                <span class="fn-right comment-who-time"><%=date.format(lists[i].date, "M d y - h:i")%></span>
+                <span class="fn-right comment-who-time"><%=date.format(lists[i].date, "y-m-d h:i")%></span>
             </div>
             <div class="comment-des"><%=lists[i].content%></div>
             <div class="actiontools"><a href="javascript:;" data-id="<%=lists[i].id%>" class="postreply">回复该留言</a></div>
@@ -175,7 +176,7 @@ var postid = <%=pageCustomParams.article.id%>;
                             <div class="cimg fn-left"><img src="<%=items[j].user.photo%>" /></div>
                             <div class="ccontent fn-left">
                                 <div class="cwho"><%=items[j].user.name%></div>
-                                <div class="cinfo"><%=date.format(items[j].date, "M d y - h:i")%></div>
+                                <div class="cinfo"><%=date.format(items[j].date, "y-m-d h:i")%></div>
                                 <div class="cdes"><%=items[j].content%></div>
                             </div>
                         </div>
@@ -197,7 +198,7 @@ var postid = <%=pageCustomParams.article.id%>;
 	
 	if ( pages.length > 0 ){
 %>
-	<div class="pj-article-pagebar fn-clear">
+	<div class="pj-article-pagebar fn-clear"><div class="pagebar">
 	<%
                 for ( var n = 0 ; n < pages.length ; n++ ){
                     if ( pages[n].url === undefined ){
@@ -211,7 +212,7 @@ var postid = <%=pageCustomParams.article.id%>;
                     }
                 }
     %>
-    </div>
+        </div></div>
     <%
 	}
 })(pageCustomParams.comments.lists, pageCustomParams.comments.pages);

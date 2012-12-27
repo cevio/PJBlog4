@@ -39,8 +39,31 @@
 					_id = this("id").value;
 				}
 			});
+			
+			dbo.trave({
+				type: 3,
+				conn: config.conn,
+				sql: "Select * From blog_article Where id=" + logid,
+				callback: function( rs ){
+					rs("log_comments") = rs("log_comments").value + 1;
+					rs.Update();
+				}
+			});
+			
+			dbo.trave({
+				type: 3,
+				conn: config.conn,
+				sql: "Select * From blog_global Where id=1",
+				callback: function( rs ){
+					rs("totalcomments") = rs("totalcomments").value + 1;
+					rs.Update();
+				}
+			});
 				
 			if ( _id > 0 ){
+				var cache = require.async("cache");
+					cache.build("global");
+					
 				return {
 					success: true,
 					data: {
@@ -64,7 +87,8 @@
 		
 		this.destory = function(){
 			var id = req.query.id,
-				logid = req.query.logid;
+				logid = req.query.logid,
+				count = 0;
 			
 			try{
 				dbo.trave({
@@ -73,14 +97,36 @@
 					callback: function(rs){
 						if ( rs.Bof || rs.Eof ){}else{
 							rs.Delete();
+							count++;
 						}
 					}
 				});
-				
+
 				config.conn.Execute("Delete From blog_comment Where id=" + id);
+				count++;
 				
-				var cache = require("cache");
-					cache.build("artcomm", logid);
+				dbo.trave({
+					type: 3,
+					conn: config.conn,
+					sql: "Select * From blog_article Where id=" + logid,
+					callback: function( rs ){
+						rs("log_comments") = rs("log_comments").value - count;
+						rs.Update();
+					}
+				});
+				
+				dbo.trave({
+					type: 3,
+					conn: config.conn,
+					sql: "Select * From blog_global Where id=1",
+					callback: function( rs ){
+						rs("totalcomments") = rs("totalcomments").value - count;
+						rs.Update();
+					}
+				});
+				
+				var cache = require.async("cache");
+					cache.build("global");
 					
 				return {
 					success: true

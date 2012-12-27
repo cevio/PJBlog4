@@ -77,9 +77,20 @@ http.service(function( req, dbo, sap ){
 			}
 		});
 		
+		dbo.trave({
+			type: 3,
+			conn: config.conn,
+			sql: "Select * From blog_global Where id=1",
+			callback: function( rs ){
+				rs("totalarticles") = rs("totalarticles").value + 1;
+				rs.Update();
+			}
+		});
+		
 		if ( id > 0 ){
 			var cache = require.async("cache");
 				cache.build("category");
+				cache.build("global");
 				
 			return {
 				success: true,
@@ -242,8 +253,19 @@ http.service(function( req, dbo, sap ){
 					}
 				});
 				
+				dbo.trave({
+					type: 3,
+					conn: config.conn,
+					sql: "Select * From blog_global Where id=1",
+					callback: function( rs ){
+						rs("totalarticles") = rs("totalarticles").value - 1;
+						rs.Update();
+					}
+				});
+				
 				var cache = require.async("cache");
 					cache.build("category");
+					cache.build("global");
 
 				return {
 					success: true

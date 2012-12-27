@@ -20,6 +20,8 @@ define(function(require, exports, module){
 		pageCustomParams.global.themeWebSite = sys_cache_global.themewebSite; // '主题网站
 		pageCustomParams.global.themeEmail = sys_cache_global.themeemail; // '主题作者邮箱
 		pageCustomParams.global.themeVersion = sys_cache_global.themeversion; // '主题版本
+		pageCustomParams.global.totalarticles = sys_cache_global.totalarticles; // '日志总数
+		pageCustomParams.global.totalcomments = sys_cache_global.totalcomments; // '评论总数
 	
 	return sys_cache_global;
 });

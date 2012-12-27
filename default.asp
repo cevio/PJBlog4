@@ -149,7 +149,8 @@
 						views: this("log_views").value,
 						uid: getUserPhoto(this("log_uid").value),
 						istop: this("log_istop").value,
-						cover: this("log_cover").value
+						cover: this("log_cover").value,
+						comments: this("log_comments").value
 					});
 				});
 			}

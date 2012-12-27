@@ -14,9 +14,10 @@
     <div class="pj-content"><%=lists[i].content%></div>
     <div class="pj-article-infos">
         <span class="more"><a href="<%=lists[i].url%>" title="详细阅读 <%=lists[i].title%>">阅读全文</a></span>
-        <span class="date">作者：<%=lists[i].uid.name%></span>
-        <span class="date">发布：<%=date.format(lists[i].postDate, "M d y")%></span>
+        <span class="date">发布：<%=date.format(lists[i].postDate, "y-m-d")%></span>
+        <span class="date">分类：<a href="<%=lists[i].category.url%>"><%=lists[i].category.name%></a></span>
         <span class="date">阅读：<%=lists[i].views%>次</span>
+        <span class="date">评论：<%=lists[i].comments%>条</span>
         <span class="tags">标签：<%
         for ( j = 0 ; j < lists[i].tags.length ; j++ ){
 %>
@@ -30,7 +31,7 @@
 	}
 	if ( pages.length > 0 ){
 %>
-		<div class="pj-article-pagebar fn-clear">
+		<div class="pj-article-pagebar fn-clear"><div class="pagebar">
 <%
 
 		for ( i = 0 ; i < pages.length ; i++ ){
@@ -45,7 +46,7 @@
 			}
 		}
 %>
-		</div>		
+		</div></div>		
 <%
 }
 })(pageCustomParams.articles.lists, pageCustomParams.articles.pages);
@@ -118,19 +119,19 @@
     	<div class="pj-sidepannel">
         	<h3>网站统计</h3>
             <ul class="fn-clear">
-    	    <li style="width:50%;">文章总数：88篇</li>
-    	    <li style="width:50%;">评论总数：88条</li>
-    	    <li style="width:50%;">浏览总数：8888次</li>
-            <li style="width:50%;">当前主题：imback</li>
+    	    <li style="width:50%;">文章总数：<%=pageCustomParams.global.totalarticles%>篇</li>
+    	    <li style="width:50%;">评论总数：<%=pageCustomParams.global.totalcomments%>条</li>
+            <li style="width:50%;">留言条数：85条</li>
+    	    <li style="width:50%;">浏览总数：3248次</li>
     	    </ul>
         </div>
     	<div class="pj-sidepannel">
         	<h3>友情链接</h3>
             <ul>
-    	<li style="width:50%;"><a href="http://www.maosay.com" target="_blank">猫言猫语</a></li>
-        <li style="width:50%;"><a href="/old" target="_blank">林肆随笔</a></li>
-    	<li style="width:50%;"><a href="http://www.izhu.org" target="_blank">大猪博客</a></li>
-        <li style="width:50%;"><a href="http://blog.goeswell.cn/" target="_blank">生活笔谈</a></li>
+        <li style="width:50%;"><a href="/old" target="_blank" title="林肆的PJblog3博客">林肆随笔</a></li>
+    	<li style="width:50%;"><a href="http://www.maosay.com" target="_blank" title="xiaoxian的zblog">猫言猫语</a></li>
+        <li style="width:50%;"><a href="http://www.pjhome.net" target="_blank" title="PJblog程序创建者">瞬子博客</a></li>
+    	<li style="width:50%;"><a href="http://bbs.pjhome.net" target="_blank" title="访问PJblog论坛">官方论坛</a></li>
         <div class="fn-clear"></div>
     	    </ul>
     	</div>
