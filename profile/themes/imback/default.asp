@@ -70,14 +70,28 @@
     			<li><a href="control.asp">管理后台（需要权限）</a></li>
     		</ul>
     	</div>
-    	<div class="pj-sidepannel">
+    	
+            <%
+				LoadPluginsCacheModule("newarticles", function(articles){
+					var datas = articles.datas();
+					if ( datas.length > 0 ){
+			%>
+        <div class="pj-sidepannel">
         	<h3>最新日志</h3>
             <ul class="fn-clear">
-    	    <li><a href="article.asp?id=3">斯蒂芬斯蒂芬斯蒂芬森</a></li>
-    	    <li><a href="article.asp?id=2">PJblog4主题设计的某些技巧</a></li>
-    	    <li><a href="article.asp?id=1">PJblog4新手使用教程</a></li>
-    	    </ul>
+        <%
+						for ( var i = 0 ; i < datas.length; i++ ){
+		%>
+            	<li><a href="<%=datas[i].url%>"><%=datas[i].title%></a></li>
+        <%
+						}
+		%>
+            </ul>
         </div>
+        <%
+					}
+				});
+		%>
     	<div class="pj-sidepannel">
         	<h3>最新评论</h3>
             <ul class="fn-clear">

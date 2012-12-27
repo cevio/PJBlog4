@@ -299,5 +299,59 @@ define(function(require, exports, module){
 			to: rightid
 		}
 	}
+	
+	exports.getUserInfo = function(id, name, mail){
+		var userInfo = {},
+			cache = require.async("cache"),
+			global = cache.load("global"),
+			GRA = require.async("gra");
+			
+		id = Number(id);
+		
+		if ( id === -1 ){
+			if ( config.user.login ){
+				if ( config.user.id === -1 ){
+					userInfo.photo = config.user.photo;
+					userInfo.name = config.user.name;
+				}else{
+					userInfo.photo = GRA(global.authoremail);
+					userInfo.name = global.nickname;
+				}
+			}else{
+				userInfo.photo = GRA(global.authoremail);
+				userInfo.name = global.nickname;
+			}
+			userInfo.poster = true;
+			userInfo.oauth = "system";
+			userInfo.login = config.user.login;
+			userInfo.logindate = "";
+			userInfo.loginip = "";
+		}
+		else if ( id === 0 ){
+			userInfo.photo = GRA(mail);
+			userInfo.name = name;
+			userInfo.poster = false;
+			userInfo.oauth = "";
+			userInfo.login = false;
+			userInfo.logindate = "";
+			userInfo.loginip = "";
+		}
+		else{
+			var userCache = cache.load("user", id),
+				userInfo = {};
+				
+			if (userCache.length === 1){
+				userInfo.photo = userCache[0][0];
+				userInfo.name = userCache[0][1];
+				userInfo.poster = userCache[0][2];
+				userInfo.oauth = userCache[0][3];
+				userInfo.login = userCache[0][4];
+				userInfo.logindate = userCache[0][5];
+				userInfo.loginip = userCache[0][6];
+			}
+		}
+		
+		return userInfo;
+	}
 });
 %>
