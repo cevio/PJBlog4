@@ -93,16 +93,28 @@
 					}
 				}
 			});
+			LoadPluginsCacheModule("newcomments", function(comments){
+				if ( comments ){
+					var datas = comments.datas();
+					if ( datas.length > 0 ){
 		%>
-        
-    	<div class="pj-sidepannel">
+        <div class="pj-sidepannel">
         	<h3>最新评论</h3>
             <ul class="fn-clear">
-    	    <li><a >这个主题很赞，我很喜欢，期待PJblog4</a></li>
-    	    <li><a >喜欢并支持博主的创作，我会长期关注的</a></li>
-    	    <li><a >这是条测试评论，测试效果的</a></li>
-    	    </ul>
+        <%
+						for ( var i = 0 ; i < datas.length; i++ ){
+		%>
+            	<li><a href="<%=datas[i].url%>"><%=datas[i].content%></a></li>
+        <%
+						}
+		%>
+            </ul>
         </div>
+        <%
+					}
+				}
+			});
+		%>
     	<div class="pj-sidepannel">
         	<h3>网站统计</h3>
             <ul class="fn-clear">

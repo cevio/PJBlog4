@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin>
+	<pluginName>最新评论插件</pluginName>
+	<pluginMark>newcomments</pluginMark>
+	<pluginAuthor>沈赟杰</pluginAuthor>
+	<pluginEmail>evio@vip.qq.com</pluginEmail>
+	<pluginPublishDate>2012/12/21</pluginPublishDate>
+	<pluginVersion>1.0</pluginVersion>
+	<pluginWebsite>http://webkits.cn</pluginWebsite>
+	<pluginQQWeibo>http://t.qq.com/PJBlogMaster</pluginQQWeibo>
+	<pluginSinaWeibo>http://weibo.com/imevio</pluginSinaWeibo>
+	<pluginInfo>最新评论插件，前台显示方式可以自定义。</pluginInfo>
+</plugin>

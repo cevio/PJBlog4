@@ -90,8 +90,6 @@
 				}
 			}
 		});
-	%>
-    	<%
 			LoadPluginsCacheModule("newarticles", function(articles){
 				if ( articles ){
 					var datas = articles.datas();
@@ -104,6 +102,27 @@
 						for ( var i = 0 ; i < datas.length; i++ ){
 		%>
             	<li><a href="<%=datas[i].url%>"><%=datas[i].title%></a></li>
+        <%
+						}
+		%>
+            </ul>
+        </div>
+        <%
+					}
+				}
+			});
+			LoadPluginsCacheModule("newcomments", function(comments){
+				if ( comments ){
+					var datas = comments.datas();
+					if ( datas.length > 0 ){
+		%>
+        <div class="pj-sidepannel">
+        	<h3>最新评论</h3>
+            <ul class="fn-clear">
+        <%
+						for ( var i = 0 ; i < datas.length; i++ ){
+		%>
+            	<li><a href="<%=datas[i].url%>"><%=datas[i].content%></a></li>
         <%
 						}
 		%>
