@@ -44,11 +44,11 @@
 				packname = req.query.packname;
 			
 			try{
-				var spkInstall = new spk("profile/store/" + packname, "/");
-				spkInstall.savePath = config.base;
+				var spkInstall = new spk("profile/store/" + packname, config.base);
 				spkInstall.install();
 				if ( fso.exsit("update.asp") ){
 					include("update.asp");
+					fso.destory("update.asp");
 				}
 				fso.destory("profile/store/" + packname);
 				return {

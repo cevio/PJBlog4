@@ -27,6 +27,7 @@ http.async(function(req){
 			content = fns.textareaStr(fns.HTMLStr(fns.SQLStr(req.form.content))),
 			username = fns.HTMLStr(fns.SQLStr(req.form.username || "")),
 			usermail = fns.HTMLStr(fns.SQLStr(req.form.usermail || "")),
+			website = fns.HTMLStr(fns.SQLStr(req.form.website || "")),
 			ip = fns.getIP(),
 			id = 0,
 			datas,
@@ -112,7 +113,8 @@ http.async(function(req){
 			commentpostip: ip,
 			commentaudit: false,
 			commentusername: username,
-			commentusermail: usermail
+			commentusermail: usermail,
+			commentwebsite: website
 		}
 			
 		sap.proxy("assets.comment.post.begin", [datas, req]);

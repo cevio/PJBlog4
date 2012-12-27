@@ -261,7 +261,8 @@
 								content: this("commentcontent").value,
 								date: this("commentpostdate").value,
 								ip: this("commentpostip").value,
-								user: getUserPhoto(this("commentuserid").value, this("commentusername").value, this("commentusermail").value)
+								user: getUserPhoto(this("commentuserid").value, this("commentusername").value, this("commentusermail").value),
+								website: this("commentwebsite").value
 							});
 						}
 					});
@@ -297,6 +298,7 @@
 							date: this("commentpostdate").value,
 							ip: this("commentpostip").value,
 							user: getUserPhoto(this("commentuserid").value, this("commentusername").value, this("commentusermail").value),
+							website: this("commentwebsite").value,
 							childrens: getCommentReplyList(this("id").value)
 						});
 					}
