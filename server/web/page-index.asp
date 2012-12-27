@@ -66,6 +66,7 @@
         </ul>
     </div>
     <div class="context">
+    <div class="fn-left">
 <!--    	<div class="nav-titles fn-clear ui-wrapshadow">
             <div class="fn-left">活跃用户</div>
             <div class="fn-right"><a href="?p=member">详细</a></div>
@@ -105,6 +106,7 @@
         	<div class="plant-infos-item" id="n1"></div>
             <div class="plant-infos-item" id="n2"></div>
             <div class="plant-infos-item" id="n3"></div>
+        </div>
         </div>
     </div>
 <%

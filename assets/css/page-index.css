@@ -58,8 +58,8 @@
 .comment .lists .items .infos .replybox .masker .replyarea .replycontent textarea{ width:100%; height:60px;}
 .comment .lists .items .infos .replybox .masker .replyarea .replyaction{}
 
-.member{ margin-bottom:10px; height:85px;}
-.member li{ width:60px; height:85px; margin-right:10px;}
+.member{ margin-bottom:10px;}
+.member li{ width:60px; height:85px; margin-right:10px; margin-bottom:10px;}
 .member .photo{ width:50px; height:50px; padding:5px; background:#fff;}
 .member .photo img{ width:50px; height:50px;}
 .member .name{ width:60px; height:20px; line-height:20px; text-align:center; margin-top:5px;}
