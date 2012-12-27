@@ -91,6 +91,29 @@
 			}
 		});
 	%>
+    	<%
+			LoadPluginsCacheModule("newarticles", function(articles){
+				if ( articles ){
+					var datas = articles.datas();
+					if ( datas.length > 0 ){
+		%>
+        <div class="pj-sidepannel">
+        	<h3>最新日志</h3>
+            <ul class="fn-clear">
+        <%
+						for ( var i = 0 ; i < datas.length; i++ ){
+		%>
+            	<li><a href="<%=datas[i].url%>"><%=datas[i].title%></a></li>
+        <%
+						}
+		%>
+            </ul>
+        </div>
+        <%
+					}
+				}
+			});
+		%>
     </div>
 </div>
 <%include(pageCustomParams.global.themeFolder + "/footer")%>

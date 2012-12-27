@@ -71,11 +71,12 @@
     		</ul>
     	</div>
     	
-            <%
-				LoadPluginsCacheModule("newarticles", function(articles){
+        <%
+			LoadPluginsCacheModule("newarticles", function(articles){
+				if ( articles ){
 					var datas = articles.datas();
 					if ( datas.length > 0 ){
-			%>
+		%>
         <div class="pj-sidepannel">
         	<h3>最新日志</h3>
             <ul class="fn-clear">
@@ -90,8 +91,10 @@
         </div>
         <%
 					}
-				});
+				}
+			});
 		%>
+        
     	<div class="pj-sidepannel">
         	<h3>最新评论</h3>
             <ul class="fn-clear">
