@@ -47,7 +47,7 @@
 				var spkInstall = new spk("profile/store/" + packname, config.base);
 				spkInstall.install();
 				if ( fso.exsit("update.asp") ){
-					include("update.asp");
+					require.async("update.asp");
 					fso.destory("update.asp");
 				}
 				fso.destory("profile/store/" + packname);
