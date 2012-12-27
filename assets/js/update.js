@@ -80,6 +80,9 @@ define(function( require, exports, module ){
 					addLine('恭喜，升级成功！3秒后自动关闭本提示框。');
 					setTimeout(function(){
 						$(".ui-updatebox").find(".close").trigger("click");
+						setTimeout(function(){
+							window.location.reload();
+						}, 1000);
 					}, 3000)
 				}else{
 					addLine('抱歉，升级失败了！');
