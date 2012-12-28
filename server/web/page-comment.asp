@@ -55,6 +55,10 @@
 								userData.nickName = config.user.name;
 							}
 						}
+						var _website = this("commentwebsite").value;
+						if ( _website && (_website.length > 0) ){}else{
+							_website = "javascript:;"
+						}
 %>
 		<li class="comment-li comment-root" data-id="<%=this("id").value%>" data-logid="<%=this("commentlogid").value%>">
         	<div class="comment-zone fn-clear">
@@ -63,7 +67,7 @@
                 </div>
                 <div class="comment-context">
                 	<div class="comment-content">
-                    	<div class="comment-name"><%=userData.nickName%> 于 <%=date.format(this("commentpostdate").value, "y-m-d h:i:s")%>发表评论： [ <a href="<%=(this("commentwebsite").value.length > 0 ? this("commentwebsite").value : "javascript:;")%>" target="_blank"><%=this("commentpostip").value%></a> ]</div>
+                    	<div class="comment-name"><%=userData.nickName%> 于 <%=date.format(this("commentpostdate").value, "y-m-d h:i:s")%>发表评论： [ <a href="<%=_website%>" target="_blank"><%=this("commentpostip").value%></a> ]</div>
                         <div class="comment-word"><%=this("commentcontent").value%></div>
                         <div class="comment-else">
                         	<a href="javascript:;" class="ac-reply">回复</a>
@@ -107,6 +111,11 @@
 											_userData.nickName = config.user.name;
 										}
 									}
+									
+									var website = this("commentwebsite").value;
+									if ( website && (website.length > 0) ){}else{
+										website = "javascript:;"
+									}
 				%>
                 	<li class="comment-li" data-id="<%=this("id").value%>" data-logid="<%=this("commentlogid").value%>">
                     	<div class="comment-zone fn-clear">
@@ -115,7 +124,7 @@
                             </div>
                             <div class="comment-context">
                                 <div class="comment-content">
-                                    <div class="comment-name"><%=_userData.nickName%> 于 <%=date.format(this("commentpostdate").value, "y-m-d h:i:s")%>发表评论： [ <a href="<%=(this("commentwebsite").value.length > 0 ? this("commentwebsite").value : "javascript:;")%>" target="_blank"><%=this("commentpostip").value%></a> ]</div>
+                                    <div class="comment-name"><%=_userData.nickName%> 于 <%=date.format(this("commentpostdate").value, "y-m-d h:i:s")%>发表评论： [ <a href="<%=website%>" target="_blank"><%=this("commentpostip").value%></a> ]</div>
                                     <div class="comment-word"><%=this("commentcontent").value%></div>
                                     <div class="comment-else">
                                     	<a href="javascript:;" class="ac-reply">回复</a>
