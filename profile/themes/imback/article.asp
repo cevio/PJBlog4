@@ -156,7 +156,7 @@ var postid = <%=pageCustomParams.article.id%>;
 	for ( var i = 0 ; i < lists.length ; i++ ){
 		var items = lists[i].childrens;
 %>
-	<li class="fn-clear">
+	<li class="fn-clear" id="comment_<%=lists[i].id%>">
         <div class="img fn-left"><img src="<%=lists[i].user.photo%>" /></div>
         <div class="comment-content fn-left">
             <div class="comment-who fn-clear">
@@ -172,7 +172,7 @@ var postid = <%=pageCustomParams.article.id%>;
                     <%
                             for ( var j = 0 ; j < items.length ; j++ ){
                     %>
-                        <div class="fn-clear cline">
+                        <div class="fn-clear cline" id="comment_<%=items[j].id%>">
                             <div class="cimg fn-left"><img src="<%=items[j].user.photo%>" /></div>
                             <div class="ccontent fn-left">
                                 <div class="cwho"><%=items[j].user.name%></div>

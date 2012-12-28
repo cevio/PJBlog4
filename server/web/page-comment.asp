@@ -63,7 +63,7 @@
                 </div>
                 <div class="comment-context">
                 	<div class="comment-content">
-                    	<div class="comment-name"><%=userData.nickName%> 于 <%=date.format(this("commentpostdate").value, "y-m-d h:i:s")%>发表评论： [ <%=this("commentpostip").value%> ]</div>
+                    	<div class="comment-name"><%=userData.nickName%> 于 <%=date.format(this("commentpostdate").value, "y-m-d h:i:s")%>发表评论： [ <a href="<%=(this("commentwebsite").value.length > 0 ? this("commentwebsite").value : "javascript:;")%>" target="_blank"><%=this("commentpostip").value%></a> ]</div>
                         <div class="comment-word"><%=this("commentcontent").value%></div>
                         <div class="comment-else">
                         	<a href="javascript:;" class="ac-reply">回复</a>
@@ -115,7 +115,7 @@
                             </div>
                             <div class="comment-context">
                                 <div class="comment-content">
-                                    <div class="comment-name"><%=_userData.nickName%> 于 <%=date.format(this("commentpostdate").value, "y-m-d h:i:s")%>发表评论： [ <%=this("commentpostip").value%> ]</div>
+                                    <div class="comment-name"><%=_userData.nickName%> 于 <%=date.format(this("commentpostdate").value, "y-m-d h:i:s")%>发表评论： [ <a href="<%=(this("commentwebsite").value.length > 0 ? this("commentwebsite").value : "javascript:;")%>" target="_blank"><%=this("commentpostip").value%></a> ]</div>
                                     <div class="comment-word"><%=this("commentcontent").value%></div>
                                     <div class="comment-else">
                                     	<a href="javascript:;" class="ac-reply">回复</a>

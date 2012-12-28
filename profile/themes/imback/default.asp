@@ -14,7 +14,7 @@
     <div class="pj-content"><%=lists[i].content%></div>
     <div class="pj-article-infos">
         <span class="more"><a href="<%=lists[i].url%>" title="详细阅读 <%=lists[i].title%>">阅读全文</a></span>
-        <span class="date">发布：<%=date.format(lists[i].postDate, "y-m-d")%></span>
+        <span class="date">发布：<%=(lists[i].uid.name + " " + date.format(lists[i].postDate, "y-m-d"))%></span>
         <span class="date">分类：<a href="<%=lists[i].category.url%>"><%=lists[i].category.name%></a></span>
         <span class="date">阅读：<%=lists[i].views%>次</span>
         <span class="date">评论：<%=lists[i].comments%>条</span>

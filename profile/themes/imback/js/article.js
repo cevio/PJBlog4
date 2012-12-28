@@ -24,7 +24,7 @@ define(function(require, exports, module){
             	+	'<input type="hidden" name="logid" value="' + postid + '" />'
             	+	'<input type="hidden" name="commid" value="' + id + '" />';
 		if ( !config.isLogin() ){
-			template += '<div class="text">昵称：<input type="text" value="" name="username" /></div><div class="text">邮箱：<input type="text" value="" name="usermail" /></div>';
+			template += '<div class="text">昵称：<input type="text" value="" name="username" /></div><div class="text">邮箱：<input type="text" value="" name="usermail" /></div><div class="text">网址：<input type="text" value="" name="website" /></div>';
 		}
 			template +=	'<div class="textarea"><textarea name="content"></textarea></div>'
 				+	'<div class="submit"><input type="submit" value="提交" /> <input type="button" value="取消" class="close" /></div>'
