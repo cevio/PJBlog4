@@ -1,5 +1,6 @@
 <!--#include file="config.asp" -->
 <%
+try{
 	pageCustomParams.tempModules.cache = require("cache");
 	pageCustomParams.tempModules.dbo = require("DBO");
 	pageCustomParams.tempModules.connect = require("openDataBase");
@@ -8,11 +9,11 @@
 	pageCustomParams.tempCaches.globalCache = require("cache_global");
 	
 	if ( !pageCustomParams.tempCaches.globalCache.webstatus ){
-		console.end("抱歉，网站暂时被关闭。");
+		ConsoleClose("抱歉，网站暂时被关闭。");
 	}
 	
 	if ( pageCustomParams.tempModules.connect !== true ){
-		console.end("连接数据库失败");
+		ConsoleClose("连接数据库失败");
 	}
 	
 	require("status")();
@@ -27,21 +28,21 @@
 				pageCustomParams.page = 1;
 			}
 		}else{
-			console.end("page params error.");
+			ConsoleClose("page params error.");
 		}
 	}
 
 	pageCustomParams.id = http.get("id");
 	if ( pageCustomParams.id.length === 0 ){
-		console.end("article id error.");
+		ConsoleClose("article id error.");
 	}else{
 		if ( !isNaN( pageCustomParams.id ) ){
 			pageCustomParams.id = Number(pageCustomParams.id);
 			if ( pageCustomParams.id < 1 ){
-				console.end("article id can not find");
+				ConsoleClose("article id can not find");
 			}
 		}else{
-			console.end("article ids type error.");
+			ConsoleClose("article ids type error.");
 		}
 	}
 	
@@ -165,4 +166,7 @@
 	
 	include("profile/themes/" + pageCustomParams.global.theme + "/tags.asp");
 	CloseConnect();
+}catch(e){
+	ConsoleClose(e.message);
+}
 %>

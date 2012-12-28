@@ -1,4 +1,5 @@
 ﻿<!--#include file="config.asp" --><%
+try{
 	require("status")();
 	var page = http.get("p");
 	function checkStatusAndCustomPage(){
@@ -131,4 +132,7 @@ require(['assets/js/config'], function( custom ){
 </html>
 <%
 	CloseConnect();
+}catch(e){
+	ConsoleClose(e.message);
+}
 %>

@@ -1,5 +1,6 @@
 <!--#include file="config.asp" -->
 <%
+try{
 	pageCustomParams.tempModules.cache = require("cache");
 	pageCustomParams.tempModules.dbo = require("DBO");
 	pageCustomParams.tempModules.connect = require("openDataBase");
@@ -8,18 +9,18 @@
 	pageCustomParams.tempCaches.globalCache = require("cache_global");
 	
 	if ( !pageCustomParams.tempCaches.globalCache.webstatus ){
-		console.end("抱歉，网站暂时被关闭。");
+		ConsoleClose("抱歉，网站暂时被关闭。");
 	}
 	
 	if ( pageCustomParams.tempModules.connect !== true ){
-		console.end("连接数据库失败");
+		ConsoleClose("连接数据库失败");
 	}
 	
 	pageCustomParams.keyword = fns.HTMLStr(fns.SQLStr(http.form("keyword")));
 	pageCustomParams.keytype = fns.HTMLStr(fns.SQLStr(http.form("keytype"))); //' all | title | content | tag
 	
 	if ( pageCustomParams.keyword.length === 0 ){
-		console.end("非法参数");
+		ConsoleClose("非法参数");
 	}
 	
 	if ( pageCustomParams.keytype.length === 0 ){
@@ -161,4 +162,7 @@
 	
 	include("profile/themes/" + pageCustomParams.global.theme + "/search.asp");
 	CloseConnect();
+}catch(e){
+	ConsoleClose(e.message);
+}
 %>

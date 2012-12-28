@@ -1,5 +1,6 @@
 <!--#include file="../config.asp" -->
 <%
+try{
 	require("status")();
 	http.async(function( req ){
 		var dbo = require("DBO"),
@@ -53,4 +54,8 @@
 			}
 		}
 	});
+	CloseConnect();
+}catch(e){
+	ConsoleClose(e.message);
+}
 %>

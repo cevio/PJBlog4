@@ -12,7 +12,7 @@
 	config.useApp = true; // 是否使用APP
 	config.cacheAccess = "profile/caches"; // 缓存文件夹名
 	config.platform = "http://platform.pjhome.net";
-	config.version = "4.0.0.334";
+	config.version = "4.0.0.335";
 	
 /*
  * 网站模块映射
@@ -67,33 +67,40 @@
 	
 	http.service = function( callback, isposter ){
 		http.async(function(req){
-			require("status")();
-			var j = req.query.j, callbacks = {};
-			if ( config.user.admin === true || ( (isposter === true) && (config.user.poster === true) ) ){
-				var dbo = require("DBO"),
-					connecte = require("openDataBase"),
-					sap = require("sap");
-							
-				if ( connecte === true ){
-					callback.call(callbacks, req, dbo, sap);
-					if ( callbacks[j] !== undefined ){
-						return callbacks[j]();
+			try{
+				require("status")();
+				var j = req.query.j, callbacks = {};
+				if ( config.user.admin === true || ( (isposter === true) && (config.user.poster === true) ) ){
+					var dbo = require("DBO"),
+						connecte = require("openDataBase"),
+						sap = require("sap");
+								
+					if ( connecte === true ){
+						callback.call(callbacks, req, dbo, sap);
+						if ( callbacks[j] !== undefined ){
+							return callbacks[j]();
+						}else{
+							return {
+								success: false,
+								error: "未找到对应处理模块"
+							}
+						}
 					}else{
 						return {
 							success: false,
-							error: "未找到对应处理模块"
+							error: "数据库连接失败"
 						}
 					}
 				}else{
 					return {
 						success: false,
-						error: "数据库连接失败"
+						error: "非法权限操作"
 					}
 				}
-			}else{
+			}catch(e){
 				return {
 					success: false,
-					error: "非法权限操作"
+					error: e.message
 				}
 			}
 		});
@@ -132,6 +139,16 @@
 		}catch(error){
 			console.push(error.message);
 		}
+	}
+	
+	function ConsoleClose( word ){
+		CloseConnect();
+		console.end(word);
+	}
+	
+	function ConsoleDisAble( word ){
+		CloseConnect();
+		console.log(word);
 	}
 
 /*

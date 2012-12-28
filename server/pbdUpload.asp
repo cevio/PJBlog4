@@ -1,5 +1,6 @@
 <!--#include file="../config.asp" -->
 <%
+try{
 	require(["UPLOAD", "SHA1", "SPKPACKAGE", "FSO"], function(upload, SHA1, spkPackage, fso){
 		var dbo = require("DBO"),
 			connecte = require("openDataBase"),
@@ -99,4 +100,12 @@
 			});
 		}
 	});
+	CloseConnect();
+}catch(e){
+	CloseConnect();
+	consoleJSON({
+		err: e.message,
+		msg: "server error"
+	});
+}
 %>

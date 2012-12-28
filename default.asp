@@ -1,5 +1,6 @@
 <!--#include file="config.asp" -->
 <%
+try{
 	pageCustomParams.tempModules.cache = require("cache");
 	pageCustomParams.tempModules.dbo = require("DBO");
 	pageCustomParams.tempModules.connect = require("openDataBase");
@@ -9,11 +10,11 @@
 	pageCustomParams.tempCaches.globalCache = require("cache_global");
 	
 	if ( !pageCustomParams.tempCaches.globalCache.webstatus ){
-		console.end("抱歉，网站暂时被关闭。");
+		ConsoleClose("抱歉，网站暂时被关闭。");
 	}
 	
 	if ( pageCustomParams.tempModules.connect !== true ){
-		console.end("连接数据库失败");
+		ConsoleClose("连接数据库失败");
 	}
 	
 	require("status")();
@@ -28,7 +29,7 @@
 				pageCustomParams.page = 1;
 			}
 		}else{
-			console.end("page params error.");
+			ConsoleClose("page params error.");
 		}
 	};
 
@@ -181,4 +182,7 @@
 
 	include("profile/themes/" + pageCustomParams.global.theme + "/default.asp");
 	CloseConnect();
+}catch(e){
+	ConsoleClose(e.message);
+}
 %>
