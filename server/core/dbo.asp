@@ -83,7 +83,7 @@ define(function( require, exports, module ){
 		if ( options.rs === undefined ){ options.rs = this.createRecordSet(); }
 
 		try{
-			options.rs.Open( "Select * From " + options.table, options.conn, 3, 2 );
+			options.rs.Open( "Select * From " + options.table, options.conn, 1, 2 );
 			options.rs.AddNew();
 			(typeof options.callback === "function") && options.callback.call(options.rs);
 			for ( var items in options.data ){
@@ -106,7 +106,7 @@ define(function( require, exports, module ){
 		if ( options === undefined ){ options = {} };
 		if ( options.rs === undefined ){ options.rs = this.createRecordSet(); }
 
-			options.rs.Open("Select * From " + options.table + " Where " + options.key + "=" + options.keyValue, options.conn, 3, 3);
+			options.rs.Open("Select * From " + options.table + " Where " + options.key + "=" + options.keyValue, options.conn, 1, 3);
 			for ( var items in options.data ){
 				options.rs(items) = options.data[items];
 			}
@@ -125,7 +125,7 @@ define(function( require, exports, module ){
 		
 		try{
 			for ( var items in options.data ){
-				options.rs.Open("Select * From " + options.table + " Where " + items + "=" + options.data[items], options.conn, 3, 3);
+				options.rs.Open("Select * From " + options.table + " Where " + items + "=" + options.data[items], options.conn, 1, 3);
 				options.rs.Delete();
 				options.Close();
 			}
@@ -149,7 +149,7 @@ define(function( require, exports, module ){
 			if ( options.callback === undefined ){
 				ret = options.conn.Execute(options.sql);
 			}else{
-				options.rs.Open(options.sql, options.conn, 3, options.type);
+				options.rs.Open(options.sql, options.conn, 1, options.type);
 				ret = options.callback.call(new recordSetCoretions(options.rs), options.rs, options.conn);
 				options.rs.Close();
 			}
