@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<head><meta property="qc:admins" content="335136420765173116375745574" />
     <meta name="Description" content="<%=pageCustomParams.global.webdescription%>" />
     <meta name="Keywords" content="<%=pageCustomParams.global.webkeywords%>" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

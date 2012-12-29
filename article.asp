@@ -98,9 +98,7 @@ try{
 	}
 	
 	(function(dbo){
-		var seArticleId = str2Array(Session("readArticles") + "");
 		dbo.trave({
-			type: 3,
 			conn: config.conn,
 			sql: "Select * From blog_article Where id=" + pageCustomParams.id,
 			callback: function( rs ){
@@ -116,20 +114,20 @@ try{
 					pageCustomParams.global.seotitle = pageCustomParams.article.title;
 					pageCustomParams.article.user = getUserPhoto(rs("log_uid").value);
 					pageCustomParams.article.comments = rs("log_comments").value;
-					if ( !seArticleId ){ seArticleId = []; }
-					if ( seArticleId.indexOf(pageCustomParams.article.id) === -1 ){
-						var views = rs("log_views").value;
-						rs("log_views") = views + 1;
-						rs.Update();
-						seArticleId.push(pageCustomParams.article.id);
-						pageCustomParams.article.views = views + 1;
-						Session("readArticles") = JSON.stringify(seArticleId);
-					}else{
-						pageCustomParams.article.views = rs("log_views").value;
-					}
+					pageCustomParams.article.views = rs("log_views").value;
 				}
 			}
 		});
+		
+		var seArticleId = str2Array(Session("readArticles") + "");
+		if ( !seArticleId ){ seArticleId = []; }
+		if ( seArticleId.indexOf(pageCustomParams.article.id) === -1 ){
+			config.conn.Execute("UPDATE blog_article SET log_views=log_views+1 Where id=" + pageCustomParams.article.id);
+			seArticleId.push(pageCustomParams.article.id);
+			pageCustomParams.article.views = views + 1;
+			Session("readArticles") = JSON.stringify(seArticleId);
+		}
+		
 		pageCustomParams.article.other = {};
 		dbo.trave({
 			conn: config.conn,

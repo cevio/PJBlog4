@@ -66,26 +66,9 @@ http.service(function( req, dbo, sap ){
 				id = this("id").value;
 			}
 		});
-		
-		dbo.trave({
-			type: 3,
-			conn: config.conn,
-			sql: "Select * From blog_category Where id=" + rets.log_category,
-			callback: function( rs ){
-				rs("cate_count") = rs("cate_count").value + 1;
-				rs.Update();
-			}
-		});
-		
-		dbo.trave({
-			type: 3,
-			conn: config.conn,
-			sql: "Select * From blog_global Where id=1",
-			callback: function( rs ){
-				rs("totalarticles") = rs("totalarticles").value + 1;
-				rs.Update();
-			}
-		});
+
+		config.conn.Execute("UPDATE blog_category SET cate_count=cate_count+1 Where id=" + rets.log_category);
+		config.conn.Execute("UPDATE blog_global SET totalarticles=totalarticles+1 Where id=1");
 		
 		if ( id > 0 ){
 			var cache = require.async("cache");

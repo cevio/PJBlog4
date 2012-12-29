@@ -202,7 +202,7 @@
                         </div>
                         
                         <div class="current-theme-style">
-                        	<div class="title">此主题下可选的风格列表（ 当然风格已高亮显示。点击其他风格将被激活新风格。 ）</div>
+                        	<div class="title">此主题下可选的风格列表（ 当前风格已高亮显示。点击其他风格将被激活新风格。 ）</div>
                             <ul class="list fn-clear">
                             	<%
 									var styles = fso.collect("profile/themes/" + theme.name + "/style", true);

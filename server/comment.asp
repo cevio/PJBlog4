@@ -40,26 +40,9 @@
 				}
 			});
 			
-			dbo.trave({
-				type: 3,
-				conn: config.conn,
-				sql: "Select * From blog_article Where id=" + logid,
-				callback: function( rs ){
-					rs("log_comments") = rs("log_comments").value + 1;
-					rs.Update();
-				}
-			});
-			
-			dbo.trave({
-				type: 3,
-				conn: config.conn,
-				sql: "Select * From blog_global Where id=1",
-				callback: function( rs ){
-					rs("totalcomments") = rs("totalcomments").value + 1;
-					rs.Update();
-				}
-			});
-				
+			config.conn.Execute("UPDATE blog_article SET log_comments=log_comments+1 Where id=" + logid);
+			config.conn.Execute("UPDATE blog_global SET totalcomments=totalcomments+1 Where id=1");
+
 			if ( _id > 0 ){
 				var cache = require.async("cache");
 					cache.build("global");

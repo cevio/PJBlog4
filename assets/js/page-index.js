@@ -11,13 +11,13 @@ define(['overlay', 'form'],function(require, exports, module){
 	
 	var pickHTML = {
 		"n1": function(params){
-			return JSON.stringify(params);
+			return "等待平台完成，推送最新PJBlog4信息。";
 		},
 		"n2": function(params){
-			return JSON.stringify(params);
+			return "等待平台完成，推送最新PJBlog4主题。";
 		},
 		"n3": function(params){
-			return JSON.stringify(params);
+			return "等待平台完成，推送最新PJBlog4插件。";
 		}
 	}
 	

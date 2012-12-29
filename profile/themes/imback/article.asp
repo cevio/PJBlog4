@@ -19,7 +19,7 @@ var postid = <%=pageCustomParams.article.id%>;
             	<span class="date">评论：<%=params.comments%>条</span>
             </div>
             <div class="pj-content"><%=params.content%></div>
-            <div class="information">除非注明，本站所有文章均为博主原创，转载请注明出处！
+            <div class="information">除非注明，本站文章均为原创，转载请注明出处！
                 <%
 					if ( params.tags.length > 0 ){
 				%>
@@ -123,9 +123,9 @@ var postid = <%=pageCustomParams.article.id%>;
     	<div class="pj-sidepannel">
         	<h3>友情链接</h3>
             <ul>
-        <li style="width:50%;"><a href="/old" target="_blank" title="林肆的PJblog3博客">林肆随笔</a></li>
-    	<li style="width:50%;"><a href="http://www.maosay.com" target="_blank" title="xiaoxian的zblog">猫言猫语</a></li>
-        <li style="width:50%;"><a href="http://www.pjhome.net" target="_blank" title="PJblog程序创建者">瞬子博客</a></li>
+        <li style="width:50%;"><a href="http://www.lsnote.com" target="_blank" title="生活博客">林肆随笔</a></li>
+    	<li style="width:50%;"><a href="http://www.maosay.com" target="_blank" title="技术博客">猫言猫语</a></li>
+        <li style="width:50%;"><a href="http://www.pjhome.net" target="_blank" title="PJblog程序创建者">舜子博客</a></li>
     	<li style="width:50%;"><a href="http://bbs.pjhome.net" target="_blank" title="访问PJblog论坛">官方论坛</a></li>
         <div class="fn-clear"></div>
     	    </ul>
@@ -135,10 +135,10 @@ var postid = <%=pageCustomParams.article.id%>;
         <div class="relate">
             <h3>相关日志</h3>
             <ul class="fn-clear">
-            <li><a >坚决捍卫国家的主权完整，努力关心国家大事</a></li>
-            <li><a >钓鱼岛是中国的，这是不容置疑的事实</a></li>
-            <li><a >PJblog4公测在即，赶快关注吧！记住本站网址哟</a></li>
-            <li><a >既然世界末日都不怕，那还怕什么呢？</a></li>
+            <li><a >全新的PJblog4给你全新的感受</a></li>
+            <li><a >相关日志这里需要插件才能使用</a></li>
+            <li><a >童鞋们看到的这块区域是静态展示</a></li>
+            <li><a >更多的精彩内容，请关注官方网站</a></li>
             </ul>
         </div>        
         <div class="comments">
