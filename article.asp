@@ -124,7 +124,7 @@ try{
 		if ( seArticleId.indexOf(pageCustomParams.article.id) === -1 ){
 			config.conn.Execute("UPDATE blog_article SET log_views=log_views+1 Where id=" + pageCustomParams.article.id);
 			seArticleId.push(pageCustomParams.article.id);
-			pageCustomParams.article.views = views + 1;
+			pageCustomParams.article.views++;
 			Session("readArticles") = JSON.stringify(seArticleId);
 		}
 		

@@ -12,7 +12,7 @@
 	config.useApp = true; // 是否使用APP
 	config.cacheAccess = "profile/caches"; // 缓存文件夹名
 	config.platform = "http://platform.pjhome.net";
-	config.version = "4.0.0.339";
+	config.version = "4.0.0.340";
 	
 /*
  * 网站模块映射

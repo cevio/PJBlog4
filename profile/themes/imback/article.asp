@@ -154,13 +154,18 @@ var postid = <%=pageCustomParams.article.id%>;
 	<ul>
 <%
 	for ( var i = 0 ; i < lists.length ; i++ ){
-		var items = lists[i].childrens;
+		var items = lists[i].childrens,
+			website = lists[i].website;
+			
+		if ( website.length === 0 ){
+			website = "javascript:;";
+		}
 %>
 	<li class="fn-clear" id="comment_<%=lists[i].id%>">
         <div class="img fn-left"><img src="<%=lists[i].user.photo%>" /></div>
         <div class="comment-content fn-left">
             <div class="comment-who fn-clear">
-            	<span class="fn-left"><%=lists[i].user.name%></span>
+            	<span class="fn-left"><a href="<%=website%>"><%=lists[i].user.name%></a></span>
                 <span class="fn-right comment-who-time"><%=date.format(lists[i].date, "y-m-d h:i")%></span>
             </div>
             <div class="comment-des"><%=lists[i].content%></div>
@@ -171,11 +176,15 @@ var postid = <%=pageCustomParams.article.id%>;
                     <div class="comment-items">
                     <%
                             for ( var j = 0 ; j < items.length ; j++ ){
+								var _website = items[j].website;
+								if ( _website.length === 0 ){
+									_website = "javascript:;";
+								}
                     %>
                         <div class="fn-clear cline" id="comment_<%=items[j].id%>">
                             <div class="cimg fn-left"><img src="<%=items[j].user.photo%>" /></div>
                             <div class="ccontent fn-left">
-                                <div class="cwho"><%=items[j].user.name%></div>
+                                <div class="cwho"><a href="<%=_website%>"><%=items[j].user.name%></a></div>
                                 <div class="cinfo"><%=date.format(items[j].date, "y-m-d h:i")%></div>
                                 <div class="cdes"><%=items[j].content%></div>
                             </div>
