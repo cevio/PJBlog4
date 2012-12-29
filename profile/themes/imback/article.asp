@@ -1,6 +1,13 @@
 ﻿<%include(pageCustomParams.global.themeFolder + "/header2");%>
 <% 
 	var date = require("DATE");
+	function checkURL(url){
+		if ( url.substr(0,7).toLowerCase() === "http://" ){
+			return url;
+		}else{
+			return "http://" + url;
+		}
+	}
 %>
 <script language="javascript">
 var postid = <%=pageCustomParams.article.id%>;
@@ -157,8 +164,10 @@ var postid = <%=pageCustomParams.article.id%>;
 		var items = lists[i].childrens,
 			website = lists[i].website;
 			
-		if ( website.length === 0 ){
+		if ( !website || website.length === 0 ){
 			website = "javascript:;";
+		}else{
+			website = checkURL(website);
 		}
 %>
 	<li class="fn-clear" id="comment_<%=lists[i].id%>">
@@ -177,8 +186,10 @@ var postid = <%=pageCustomParams.article.id%>;
                     <%
                             for ( var j = 0 ; j < items.length ; j++ ){
 								var _website = items[j].website;
-								if ( _website.length === 0 ){
+								if ( !_website || _website.length === 0 ){
 									_website = "javascript:;";
+								}else{
+									_website = checkURL(_website);
 								}
                     %>
                         <div class="fn-clear cline" id="comment_<%=items[j].id%>">
