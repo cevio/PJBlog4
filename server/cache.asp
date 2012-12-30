@@ -45,12 +45,12 @@ define(function(require){
 			function createAppFile(appKeyName, appKeyID){
 				return config.cacheFileNamePixer + "_" + appKeyName + (appKeyID === undefined ? "" : "_" + appKeyID) + ".asp";
 			}
-			
+
 			function getFromApplication(appKeyName, appKeyID){
 				var appCache = cache.get(createAppName(appKeyName, appKeyID));
-				
-				if ( appCache && appCache.length && (appCache.length >= 0) ){
-					return object2array(appCache);
+								
+				if ( appCache !== undefined && appCache !== null ){
+					return appCache;
 				}else{
 					return null;
 				}

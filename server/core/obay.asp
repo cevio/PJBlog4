@@ -301,6 +301,7 @@ var JSON = !JSON ? {} : JSON;
 		this.deps = deps || [];
 		this.factory = factory;
 		this.exports = {};
+		this.resData = null;
 	}
 })();
 
@@ -398,11 +399,20 @@ var JSON = !JSON ? {} : JSON;
 			}
 		}
 
-		var _module_ = exports[_selector];
+		var _module_ = exports[_selector],
+			_ret_;
+		
+		if ( _module_.resData === null ){
+			_module_.resData = _module_.factory(_require_, _module_.exports, _module_);
+		}
+		
+		if ( _module_.resData === undefined ){
+			_module_.resData = _module_.exports;
+		}
+		
+		_module_.exports = _module_.resData;
 
-		var _ret_ = _module_.factory(_require_, _module_.exports, _module_);
-
-		if ( _ret_ === undefined ){ return _module_.exports; }else{ return _ret_; }
+		return _module_.resData;
 	}
 
 	var _require_ = function(deps, fn){
