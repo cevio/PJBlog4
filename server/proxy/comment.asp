@@ -10,7 +10,8 @@ try{
 			connecte = require("openDataBase"),
 			j = fns.HTMLStr(fns.SQLStr(req.query.j)),
 			cache = require("cache"),
-			GRA = require("gra");
+			GRA = require("gra"),
+			cookie = require("COOKIE");
 		
 		if ( connecte !== true ){
 			return {
@@ -33,6 +34,19 @@ try{
 				id = 0,
 				datas,
 				dates = date.format(new Date(), "y/m/d h:i:s");
+
+			var nowTimer = new Date().getTime(),
+			    cookiePostTimer = cookie.get(config.cookie + "_commentTimer");
+
+			if ( cookiePostTimer && cookiePostTimer.length > 0 ){
+				cookiePostTimer = Number(cookiePostTimer);
+				if ( (nowTimer - cookiePostTimer) <= (20 * 1000) ){
+					return {
+						success: false,
+						error: "您发表评论太快了，请过20秒后再发表。"
+					}
+				}
+			}
 				
 			if ( !logid || logid.length === 0 ){
 				return {
@@ -113,6 +127,9 @@ try{
 				};
 				
 				sap.proxy("assets.comment.post.end", [reback, req]);
+
+				cookie.set(config.cookie + "_commentTimer", nowTimer + "");
+				cookie.expire(config.cookie + "_commentTimer", 30 * 24 * 60 * 60 * 1000);
 				
 				return {
 					success: true,
