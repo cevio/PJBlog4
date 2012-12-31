@@ -126,7 +126,7 @@ try{
 				
 				sap.proxy("assets.comment.post.end", [reback, req]);
 
-				Session(config.cookie + "_commentTimer", nowTimer);
+				Session(config.cookie + "_commentTimer") = nowTimer;
 				
 				return {
 					success: true,
