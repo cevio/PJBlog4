@@ -63,32 +63,40 @@ try{
 			commid = Number(commid);
 			userid = userid;
 			
-			var getUserPhoto = fns.getUserInfo;
+			var getUserPhoto = fns.getUserInfo,
+			    paramsProtypeName = [],
+			    paramsProtypeValue = [];
+
+			paramsProtypeName.push(
+				"commentid", 
+				"commentlogid", 
+				"commentuserid", 
+				"commentcontent", 
+				"commentpostdate", 
+				"commentpostip", 
+				"commentaudit", 
+				"commentusername",
+				"commentusermail",
+				"commentwebsite"
+			);
+
+			paramsProtypeValue.push(
+				Number(commid),
+				Number(logid),
+				Number(userid),
+				"'" + content + "'",
+				"'" + dates + "'",
+				"'" + ip + "'",
+				false,
+				"'" + username + "'",
+				"'" + usermail + "'",
+				"'" + website + "'"
+			);
+
+			sap.proxy("assets.comment.post.begin", [req, paramsProtypeName, paramsProtypeValue]);
 			
-			datas = {
-				commentid: commid,
-				commentlogid: logid,
-				commentuserid: userid,
-				commentcontent: content,
-				commentpostdate: dates,
-				commentpostip: ip,
-				commentaudit: false,
-				commentusername: username,
-				commentusermail: usermail,
-				commentwebsite: website
-			}
-				
-			sap.proxy("assets.comment.post.begin", [datas, req]);
-				
-			dbo.add({
-				conn: config.conn,
-				table: "blog_comment",
-				data: datas,
-				callback: function(){
-					id = this("id").value;
-				}
-			});
-			
+			config.conn.Execute("INSERT INTO blog_comment ( " + paramsProtypeName.join(",") + " ) VALUES ( " + paramsProtypeValue.join(",") + " )");
+			id = Number(String(config.conn.Execute("Select MAX(id) From blog_comment")(0)));
 			config.conn.Execute("UPDATE blog_article SET log_comments=log_comments+1 Where id=" + logid);
 			config.conn.Execute("UPDATE blog_global SET totalcomments=totalcomments+1 Where id=1");
 				
