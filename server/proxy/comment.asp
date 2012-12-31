@@ -65,7 +65,8 @@ try{
 			
 			var getUserPhoto = fns.getUserInfo,
 			    paramsProtypeName = [],
-			    paramsProtypeValue = [];
+			    paramsProtypeValue = [],
+			    globalCaches = cache.load("global");
 
 			paramsProtypeName.push(
 				"commentid", 
@@ -87,7 +88,7 @@ try{
 				"'" + content + "'",
 				"'" + dates + "'",
 				"'" + ip + "'",
-				false,
+				globalCaches.commentaduit === true ? false : true,
 				"'" + username + "'",
 				"'" + usermail + "'",
 				"'" + website + "'"
