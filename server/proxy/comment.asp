@@ -10,8 +10,7 @@ try{
 			connecte = require("openDataBase"),
 			j = fns.HTMLStr(fns.SQLStr(req.query.j)),
 			cache = require("cache"),
-			GRA = require("gra"),
-			cookie = require("COOKIE");
+			GRA = require("gra");
 		
 		if ( connecte !== true ){
 			return {
@@ -36,10 +35,9 @@ try{
 				dates = date.format(new Date(), "y/m/d h:i:s");
 
 			var nowTimer = new Date().getTime(),
-			    cookiePostTimer = cookie.get(config.cookie + "_commentTimer");
+			    cookiePostTimer = Session(config.cookie + "_commentTimer");
 
-			if ( cookiePostTimer && cookiePostTimer.length > 0 ){
-				cookiePostTimer = Number(cookiePostTimer);
+			if ( cookiePostTimer && (!isNaN(cookiePostTimer)) ){
 				if ( (nowTimer - cookiePostTimer) <= (20 * 1000) ){
 					return {
 						success: false,
@@ -128,8 +126,7 @@ try{
 				
 				sap.proxy("assets.comment.post.end", [reback, req]);
 
-				cookie.set(config.cookie + "_commentTimer", nowTimer + "");
-				cookie.expire(config.cookie + "_commentTimer", 30 * 24 * 60 * 60 * 1000);
+				Session(config.cookie + "_commentTimer", nowTimer);
 				
 				return {
 					success: true,
