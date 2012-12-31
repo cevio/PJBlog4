@@ -108,10 +108,17 @@ try{
 
 			sap.proxy("assets.comment.post.begin", [req, paramsProtypeName, paramsProtypeValue]);
 			
-			config.conn.Execute("INSERT INTO blog_comment ( " + paramsProtypeName.join(",") + " ) VALUES ( " + paramsProtypeValue.join(",") + " )");
-			id = Number(String(config.conn.Execute("Select MAX(id) From blog_comment")(0)));
-			config.conn.Execute("UPDATE blog_article SET log_comments=log_comments+1 Where id=" + logid);
-			config.conn.Execute("UPDATE blog_global SET totalcomments=totalcomments+1 Where id=1");
+			config.conn.BeginTrans();
+			try{
+				config.conn.Execute("INSERT INTO blog_comment ( " + paramsProtypeName.join(",") + " ) VALUES ( " + paramsProtypeValue.join(",") + " )");
+				id = Number(String(config.conn.Execute("Select MAX(id) From blog_comment")(0)));
+				config.conn.Execute("UPDATE blog_article SET log_comments=log_comments+1 Where id=" + logid);
+				config.conn.Execute("UPDATE blog_global SET totalcomments=totalcomments+1 Where id=1");
+				config.conn.CommitTrans();
+			}catch(e){
+				console.push("comment assets post error:" + e.message);
+				config.conn.RollBackTrans();
+			}
 				
 			if ( id > 0 ){
 				cache.build("global");
