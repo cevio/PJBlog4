@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head><meta property="qc:admins" content="335136420765173116375745574" />
+<head>
     <meta name="Description" content="<%=pageCustomParams.global.webdescription%>" />
     <meta name="Keywords" content="<%=pageCustomParams.global.webkeywords%>" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="<%=pageCustomParams.global.website + "/" + pageCustomParams.global.styleFolder%>/common.css" type="text/css" />
     <script language="javascript" src="<%=pageCustomParams.global.website + "/assets/js/core/sizzle.js"%>"> </script>
     <script language="javascript" src="<%=pageCustomParams.global.website + "/profile/handler/configure.js"%>"> </script>
-    <title><%=pageCustomParams.global.seotitle%>_<%=pageCustomParams.global.description%></title>
+    <title><%=pageCustomParams.global.seotitle%>_<%=pageCustomParams.global.title%></title>
 </head>
 <body>
 	<div class="pj-zone">
