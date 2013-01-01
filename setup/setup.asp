@@ -21,6 +21,14 @@ http.async(function(req){
 					
 				return res;
 			};
+			
+		if ( !dataParams.username || dataParams.username.length === 0 ){
+			dataParams.username = "admin";
+		}
+		
+		if ( !dataParams.password || dataParams.password.length === 0 ){
+			dataParams.password = "admin888";
+		}
 		
 		if ( dataParams.username.length > 0 && dataParams.password.length > 0 ){
 			return (function(params){

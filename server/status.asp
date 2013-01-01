@@ -3,6 +3,7 @@ define(function(require, exports, module){
 	var cookie = require.async("COOKIE"),
 		SHA1 = require.async("SHA1"),
 		GRA = require.async("gra"),
+		fns = require.async("fn"),
 		clearStatus = function(){
 			config.user.id = 0;
 			config.user.login = false;
@@ -17,8 +18,6 @@ define(function(require, exports, module){
 			var _id = unescape(cookie.get(config.cookie + "_user", "id")),
 				_hashkey = cookie.get(config.cookie + "_user", "hashkey"),
 				_oauth = cookie.get(config.cookie + "_user", "oauth");
-				
-				
 
 			if ( id === undefined ){
 				id = _id;
@@ -31,7 +30,9 @@ define(function(require, exports, module){
 				return;
 			}
 			
-			
+			id = fns.HTMLStr(fns.SQLStr(id));
+			hashkey = fns.HTMLStr(fns.SQLStr(hashkey));
+			oauth = fns.HTMLStr(fns.SQLStr(oauth));
 
 			var dbo = require("DBO"),
 				connecte = require("openDataBase"),
