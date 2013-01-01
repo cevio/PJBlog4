@@ -2,7 +2,7 @@
 define(function(require, exports, module){
 	exports["global"] = function(){
 		return {
-			sql: "Select title, website, description, theme, style, nickname, webstatus, articleprivewlength, articleperpagecount, webdescription, webkeywords, authoremail, seotitle, themename, themeauthor, themewebsite, themeemail, themeversion, commentaduit, commentperpagecount, gravatarS, gravatarR, gravatarD, binarywhitelist, canregister, totalarticles, totalcomments From blog_global Where id=1",
+			sql: "Select title, website, description, theme, style, nickname, webstatus, articleprivewlength, articleperpagecount, webdescription, webkeywords, authoremail, seotitle, themename, themeauthor, themewebsite, themeemail, themeversion, commentaduit, commentperpagecount, gravatarS, gravatarR, gravatarD, binarywhitelist, canregister, totalarticles, totalcomments, commentdelaytimer, commentvaildor, commentmaxlength From blog_global Where id=1",
 			callback: function( cacheData ){
 				return {
 					title: cacheData[0][0],
@@ -31,7 +31,10 @@ define(function(require, exports, module){
 					binarywhitelist: cacheData[0][23],
 					canregister: cacheData[0][24],
 					totalarticles: cacheData[0][25],
-					totalcomments: cacheData[0][26]
+					totalcomments: cacheData[0][26],
+					commentdelaytimer: cacheData[0][27],
+					commentvaildor: cacheData[0][28],
+					commentmaxlength: cacheData[0][29]
 				}
 			}
 		};

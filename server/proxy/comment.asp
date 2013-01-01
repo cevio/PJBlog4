@@ -32,16 +32,28 @@ try{
 				ip = fns.getIP(),
 				id = 0,
 				datas,
-				dates = date.format(new Date(), "y/m/d h:i:s");
+				dates = date.format(new Date(), "y/m/d h:i:s"),
+			    globalCaches = cache.load("global");
 
 			var nowTimer = new Date().getTime(),
 			    cookiePostTimer = Session(config.cookie + "_commentTimer");
 
 			if ( cookiePostTimer && (!isNaN(cookiePostTimer)) ){
-				if ( (nowTimer - cookiePostTimer) <= (20 * 1000) ){
+				if ( (nowTimer - cookiePostTimer) <= (globalCaches.commentdelaytimer * 1000) ){
 					return {
 						success: false,
-						error: "您发表评论太快了，请过20秒后再发表。"
+						error: "您发表评论太快了，请过" + globalCaches.commentdelaytimer + "秒后再发表。"
+					}
+				}
+			}
+			
+			if ( globalCaches.commentvaildor === true ){
+				var code = fns.HTMLStr(fns.SQLStr(req.form.code || "")),
+					_code = Session("GetCode") + "";
+				if ( code !== _code ){
+					return {
+						success: false,
+						error: "验证码不正确"
 					}
 				}
 			}
@@ -57,6 +69,13 @@ try{
 				return {
 					success: false,
 					error: "请输入评论内容"
+				}
+			}
+			
+			if ( content.length > globalCaches.commentmaxlength ){
+				return {
+					success: false,
+					error: "评论内容超出限制，限制为" + globalCaches.commentmaxlength + "字。"
 				}
 			}
 			
@@ -77,8 +96,7 @@ try{
 			
 			var getUserPhoto = fns.getUserInfo,
 			    paramsProtypeName = [],
-			    paramsProtypeValue = [],
-			    globalCaches = cache.load("global");
+			    paramsProtypeValue = [];
 
 			paramsProtypeName.push(
 				"commentid", 

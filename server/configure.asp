@@ -24,12 +24,53 @@ http.service(function( req, dbo, sap ){
 			uploadmediatype = req.form.uploadmediatype,
 			binarywhitelist = req.form.binarywhitelist,
 			canregister = req.form.canregister,
+			commentvaildor = req.form.commentvaildor,
+			commentdelaytimer = req.form.commentdelaytimer,
+			commentmaxlength = req.form.commentmaxlength,
 			error = "处理过程中发生错误。";
 			
 		if ( commentaduit === "1" ){
 			commentaduit = true;
 		}else{
 			commentaduit = false;
+		}
+		
+		if ( commentvaildor === "1" ){
+			commentaduit = true;
+		}else{
+			commentaduit = false;
+		}
+		
+		if ( isNaN(commentdelaytimer) ){
+			return {
+				success: false,
+				error: "评论延迟时长必须为数字"
+			}
+		}
+		
+		commentdelaytimer = Number(commentdelaytimer);
+		
+		if ( commentdelaytimer <= 0 ){
+			return {
+				success: false,
+				error: "评论延迟时长必须大于零"
+			}
+		}
+		
+		if ( isNaN(commentmaxlength) ){
+			return {
+				success: false,
+				error: "评论字数限制必须为数字"
+			}
+		}
+		
+		commentmaxlength = Number(commentmaxlength);
+		
+		if ( commentmaxlength <= 0 ){
+			return {
+				success: false,
+				error: "评论字数限制必须大于零"
+			}
 		}
 			
 		var insSQLData = {
@@ -54,7 +95,10 @@ http.service(function( req, dbo, sap ){
 			uploadswftype: uploadswftype,
 			uploadmediatype: uploadmediatype,
 			binarywhitelist: binarywhitelist,
-			canregister: canregister
+			canregister: canregister,
+			commentvaildor: commentvaildor,
+			commentdelaytimer: commentdelaytimer,
+			commentmaxlength: commentmaxlength
 		}
 			
 		sap.proxy("system.global.save.begin", insSQLData);

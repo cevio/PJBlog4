@@ -31,6 +31,9 @@
 				blog_global.uploadmediatype = rs("uploadmediatype").value;
 				blog_global.binarywhitelist = rs("binarywhitelist").value;
 				blog_global.canregister = rs("canregister").value;
+				blog_global.commentvaildor = rs("commentvaildor").value;
+				blog_global.commentdelaytimer = rs("commentdelaytimer").value;
+				blog_global.commentmaxlength = rs("commentmaxlength").value;
 			}
 		});
 %>
@@ -120,6 +123,20 @@
           <tr>
             <td class="key">评论每页条数</td>
             <td class="keyvalue"><input type="text" name="commentperpagecount" value="<%=blog_global.commentperpagecount%>" class="shorter" /></td>
+          </tr>
+          <tr>
+            <td class="key" width="100">评论验证码？</td>
+            <td class="keyvalue"><input type="checkbox" value="1" name="commentvaildor" <%=blog_global.commentvaildor === true ? 'checked="checked"' : ''%>>
+              <span class="info">主题模块中必须在评论发表区域包含验证码，系统自动检测验证码。</span></td>
+          </tr>
+          <tr>
+            <td class="key" width="100">评论延迟时常</td>
+            <td class="keyvalue"><input type="text" value="<%=blog_global.commentdelaytimer%>" name="commentdelaytimer" /> 秒 
+              <span class="info">防止数据库死锁必要手段。</span></td>
+          </tr>
+          <tr>
+            <td class="key" width="100">评论字数限制</td>
+            <td class="keyvalue"><input type="text" value="<%=blog_global.commentmaxlength%>" name="commentmaxlength" /> 字</td>
           </tr>
         </table>
       </div>
