@@ -33,6 +33,18 @@ try{
 				id = 0,
 				datas,
 				dates = date.format(new Date(), "y/m/d h:i:s");
+
+			var nowTimer = new Date().getTime(),
+			    cookiePostTimer = Session(config.cookie + "_commentTimer");
+
+			if ( cookiePostTimer && (!isNaN(cookiePostTimer)) ){
+				if ( (nowTimer - cookiePostTimer) <= (20 * 1000) ){
+					return {
+						success: false,
+						error: "您发表评论太快了，请过20秒后再发表。"
+					}
+				}
+			}
 				
 			if ( !logid || logid.length === 0 ){
 				return {
@@ -63,34 +75,50 @@ try{
 			commid = Number(commid);
 			userid = userid;
 			
-			var getUserPhoto = fns.getUserInfo;
+			var getUserPhoto = fns.getUserInfo,
+			    paramsProtypeName = [],
+			    paramsProtypeValue = [],
+			    globalCaches = cache.load("global");
+
+			paramsProtypeName.push(
+				"commentid", 
+				"commentlogid", 
+				"commentuserid", 
+				"commentcontent", 
+				"commentpostdate", 
+				"commentpostip", 
+				"commentaudit", 
+				"commentusername",
+				"commentusermail",
+				"commentwebsite"
+			);
+
+			paramsProtypeValue.push(
+				Number(commid),
+				Number(logid),
+				Number(userid),
+				"'" + content + "'",
+				"'" + dates + "'",
+				"'" + ip + "'",
+				globalCaches.commentaduit === true ? false : true,
+				"'" + username + "'",
+				"'" + usermail + "'",
+				"'" + website + "'"
+			);
+
+			sap.proxy("assets.comment.post.begin", [req, paramsProtypeName, paramsProtypeValue]);
 			
-			datas = {
-				commentid: commid,
-				commentlogid: logid,
-				commentuserid: userid,
-				commentcontent: content,
-				commentpostdate: dates,
-				commentpostip: ip,
-				commentaudit: false,
-				commentusername: username,
-				commentusermail: usermail,
-				commentwebsite: website
+			config.conn.BeginTrans();
+			try{
+				config.conn.Execute("INSERT INTO blog_comment ( " + paramsProtypeName.join(",") + " ) VALUES ( " + paramsProtypeValue.join(",") + " )");
+				id = Number(String(config.conn.Execute("Select MAX(id) From blog_comment")(0)));
+				config.conn.Execute("UPDATE blog_article SET log_comments=log_comments+1 Where id=" + logid);
+				config.conn.Execute("UPDATE blog_global SET totalcomments=totalcomments+1 Where id=1");
+				config.conn.CommitTrans();
+			}catch(e){
+				console.push("comment assets post error:" + e.message);
+				config.conn.RollBackTrans();
 			}
-				
-			sap.proxy("assets.comment.post.begin", [datas, req]);
-				
-			dbo.add({
-				conn: config.conn,
-				table: "blog_comment",
-				data: datas,
-				callback: function(){
-					id = this("id").value;
-				}
-			});
-			
-			config.conn.Execute("UPDATE blog_article SET log_comments=log_comments+1 Where id=" + logid);
-			config.conn.Execute("UPDATE blog_global SET totalcomments=totalcomments+1 Where id=1");
 				
 			if ( id > 0 ){
 				cache.build("global");
@@ -104,6 +132,8 @@ try{
 				};
 				
 				sap.proxy("assets.comment.post.end", [reback, req]);
+
+				Session(config.cookie + "_commentTimer") = nowTimer;
 				
 				return {
 					success: true,
