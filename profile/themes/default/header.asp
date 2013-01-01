@@ -21,7 +21,11 @@
                 <div class="pj-search">
                 	<form action="search.asp" method="post" style="margin:0; padding:0;">
                     	<div class="pj-search-box fn-clear">
-                        	<div class="pj-search-box-input"><input type="text" name="keyword" value="" placeholder="请输入搜索关键字..." /></div>
+                        	<div class="pj-search-box-input"><input type="text" name="keyword" value="<%
+							try{
+								console.log(pageCustomParams.found.keywords);
+							}catch(e){}
+							%>" placeholder="请输入搜索关键字..." /></div>
                             <div class="pj-search-box-btn"><input type="submit" value="搜索" /></div>
                         </div>
                     </form>

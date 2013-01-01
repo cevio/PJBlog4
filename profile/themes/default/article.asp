@@ -123,24 +123,16 @@ var postid = <%=pageCustomParams.article.id%>;
             <ul class="fn-clear">
     	   <li style="width:50%;">文章总数：<%=pageCustomParams.global.totalarticles%>篇</li>
     	    <li style="width:50%;">评论总数：<%=pageCustomParams.global.totalcomments%>条</li>
-            <li style="width:50%;">留言条数：85条</li>
-    	    <li style="width:50%;">浏览总数：3248次</li>
     	    </ul>
         </div>
     	<div class="pj-sidepannel">
         	<h3>友情链接</h3>
-            <ul>
-        <li style="width:50%;"><a href="http://www.lsnote.com" target="_blank" title="生活博客">林肆随笔</a></li>
-    	<li style="width:50%;"><a href="http://www.maosay.com" target="_blank" title="技术博客">猫言猫语</a></li>
-        <li style="width:50%;"><a href="http://www.pjhome.net" target="_blank" title="PJblog程序创建者">舜子博客</a></li>
-    	<li style="width:50%;"><a href="http://bbs.pjhome.net" target="_blank" title="访问PJblog论坛">官方论坛</a></li>
-        <div class="fn-clear"></div>
-    	    </ul>
+            <div>需要插件支持，暂无此插件</div>
     	</div>
     </div>
 
         <div class="relate">
-            <h3>相关日志</h3>
+            <h3>相关日志(需要插件支持，暂时默认文本)</h3>
             <ul class="fn-clear">
             <li><a >全新的PJblog4给你全新的感受</a></li>
             <li><a >相关日志这里需要插件才能使用</a></li>

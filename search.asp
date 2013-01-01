@@ -16,8 +16,24 @@ try{
 		ConsoleClose("连接数据库失败");
 	}
 	
-	pageCustomParams.keyword = fns.HTMLStr(fns.SQLStr(http.form("keyword")));
-	pageCustomParams.keytype = fns.HTMLStr(fns.SQLStr(http.form("keytype"))); //' all | title | content | tag
+	require("status")();
+	
+	pageCustomParams.page = http.get("page");
+	if ( pageCustomParams.page.length === 0 ){ 
+		pageCustomParams.page = 1; 
+	}else{
+		if ( !isNaN( pageCustomParams.page ) ){
+			pageCustomParams.page = Number(pageCustomParams.page);
+			if ( pageCustomParams.page < 1 ){
+				pageCustomParams.page = 1;
+			}
+		}else{
+			ConsoleClose("page params error.");
+		}
+	};
+	
+	pageCustomParams.keyword = pageCustomParams.tempModules.fns.HTMLStr(pageCustomParams.tempModules.fns.SQLStr(http.form("keyword")));
+	pageCustomParams.keytype = pageCustomParams.tempModules.fns.HTMLStr(pageCustomParams.tempModules.fns.SQLStr(http.form("keytype") || "all")); //' all | title | content | tag
 	
 	if ( pageCustomParams.keyword.length === 0 ){
 		ConsoleClose("非法参数");
@@ -31,19 +47,14 @@ try{
 		pageCustomParams.keytype = "all";
 	}
 	
-	pageCustomParams.keyword = pageCustomParams.keyword
-								.replace(/^\s+/, "")
-								.replace(/\s+$/, "")
-								.replace(/\s+/g, " ")
-								.replace(/\s/g, ",");
-	
-	pageCustomParams.keywords = pageCustomParams.keyword.split(",");
-	
-	require("status")();
-	
+	if ( pageCustomParams.keyword.length === 0 ){
+		ConsoleClose("关键字不能为空");
+	}
+
 	pageCustomParams.tempParams.category = require("cache_category");
 	pageCustomParams.found = {
-		keywords: pageCustomParams.keywords,
+		keywords: pageCustomParams.keyword,
+		types: pageCustomParams.keytype,
 		lists: [],
 		pages: []
 	};
@@ -83,24 +94,28 @@ try{
 		return keeper;
 	}
 	
+	var getUserPhoto = pageCustomParams.tempModules.fns.getUserInfo;
+	
 	(function(dbo){
 		var condition = " Where ";
 		if ( pageCustomParams.keytype === "title" ){
-			condition += "instr(log_title, '" + pageCustomParams.keywird + "')";
+			condition += "instr(log_title, '" +  pageCustomParams.keyword + "')";
 		}else if ( pageCustomParams.keytype === "content" ){
-			condition += "instr(log_content, '" + pageCustomParams.keywird + "')";
-		}else if ( pageCustomParams.keytype === "tag" ){
-			
+			condition += "instr(log_content, '" +  pageCustomParams.keyword + "')";
 		}else{
-			condition += "instr(log_title, '" + pageCustomParams.keywird + "') or instr(log_content, '" + pageCustomParams.keywird + "')";
+			condition += "instr(log_title, '" +  pageCustomParams.keyword + "') or instr(log_content, '" +  pageCustomParams.keyword + "')";
 		}
 
-		var totalSum = Number(String(config.conn.Execute("Select count(id) From blog_article Where log_title like '%{" + pageCustomParams.id + "}%'")(0))),
+		var totalSum = Number(String(config.conn.Execute("Select count(id) From blog_article" + condition)(0))),
 			perpage = pageCustomParams.tempCaches.globalCache.articleperpagecount,
 			_mod = 0,
 			_pages = 0,
 			totalPages = 0,
 			sql = "";
+			
+		if ( totalSum === 0 ){
+			return;
+		}
 			
 		if ( totalSum < perpage ){ perpage = totalSum; }
 		_mod = totalSum % perpage;
@@ -109,19 +124,43 @@ try{
 		if ( pageCustomParams.page > totalPages ){ pageCustomParams.page = totalPages;}
 		
 		if ( pageCustomParams.page > _pages ){
-			sql = "Select top " + _mod + " * From blog_article Where log_tags like '%{" + pageCustomParams.id + "}%' Order By id ASC";
+			sql = "Select top " + _mod + " * From blog_article" + condition + " Order By id ASC";
 			sql = "Select * From (" + sql + ") Order By id DESC";
 		}else{
 			sql = "Select top " 
 				+ (pageCustomParams.page * perpage) 
-				+ " * From blog_article Where log_tags like '%{" + pageCustomParams.id + "}%' Order By id DESC";
+				+ " * From blog_article" + condition + " Order By id DESC";
 			sql = "Select * From (Select top " + perpage + " * From (" + sql + ") Order By id) Order By id DESC";
 		}
+
+		dbo.trave({
+			conn: config.conn,
+			sql: sql,
+			callback: function(){
+				this.each(function(){
+					pageCustomParams.found.lists.push({
+						id: this("id").value,
+						title: this("log_title").value,
+						postDate: this("log_posttime").value,
+						editDate: this("log_updatetime").value,
+						category: getCategoryName(this("log_category").value),
+						tags: getTags(this("log_tags").value),
+						content: this("log_shortcontent").value,
+						url: "article.asp?id=" + this("id").value,
+						views: this("log_views").value,
+						uid: getUserPhoto(this("log_uid").value),
+						istop: this("log_istop").value,
+						cover: this("log_cover").value,
+						comments: this("log_comments").value
+					});
+				});
+			}
+		});
 		
 		pageCustomParams.tempParams.pages = pageCustomParams.tempModules.fns.pageAnalyze(pageCustomParams.page, totalPages);
 		
 		if ( 
-			( pageCustomParams.tags.lists.length > 0 ) && 
+			( pageCustomParams.found.lists.length > 0 ) && 
 			( (pageCustomParams.tempParams.pages.to - pageCustomParams.tempParams.pages.from) > 0 ) 
 		){
 			for ( i = pageCustomParams.tempParams.pages.from ; i <= pageCustomParams.tempParams.pages.to ; i++ ){
@@ -134,25 +173,6 @@ try{
 				}				
 			}
 		}
-		
-		dbo.trave({
-			conn: config.conn,
-			sql: sql,
-			callback: function(){
-				this.each(function(){
-					pageCustomParams.tags.lists.push({
-						id: this("id").value,
-						title: this("log_title").value,
-						postDate: this("log_posttime").value,
-						editDate: this("log_updatetime").value,
-						category: getCategoryName(this("log_category").value),
-						tags: getTags(this("log_tags").value),
-						content: this("log_content").value,
-						url: "article.asp?id=" + this("id").value
-					});
-				});
-			}
-		});
 	})(pageCustomParams.tempModules.dbo);
 	
 				

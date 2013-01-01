@@ -42,7 +42,7 @@
 		</div></div>		
 <%
 }
-})(pageCustomParams.articles.lists, pageCustomParams.articles.pages);
+})(pageCustomParams.found.lists, pageCustomParams.found.pages);
 %>
     </div>
 

@@ -104,6 +104,10 @@ try{
 		}else{
 			totalSum = Number(String(config.conn.Execute("Select count(id) From blog_article")(0)));
 		}
+		
+		if ( totalSum === 0 ){
+			return;
+		}
 
 		if ( totalSum < perpage ){ perpage = totalSum; }
 		_mod = totalSum % perpage;

@@ -169,6 +169,10 @@ try{
 			totalPages = 0,
 			sql = "",
 			globalCommentAduit = pageCustomParams.tempCaches.globalCache.commentaduit === true;
+		
+		if ( totalSum === 0 ){
+			return;
+		}
 
 		if ( totalSum < perpage ){ perpage = totalSum; }
 		_mod = totalSum % perpage;

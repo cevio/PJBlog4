@@ -100,6 +100,10 @@ try{
 			totalPages = 0,
 			sql = "";
 			
+		if ( totalSum === 0 ){
+			return;
+		}
+			
 		pageCustomParams.tags.name = tagParams.name;
 			
 		if ( totalSum < perpage ){ perpage = totalSum; }
