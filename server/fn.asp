@@ -103,7 +103,9 @@ define(function(require, exports, module){
 		}
 		var reglist = [
 			[/\</g, "&#60;"],
-			[/\>/g, "&#62;"]
+			[/\>/g, "&#62;"],
+			[/\'/g, "&#39;"],
+			[/\"/g, "&#34;"]
 		];
 		
 		for ( var i = 0 ; i < reglist.length ; i++ ){
@@ -142,8 +144,10 @@ define(function(require, exports, module){
 			return "";
 		}
 		var reglist = [
-			[/&#60;/g, "<"],
-			[/&#62;/g, ">"]
+			[/\&\#60\;/g, "<"],
+			[/\&\#62\;/g, ">"],
+			[/\&\#39\;/g, "'"],
+			[/\&\#34\;/g, '"']
 		];
 		
 		for ( var i = 0 ; i < reglist.length ; i++ ){
