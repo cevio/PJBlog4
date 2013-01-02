@@ -3,6 +3,11 @@ define(['editor', 'form', 'overlay', 'upload'], function(require, exports, modul
 	
 	var sending = false;
 	
+	$.loading = function(options){
+		options.content = '<div class="dialog fn-clear"><div class="close"></div><div id="postingbox" style="width:250px; text-align: center; color: #777;">' + options.word + '</div></div>';
+		$.overlay(options);
+	}
+	
 	function init_choose_cates(){
 		
 		if ( $(".choose-current").size() > 0 ){
@@ -27,53 +32,64 @@ define(['editor', 'form', 'overlay', 'upload'], function(require, exports, modul
 	}
 	
 	function init_postArticle(){
+		function closeStatusBox(word){
+			$("#postingbox").html(word);
+			var _this = this;
+			setTimeout(function(){
+				$(_this).find(".close").trigger("click");
+			}, 2000);
+		}
+		
 		$("#submit").on("click", function(){
-			var content = $("textarea[name='log_content']").val();
-				content = init_articleCut(content, articleCut || 300);
-				content = init_autoCompleteHTMLCode(content);
-				
-			$("textarea[name='log_shortcontent']").val(content.replace(/\<textarea([\s\S]+?)\<\/textarea\>/ig, "&lt;textarea$1&lt;/textarea&gt;"));
-			
-			$("form").ajaxSubmit({
-				dataType: "json",
-				beforeSubmit: function(){
-					if ( sending === false ){
-						if ( $("input[name='log_title']").val().length === 0 ){
-							tipPopUp("亲，您还没有填写标题呢！");
-							return false;
-						}
+			$.loading({
+				effect: "deformationZoom", 
+				word: '正在收集数据...',
+				callback: function(){
+					var content = $("textarea[name='log_content']").val();
+						content = init_articleCut(content, articleCut || 300);
+						$("#postingbox").html("正在生成预览文本...");
+						content = init_autoCompleteHTMLCode(content),
+						_this = this;
 						
-						if ( $("input[name='log_category']").val().length === 0 ){
-							tipPopUp("亲，您还没有选择分类呢！");
-							return false;
+					$("#postingbox").html("正在插入预览文本资源...");
+					$("textarea[name='log_shortcontent']").val(content.replace(/\<textarea([\s\S]+?)\<\/textarea\>/ig, "&lt;textarea$1&lt;/textarea&gt;"));
+					
+					$("form").ajaxSubmit({
+						dataType: "json",
+						beforeSubmit: function(){
+							$("#postingbox").html("正在发送数据到服务器...");
+							
+							if ( $("input[name='log_title']").val().length === 0 ){
+								closeStatusBox.call(_this, "亲，您还没有填写标题呢！");
+								return false;
+							}
+							
+							if ( $("input[name='log_category']").val().length === 0 ){
+								closeStatusBox.call(_this, "亲，您还没有选择分类呢！");
+								return false;
+							}
+							
+							if ( $("textarea[name='log_content']").val().length === 0 ){
+								closeStatusBox.call(_this, "亲，您不打算写日志了吗？");
+								return false;
+							}
+						},
+						success: function(jsons){
+							if ( jsons && jsons.success ){
+								closeStatusBox.call(_this, "保存日志成功了。");
+								if ( $("form input[name='id']").val().length === 0 ) { 
+									$("form").resetForm();
+									$(".ui-position-tools").text("");
+									$(".choose-current").removeClass("choose-current");
+									$("input[name='log_category'], input[name='log_oldCategory']").val('');
+									$("#cover-img").attr("src", "_blank");
+									$("input[name='log_cover']").val("");
+								}
+							}else{
+								closeStatusBox.call(_this, jsons.error);
+							}
 						}
-						
-						if ( $("textarea[name='log_content']").val().length === 0 ){
-							tipPopUp("亲，您不打算写日志了吗？");
-							return false;
-						}
-						
-						sending = true;
-					}else{
-						tipPopUp("亲，请不要重复提交好吗？");
-						return false;
-					}
-				},
-				success: function(jsons){
-					sending = false;
-					if ( jsons && jsons.success ){
-						tipPopUp("保存日志成功了。");
-						if ( $("form input[name='id']").val().length === 0 ) { 
-							$("form").resetForm();
-							$(".ui-position-tools").text("");
-							$(".choose-current").removeClass("choose-current");
-							$("input[name='log_category'], input[name='log_oldCategory']").val('');
-							$("#cover-img").attr("src", "_blank");
-							$("input[name='log_cover']").val("");
-						}
-					}else{
-						tipPopUp(jsons.error);
-					}
+					});
 				}
 			});
 		});
