@@ -28,7 +28,7 @@
 	<div class="comment fn-right">
     	<ul class="lists">
        	<%
-			var aduitCount = Number(String(config.conn.Execute("Select * From blog_comment Where commentaudit<>true")(0))),
+			var aduitCount = Number(String(config.conn.Execute("Select count(id) From blog_comment Where commentaudit<>true")(0))),
 				sql = "";
 			
 			if ( aduitCount > 0 ){

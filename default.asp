@@ -117,9 +117,9 @@ try{
 
 		if ( pageCustomParams.page > _pages ){
 			if ( pageCustomParams.cateID > 0 ){
-				sql = "Select top " + _mod + " * From blog_article Where log_category=" + pageCustomParams.cateID + " Order By id ASC";
+				sql = "Select top " + _mod + " * From blog_article Where log_category=" + pageCustomParams.cateID + " Order By id ASC, log_istop DESC";
 			}else{	
-				sql = "Select top " + _mod + " * From blog_article Order By id ASC";
+				sql = "Select top " + _mod + " * From blog_article Order By id ASC, log_istop DESC";
 			}
 			sql = "Select * From (" + sql + ") Order By id DESC";
 		}else{
@@ -128,11 +128,11 @@ try{
 					+ (pageCustomParams.page * perpage) 
 					+ " * From blog_article Where log_category=" 
 					+ pageCustomParams.cateID 
-					+ " Order By id DESC, log_istop DESC";
+					+ " Order By id DESC";
 			}else{
 				sql = "Select top " 
 					+ (pageCustomParams.page * perpage) 
-					+ " * From blog_article Order By id DESC, log_istop DESC";
+					+ " * From blog_article Order By id DESC";
 			}
 			sql = "Select * From (Select top " + perpage + " * From (" + sql + ") Order By id) Order By id DESC";
 		}
@@ -159,6 +159,12 @@ try{
 					});
 				});
 			}
+		});
+		
+		pageCustomParams.articles.lists = pageCustomParams.articles.lists.sort(function(A, B){
+			var a = A.istop ? 1 : 0, 
+				b = B.istop ? 1 : 0;
+			return b - a;
 		});
 		
 		pageCustomParams.tempParams.pages = pageCustomParams.tempModules.fns.pageAnalyze(pageCustomParams.page, totalPages);
