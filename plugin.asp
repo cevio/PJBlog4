@@ -1,66 +1,76 @@
 <!--#include file="config.asp" -->
 <%
-	var mark = http.get("mark");
-	
-	// '加载用户登入状态
-	require("status");
-	
-	// '加载全局变量模块
+try{
+	pageCustomParams.tempModules.cache = require("cache");
+	pageCustomParams.tempModules.dbo = require("DBO");
+	pageCustomParams.tempModules.connect = require("openDataBase");
+	pageCustomParams.tempModules.fns = require("fn");
+	pageCustomParams.tempModules.sap = require("sap");
 	pageCustomParams.tempCaches.globalCache = require("cache_global");
+	pageCustomParams.tempCaches.fso = require("FSO");
+	
+	if ( !pageCustomParams.tempCaches.globalCache.webstatus ){
+		ConsoleClose("抱歉，网站暂时被关闭。");
+	}
+	
+	if ( pageCustomParams.tempModules.connect !== true ){
+		ConsoleClose("连接数据库失败");
+	}
+	
+	require("status")();
+	
+	pageCustomParams.mark = http.get("mark");
+	if ( !pageCustomParams.mark || pageCustomParams.mark.length === 0 ){
+		ConsoleClose("参数不正确");
+	};
 	
 	pageCustomParams.page = http.get("page");
 	if ( pageCustomParams.page.length === 0 ){ 
 		pageCustomParams.page = 1; 
 	}else{
-		pageCustomParams.page = Number(pageCustomParams.page);
-		if ( pageCustomParams.page < 1 ){
-			pageCustomParams.page = 1;
-		}
-	}
-	
-	var cache = require("cache"),
-		categoryCacheData = cache.load("category"),
-		categoryJSON = categoryCacheData.list,
-		categoryArray = categoryCacheData.arrays;
-	// '排序
-	categoryArray = categoryArray.sort(function( A, B ){
-		return A.order > B.order;
-	});
-
-	pageCustomParams.categorys = categoryArray;
-	
-	var assetsPluginCustom = require("pluginCustom"),
-		AllPluginLists = assetsPluginCustom.pluginCache(),
-		thisPluginInfo = {};
-		
-	if ( AllPluginLists[mark] === undefined ){
-		console.log("未找到该插件");
-	}else{
-		thisPluginInfo = AllPluginLists[mark];
-		
-		if ( thisPluginInfo.pluginstatus === true ){
-			var fso = require("FSO"),
-				pluginWebPath = "profile/themes/" + pageCustomParams.global.theme + "/" + thisPluginInfo.pluginwebpage,
-				pluginProcyPath = "profile/plugins/" + thisPluginInfo.pluginfolder + "/proxy.asp";	
-			if ( fso.exsit(pluginProcyPath) === true ){
-				
-				// '重要参数
-				pageCustomParams.webData = require(pluginProcyPath);
-				pageCustomParams.configData = assetsPluginCustom.configCache(thisPluginInfo.id);
-				pageCustomParams.pluginFolder = "profile/plugins/" + thisPluginInfo.pluginfolder;
-				
-				if ( fso.exsit(pluginWebPath) ){
-					include(pluginWebPath);
-				}else{
-					console.log("插件页面文件不存在");
-				}
-				
-			}else{
-				console.log("插件数据接口文件不存在");
+		if ( !isNaN( pageCustomParams.page ) ){
+			pageCustomParams.page = Number(pageCustomParams.page);
+			if ( pageCustomParams.page < 1 ){
+				pageCustomParams.page = 1;
 			}
 		}else{
-			console.log("插件已被停用");
+			ConsoleClose("page params error.");
 		}
+	};
+	
+	pageCustomParams.tempParams.category = require("cache_category");
+	pageCustomParams.plugin = {};
+	pageCustomParams.tempParams.pluginWebPath = "";
+	pageCustomParams.tempParams.pluginProxyPath = "";
+	
+	(function(mark, cache, global, fso){
+		var assetsPluginCustom = require("pluginCustom"),
+			AllPluginLists = assetsPluginCustom.pluginCache(),
+			thisPluginInfo = {};
+		
+		if ( AllPluginLists[mark] === undefined ){
+			ConsoleClose("未找到插件，请确认该插件是否已经被安装。");
+			return;
+		}else{
+			thisPluginInfo = AllPluginLists[mark];
+			if ( thisPluginInfo.pluginstatus === true ){
+				pageCustomParams.tempParams.pluginWebPath = "profile/themes/" + global.theme + "/" + thisPluginInfo.pluginwebpage,
+				pageCustomParams.tempParams.pluginProxyPath = "profile/plugins/" + thisPluginInfo.pluginfolder + "/proxy.asp";	
+				pageCustomParams.plugin.configData = assetsPluginCustom.configCache(thisPluginInfo.id);
+				pageCustomParams.plugin.folder = "profile/plugins/" + thisPluginInfo.pluginfolder;
+				if ( fso.exsit(pageCustomParams.tempParams.pluginProxyPath) ){ 
+					pageCustomParams.plugin.webData = require(pageCustomParams.tempParams.pluginProxyPath); 
+				}
+			}else{
+				ConsoleClose("插件已被停用");
+			}
+		}	
+	})(pageCustomParams.mark, pageCustomParams.tempModules.cache, pageCustomParams.tempCaches.globalCache, pageCustomParams.tempCaches.fso);
+	
+	if ( pageCustomParams.tempCaches.fso.exsit(pageCustomParams.tempParams.pluginWebPath) ){
+		include(pageCustomParams.tempParams.pluginWebPath);
+	}else{
+		ConsoleClose("插件页面文件不存在");
 	}
 	
 	delete pageCustomParams.tempCaches;
@@ -68,4 +78,6 @@
 	delete pageCustomParams.tempParams;
 	
 	CloseConnect();
-%>
+}catch(e){
+	ConsoleClose(e.message);
+}

@@ -36,9 +36,9 @@ http.service(function( req, dbo, sap ){
 		}
 		
 		if ( commentvaildor === "1" ){
-			commentaduit = true;
+			commentvaildor = true;
 		}else{
-			commentaduit = false;
+			commentvaildor = false;
 		}
 		
 		if ( isNaN(commentdelaytimer) ){
