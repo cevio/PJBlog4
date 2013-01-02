@@ -28,9 +28,18 @@
 	<div class="comment fn-right">
     	<ul class="lists">
        	<%
+			var aduitCount = Number(String(config.conn.Execute("Select * From blog_comment Where commentaudit<>true")(0))),
+				sql = "";
+			
+			if ( aduitCount > 0 ){
+				sql = "Select * From blog_comment Where commentaudit<>true Order By commentpostdate DESC";
+			}else{
+				sql = "Select * From blog_comment Order By commentpostdate DESC";
+			}
+			
 			dbo.trave({
 				conn: config.conn,
-				sql: "Select top 5 * From blog_comment Where commentaudit<>true Order By commentpostdate DESC",
+				sql: sql,
 				callback: function(){
 					this.each(function(){
 						var user = this("commentuserid").value,
