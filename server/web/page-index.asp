@@ -30,7 +30,7 @@
        	<%
 			dbo.trave({
 				conn: config.conn,
-				sql: "Select top 5 * From blog_comment Order By commentpostdate DESC",
+				sql: "Select top 5 * From blog_comment Where commentaudit<>true Order By commentpostdate DESC",
 				callback: function(){
 					this.each(function(){
 						var user = this("commentuserid").value,

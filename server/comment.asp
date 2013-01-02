@@ -40,6 +40,10 @@
 				}
 			});
 			
+			if ( config.user.admin === true && Number(rets.commentid) > 0 ){
+				config.conn.Execute("UPDATE blog_comment SET commentaudit=true Where id=" + rets.commentid);
+			}
+			
 			config.conn.Execute("UPDATE blog_article SET log_comments=log_comments+1 Where id=" + logid);
 			config.conn.Execute("UPDATE blog_global SET totalcomments=totalcomments+1 Where id=1");
 

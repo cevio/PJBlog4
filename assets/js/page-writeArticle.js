@@ -88,6 +88,9 @@ define(['editor', 'form', 'overlay', 'upload'], function(require, exports, modul
 							}else{
 								closeStatusBox.call(_this, jsons.error);
 							}
+						},
+						error: function(){
+							closeStatusBox.call(_this, "保存日志遇到错误，可能由于你发表的文章内容过长。");
 						}
 					});
 				}
