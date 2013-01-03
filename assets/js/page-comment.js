@@ -53,8 +53,10 @@ define(['form', 'overlay'], function(require, exports, module){
 				},
 				success: function( params ){
 					if ( params.success ){
+						var status = $(".pedit").data("status");
 						var _htmls = '<li class="comment-li" data-id="' + params.data.id + '" data-logid="' + logid + '">'
 						+				'<div class="comment-zone fn-clear">'
+						+					'<span class="p-checked fn-left ' + (status ? "p-show": "") + '"><input type="checkbox" value="' + params.data.id + '" name="ids" /></span>'
 						+					'<div class="comment-photo fn-left">'
 						+						'<div class="user-photo ui-wrapshadow"><img src="' + params.data.photo + '" /></div>'
 						+					'</div>'
@@ -81,7 +83,9 @@ define(['form', 'overlay'], function(require, exports, module){
 						var thisLi = parentli.find(".comment-children").find("li:first");
 						$form.find(".close").trigger("click");
 						thisLi.hide();
-						thisLi.slideDown("fast");
+						thisLi.slideDown("fast", function(){
+							parentli.find(".comment-zone:first .comment-context .ac-aduit").removeClass("ac-aduit").addClass("ac-noaduit").text("取消");
+						});
 					}else{
 						popUpTips(params.error);
 					}
@@ -91,12 +95,12 @@ define(['form', 'overlay'], function(require, exports, module){
 	}
 	
 	function destory(){
-		$("body").on("click", ".ac-del", function(){
+		$("body").on("click", ".ac-del", function(event, callback){
 			if ( making === true ){
 				return;
 			}
 			
-			if ( confirm("确定删除这条评论？") ){
+			function doDel(){
 				making = true;
 				
 				var parentli = $(this).parents("li:first"),
@@ -111,6 +115,7 @@ define(['form', 'overlay'], function(require, exports, module){
 						parentli.slideUp("fast", function(){
 							$(this).remove();
 							making = false;
+							$.isFunction(callback) && callback();
 						});
 					}else{
 						popUpTips(params.error);
@@ -119,11 +124,19 @@ define(['form', 'overlay'], function(require, exports, module){
 					}
 				});
 			}
+			
+			if ( callback ){
+				doDel.call(this)
+			}else{
+				if ( confirm("确定删除这条评论？") ){
+					doDel.call(this);
+				}
+			}
 		});
 	}
 	
 	function passAduit(){
-		$("body").on("click", ".ac-aduit", function(){
+		$("body").on("click", ".ac-aduit", function(event, callback){
 			if ( making === true ){
 				return;
 			}
@@ -142,6 +155,7 @@ define(['form', 'overlay'], function(require, exports, module){
 					setTimeout(function(){
 						$(_this).removeClass("ac-aduit").addClass("ac-noaduit").text("取消");
 						making = false;
+						$.isFunction(callback) && callback();
 					}, 500);
 				}else{
 					popUpTips(params.error);
@@ -153,7 +167,7 @@ define(['form', 'overlay'], function(require, exports, module){
 	}
 	
 	function unPassAduit(){
-		$("body").on("click", ".ac-noaduit", function(){
+		$("body").on("click", ".ac-noaduit", function(event, callback){
 			if ( making === true ){
 				return;
 			}
@@ -172,6 +186,7 @@ define(['form', 'overlay'], function(require, exports, module){
 					setTimeout(function(){
 						$(_this).removeClass("ac-noaduit").addClass("ac-aduit").text("通过");
 						making = false;
+						$.isFunction(callback) && callback();
 					}, 500);
 				}else{
 					popUpTips(params.error);
@@ -182,6 +197,133 @@ define(['form', 'overlay'], function(require, exports, module){
 		});
 	}
 	
+	function openCheckbox(){
+		$(".pedit").on("click", function(){
+			var status = $(this).data("status");
+			if ( status ){
+				$(".p-checked").removeClass("p-show");
+				$(this).data("status", false);
+				closePeditList();
+			}else{
+				$(".p-checked").addClass("p-show");
+				$(this).data("status", true);
+				openPeditList.call(this);
+			}
+		});
+	}
+	
+	function openPeditList(){
+		var div = document.createElement("div");
+		$(div).appendTo("body");
+		var $div = $(div);
+		
+		$div
+			.addClass("peditlist")
+			.addClass("ui-wrapshadow")
+			.html('<a href="javascript:;" id="pdel">批量删除</a><a href="javascript:;" id="paduit">批量通过</a><a href="javascript:;" id="punaduit">批量取消通过</a>');
+		
+		var offsets = $(this).offset();
+		var height = $(this).outerHeight();
+		$div.css({
+			top: (offsets.top + height + 8) + "px",
+			left: (offsets.left - ( $div.outerWidth() - $(this).outerWidth() )) + "px"
+		});
+	}
+	
+	function closePeditList(){
+		$(".peditlist").slideUp("fast", function(){
+			$(this).remove();
+		});
+	}
+	
+	function closeStatusBox(word){
+		$("#postingbox").html(word);
+		var _this = this;
+		setTimeout(function(){
+			$(_this).find(".close").trigger("click");
+		}, 2000);
+	}
+	
+	function pdel(){
+		$("body").on("click", "#pdel", function(){
+			var status = $(".pedit").data("status");
+			if ( status ){
+				var ids = [],
+					$elements = $(".p-checked").find("input[name='ids']"),
+					pocks = [];
+					
+				$elements.each(function(){
+					if ( $(this).attr("checked") ){
+						pocks.push(this);
+					}
+				});
+
+				if ( pocks.length > 0 ){
+					$.loading({
+						effect: "deformationZoom", 
+						word: '正在发送数据..',
+						callback: function(){
+							var _this = this;
+							if ( confirm("确定删除这些评论？") ){
+								pedit(pocks, ".ac-del", 0, function(){
+									closeStatusBox.call(_this, "删除完毕");
+								});
+							}
+						}
+					});
+				}
+			}
+		});
+	}
+	
+	function pAction(elements, types, str){
+		$("body").on("click", elements, function(){
+			var status = $(".pedit").data("status");
+			if ( status ){
+				var ids = [],
+					$elements = $(".p-checked").find("input[name='ids']"),
+					pocks = [];
+					
+				$elements.each(function(){
+					if ( $(this).attr("checked") ){
+						pocks.push(this);
+					}
+				});
+
+				if ( pocks.length > 0 ){
+					$.loading({
+						effect: "deformationZoom", 
+						word: '正在发送数据..',
+						callback: function(){
+							var _this = this;
+							if ( confirm("确定这么做？") ){
+								pedit(pocks, types, 0, function(){
+									closeStatusBox.call(_this, str);
+								});
+							}
+						}
+					});
+				}
+			}
+		});
+	}
+	
+	function pedit(arr, type, i, callback){
+		if ( i === undefined ){ i = 0; }
+		if ( arr[i] !== undefined ){
+			var k = $(arr[i]).parent().next().next().find(type);
+			if ( k.size() > 0 ){
+				k.trigger("click", function(){
+					pedit(arr, type, i + 1, callback);
+				});
+			}else{
+				pedit(arr, type, i + 1, callback);
+			}
+		}else{
+			$.isFunction(callback) && callback();
+		}
+	}
+	
 	return {
 		init: function(){
 			$(function(){
@@ -189,6 +331,10 @@ define(['form', 'overlay'], function(require, exports, module){
 				destory();
 				passAduit();
 				unPassAduit();
+				openCheckbox();
+				pAction("#pdel", ".ac-del", "全部删除完毕");
+				pAction("#paduit", ".ac-aduit", "全部通过完毕");
+				pAction("#punaduit", ".ac-noaduit", "全部取消完毕");
 			});
 		}
 	}

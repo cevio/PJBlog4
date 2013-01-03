@@ -134,5 +134,10 @@ define(function(require, exports, module){
 		$.overlay(options);
 	}
 	
+	$.loading = function(options){
+		options.content = '<div class="dialog fn-clear"><div class="close"></div><div id="postingbox" style="width:250px; text-align: center; color: #777;">' + options.word + '</div></div>';
+		$.overlay(options);
+	}
+	
 	return overlay;
 });

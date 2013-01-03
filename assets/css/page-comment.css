@@ -7,7 +7,7 @@ li.comment-li{ margin-bottom:20px;}
 .comment-zone .comment-photo{}
 .comment-zone .comment-photo .user-photo{ background:#fff; width:50px; height:50px; padding:5px; overflow:hidden;}
 .comment-zone .comment-photo .user-photo img{ width:50px; height:50px; border-radius:3px;}
-.comment-zone .comment-context{ margin-left:80px;}
+.comment-zone .comment-context{ margin-left:100px;}
 .comment-zone .comment-context .comment-content{}
 .comment-zone .comment-context .comment-content .comment-name{ height:22px; line-height:22px;}
 .comment-zone .comment-context .comment-content .comment-word{ line-height:18px;}
@@ -19,7 +19,7 @@ li.comment-li{ margin-bottom:20px;}
 .comment-children .comment-children-area li.comment-li{ padding-bottom:10px; margin-bottom:0px;}
 .comment-children .comment-children-area li.comment-li .user-photo{ border:1px solid #eee; width:30px; height:30px;}
 .comment-children .comment-children-area li.comment-li .user-photo img{ width:30px; height:30px;}
-.comment-children .comment-children-area li.comment-li .comment-context{ margin-left:60px;}
+.comment-children .comment-children-area li.comment-li .comment-context{ margin-left:80px;}
 
 .replyBox{ background:#fff; padding:10px 20px; margin-top:5px; width:500px;}
 .replyBox .replyArea{}
@@ -28,3 +28,21 @@ li.comment-li{ margin-bottom:20px;}
 .replyBox .replyArea .reply-submit{ margin-top:10px;}
 .replyBox .replyArea .reply-submit span.reply-info{ margin-left:10px; color:#F30;}
 .replyBox .replyArea .reply-submit input{ margin-right:2px;}
+.p-checked{ margin-right:10px; margin-top:20px; visibility:hidden;}
+.comment-children-area .p-checked{ margin-top:15px;}
+.p-show{ visibility:visible;}
+.peditlist{ position:absolute; background:#fff; padding:5px 5px;}
+.peditlist a{ display:block; height:20px; line-height:20px;}
+.peditlist:before{
+	content:"";
+	position: absolute;
+	right: 6px;
+	top:-6px;
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-bottom: 6px solid #fff;
+	border-right: 5px solid transparent;
+}
+.peditlist a:link, .peditlist a:visited{ color:#2BA09E;}
+.peditlist a:hover{ color:#CF4467;}

@@ -78,16 +78,26 @@
 				count = 0;
 			
 			try{
+				var rooids = [];
+				
 				dbo.trave({
 					conn: config.conn,
 					sql: "select * From blog_comment Where commentid=" + id,
 					callback: function(rs){
 						if ( rs.Bof || rs.Eof ){}else{
-							rs.Delete();
-							count++;
+							this.each(function(){
+								rooids.push(this("id").value);
+							});
 						}
 					}
 				});
+				
+				if ( rooids.length > 0 ){
+					for ( var i = 0 ; i < rooids.length ; i++ ){
+						config.conn.Execute("Delete From blog_comment Where id=" + rooids[i]);
+						count++;
+					}
+				}
 
 				config.conn.Execute("Delete From blog_comment Where id=" + id);
 				count++;

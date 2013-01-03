@@ -1,6 +1,6 @@
 <div class="ui-position fn-clear">
   <div class="fn-left ui-position-title">评论管理</div>
-  <div class="fn-right ui-position-tools"></div>
+  <div class="fn-right ui-position-tools"><a href="javascript:;" class="pedit">批量编辑</a></div>
 </div>
 <div class="ui-context">
 <%
@@ -62,6 +62,7 @@
 %>
 		<li class="comment-li comment-root" data-id="<%=this("id").value%>" data-logid="<%=this("commentlogid").value%>">
         	<div class="comment-zone fn-clear">
+            	<span class="p-checked fn-left"><input type="checkbox" value="<%=this("id").value%>" name="ids" /></span>
             	<div class="comment-photo fn-left">
                 	<div class="user-photo ui-wrapshadow"><img src="<%=userData.photo%>" /></div>
                 </div>
@@ -119,6 +120,7 @@
 				%>
                 	<li class="comment-li" data-id="<%=this("id").value%>" data-logid="<%=this("commentlogid").value%>">
                     	<div class="comment-zone fn-clear">
+                        	<span class="p-checked fn-left"><input type="checkbox" value="<%=this("id").value%>" name="ids" /></span>
                             <div class="comment-photo fn-left">
                                 <div class="user-photo ui-wrapshadow"><img src="<%=_userData.photo%>" /></div>
                             </div>

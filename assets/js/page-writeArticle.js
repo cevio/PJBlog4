@@ -3,11 +3,6 @@ define(['editor', 'form', 'overlay', 'upload'], function(require, exports, modul
 	
 	var sending = false;
 	
-	$.loading = function(options){
-		options.content = '<div class="dialog fn-clear"><div class="close"></div><div id="postingbox" style="width:250px; text-align: center; color: #777;">' + options.word + '</div></div>';
-		$.overlay(options);
-	}
-	
 	function init_choose_cates(){
 		
 		if ( $(".choose-current").size() > 0 ){
