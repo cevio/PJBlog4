@@ -226,7 +226,7 @@ define(['form', 'overlay'], function(require, exports, module){
 		var height = $(this).outerHeight();
 		$div.css({
 			top: (offsets.top + height + 8) + "px",
-			left: (offsets.left - ( $div.outerWidth() - $(this).outerWidth() )) + "px"
+			left: (offsets.left + $(this).outerWidth() - $div.outerWidth()) + "px"
 		});
 	}
 	

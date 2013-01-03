@@ -34,7 +34,7 @@
 			if ( aduitCount > 0 ){
 				sql = "Select * From blog_comment Where commentaudit<>true Order By commentpostdate DESC";
 			}else{
-				sql = "Select * From blog_comment Order By commentpostdate DESC";
+				sql = "Select top 5 * From blog_comment Order By commentpostdate DESC";
 			}
 			
 			dbo.trave({
