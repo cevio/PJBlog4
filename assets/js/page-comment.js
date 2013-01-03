@@ -244,38 +244,6 @@ define(['form', 'overlay'], function(require, exports, module){
 		}, 2000);
 	}
 	
-	function pdel(){
-		$("body").on("click", "#pdel", function(){
-			var status = $(".pedit").data("status");
-			if ( status ){
-				var ids = [],
-					$elements = $(".p-checked").find("input[name='ids']"),
-					pocks = [];
-					
-				$elements.each(function(){
-					if ( $(this).attr("checked") ){
-						pocks.push(this);
-					}
-				});
-
-				if ( pocks.length > 0 ){
-					$.loading({
-						effect: "deformationZoom", 
-						word: '正在发送数据..',
-						callback: function(){
-							var _this = this;
-							if ( confirm("确定删除这些评论？") ){
-								pedit(pocks, ".ac-del", 0, function(){
-									closeStatusBox.call(_this, "删除完毕");
-								});
-							}
-						}
-					});
-				}
-			}
-		});
-	}
-	
 	function pAction(elements, types, str){
 		$("body").on("click", elements, function(){
 			var status = $(".pedit").data("status");
@@ -300,6 +268,8 @@ define(['form', 'overlay'], function(require, exports, module){
 								pedit(pocks, types, 0, function(){
 									closeStatusBox.call(_this, str);
 								});
+							}else{
+								closeStatusBox.call(_this, "正在取消...");
 							}
 						}
 					});
