@@ -81,3 +81,4 @@ try{
 }catch(e){
 	ConsoleClose(e.message);
 }
+%>
