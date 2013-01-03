@@ -19,11 +19,14 @@ define(['form', 'overlay'], function(require, exports, module){
 			making = true;
 			var parentli = $(this).parents("li.comment-root:first"),
 				id = parentli.attr("data-id"),
-				logid = parentli.attr("data-logid");
+				logid = parentli.attr("data-logid"),
+				self = $(this).attr("data-id"),
+				_this = this;
 				
 			var html = 	'<form action="' + config.ajaxUrl.server.replyComment + '" method="post" style="margin:0;padding:0;">'
 				+			'<input type="hidden" name="id" value="' + id + '" />'
 				+			'<input type="hidden" name="logid" value="' + logid + '" />'
+				+			'<input type="hidden" name="self" value="' + self + '" />'
 				+			'<div class="replyArea">'
 				+				'<div class="reply-title">回复该评论</div>'
 				+				'<div class="reply-content"><textarea name="content"></textarea></div>'
@@ -85,6 +88,7 @@ define(['form', 'overlay'], function(require, exports, module){
 						thisLi.hide();
 						thisLi.slideDown("fast", function(){
 							parentli.find(".comment-zone:first .comment-context .ac-aduit").removeClass("ac-aduit").addClass("ac-noaduit").text("取消");
+							$(_this).parent().find(".ac-aduit").removeClass("ac-aduit").addClass("ac-noaduit").text("取消");
 						});
 					}else{
 						popUpTips(params.error);

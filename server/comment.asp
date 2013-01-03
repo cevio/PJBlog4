@@ -6,6 +6,7 @@
 		
 		this.reply = function(){
 			var id = req.form.id,
+				self = req.form.self,
 				logid = req.form.logid,
 				content = fns.HTMLStr(fns.SQLStr(req.form.content)),
 				_id = 0,
@@ -42,6 +43,10 @@
 			
 			if ( config.user.admin === true && Number(rets.commentid) > 0 ){
 				config.conn.Execute("UPDATE blog_comment SET commentaudit=true Where id=" + rets.commentid);
+			}
+			
+			if ( self.length > 0 && !isNaN(self) ){
+				config.conn.Execute("UPDATE blog_comment SET commentaudit=true Where id=" + self);
 			}
 			
 			config.conn.Execute("UPDATE blog_article SET log_comments=log_comments+1 Where id=" + logid);

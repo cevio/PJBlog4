@@ -130,7 +130,10 @@ http.service(function( req, dbo, sap ){
 			data: {
 				cate_name: name,
 				cate_root: Number(root),
-				cate_icon: icon
+				cate_icon: icon,
+				cate_show: false,
+				cate_info: "这家伙很懒，没有留下分类介绍。",
+				cate_order: 99
 			},
 			table: "blog_category",
 			conn: config.conn,

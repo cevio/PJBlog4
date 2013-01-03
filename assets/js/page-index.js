@@ -62,6 +62,7 @@ define(['overlay', 'form'],function(require, exports, module){
 	function ajaxReply(){
 		$("body").on("click", ".action-reply", function(){
 			var root = $(this).attr("data-root"),
+				id = $(this).attr("data-id"),
 				logid = $(this).attr("data-logid"),
 				replybox = $(this).parent().next();
 				
@@ -71,7 +72,7 @@ define(['overlay', 'form'],function(require, exports, module){
 				+			'<div class="masker">'
 				+				'<div class="replyarea">'
 				+					'<form action="' + config.ajaxUrl.server.replyComment + '" method="post" style="margin:0px; padding: 0px;">'
-				+						'<input type="hidden" name="id" value="' + root + '" /><input type="hidden" value="' + logid + '" name="logid" />'
+				+						'<input type="hidden" name="id" value="' + root + '" /><input type="hidden" value="' + logid + '" name="logid" /><input type="hidden" name="self" value="' + id + '" />'
 				+						'<div class="replycontent"><textarea name="content" placeholder="填写回复内容"></textarea></div>'
 				+						'<div class="replyaction"><input type="submit" value="保存" class="button" /> <input type="button" value="取消" class="button closereply"></div>'
 				+					'</form>'
