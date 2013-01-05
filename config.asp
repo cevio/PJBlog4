@@ -8,11 +8,11 @@
  * 可以通过这里的设置对全局网站有关功能开启和关闭以及数据库路径的修改。
  * 具体参见各项说明。
  */
-	config.debug = true; // 是否开启DEBUG模式
+	config.debug = false; // 是否开启DEBUG模式
 	config.useApp = true; // 是否使用APP
 	config.cacheAccess = "profile/caches"; // 缓存文件夹名
 	config.platform = "http://platform.pjhome.net";
-	config.version = "4.0.0.366";
+	config.version = "4.0.0.370";
 	
 /*
  * 网站模块映射
