@@ -53,7 +53,8 @@ define(function(require, exports, module){
 			sql: "Select " + arr.join(",") + " From blog_category Where cate_show=False",
 			callback: function( cacheData ){
 				var jsons = {},
-					arrays = [];
+					arrays = [],
+					orders = {};
 
 				for ( var i = 0 ; i < cacheData.length ; i++ ){
 					var items = cacheData[i], id = items[0], cate_name = items[1], cate_info = items[2], 
@@ -64,6 +65,8 @@ define(function(require, exports, module){
 						order: order, root: cate_root };
 
 					sap.proxy("cache.category.jsons", [js]);
+					
+					orders[js.id + ""] = js;
 					
 					if ( js.root === 0 ){
 						if ( jsons[js.id + ""] === undefined ){
@@ -90,7 +93,7 @@ define(function(require, exports, module){
 					arrays: arrays.sort(function(a, b){
 						return a.order - b.order;
 					}),
-					list: jsons
+					list: orders
 				};
 			}
 		};
