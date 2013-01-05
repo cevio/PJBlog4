@@ -194,7 +194,7 @@ try{
 			var commentReplyList = [];
 			dbo.trave({
 				conn: config.conn,
-				sql: "Select * From blog_comment Where commentid=" + root + " And commentlogid=" + pageCustomParams.article.id + " Order By commentpostdate DESC",
+				sql: "Select * From blog_comment Where commentid=" + root + " And commentlogid=" + pageCustomParams.article.id + " Order By commentpostdate ASC",
 				callback: function(){
 					this.each(function(){
 						var canpush = true;

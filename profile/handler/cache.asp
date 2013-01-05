@@ -1,10 +1,14 @@
 <%
 define(function(require, exports, module){
+	var sap = require.async("sap");
+
 	exports["global"] = function(){
+		var arr = ["title", "website", "description", "theme", "style", "nickname", "webstatus", "articleprivewlength", "articleperpagecount", "webdescription", "webkeywords", "authoremail", "seotitle", "themename", "themeauthor", "themewebsite", "themeemail", "themeversion", "commentaduit", "commentperpagecount", "gravatarS", "gravatarR", "gravatarD", "binarywhitelist", "canregister", "totalarticles", "totalcomments", "commentdelaytimer", "commentvaildor", "commentmaxlength"];
+		sap.proxy("cache.global.array", [arr]);
 		return {
-			sql: "Select title, website, description, theme, style, nickname, webstatus, articleprivewlength, articleperpagecount, webdescription, webkeywords, authoremail, seotitle, themename, themeauthor, themewebsite, themeemail, themeversion, commentaduit, commentperpagecount, gravatarS, gravatarR, gravatarD, binarywhitelist, canregister, totalarticles, totalcomments, commentdelaytimer, commentvaildor, commentmaxlength From blog_global Where id=1",
+			sql: "Select " + arr.join(",") + " From blog_global Where id=1",
 			callback: function( cacheData ){
-				return {
+				var rets = {
 					title: cacheData[0][0],
 					website: cacheData[0][1],
 					description: cacheData[0][2],
@@ -35,109 +39,78 @@ define(function(require, exports, module){
 					commentdelaytimer: cacheData[0][27],
 					commentvaildor: cacheData[0][28],
 					commentmaxlength: cacheData[0][29]
-				}
+				};
+				sap.proxy("cache.global.jsons", [rets]);
+				return rets;
 			}
 		};
 	}
 	
 	exports["category"] = function(){
+		var arr = ["id", "cate_name", "cate_info", "cate_root", "cate_count", "cate_icon", "cate_outlink", "cate_outlinktext", "cate_order"];
+		sap.proxy("cache.category.array", [arr]);
 		return {
-			sql: "Select id, cate_name, cate_info, cate_root, cate_count, cate_icon, cate_outlink, cate_outlinktext, cate_order From blog_category Where cate_show=False",
+			sql: "Select " + arr.join(",") + " From blog_category Where cate_show=False",
 			callback: function( cacheData ){
 				var jsons = {},
-					orders = {},
 					arrays = [];
-					
+
 				for ( var i = 0 ; i < cacheData.length ; i++ ){
-					var items = cacheData[i],
-						id = items[0],
-						cate_name = items[1],
-						cate_info = items[2],
-						cate_root = items[3],
-						cate_count = items[4],
-						cate_icon = "profile/icons/" + items[5],
-						cate_outlink = items[6],
-						cate_outlinktext = items[7],
-						order = items[8];
+					var items = cacheData[i], id = items[0], cate_name = items[1], cate_info = items[2], 
+						cate_root = items[3], cate_count = items[4], cate_icon = "profile/icons/" + items[5], 
+						cate_outlink = items[6], cate_outlinktext = items[7], order = items[8];
+						
+					var js = { id: id, name: cate_name, info: cate_info, count: cate_count, icon: cate_icon, link: cate_outlink ? cate_outlinktext : "default.asp?c=" + id,
+						order: order, root: cate_root };
+
+					sap.proxy("cache.category.jsons", [js]);
 					
-					orders[id + ""] = {
-						id: id,
-						name: cate_name,
-						info: cate_info,
-						count: cate_count, 
-						icon: cate_icon,
-						link: cate_outlink ? cate_outlinktext : "default.asp?c=" + id,
-						order: order
-					};
-					
-					if ( cate_root === 0 ){
-						if ( jsons[id + ""] === undefined ){
-							jsons[id + ""] = {
-								id: id,
-								name: cate_name,
-								info: cate_info,
-								count: cate_count, 
-								icon: cate_icon,
-								link: cate_outlink ? cate_outlinktext : "default.asp?c=" + id,
-								order: order,
-								childrens: []
-							};
+					if ( js.root === 0 ){
+						if ( jsons[js.id + ""] === undefined ){
+							jsons[js.id + ""] = js;
+							jsons[js.id + ""].childrens = [];
 						}else{
-							jsons[id + ""].id = id;
-							jsons[id + ""].name = cate_name;
-							jsons[id + ""].info = cate_info;
-							jsons[id + ""].count = cate_count;
-							jsons[id + ""].icon = cate_icon;
-							jsons[id + ""].order = order;
-							jsons[id + ""].link = cate_outlink ? cate_outlinktext : "default.asp?c=" + id;
-							if ( jsons[id + ""].childrens === undefined ){
-								jsons[id + ""].childrens = [];
-							}
+							var childrens = jsons[js.id + ""].childrens;
+							jsons[js.id + ""] = js;
+							jsons[js.id + ""].childrens = childrens;
 						}
 					}else{
-						if ( jsons[cate_root + ""] === undefined ){
-							jsons[cate_root + ""] = {
+						if ( jsons[js.root + ""] === undefined ){
+							jsons[js.root + ""] = {
 								childrens: []
 							};
 						}
-						
-						jsons[cate_root + ""].childrens.push({
-							id: id,
-							name: cate_name,
-							info: cate_info,
-							count: cate_count, 
-							icon: cate_icon,
-							link: cate_outlink ? cate_outlinktext : "default.asp?c=" + id,
-							order: order
-						});
+						jsons[js.root + ""].childrens.push(js);
 					}	
 				}
 				
-				for ( var o in jsons ){
-					arrays.push(jsons[o]);
-				}
+				for ( var o in jsons ){ arrays.push(jsons[o]); }
 				
 				return {
 					arrays: arrays.sort(function(a, b){
 						return a.order - b.order;
 					}),
-					list: orders
+					list: jsons
 				};
 			}
 		};
 	}
 	
 	exports["tags"] = function(){
+		var arr = ["id", "tagname", "tagcount"];
+		sap.proxy("cache.tags.array", [arr]);
 		return {
-			sql: "Select id, tagname, tagcount From blog_tags",
+			sql: "Select " + arr.join(",") + " From blog_tags",
 			callback: function( cacheData ){
 				var tmpJSONS = {};
 				for ( var i = 0 ; i < cacheData.length ; i++ ){
-					tmpJSONS[cacheData[i][0] + ""] = {
+					var jsons = {
 						id: cacheData[i][0],
 						name: cacheData[i][1],
 						count: cacheData[i][2]
 					}
+					sap.proxy("cache.tags.jsons", [jsons]);
+					tmpJSONS[jsons.id + ""] = jsons;
 				}
 				return tmpJSONS;
 			}
@@ -153,7 +126,15 @@ define(function(require, exports, module){
 	}
 	
 	exports["user"] = function(id){
-		return "Select photo, nickName, isposter, oauth, canlogin, logindate, loginip From blog_member Where id=" + id;
+		var arr = ["photo", "nickName", "isposter", "oauth", "canlogin", "logindate", "loginip"];
+		sap.proxy("cache.user.array", [arr]);
+		return {
+			sql: "Select " + arr.join(",") + " From blog_member Where id=" + id,
+			callback: function(cacheData){
+				sap.proxy("cache.tags.jsons", [cacheData]);
+				return cacheData;
+			}
+		};
 	}
 	
 	exports["attachments"] = function(){

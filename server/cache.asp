@@ -74,7 +74,7 @@ define(function(require){
 						sql,
 						sqlfn;
 						
-					if ( typeof appSQL !== "string"){
+					if ( typeof appSQL === "object"){
 						sql = appSQL.sql;
 						sqlfn = appSQL.callback;
 					}else{

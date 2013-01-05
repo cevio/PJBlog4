@@ -97,10 +97,19 @@ try{
 			totalSum = 0,
 			_pages = 0,
 			_mod = 0,
-			totalPages = 0;
+			totalPages = 0,
+			scondCategory = ["log_category=" + pageCustomParams.cateID];
 			
 		if ( pageCustomParams.cateID > 0 ){
-			totalSum = Number(String(config.conn.Execute("Select count(id) From blog_article Where log_category=" + pageCustomParams.cateID)(0)));
+			if ( pageCustomParams.tempParams.category[pageCustomParams.cateID + ""] !== undefined ){
+				var childs = pageCustomParams.tempParams.category[pageCustomParams.cateID + ""].childrens;
+				for ( var c in childs ){
+					if ( !isNaN(c) ){
+						scondCategory.push("log_category=" + childs[c].id);
+					}
+				}
+			}
+			totalSum = Number(String(config.conn.Execute("Select count(id) From blog_article Where " + scondCategory.join(" OR "))(0)));
 		}else{
 			totalSum = Number(String(config.conn.Execute("Select count(id) From blog_article")(0)));
 		}
@@ -114,10 +123,12 @@ try{
 		_pages = Math.floor(totalSum / perpage);
 		if ( _mod > 0 ){ totalPages = _pages + 1; }else{ totalPages = _pages; }
 		if ( pageCustomParams.page > totalPages ){ pageCustomParams.page = totalPages;}
+		
+		var BaseCategorySQL = scondCategory.join(" OR ");
 
 		if ( pageCustomParams.page > _pages ){
 			if ( pageCustomParams.cateID > 0 ){
-				sql = "Select top " + _mod + " * From blog_article Where log_category=" + pageCustomParams.cateID + " Order By id ASC, log_istop DESC";
+				sql = "Select top " + _mod + " * From blog_article Where " + BaseCategorySQL + " Order By id ASC, log_istop DESC";
 			}else{	
 				sql = "Select top " + _mod + " * From blog_article Order By id ASC, log_istop DESC";
 			}
@@ -126,8 +137,8 @@ try{
 			if ( pageCustomParams.cateID > 0 ){
 				sql = "Select top " 
 					+ (pageCustomParams.page * perpage) 
-					+ " * From blog_article Where log_category=" 
-					+ pageCustomParams.cateID 
+					+ " * From blog_article Where " 
+					+ BaseCategorySQL
 					+ " Order By id DESC";
 			}else{
 				sql = "Select top " 
