@@ -115,6 +115,7 @@ try{
 					pageCustomParams.article.user = getUserPhoto(rs("log_uid").value);
 					pageCustomParams.article.comments = rs("log_comments").value;
 					pageCustomParams.article.views = rs("log_views").value;
+					pageCustomParams.article.cover = rs("log_cover").value;
 				}
 			}
 		});
