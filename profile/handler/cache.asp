@@ -40,7 +40,7 @@ define(function(require, exports, module){
 					commentvaildor: cacheData[0][28],
 					commentmaxlength: cacheData[0][29]
 				};
-				sap.proxy("cache.global.jsons", [rets]);
+				sap.proxy("cache.global.jsons", [rets, cacheData]);
 				return rets;
 			}
 		};
