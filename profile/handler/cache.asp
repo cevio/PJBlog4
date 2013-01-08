@@ -61,7 +61,8 @@ define(function(require, exports, module){
 						cate_root = items[3], cate_count = items[4], cate_icon = "profile/icons/" + items[5], 
 						cate_outlink = items[6], cate_outlinktext = items[7], order = items[8];
 						
-					var js = { id: id, name: cate_name, info: cate_info, count: cate_count, icon: cate_icon, link: cate_outlink ? cate_outlinktext : "default.asp?c=" + id,
+					var js = { id: id, name: cate_name, info: cate_info, count: cate_count, icon: cate_icon, 
+						link: cate_outlink ? (cate_outlinktext.substr(0, 7).toLowerCase() === "http://" ? cate_outlinktext : "http://" + cate_outlinktext ) : "default.asp?c=" + id,
 						order: order, root: cate_root };
 
 					sap.proxy("cache.category.jsons", [js]);
