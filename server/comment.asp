@@ -25,8 +25,8 @@
 					rets.commentpostdate = date.format(_date, "y/m/d h:i:s");
 					rets.commentpostip = _ip;
 					rets.commentaudit = true;
-					rets.commentusername = rs("authoremail").value;
-					rets.commentusermail = rs("website").value;
+					rets.commentusername = rs("nickname").value;
+					rets.commentusermail = rs("authoremail").value;
 				}
 			});
 			
