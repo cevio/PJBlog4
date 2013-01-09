@@ -94,10 +94,34 @@ http.service(function( req, dbo, sap ){
 		if ( len === "0" ){
 			try{
 				config.conn.Execute("Delete From blog_category Where id=" + id);
-				config.conn.Execute("Delete From blog_article Where log_category=" + id);
+				
+				var ids = [],
+					articlelength = 0,
+					commentlength = 0;
+					
+				dbo.trave({
+					conn: config.conn,
+					sql: "Select id From blog_article Where log_category=" + id,
+					callback: function(){
+						this.each(function(){
+							ids.push(this("id").value);
+						});
+					}
+				});
+				
+				articlelength = ids.length;
+				
+				for ( var i = 0 ; i < ids.length ; i++ ){
+					commentlength += Number(String(config.conn.Execute("Select count(id) From blog_comment Where commentlogid=" + ids[i])));
+					config.conn.Execute("Delete From blog_comment Where commentlogid=" + ids[i]);
+					config.conn.Execute("Delete From blog_article Where id=" + ids[i]);
+				}
+				
+				config.conn.Execute("Update blog_global Set totalarticles=totalarticles-" + articlelength + ", totalcomments=totalcomments-" + commentlength + " Where id=1");
 				
 				var cache = require.async("cache");	
 					cache.build("category");
+					cache.build("global");
 				
 				return {
 					success: true
