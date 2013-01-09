@@ -134,7 +134,7 @@ define(function(require, exports, module){
 	}
 	
 	exports["user"] = function(id){
-		var arr = ["photo", "nickName", "isposter", "oauth", "canlogin", "logindate", "loginip"];
+		var arr = ["photo", "nickName", "isposter", "oauth", "canlogin", "logindate", "loginip", "website"];
 		sap.proxy("cache.user.array", [arr]);
 		return {
 			sql: "Select " + arr.join(",") + " From blog_member Where id=" + id,

@@ -313,17 +313,14 @@ define(function(require, exports, module){
 		id = Number(id);
 		
 		if ( id === -1 ){
-			if ( config.user.login ){
-				if ( config.user.id === -1 ){
-					userInfo.photo = config.user.photo;
-					userInfo.name = config.user.name;
-				}else{
-					userInfo.photo = GRA(global.authoremail);
-					userInfo.name = global.nickname;
-				}
+			if ( config.user.id === -1 ){
+				userInfo.photo = config.user.photo;
+				userInfo.name = config.user.name;
+				userInfo.website = config.user.website;
 			}else{
 				userInfo.photo = GRA(global.authoremail);
 				userInfo.name = global.nickname;
+				userInfo.website = global.website;
 			}
 			userInfo.poster = true;
 			userInfo.oauth = "system";
@@ -339,6 +336,7 @@ define(function(require, exports, module){
 			userInfo.login = false;
 			userInfo.logindate = "";
 			userInfo.loginip = "";
+			userInfo.website = "";
 		}
 		else{
 			var userCache = cache.load("user", id),
@@ -352,6 +350,7 @@ define(function(require, exports, module){
 				userInfo.login = userCache[0][4];
 				userInfo.logindate = userCache[0][5];
 				userInfo.loginip = userCache[0][6];
+				userInfo.loginip = userCache[0][7];
 			}
 		}
 		

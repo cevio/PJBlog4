@@ -31,6 +31,7 @@
 	function SQLEXCUTE(){
 		if ( connect === true ){
 			config.conn.Execute("alter table blog_member add website varchar(255)");
+			config.conn.Execute("Update blog_member Set website=''");
 			//config.conn.Execute("alter table blog_global add commentcanpostmail bit default 0");
 		}
 	}

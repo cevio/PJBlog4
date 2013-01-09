@@ -58,6 +58,7 @@ define(function(require, exports, module){
 							config.user.admin = oauth === "system" ? true : false;
 							config.user.poster = oauth === "system" ? true : rs("isposter").value;
 							config.user.oauth = _oauth;
+							config.user.website = rs("website").value;
 						}else{
 							clearStatus();
 						}
