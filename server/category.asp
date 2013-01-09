@@ -112,7 +112,7 @@ http.service(function( req, dbo, sap ){
 				articlelength = ids.length;
 				
 				for ( var i = 0 ; i < ids.length ; i++ ){
-					commentlength += Number(String(config.conn.Execute("Select count(id) From blog_comment Where commentlogid=" + ids[i])));
+					commentlength += Number(String(config.conn.Execute("Select count(id) From blog_comment Where commentlogid=" + ids[i])(0)));
 					config.conn.Execute("Delete From blog_comment Where commentlogid=" + ids[i]);
 					config.conn.Execute("Delete From blog_article Where id=" + ids[i]);
 				}

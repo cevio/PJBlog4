@@ -114,7 +114,7 @@
 									
 		%>
         						<li class="fn-clear">
-                                	<div class="theme-list-preview ui-wrapshadow fn-left"><img src="profile/themes/<%=listFolder%>/priview.jpg" /></div>
+                                	<div class="theme-list-preview ui-wrapshadow fn-left"><img src="profile/themes/<%=listFolder%>/preview.jpg" /></div>
                                     <div class="theme-list-info ui-transition">
                                     	<div class="name"><%=listXMLThemeName%> <span>( <%=listXMLThemeVersion%> ) : { mark: <%=listFolder%> }</span></div>
                                         <div class="date">时间： <%=listXMLThemePubDate%></div>
@@ -191,7 +191,7 @@
 	%>
     					<div class="currentTheme fn-clear">
                         	<div class="theme-preview ui-wrapshadow fn-left">
-                        		<img src="profile/themes/<%=theme.name%>/priview.jpg" />
+                        		<img src="profile/themes/<%=theme.name%>/preview.jpg" />
                             </div>
                             <div class="theme-info fn-left">
                             	<div class="name"><%=theme.data.themeName%> ( <%=theme.data.themeVersion%> )</div>
@@ -209,7 +209,7 @@
 									for ( var stylesItem = 0 ; stylesItem < styles.length ; stylesItem++ ){
 										var _current = styles[stylesItem] === theme.style ? "current" : "";
 								%>
-								<li data-id="<%=styles[stylesItem]%>" class="ui-wrapshadow fn-left <%=_current%>"><img src="profile/themes/<%=theme.name%>/style/<%=styles[stylesItem]%>/priview.jpg" title="This style name is <%=styles[stylesItem]%>" /></li>
+								<li data-id="<%=styles[stylesItem]%>" class="ui-wrapshadow fn-left <%=_current%>"><img src="profile/themes/<%=theme.name%>/style/<%=styles[stylesItem]%>/preview.jpg" title="This style name is <%=styles[stylesItem]%>" /></li>
 								<%
 									}
 								%>

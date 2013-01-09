@@ -150,7 +150,7 @@
 							hasFiles++;
 			%>
 						<li class="fn-clear">
-							<div class="pic fn-left ui-wrapshadow"><img src="profile/plugins/<%=files[i]%>/priview.jpg" onerror="this.src='assets/img/thumb.jpg'" /></div>
+							<div class="pic fn-left ui-wrapshadow"><img src="profile/plugins/<%=files[i]%>/preview.jpg" onerror="this.src='assets/img/thumb.jpg'" /></div>
 							<div class="info ui-transition">
 								<div class="titles"><%=pluginName%></div>
 								<div class="msg fn-textoverhide" title="<%=pluginInfo%>">详细：<%=pluginInfo%></div>
@@ -195,7 +195,7 @@
 								pluginMarkArray.push(this("pluginmark").value);
 			%>
             <li class="fn-clear">
-                <div class="pic fn-left ui-wrapshadow"><img src="profile/plugins/<%=this("pluginfolder").value%>/priview.jpg" onerror="this.src='assets/img/thumb.jpg'" /></div>
+                <div class="pic fn-left ui-wrapshadow"><img src="profile/plugins/<%=this("pluginfolder").value%>/preview.jpg" onerror="this.src='assets/img/thumb.jpg'" /></div>
                 <div class="info ui-transition">
                     <div class="titles"><%=this("pluginname").value%></div>
                     <div class="msg fn-textoverhide" title="<%=this("plugininfo").value%>">详细：<%=this("plugininfo").value%></div>

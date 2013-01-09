@@ -14,6 +14,7 @@ define(["assets/js/core/jQuery"], function(){
 	config.map("tips", "assets/js/lib/tips/tips");
 	config.map("update", "assets/js/update");
 	config.map("date", "assets/js/core/date");
+	config.map("cookie", "assets/js/core/cookie");
 	
 	config.ajaxUrl = { assets: {}, server: {} }
 	
