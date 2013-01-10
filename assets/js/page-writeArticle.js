@@ -189,12 +189,47 @@ define(['editor', 'form', 'overlay', 'upload'], function(require, exports, modul
 		});
 	}
 	
+	function bindChoose(){
+		$("#choose").on("click", function(){
+			$.getJSON(config.ajaxUrl.server.getServerPictures, {page: 1}, function(params){
+				if ( params && params.lists.length > 0 ){
+					var html = "";
+					for ( var i = 0 ; i < params.lists.length ; i++ ){
+						html += '<li class="fn-left" data-img="server/binary.asp?id=' + params.lists[i].id + '"><img src="server/binary.asp?id=' + params.lists[i].id + '" /></li>';
+					}
+					$.openbox({
+						effect: "deformationZoom", 
+						word: '<div class="choosebox"><ul class="fn-clear">' + html + '</ul></div>',
+						callback: function(){
+							var _this = this;
+							$(".choosebox ul li").on("click", function(){
+								var img = $(this).attr("data-img");
+								$("input[name='log_cover']").val(img);
+								$("#cover-img").attr("src", img);
+								$(_this).find(".close").trigger("click");
+							});
+						}
+					});
+				}
+			});
+		});
+	}
+	
+	function bindClean(){
+		$("#clean").on("click", function(){
+			$("input[name='log_cover']").val('');
+			$("#cover-img").attr("src", "_blank");
+		});
+	}
+	
 	return {
 		init: function(){
 			init_choose_cates();
 			init_editor();
 			init_postArticle();
 			bindCoverEvent();
+			bindChoose();
+			bindClean();
 		}
 	}
 });

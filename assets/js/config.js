@@ -51,6 +51,7 @@ define(["assets/js/core/jQuery"], function(){
 	config.ajaxUrl.server.package = "server/update.asp?j=package";
 	config.ajaxUrl.server.unpack = "server/update.asp?j=unpack";
 	config.ajaxUrl.server.cache = "server/update.asp?j=cache";
+	config.ajaxUrl.server.getServerPictures = "server/attments.asp?j=getserverpictures";
 	
 	try{
 		config.ajaxUrl.server.editorUpload = "server/upload.asp?immediate=1&uid=" + userid + "&hash=" + userhashkey + "&oauth=" + useroauth;

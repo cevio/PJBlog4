@@ -139,5 +139,10 @@ define(function(require, exports, module){
 		$.overlay(options);
 	}
 	
+	$.openbox = function(options){
+		options.content = '<div class="dialog fn-clear"><div class="close"></div><div id="openboxes">' + options.word + '</div></div>';
+		$.overlay(options);
+	}
+	
 	return overlay;
 });

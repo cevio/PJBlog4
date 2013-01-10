@@ -167,7 +167,7 @@ var articleCut = <%=articleCuts%>,
                         </div>
                         <div class="zone fn-clear">
                         	<div class="fn-left imgs ui-wrapshadow"><img src="<%=log_cover%>" id="cover-img" /></div>
-                           	<div class="fn-left actions"><div class="ins">从服务器上选取已经存在的图片作为封面</div><input type="file" id="upload" /></div>
+                           	<div class="fn-left actions"><div class="ins"><a href="javascript:;" id="choose">选取服务器上图片</a> <a href="javascript:;" id="clean">清除封面</a></div><input type="file" id="upload" /></div>
                         </div>
                     </div>
                 </div>
