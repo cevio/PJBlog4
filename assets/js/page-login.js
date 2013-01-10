@@ -1,53 +1,85 @@
 // JavaScript Document
-define(['form'], function(require, exports, module){
-	
-	function slidebar(){
-		$(".pannel li").on("click", function(){
-			$(".pannel li").removeClass("active");
-			$(this).addClass("active");
-			var i = $.inArray(this, $(".pannel li").toArray());
-			$(".wrap").animate({
-				"margin-left": "-" + (i * 400) + "px"
-			}, "fast");
-		});
-	}
-	
+define(['form', 'cookie'], function(require, exports, module){
 	function ajaxFormBind(){
-		var sending = false;
 		$('form').ajaxForm({
 			dataType: "json",
 			beforeSubmit: function(){
-				if ( sending === false ){
-					sending = true;
-					$(".login-info").slideDown("fast");
-				}else{
+				$(".infoText").empty();
+				$(".submitImageBtn").addClass("loading");
+				if ( $("input[name='username']").val().length === 0 ){
+					tips("用户名不能为空");
 					return false;
 				}
+				if ( $("input[name='password']").val().length === 0 ){
+					tips("密码不能为空");
+					return false;
+				}
+				$(".password .submitImageBtn, .password .passwordTextBox").attr("disabled", true);
 			},
 			success: function( jsons ){
-				sending = false;
 				if ( jsons && jsons.success ){
-					$('form').resetForm();
-					$(".login-info").text('登入成功 即将为您跳转后台..');
-					setTimeout(function(){
-						window.location.reload();
-					}, 1000);
+					tips("验证成功", function(){
+						$.cookie(config.cookie + "_login_username", $("input[name='username']").val(), {
+							expires: new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000)
+						});
+						setTimeout(function(){
+							window.location.reload();
+						}, 500);
+					});
 				}else{
-					$(".login-info").text(jsons.error);	
+					$(".password .submitImageBtn, .password .passwordTextBox").attr("disabled", false);
+					tips(jsons.error);	
 				}
 			},
 			error: function(){
-				sending = false;
+				$(".password .submitImageBtn, .password .passwordTextBox").attr("disabled", false);
+				tips("网络错误");
 			}
 		});
 	}
 	
+	function tips(word, callback){
+		$(".username .name").animate({
+			"margin-top" : "4px"
+		}, "slow", function(){
+			$(".infoText").text(word).fadeIn("fast", function(){
+				$(".submitImageBtn").removeClass("loading");
+				$.isFunction(callback) && callback();
+			});
+		});
+	}
+	
+	function initBoxStatus(){
+		$(".login-box").show().css({
+			"top": (($(window).height() - 100) / 2) + "px",
+			"left": (($(window).width() - 200) / 2) + "px"
+		});
+	}
+	
+	function userName(){
+		if ( !history.pushState ){
+			$("input[name='username']").val("UserName..");
+			$("input[name='username']").on("keyup", function(){
+				var text = $(this).val();
+				if ( text.length === 0 || text === "UserName.." ){
+					$(this).val("UserName..");
+				}else{
+					$(this).val(text);	
+				}
+			});
+		}
+		var username = $.cookie(config.cookie + "_login_username");
+		if ( username && username.length > 0 ){
+			$("input[name='username']").val(username);
+		}
+	}
+	
 	exports.init = function(){
 		$(function(){
-			ajaxFormBind();
-			slidebar();
+			$(window).on("resize", initBoxStatus).trigger("resize");
 			$("input[name='username']").focus();
-			$(".pannel li:first").trigger("click");
+			userName();
+			ajaxFormBind();
 		});
 	}
 });

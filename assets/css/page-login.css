@@ -1,19 +1,90 @@
 @charset "utf-8";
 /* CSS Document */
 .ui-footer{ display:none;}
-.login-box{ background-color:#fff; width:400px; margin:0 auto; margin-top:200px; position:relative; border-top-left-radius:0px;}
-.login-box .pannel{ height:26px; overflow:hidden; position:absolute; top:-26px; background:#ccc; border-radius:3px 3px 0px 0px;}
-.login-box .pannel li{ height:26px; line-height:26px; float:left; color:#fff; width:100px; text-align:center; border-right:1px solid #bbb; cursor:pointer;}
-.login-box .pannel li.none{ border-right:none;}
-.login-box .pannel li:hover{ background:#aaa; border-radius:3px 0px 0px 0px;}
-.login-box .pannel li.none:hover{background:#aaa; border-radius:0px 3px 0px 0px;}
-.login-box .pannel li.active{background:#aaa;border-radius:3px 0px 0px 0px;}
-.login-box .pannel li.none.active{background:#aaa; border-radius:0px 3px 0px 0px;}
-.login-box .login-user{ height:150px; width:400px; overflow:hidden;}
-.login-box .login-user .wrap{ width:800px; height:150px;}
-.login-box .login-user .contents{ float:left; width:400px; height:150px;}
-.login-box .login-user .contents .zone{ padding:20px 15px;}
-.login-box .login-user table td{ padding:5px 5px 10px 5px;}
-.login-box .login-user table td input{ width:200px;}
-.login-box .login-user table td .button{ width:60px;}
-.login-box .login-user table td .login-info{ color:#F90; display:none;}
+.login-box{ 
+	text-shadow: 1px 1px 2px black; 
+	color:#fff; 
+	width:200px; 
+	height:100px;
+	margin:0 auto;
+	position:absolute;
+	display:none;
+}
+html{
+	background:url(../img/background.png);
+}
+.ui-header{
+	display:none;
+}
+html,body{
+	width:100%;
+	height:100%;
+}
+.password{
+	position:relative;
+	margin-top:15px;
+}
+.password .passwordTextBox{
+	width: 154px;
+	height: 24px!important;
+	box-shadow: 0 0 2px 3px #4189C3!important;
+	border-radius: 3px!important;
+	border: 1px solid transparent!important;
+	padding: 2px 26px 2px 5px!important;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", sans-serif!important;
+}
+.password .submitImageBtn{
+	position: absolute;
+	top: 3px;
+	right: 14px;
+	background: url(../img/submit.png);
+	width: 24px;
+	height: 24px;
+	text-indent: -9999px;
+	border: none;
+	padding: 0;
+}
+.password .loading{
+	background-image:url(../img/spinnerSmall.gif);
+	background-size: 24px 24px;
+}
+.password .submitImageBtn:active {
+	background-position:0 -24px;
+}
+.username{}
+.username .gravatar{
+	width:50px;
+	height:50px;
+	padding:2px;
+	background-color:#fff;
+	border-radius:25px;
+	overflow:hidden;
+	margin-left:10px;
+	box-shadow:0px 0px 15px #000;
+}
+.username .gravatar img{
+	width:50px;
+	height:50px;
+	border-radius:25px;
+	overflow:hidden;
+}
+
+.username .name{
+	margin:16px 0px 0px 10px;
+}
+
+.username .name input{ 
+	width:108px;
+	background:none;
+	border:none;
+	color:#fff;
+	font-weight:bold;
+}
+.username .name input:active, .username .name input:focus{
+	box-shadow:none;
+}
+.infoText{
+	display:none;
+	margin-top:5px;
+	color:#999;
+}
