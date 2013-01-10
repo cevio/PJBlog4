@@ -129,9 +129,8 @@ define(['form', 'overlay'], function(require, exports, module){
 			
 			if ( isMakingData === false ){
 				isMakingData = true;
-				console.log(id);
+
 				$.getJSON(config.ajaxUrl.server.getCateInfo, {id: id}, function(params){
-					console.log(params);
 					if ( params.success ){
 						dataValue.find(".info .action").hide();
 						fileInData.call(dataValue, params.data);
