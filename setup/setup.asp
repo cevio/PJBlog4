@@ -54,7 +54,7 @@ http.async(function(req){
 				spkInstall.install();
 				
 				var percentFn = "%",
-					systemConfigureText = '<' + percentFn + 'config.base="' + params.folder + '";config.appName="' + rand_AppName + '";config.cacheFileNamePixer="' + rand_CacheFileName + '";config.access="profile/PBlog4/PJBlog4.asp";config.cookie="' + rand_Cookie + '";' + percentFn + '>', 
+					systemConfigureText = '<' + percentFn + '\n;(function(){\nconfig.base="' + params.folder + '";config.appName="' + rand_AppName + '";config.cacheFileNamePixer="' + rand_CacheFileName + '";config.access="profile/PBlog4/PJBlog4.asp";config.cookie="' + rand_Cookie + '";\n})();\n' + percentFn + '>', 
 					assetsConfigureText = 'config("debug", false);config("base", "' + params.folder + '");config.cookie = "' + rand_Cookie + '";';
 
 				stream.save(systemConfigureText, params.folder + "/profile/handler/config.asp");
