@@ -15,6 +15,7 @@ define(["assets/js/core/jQuery"], function(){
 	config.map("update", "assets/js/update");
 	config.map("date", "assets/js/core/date");
 	config.map("cookie", "assets/js/core/cookie");
+	config.map("placeholder", "assets/js/core/placehoder");
 	
 	config.ajaxUrl = { assets: {}, server: {} }
 	

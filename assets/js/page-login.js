@@ -57,17 +57,6 @@ define(['form', 'cookie'], function(require, exports, module){
 	}
 	
 	function userName(){
-		if ( !history.pushState ){
-			$("input[name='username']").val("UserName..");
-			$("input[name='username']").on("keyup", function(){
-				var text = $(this).val();
-				if ( text.length === 0 || text === "UserName.." ){
-					$(this).val("UserName..");
-				}else{
-					$(this).val(text);	
-				}
-			});
-		}
 		var username = $.cookie(config.cookie + "_login_username");
 		if ( username && username.length > 0 ){
 			$("input[name='username']").val(username);

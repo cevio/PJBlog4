@@ -121,7 +121,7 @@ config.limits.admin = <%=config.user.admin ? "true" : "false"%>;
 <script language="javascript">
 require(['assets/js/config'], function( custom ){
 	if ( custom.status === true ){
-		custom.load(['assets/js/page-<%=checkStatusAndCustomPage()%>', 'tips', 'update']);
+		custom.load(['assets/js/page-<%=checkStatusAndCustomPage()%>', 'tips', 'update', 'placeholder']);
 	}else{
 		if ( $.browser.msie ){
 			alert("Getting Config File Error.");
