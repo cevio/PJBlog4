@@ -41,17 +41,13 @@ config.limits.admin = <%=config.user.admin ? "true" : "false"%>;
             <div class="icon-user fn-rightspace fn-left"><%=config.user.name%></div>
 			<%if ( config.user.admin === true ){%><a href="javascript:;" class="fn-rightspace fn-left modify-password">修改密码</a><%}%>
 			<%if ( config.user.poster === true ){%>
-            	<a href="?p=writeArticle" class="fn-rightspace fn-left">写新日志</a>
-				<a href="server/logout.asp" class="fn-left">退出</a>
+				<a href="server/logout.asp" class="fn-left">注销</a>
 			<%}%>
 		</div>
 		<div class="ui-guide">
 			<a class="ui-logo fn-left fn-rightspace">PJBlog4</a>
 			<ul class="fn-clear">
 				<li><a href="default.asp" target="_blank">前台</a></li>
-				<li><a href="control.asp">首页</a></li>
-				<li><a href="?p=globalconfigure">设置</a></li>
-                <li><a href="?p=system">系统</a></li>
 				<li><a href="?p=documents">文档</a></li>
 				<li><a href="http://webkits.cn" target="_blank">官方</a></li>
 			</ul>
@@ -68,13 +64,23 @@ config.limits.admin = <%=config.user.admin ? "true" : "false"%>;
     <div class="ui-body fn-clear">
 		<div class="ui-nav">
 			<div class="ui-nav-list">
+            	<ul>
+					<li><a href="?p=index" class="ui-customspace <%=(__pages === "index"?"active":"")%>"><span>后台首页</span><i></i></a></li>
+                </ul>
+            	<ul>
+					<li><a href="?p=system" class="ui-customspace <%=(__pages === "system"?"active":"")%>"><span>系统清理</span><i></i></a></li>
+                    <li><a href="?p=globalconfigure" class="ui-customspace <%=(__pages === "globalconfigure"?"active":"")%>"><span>系统设置</span><i></i></a></li>
+				</ul>
 				<ul>
-					<li><a href="?p=category" class="ui-customspace <%=(page === "category"?"active":"")%>"><span>分类管理</span></a></li>
-					<li><a href="?p=article" class="ui-customspace <%=(page === "article"?"active":"")%>"><span>日志管理</span></a></li>
-					<li><a href="?p=comment" class="ui-customspace <%=(page === "comment"?"active":"")%>"><span>评论管理</span></a></li>
-					<li><a href="?p=member" class="ui-customspace <%=(page === "member"?"active":"")%>"><span>用户管理</span></a></li>
-					<li><a href="?p=theme" class="ui-customspace <%=(page === "theme"?"active":"")%>"><span>主题管理</span></a></li>
-					<li><a href="?p=plugin" class="ui-customspace <%=(page === "plugin"?"active":"")%>"><span>插件管理</span></a></li>
+					<li><a href="?p=category" class="ui-customspace <%=(__pages === "category"?"active":"")%>"><span>分类管理</span><i></i></a></li>
+                    <li><a href="?p=writeArticle" class="ui-customspace <%=(__pages === "writeArticle"?"active":"")%>"><span>新建日志</span><i></i></a></li>
+					<li><a href="?p=article" class="ui-customspace <%=(__pages === "article"?"active":"")%>"><span>日志管理</span><i></i></a></li>
+					<li><a href="?p=comment" class="ui-customspace <%=(__pages === "comment"?"active":"")%>"><span>评论管理</span><i></i></a></li>
+					<li><a href="?p=member" class="ui-customspace <%=(__pages === "member"?"active":"")%>"><span>用户管理</span><i></i></a></li>
+				</ul>
+                <ul>
+					<li><a href="?p=theme" class="ui-customspace <%=(__pages === "theme"?"active":"")%>"><span>主题管理</span><i></i></a></li>
+					<li><a href="?p=plugin" class="ui-customspace <%=(__pages === "plugin"?"active":"")%>"><span>插件管理</span><i></i></a></li>
 				</ul>
 			</div>
 		</div>

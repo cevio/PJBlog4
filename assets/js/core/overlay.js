@@ -135,12 +135,12 @@ define(function(require, exports, module){
 	}
 	
 	$.loading = function(options){
-		options.content = '<div class="dialog fn-clear"><div class="close"></div><div id="postingbox" style="width:250px; text-align: center; color: #777;">' + options.word + '</div></div>';
+		options.content = '<div class="dialog fn-clear"><div class="close"></div><div id="postingbox" style="width:250px; text-align: center; color: #777; padding:10px;">' + options.word + '</div></div>';
 		$.overlay(options);
 	}
 	
 	$.openbox = function(options){
-		options.content = '<div class="dialog fn-clear"><div class="close"></div><div id="openboxes">' + options.word + '</div></div>';
+		options.content = '<div class="dialog fn-clear"><div class="close"></div><div id="openboxes"><div class="title fn-clear"><div class="name fn-left">选取图片</div><div class="fn-right"><a href="javascript:;" class="close">关闭</a></div></div>' + options.word + '</div></div>';
 		$.overlay(options);
 	}
 	

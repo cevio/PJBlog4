@@ -63,8 +63,23 @@ table.xheLayout tr:first-child td{
 .side-tags .ins{ height:30px; line-height:30px;}
 .submit{ margin-top:10px;}
 
-.choosebox{ width:500px; height:300px; overflow:auto;}
-.choosebox ul{}
-.choosebox ul li{ width:50px; height:50px; overflow:hidden; padding:2px; border:1px solid #fff; cursor:pointer;}
-.choosebox ul li:hover{ border:1px solid #ff0000;}
-.choosebox ul li img{ width:50px; height:50px;}
+.choosebox{ width:464px; height:370px; padding:10px 0px 10px 10px;}
+.choosebox ul{ height:350px;}
+.choosebox ul li{ width:100px; height:100px; overflow:hidden; padding:2px; border:1px solid #ccc; cursor:pointer; margin-right:10px; margin-bottom:10px;  box-shadow:0px 0px 5px #ccc;}
+.choosebox ul li:hover{ border:1px solid #FF8C3F;}
+.choosebox ul li img{ width:100px; height:100px; }
+.choosebox .page{ height:20px; line-height:20px; text-align:right;}
+.choosebox .page span,
+.choosebox .page a{
+	display:block;
+	width:20px; height:20px;
+	border:1px solid #ccc;
+	float:left;
+	text-align:center;
+	margin-right:5px;
+	border-radius:3px;
+}
+.choosebox .page span{
+	background:#009CD8;
+	color:#fff;
+}

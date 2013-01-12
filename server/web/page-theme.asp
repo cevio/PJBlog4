@@ -5,7 +5,7 @@
 		types = http.get("t");
 
 	if ( !types || types === "" || types.length === 0 ){
-		types = "current";
+		types = "local";
 	}
 		
 	if ( connecte === true ){
@@ -29,111 +29,13 @@
 <div class="ui-position fn-clear">
   <div class="fn-left ui-position-title">主题设置</div>
   <div class="fn-right ui-position-tools">
-  	<a href="?p=theme" class="<%=( types == "current" ? "active" : "" )%>">当前主题</a> 
-    <a href="?p=theme&t=list" class="<%=( types == "list" ? "active" : "" )%>">其他主题</a> 
+  	<a href="?p=theme" class="<%=( types == "local" ? "active" : "" )%>">本地主题</a> 
     <a href="?p=theme&t=online" class="<%=( types == "online" ? "active" : "" )%>">在线主题</a>
   </div>
 </div>
 <div class="ui-context">
 	<%
-		if ( types === "list" ){
-			(function(){
-	%>
-    	<div class="ui-wrapshadow uploadnewtheme">
-        	<div class="info">上传主题包请注意：</div>
-            <ul>
-            	<li>1. 请尽量选择官方提供的主题包上传。</li>
-                <li>2. 主题文件包格式为 *.pbd 格式，请不要上传非法文件。</li>
-                <li>3. 更多主题包下载请前往官方支持平台。</li>
-            </ul>
-            <div class="uploadFile">
-    		<input type="file" value="" id="uploadFile" />
-            </div>
-            <div class="info">请点击以上按钮选择本地主题包文件后点击以下按钮进行上传（可以批量上传）。</div>
-            <div class="startupload"><a href="javascript:;" id="upload" class="button">上传新主题</a></div>
-        </div>
-    <%
-				console.log('<ul class="theme-list">');
-				var lists = fso.collect("profile/themes", true);
-					for ( var listItem = 0 ; listItem < lists.length ; listItem++ ){
-						var listFolder = lists[listItem],
-							listInstallXMLFile = "profile/themes/" + listFolder + "/install.xml";
-						
-						if ( fso.exsit(listInstallXMLFile) && ( listFolder !== theme.name ) ){
-							var xmlCustomLoader = xml.load(listInstallXMLFile);
-							
-							if ( xmlCustomLoader !== null ){
-								var listXMLThemeName = xml("themeName", xmlCustomLoader.root, xmlCustomLoader.object);
-									if ( listXMLThemeName.size() > 0 ){
-										listXMLThemeName = listXMLThemeName.text();
-									}else{
-										listXMLThemeName = "";
-									}
-								
-								var listXMLThemeInfo = xml("themeInfo", xmlCustomLoader.root, xmlCustomLoader.object);
-									if ( listXMLThemeInfo.size() > 0 ){
-										listXMLThemeInfo = listXMLThemeInfo.html();
-									}else{
-										listXMLThemeInfo = "";
-									}
-									
-								var listXMLThemeVersion = xml("themeVersion", xmlCustomLoader.root, xmlCustomLoader.object);
-									if ( listXMLThemeVersion.size() > 0 ){
-										listXMLThemeVersion = listXMLThemeVersion.text();
-									}else{
-										listXMLThemeVersion = "";
-									}
-									
-								var listXMLThemeAuthor = xml("themeAuthor", xmlCustomLoader.root, xmlCustomLoader.object);
-									if ( listXMLThemeAuthor.size() > 0 ){
-										listXMLThemeAuthor = listXMLThemeAuthor.text();
-									}else{
-										listXMLThemeAuthor = "";
-									}
-									
-								var listXMLThemeMail = xml("themeEmail", xmlCustomLoader.root, xmlCustomLoader.object);
-									if ( listXMLThemeMail.size() > 0 ){
-										listXMLThemeMail = listXMLThemeMail.text();
-									}else{
-										listXMLThemeMail = "";
-									}
-								
-								var listXMLThemePubDate = xml("themePublishDate", xmlCustomLoader.root, xmlCustomLoader.object);
-									if ( listXMLThemePubDate.size() > 0 ){
-										listXMLThemePubDate = listXMLThemePubDate.text();
-									}else{
-										listXMLThemePubDate = "";
-									}
-									
-								var listXMLThemeWebsite = xml("themeWebSite", xmlCustomLoader.root, xmlCustomLoader.object);
-									if ( listXMLThemeWebsite.size() > 0 ){
-										listXMLThemeWebsite = listXMLThemeWebsite.text();
-									}else{
-										listXMLThemeWebsite = "";
-									}
-									
-		%>
-        						<li class="fn-clear">
-                                	<div class="theme-list-preview ui-wrapshadow fn-left"><img src="profile/themes/<%=listFolder%>/preview.jpg" /></div>
-                                    <div class="theme-list-info ui-transition">
-                                    	<div class="name"><%=listXMLThemeName%> <span>( <%=listXMLThemeVersion%> ) : { mark: <%=listFolder%> }</span></div>
-                                        <div class="date">时间： <%=listXMLThemePubDate%></div>
-                                        <div class="author">作者： <a href="mailto:<%=listXMLThemeMail%>"><%=listXMLThemeAuthor%></a> ( <a href="<%=listXMLThemeWebsite%>" target="_blank"><%=listXMLThemeWebsite%></a> ) </div>
-                                        <div class="info fn-textoverhide">详细： <%=listXMLThemeInfo%></div>
-                                        <div class="action">
-                                        	<a href="javascript:;" class="fn-clear">分享</a> 
-                                            <a href="javascript:;" class="fn-clear action-setup" data-id="<%=listFolder%>">安装</a> 
-                                            <a href="javascript:;" class="fn-clear action-del" data-id="<%=listFolder%>">删除</a>
-                                        </div>
-                                    </div>
-                                </li>
-        <%
-							}
-						}
-					}
-					console.log('</ul>');
-			})();
-		}else if ( types === "online" ){
+		if ( types === "online" ){
 			console.log("即将开放在线主题模块");
 		}else{
 			(function(){
@@ -202,7 +104,7 @@
                         </div>
                         
                         <div class="current-theme-style">
-                        	<div class="title">此主题下可选的风格列表（ 当前风格已高亮显示。点击其他风格将被激活新风格。 ）</div>
+                        	<div class="title">此主题下可选的风格列表（ 当前风格已高亮显示。 ）</div>
                             <ul class="list fn-clear">
                             	<%
 									var styles = fso.collect("profile/themes/" + theme.name + "/style", true);
@@ -222,6 +124,92 @@
 				}else{
 					console.log("未找到当前主题");
 				}
+			})();
+			(function(){
+	%>
+    			<div class="otherThemes fn-clear"><div class="fn-left">其他主题</div><div class="fn-right"><input type="file" value="" id="uploadFile" /></div></div>
+    			<ul class="theme-list fn-clear">
+    <%
+				var lists = fso.collect("profile/themes", true);
+					for ( var listItem = 0 ; listItem < lists.length ; listItem++ ){
+						var listFolder = lists[listItem],
+							listInstallXMLFile = "profile/themes/" + listFolder + "/install.xml";
+						
+						if ( fso.exsit(listInstallXMLFile) && ( listFolder !== theme.name ) ){
+							var xmlCustomLoader = xml.load(listInstallXMLFile);
+							
+							if ( xmlCustomLoader !== null ){
+								var listXMLThemeName = xml("themeName", xmlCustomLoader.root, xmlCustomLoader.object);
+									if ( listXMLThemeName.size() > 0 ){
+										listXMLThemeName = listXMLThemeName.text();
+									}else{
+										listXMLThemeName = "";
+									}
+								
+								var listXMLThemeInfo = xml("themeInfo", xmlCustomLoader.root, xmlCustomLoader.object);
+									if ( listXMLThemeInfo.size() > 0 ){
+										listXMLThemeInfo = listXMLThemeInfo.html();
+									}else{
+										listXMLThemeInfo = "";
+									}
+									
+								var listXMLThemeVersion = xml("themeVersion", xmlCustomLoader.root, xmlCustomLoader.object);
+									if ( listXMLThemeVersion.size() > 0 ){
+										listXMLThemeVersion = listXMLThemeVersion.text();
+									}else{
+										listXMLThemeVersion = "";
+									}
+									
+								var listXMLThemeAuthor = xml("themeAuthor", xmlCustomLoader.root, xmlCustomLoader.object);
+									if ( listXMLThemeAuthor.size() > 0 ){
+										listXMLThemeAuthor = listXMLThemeAuthor.text();
+									}else{
+										listXMLThemeAuthor = "";
+									}
+									
+								var listXMLThemeMail = xml("themeEmail", xmlCustomLoader.root, xmlCustomLoader.object);
+									if ( listXMLThemeMail.size() > 0 ){
+										listXMLThemeMail = listXMLThemeMail.text();
+									}else{
+										listXMLThemeMail = "";
+									}
+								
+								var listXMLThemePubDate = xml("themePublishDate", xmlCustomLoader.root, xmlCustomLoader.object);
+									if ( listXMLThemePubDate.size() > 0 ){
+										listXMLThemePubDate = listXMLThemePubDate.text();
+									}else{
+										listXMLThemePubDate = "";
+									}
+									
+								var listXMLThemeWebsite = xml("themeWebSite", xmlCustomLoader.root, xmlCustomLoader.object);
+									if ( listXMLThemeWebsite.size() > 0 ){
+										listXMLThemeWebsite = listXMLThemeWebsite.text();
+									}else{
+										listXMLThemeWebsite = "";
+									}
+	%>
+    							<li class="fn-clear">
+                                	<div class="theme-list-preview ui-wrapshadow fn-left"><img src="profile/themes/<%=listFolder%>/preview.jpg" /></div>
+                                    <div class="theme-list-info">
+                                    	<div class="name"><%=listXMLThemeName%> <span>( <%=listXMLThemeVersion%> )</span></div>
+                                        <div class="date">目录：<%=listFolder%></div>
+                                        <div class="date">时间： <%=listXMLThemePubDate%></div>
+                                        <div class="author">作者： <a href="mailto:<%=listXMLThemeMail%>"><%=listXMLThemeAuthor%></a> ( <a href="<%=listXMLThemeWebsite%>" target="_blank"><%=listXMLThemeWebsite%></a> ) </div>
+                                        <div class="info fn-textoverhide">详细： <%=listXMLThemeInfo%></div>
+                                        <div class="action fn-clear">
+                                        	<span class="fn-left">操作：</span> 
+                                            <a href="javascript:;" class="fn-left action-setup" data-id="<%=listFolder%>">安装</a> 
+                                            <a href="javascript:;" class="fn-left action-del" data-id="<%=listFolder%>">删除</a>
+                                        </div>
+                                    </div>
+                                </li>
+    <%
+								}
+						}
+					}
+	%>
+    			</ul>
+    <%
 			})();
 		}
 	%>

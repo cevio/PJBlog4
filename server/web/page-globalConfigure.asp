@@ -49,7 +49,7 @@
       <div class="configs ui-wrapshadow ui-table ui-table-custom">
         <table cellpadding="0" cellspacing="0">
           <tr>
-            <td class="key">网站名称</td>
+            <td class="key" width="100">网站名称</td>
             <td class="keyvalue"><input type="text" value="<%=blog_global.title%>" name="title" class="long"></td>
           </tr>
           <tr>
@@ -146,7 +146,7 @@
        <div class="configs ui-wrapshadow ui-table ui-table-custom">
         <table>
           <tr>
-            <td class="key">头像尺寸</td>
+            <td class="key" width="100">头像尺寸</td>
             <td class="keyvalue"><input type="text" value="<%=blog_global.gravatarS%>" name="gravatarS" class="shorter">
               <span class="info">请填写数字。这里是你头像的大小，他的规格在80-512之间。</span></td>
           </tr>
@@ -171,7 +171,7 @@
        <div class="configs ui-wrapshadow ui-table ui-table-custom">
         <table>
           <tr>
-            <td class="key">图片类型</td>
+            <td class="key" width="100">图片类型</td>
             <td class="keyvalue"><input type="text" value="<%=blog_global.uploadimagetype%>" name="uploadimagetype" class="long"></td>
           </tr>
           <tr>
@@ -194,7 +194,7 @@
        <div class="configs ui-wrapshadow ui-table ui-table-custom">
         <table>
           <tr>
-            <td class="key">开启本站注册</td>
+            <td class="key" width="100">开启本站注册</td>
             <td class="keyvalue"><input type="radio" value="1" name="canregister" <%=(blog_global.canregister === true ? "checked": "")%> />
               开放
               <input type="radio" value="0" name="canregister" <%=(blog_global.canregister === false ? "checked": "")%> />

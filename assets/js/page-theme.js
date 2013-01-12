@@ -37,7 +37,7 @@ define(['overlay', 'upload'], function( require, exports, module ){
 			.on("setup.success", function(){
 				$(this).removeClass("activing").text("安装成功");
 				setTimeout(function(){
-					if ( confirm("是否切换到当前主题页面？") ){
+					if ( confirm("安装成功，是否刷新页面？") ){
 						window.location.href = "?p=theme";
 					}
 				}, 500);
@@ -107,8 +107,8 @@ define(['overlay', 'upload'], function( require, exports, module ){
 	
 	function init_uploadNewTheme(){
 		$("#uploadFile").upload({
-			auto: false,
-			buttonText: "请选择主题文件包",
+			auto: true,
+			buttonText: "上传新主题",
 			uploader: config.ajaxUrl.server.themeUpload,
 			multi: true,
 			fileTypeExts: "*.pbd;",

@@ -189,29 +189,65 @@ define(['editor', 'form', 'overlay', 'upload'], function(require, exports, modul
 		});
 	}
 	
-	function bindChoose(){
+	function bindChoose(pagenumber){
 		$("#choose").on("click", function(){
-			$.getJSON(config.ajaxUrl.server.getServerPictures, {page: 1}, function(params){
-				if ( params && params.lists.length > 0 ){
-					var html = "";
-					for ( var i = 0 ; i < params.lists.length ; i++ ){
-						html += '<li class="fn-left" data-img="server/binary.asp?id=' + params.lists[i].id + '"><img src="server/binary.asp?id=' + params.lists[i].id + '" /></li>';
-					}
-					$.openbox({
-						effect: "deformationZoom", 
-						word: '<div class="choosebox"><ul class="fn-clear">' + html + '</ul></div>',
-						callback: function(){
-							var _this = this;
-							$(".choosebox ul li").on("click", function(){
-								var img = $(this).attr("data-img");
-								$("input[name='log_cover']").val(img);
-								$("#cover-img").attr("src", img);
-								$(_this).find(".close").trigger("click");
-							});
-						}
-					});
+			bindChooseList(1);
+		});
+	}
+	
+	function bindChooseList(pagenumber){
+		pagenumber = pagenumber === undefined ? 1 : pagenumber;
+		var hasbox = $(".choosebox").size() > 0;
+		$.getJSON(config.ajaxUrl.server.getServerPictures, {page: pagenumber}, function(params){
+			var s = '<div class="choosebox"><ul class="fn-clear">抱歉，没有找到任何数据！</ul><div class="page fn-clear"></div></div>', p = "", html = "";
+			if ( params && params.lists.length > 0 ){
+				for ( var i = 0 ; i < params.lists.length ; i++ ){
+					html += '<li class="fn-left" data-img="server/binary.asp?id=' + params.lists[i].id + '"><img src="server/binary.asp?id=' + params.lists[i].id + '" onerror="$(this).parent().remove();" /></li>';
 				}
-			});
+				s = '<div class="choosebox"><ul class="fn-clear">' + html + '</ul><div class="page fn-clear"></div></div>';
+				if ( params && params.pages ){
+					if ( params.pages.to - params.pages.from > 0 ){
+						for ( var j = params.pages.from ; j <= params.pages.to ; j++ ){
+							if ( j === params.pages.current ){
+								p += '<span>' + j + '</span>';
+							}else{
+								p += '<a href="javascript:;" class="choosepage" data-page="' + j + '">' + j + '</a>';
+							}
+						}
+					}
+				}
+			}
+			
+			if ( hasbox ){
+				$(".choosebox ul").html(html);
+				$(".choosebox .page").html(p);
+			}else{
+				$.openbox({
+					effect: "deformationZoom", 
+					word: s,
+					callback: function(){
+						var _this = this;
+						$(_this).find(".page").show().html(p);
+					}
+				});
+			}
+		});
+	}
+	
+	function bindChoosePage(){
+		$("body").on("click", ".choosebox .page a.choosepage", function(){
+			var i = $(this).attr("data-page");
+				i = Number(i);
+				bindChooseList(i);
+		});
+	}
+	
+	function bindPICCLICK(_this, callback){
+		$("body").on("click", ".choosebox ul li", function(){
+			var img = $(this).attr("data-img");
+			$("input[name='log_cover']").val(img);
+			$("#cover-img").attr("src", img);
+			$(".fixed").find(".close:first").trigger("click");
 		});
 	}
 	
@@ -230,6 +266,8 @@ define(['editor', 'form', 'overlay', 'upload'], function(require, exports, modul
 			bindCoverEvent();
 			bindChoose();
 			bindClean();
+			bindChoosePage();
+			bindPICCLICK();
 		}
 	}
 });

@@ -50,6 +50,13 @@
 	background-color:#fff;
 	cursor:pointer;
 	margin:0px 10px 10px 0px;
+	width:45px;
+	height:45px;
+}
+
+.current-theme-style .list li img{
+	width:45px;
+	height:45px;
 }
 
 .current-theme-style .list li.current{
@@ -61,6 +68,7 @@
 
 .theme-list li{
 	margin:0px 0px 20px 0px;
+	float:left;
 }
 .theme-list li .theme-list-preview{
 	width:100px;
@@ -78,27 +86,24 @@
 }
 
 .theme-list li:hover .theme-list-info{
-	background-color:#fff;
-	border-radius:3px;
-	box-shadow:1px 1px 5px rgba(0, 0, 0, .097);
 }
 .theme-list li .theme-list-info .name{ 
 	font-size:14px;
-	height:30px;
-	line-height:30px;
+	font-weight:bold;
+	color:#777
 }
 .theme-list li .theme-list-info .name span{
 	font-size:12px;
 }
-.theme-list li .theme-list-info .date{}
-.theme-list li .theme-list-info .author{}
+.theme-list li .theme-list-info .date{ color:#999;}
+.theme-list li .theme-list-info .author{ color:#999;}
 .theme-list li .theme-list-info .info{
 	margin-top:0px;
-	margin-bottom:4px;
 	height:18px;
 	width:500px;
+	color:#999;
 }
-.theme-list li .theme-list-info .action{}
+.theme-list li .theme-list-info .action{color:#999;}
 .theme-list li .theme-list-info .action a{ margin-right:10px;}
 
 .activing:link,
@@ -114,3 +119,7 @@
 .uploadnewtheme ul{ margin-bottom:10px;}
 .uploadnewtheme ul li{ height:20px; line-height:20px; padding-left:20px;}
 .uploadnewtheme .startupload{ margin-bottom:10px; padding-left:20px;}
+
+.otherThemes{ height:30px; line-height:30px; margin:0px 0px 20px 0px; border-bottom:1px solid #ddd}
+.otherThemes .fn-left{ font-weight:bold; background:url(../img/icon-geo-search.png) 0px 7px no-repeat; padding-left:20px;}
+.otherThemes .fn-right{ position:relative; top:12px;}

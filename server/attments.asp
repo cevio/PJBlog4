@@ -12,25 +12,21 @@
 					page = Number(page);
 				}
 			};
+			var ets = ["attachext='jpg'", "attachext='bmp'", "attachext='png'", "attachext='gif'", "attachext='jpeg'"];
 			dbo.trave({
 				conn: config.conn,
-				sql: "Select * From blog_attachments Order By attachuploadtime DESC",
+				sql: "Select * From blog_attachments Where " + ets.join(" Or ") + " Order By attachuploadtime DESC",
 				callback: function(){
-					pageInfo = this.serverPage(page, 10, function(){
-						var exts = this("attachext").value.toLowerCase(),
-							_exts = ["jpg", "bmp", "png", "gif", "jpeg"];
-							
-						if ( _exts.indexOf(exts) > -1 ){
-							arr.push({
-								id: this("id").value,
-								ext: this("attachext").value,
-								size: this("attachsize").value,
-								path: this("attachpath").value,
-								count: this("attachviewcount").value,
-								time: this("attachuploadtime").value,
-								name: this("attachfilename").value
-							});
-						}
+					pageInfo = this.serverPage(page, 12, function(){
+						arr.push({
+							id: this("id").value,
+							ext: this("attachext").value,
+							size: this("attachsize").value,
+							path: this("attachpath").value,
+							count: this("attachviewcount").value,
+							time: this("attachuploadtime").value,
+							name: this("attachfilename").value
+						});
 					});
 				}
 			});

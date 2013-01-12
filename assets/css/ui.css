@@ -51,7 +51,7 @@
 	border-left: 1px solid #000;
 	border-radius: 20px 0px 0px 20px;
 	display: inline;
-	min-width: 200px;
+	min-width: 150px;
 }
 
 .ui-header .ui-logo{
@@ -128,14 +128,14 @@
 	position: fixed;
 	top: 150px;
 	left: 0px;
-	border-right: 1px solid #ddd;
+	border-right: 1px solid #e1e1e1;
 } 
 
 .ui-body .ui-nav .ui-nav-list{
 }
 
 .ui-body .ui-nav .ui-nav-list ul{
-	padding: 5px 0px 5px 20px;
+	padding: 10px 0px 10px 20px;
 }
 .ui-body .ui-nav .ui-nav-list ul li{
 	margin-bottom: 1px;
@@ -148,6 +148,7 @@
 	display: block;
 	padding-top: 0px;
 	padding-bottom: 0px;
+	position:relative;
 }
 
 .ui-transition{
@@ -169,40 +170,54 @@
 }
 
 .ui-body .ui-nav .ui-nav-list ul li a span{
-	-webkit-transition-duration:.6s;
-	-webkit-transition-property:all;
-	-webkit-transition-timing-function:ease-in-out;
-	-moz-transition-duration:.6s;
-	-moz-transition-property:all;
-	-moz-transition-timing-function:ease-in-out;
-	-ms-transition-duration:.6s;
-	-ms-transition-property:all;
-	-ms-transition-timing-function:ease-in-out;
-	-o-transition-duration:.6s;
-	-o-transition-property:all;
-	-o-transition-timing-function:ease-in-out;
-	transition-duration:.6s;
-	transition-property:all;
-	transition-timing-function:ease-in-out;
 	display: block;
+}
+
+.ui-body .ui-nav .ui-nav-list ul li a span strong{
+	display:none;
+}
+
+.ui-body .ui-nav .ui-nav-list ul li a i{
+	position:absolute;
+	right:-6px;
+	width:11px;
+	height:11px;
+	background:#ccc;
+	top:11px;
+	display:block;
+	border-radius:5px;
+	box-shadow:0px 0px 2px #ccc;
+	display:none;
 }
 
 .ui-body .ui-nav .ui-nav-list ul li a:link, 
 .ui-body .ui-nav .ui-nav-list ul li a:visited{
-	color: #000;
+	color: #999;
 }
 
 .ui-body .ui-nav .ui-nav-list ul li a:hover, 
 .ui-body .ui-nav .ui-nav-list ul li .active,
 .ui-body .ui-nav .ui-nav-list ul li a.active:link,
 .ui-body .ui-nav .ui-nav-list ul li a.active:visited{
-	color: #2ba09e;
-	box-shadow: 0px 0px 5px rgba(0, 0, 0, .1);
+	color: #000;
+	font-weight:bold;
 }
 
 .ui-body .ui-nav .ui-nav-list ul li a:hover span, 
 .ui-body .ui-nav .ui-nav-list ul li .active span{
-	-webkit-transform: translateX(-30px);
+	background:none;
+	border-radius:5px 0px 0px 5px;
+	padding:0px 10px;
+	text-align:left;
+}
+
+.ui-body .ui-nav .ui-nav-list ul li a:hover span{
+	color:#777;
+}
+
+.ui-body .ui-nav .ui-nav-list ul li a:hover i, 
+.ui-body .ui-nav .ui-nav-list ul li .active i{
+	display:block;
 }
 
 .ui-position{
@@ -409,12 +424,12 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 	left:0px;
 }
 
-.fixed .dialog{ padding:10px;}
-.fixed .dialog .title{ height:30px; line-height:30px; font-size:14px;}
+.fixed .dialog{  border:2px solid #bbb; border-radius:3px; box-shadow:0px 0px 20px #fff;}
+.fixed .dialog .title{ font-size:12px;padding:7px 10px; border-bottom:1px solid #bbb; color:#009CD8; font-weight:bold;}
 .fixed .dialog .title .close{ font-size:12px;}
-.fixed .dialog .content{}
+.fixed .dialog .content{ padding:10px; color:#999;}
 .fixed .dialog .content td{ padding:5px 10px;}
-.fixed .dialog .bom{ margin-top:10px;}
+.fixed .dialog .bom{ margin-top:10px; padding:5px 10px; text-align:right}
 
 .pagebar{ margin-top:20px;}
 .pagebar .pages{ 

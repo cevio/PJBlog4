@@ -60,7 +60,7 @@ define(['form'], function(require, exports, module){
 		return post;
 	}
 	
-	$(function(){
+	exports.insertForm = function(){
 		try{
 			var username = $.cookie(config.cookie + "_comment_username"),
 				usermail = $.cookie(config.cookie + "_comment_usermail"),
@@ -74,5 +74,9 @@ define(['form'], function(require, exports, module){
 		}catch(e){
 			
 		}
+	}
+	
+	$(function(){
+		exports.insertForm();
 	});
 });
