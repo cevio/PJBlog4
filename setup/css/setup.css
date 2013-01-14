@@ -1,0 +1,349 @@
+@charset "utf-8";
+/* CSS Document */
+
+@-webkit-keyframes goaroundT {
+	0% {
+		-webkit-transform:translateX(0px) translateY(0px);
+	}
+	25% {
+		-webkit-transform:translateX(500px) translateY(0px);
+	}
+	50% {
+		-webkit-transform:translateX(500px) translateY(300px);
+	}
+	75% {
+		-webkit-transform:translateX(0px) translateY(300px);
+	}
+	100% {
+		-webkit-transform:translateX(0px) translateY(0px);
+	}
+}
+@-moz-keyframes goaroundT {
+	0% {
+		-moz-transform:translateX(0px) translateY(0px);
+	}
+	25% {
+		-moz-transform:translateX(500px) translateY(0px);
+	}
+	50% {
+		-moz-transform:translateX(500px) translateY(300px);
+	}
+	75% {
+		-moz-transform:translateX(0px) translateY(300px);
+	}
+	100% {
+		-moz-transform:translateX(0px) translateY(0px);
+	}
+}
+
+@-webkit-keyframes goaroundB {
+	0% {
+		-webkit-transform:translateX(0px) translateY(0px);
+	}
+	25% {
+		-webkit-transform:translateX(-500px) translateY(0px);
+	}
+	50% {
+		-webkit-transform:translateX(-500px) translateY(-300px);
+	}
+	75% {
+		-webkit-transform:translateX(0px) translateY(-300px);
+	}
+	100% {
+		-webkit-transform:translateX(0px) translateY(0px);
+	}
+}
+@-moz-keyframes goaroundB {
+	0% {
+		-moz-transform:translateX(0px) translateY(0px);
+	}
+	25% {
+		-moz-transform:translateX(-500px) translateY(0px);
+	}
+	50% {
+		-moz-transform:translateX(-500px) translateY(-300px);
+	}
+	75% {
+		-moz-transform:translateX(0px) translateY(-300px);
+	}
+	100% {
+		-moz-transform:translateX(0px) translateY(0px);
+	}
+}
+
+.animate .box .pops1{ 
+	width:30px; height:30px; background:#fff; border-radius:15px; opacity:.2; position:absolute; top:10px; left:10px;
+	
+	
+	-moz-animation-name: goaroundT;
+	-moz-animation-duration: 5s;
+	-moz-animation-iteration-count: infinite;
+	-moz-animation-timing-function: linear;
+	
+	-webkit-animation-name: goaroundT;
+	-webkit-animation-duration: 5s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+.animate .box .pops2{ 
+	width:30px; height:30px; background:#fff; border-radius:15px; opacity:.2; position:absolute; bottom:10px; right:10px;
+	-webkit-animation-name: goaroundB;
+	-webkit-animation-duration: 5s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+	
+	-moz-animation-name: goaroundB;
+	-moz-animation-duration: 5s;
+	-moz-animation-iteration-count: infinite;
+	-moz-animation-timing-function: linear;
+}
+
+/* 防止用户自定义背景颜色对网页的影响，添加让用户可以自定义字体 */
+html {
+	color: #000;
+	background: #fff;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+form {
+	margin:0;
+	padding:0;
+}
+/* 内外边距通常让各个浏览器样式的表现位置不同 */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	margin: 0;
+	padding: 0;
+	font-family:microsoft yahei;
+}
+/* 重设 HTML5 标签, IE 需要在 js 中 createElement(TAG) */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+	font-family:microsoft yahei;
+}
+/* HTML5 媒体文件跟 img 保持一致 */
+audio, canvas, video {
+	display: inline-block;
+ *display: inline;
+ *zoom: 1;
+}
+/* 要注意表单元素并不继承父级 font 的问题 */
+body, button, input, select, textarea {
+	font: 12px/1.5 microsoft yahei, "\5b8b\4f53", sans-serif;
+	outline:none;
+}
+input, select, textarea {
+	font-size: 100%;
+}
+/* 去掉各Table  cell 的边距并让其边重合 */
+table {
+	border-spacing: 0;
+}
+/* IE bug fixed: th 不继承 text-align*/
+th {
+	text-align: inherit;
+}
+/* 去除默认边框 */
+fieldset, img {
+	border: 0;
+}
+/* ie6 7 8(q) bug 显示为行内表现 */
+iframe {
+	display: block;
+}
+/* 去掉 firefox 下此元素的边框 */
+abbr, acronym {
+	border: 0;
+	font-variant: normal;
+}
+/* 一致的 del 样式 */
+del {
+	text-decoration: line-through;
+}
+address, caption, cite, code, dfn, em, th, var {
+	font-style: normal;
+	font-weight: 500;
+}
+/* 去掉列表前的标识, li 会继承 */
+ol, ul {
+	list-style: none;
+}
+/* 对齐是排版最重要的因素, 别让什么都居中 */
+caption, th {
+	text-align: left;
+}
+/* 来自yahoo, 让标题都自定义, 适应多个系统应用 */
+h1, h2, h3, h4, h5, h6 {
+	font-size: 100%;
+	font-weight: 500;
+}
+q:before, q:after {
+	content: '';
+}
+/* 统一上标和下标 */
+sub, sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+sup {
+	top: -0.5em;
+}
+sub {
+	bottom: -0.25em;
+}
+/* 让链接在 hover 状态下显示下划线 */
+a:hover {
+	text-decoration: underline;
+}
+/* 默认不显示下划线，保持页面简洁 */
+ins, a {
+	text-decoration: none;
+	outline:none;
+}
+/* 清理浮动 */
+.fn-clear:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+.fn-clear {
+	zoom: 1;/* for IE6 IE7 */
+}
+/* 隐藏, 通常用来与 JS 配合 */
+body .fn-hide {
+	display: none;
+}
+/* 设置内联, 减少浮动带来的bug */
+.fn-left, .fn-right {
+	display: inline;
+}
+.fn-left {
+	float: left;
+}
+.fn-right {
+	float: right;
+}
+/* 设置元素为内联*/
+.fn-lump {
+	display: inline-block;
+	zoom: 1;
+ *display: inline;
+}
+/* 设置元素可见 */
+.fn-visible {
+	visibility: visible;
+}
+/* 设置元素不可见 */
+.fn-invisible {
+	visibility: hidden;
+}
+/* 文本强制断行 */
+.fn-brk {
+	word-wrap: break-word;
+	word-break: break-all;
+}
+a img {
+	border:0;
+}
+button, input, select, textarea {
+	margin: 0;
+	font-size: 100%;
+	vertical-align: middle;
+}
+button, input {
+ *overflow: visible;
+	line-height: normal;
+}
+ button::-moz-focus-inner, input::-moz-focus-inner {
+ padding: 0;
+ border: 0;
+}
+button, input[type="button"], input[type="reset"], input[type="submit"] {
+	cursor: pointer;
+	-webkit-appearance: button;
+}
+input[type="search"] {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	-webkit-appearance: textfield;
+}
+ input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button {
+ -webkit-appearance: none;
+}
+textarea {
+	overflow: auto;
+	vertical-align: top;
+}
+
+html{ background-color:#eee;}
+
+.wrapper{ width:550px; height:350px; overflow:hidden; margin:0 auto; margin-top:100px; border:1px solid #ddd; border-radius:4px; position:relative; box-shadow:0px 0px 50px #999;}
+.outer{ 
+	height:350px; position:absolute;
+	-webkit-transition-duration:.4s;
+	-webkit-transition-property:-webkit-transform;
+	-webkit-transition-timing-function:linear;
+	-webkit-transform:translateX(0px);
+	
+	-moz-transition-duration:.4s;
+	-moz-transition-property:-moz-transform;
+	-moz-transition-timing-function:linear;
+	-moz-transform:translateX(0px);
+}
+.inner{ width:550px; height:350px; overflow:hidden; float:left;}
+.animate{ 
+	width:550px; height:350px; overflow:hidden; position:absolute; background: url('../img/bg.jpg') -20px -390px; border-radius:4px;
+}
+.guide{ width:550px; height:30px; overflow:hidden; position:absolute; top:250px; left:0px; box-shadow:0px 1px 10px rgba(0, 0, 0, .3); line-height:30px;}
+.guide .fn-left, .guide .fn-right{ padding:0px 10px;}
+.guide .fn-right{ color:#408DB4; font-weight:bold;}
+.guide .fn-right span{ margin:0px 6px 0px 3px; -webkit-transform:rotate(0deg); float:left;}
+.guide .fn-right span.active{ 
+	color:#BF4210;
+	-webkit-transition-duration:300ms;
+	-webkit-transition-property: -webkit-transform;
+	-webkit-transition-timing-function:linear;
+	-webkit-transform:rotate(360deg);
+	-moz-transition-duration:300ms;
+	-moz-transition-property: -moz-transform;
+	-moz-transition-timing-function:linear;
+	-moz-transform:rotate(360deg);
+}
+.guide .fn-left{ text-shadow:1px 1px 1px #ddd; padding-left:30px; color:#fff;}
+.publue, a.publue{ color:#00B7EE;}
+
+.inner .content{}
+.inner .content .area{ padding:10px 20px; position:relative;}
+.inner .content .top-zone{ height:245px;}
+.inner .content .bom-zone{ height:65px; margin-top:40px; text-align:right;}
+.inner .content .top-zone .welcome{ position:absolute; top:77px; left:75px;}
+.inner .content .top-zone .welcome ul{ margin-left:30px; margin-top:20px;}
+.inner .content .top-zone .welcome ul li{ height:20px; line-height:20px; color: #3884A7;}
+.inner .content .top-zone .welcome h1{}
+.inner .content .top-zone .welcome h2{ margin-top:36px; margin-left:100px;}
+h1{ font-size:24px; color:#fff; height:50px; line-height:50px; width:500px; text-shadow:0px 1px 1px #4E99C0}
+h2{ color:#3884A7; font-weight:bold; font-size:14px;}
+
+.animate .box{width:550px; height:350px; overflow:hidden; position:relative;}
+
+.inner .content .top-zone .setupfolder{ position:absolute; top:75px; left:50px;}
+
+input{
+	border:1px solid #45A6C3;
+	border-radius:3px;
+	padding:5px 10px;
+	height:20px;
+	line-height:20px;
+	background:rgba(255,255,255, .3);
+	color:#ff0000;
+}
+.input{ margin-top:10px;}
+.info{ margin-top:10px; color:#75A535;}
+.info a{ color:#BF4210; text-decoration:none; outline:none;}
+.yanzheng{ position:absolute; top:22px; left:40px;}
+.setuping{ position:absolute; top:65px; left:50px;}

@@ -1,114 +1,148 @@
 // JavaScript Document
 define(function(require, exports, module){
+	
+	var overlay = function( node ){
+		this.node = node;
+	}
+	
+	overlay.prototype.deformationZoom = function( callback ){
+		var width = $(this).outerWidth(),
+			height = $(this).outerHeight(),
+			_this = this;
+			
+		$(this).trigger("overlay.position", function(offset){
+			var left = offset.left,
+				top = offset.top;
+				
+			$(this).on("deformationZoom.popup", function(){
+				$(this).css({
+					width: $(window).width() + "px",
+					height: $(window).height() + "px",
+					top: "0px",
+					left: "0px",
+					opacity: 0
+				})
+				.children().css({
+					opacity: 0
+				});
+				
+				$(this).animate({
+					width: width + "px",
+					height: height + "px",
+					left: left + "px",
+					top: top + "px",
+					opacity: 1
+				}, "slow", function(){
+					$(this).children().animate({
+						opacity: 1
+					}, "fast");
+					$.isFunction(callback) && callback.call(this);
+				});
+			})
+			
+			.on("deformationZoom.drop", function(){
+				$(this).empty().animate({
+					width: $(window).width() + "px",
+					height: $(window).height() + "px",
+					top: "0px",
+					left: "0px",
+					opacity: 0
+				}, 100, function(){ 
+					$(this).trigger("masker.close");
+					$(this).remove();	
+				});
+			});
+			
+			$(this).find(".close").on("click", function(){
+				$(_this).trigger("deformationZoom.drop");
+			});
+			
+			$(this).trigger("deformationZoom.popup");
+		});
+	}
+	
 	$.overlay = function(options){
 		options = $.extend({
 			mask: true,
 			opacity: .5,
-			background: "#000",
+			background: "#777",
 			content: '',
 			effect: 'fadeIn',
-			width: 500,
-			height: 200
+			callback: null
 		}, options || {});
 		
-		if ( options.mask === true ){
-			var $masker = $(document.createElement("div"));
-			
-				$masker.appendTo("body")
-					   .addClass("fixedMasker")
-					   .css("background", options.background)
-					   .css("opacity", options.opacity);
+		var $masker;
+		
+		if ( options.mask === true && $(".fixedMasker").size() === 0 ){
+			$masker = $(document.createElement("div"));
+			$masker.appendTo("body")
+				   .addClass("fixedMasker")
+				   .css("background", options.background)
+				   .css("opacity", options.opacity);
 		}
 		
 		var $overlayer = $(document.createElement("div"));
-			$overlayer.appendTo("body").addClass("fixed").empty();
-		
-		var htmlElementWidth = options.width,
-			htmlElementHeight = options.height,
-			curLeft = ($(window).width() - htmlElementWidth) / 2,
-			curTop = ($(window).height() - htmlElementHeight) / 2;
+			$overlayer.appendTo("body").addClass("fixed").addClass("ui-wrapshadow").html(options.content);
 			
-		$(window).on("resize", function(){
-			var top, left;
+		function getTL(){
+			var left = ($(window).width() - $overlayer.outerWidth()) / 2;
+			var top = ($(window).height() - $overlayer.outerHeight()) / 2;
+			return {left:left, top:top};
+		}
 			
-			left = ($(window).width() - htmlElementWidth) / 2;
-			top = ($(window).height() - htmlElementHeight) / 2;
+		function resize(){
+			var offset = getTL();
 			
 			$overlayer.css({
-				top : top + "px",
-				left : left + "px"
+				top : offset.top + "px",
+				left : offset.left + "px"
 			});
+		}
+			
+		$(window).on("resize", resize);
+		$overlayer.on("masker.close", function(){
+			if ( options.mask === true ){
+				$masker.remove();
+			}
+		}).on("overlay.position", function(event, callback){
+			$.isFunction(callback) && callback.call($overlayer, getTL());
 		});
 		
-		$overlayer
-		.on("overlay.deformationzoom.popup", function(event, callback){
-			
-			var _this = this;
-			
-			$(this).css({
-				width: $(window).width() + "px",
-				height: $(window).height() + "px",
-				top: "0px",
-				left: "0px",
-				opacity: 0
-			});
-			
-			$(this).animate({
-				width: htmlElementWidth + "px",
-				height: htmlElementHeight + "px",
-				left: curLeft + "px",
-				top: curTop + "px",
-				opacity: 1
-			}, "slow", function(){ 
-				$(_this).html(options.content);
-				$.isFunction(callback) && callback.call(this);
-			});
-			
-		})
+		resize();
+
+		var ect = new overlay($overlayer);
 		
-		.on("overlay.deformationzoom.drop", function(event, callback){
-			$(this).empty().animate({
-				width: $(window).width() + "px",
-				height: $(window).height() + "px",
-				top: "0px",
-				left: "0px",
-				opacity: 0
-			}, 100, function(){ 
-				$(this).remove(); 
-				if ( options.mask === true ){ $masker.remove(); } 
-				$.isFunction(callback) && callback.call(this);
-			});
-		})
-		
-		.on("overlay.dialog.popup", function(event, callback){
-			options.content = '<div class="dialog"><div class="title fn-clear"><div class="fn-left mtitle">提示</div><a href="javascript:;" class="fn-right close"><span class="iconfont">&#223;</span></a></div><div class="content">' + options.content + '</div><div class="bom"><input type="button" value="确定" class="tpl-button-blue close" /></div></div>';
-			$(this).trigger("overlay.deformationzoom.popup", function(){
-				var _this = this;
-				$(this).find(".close").on("click", function(){
-					$(_this).trigger("overlay.deformationzoom.drop");
-				});
-				$.isFunction(callback) && callback.call(this);
-			});
-		})
-		
-		.on("overlay.set.popup", function(event, callback){
-			options.content = '<div class="dialog"><form action="' + options.action + '" method="post" style="margin:0; padding:0;"><div class="title fn-clear"><div class="fn-left mtitle">设置</div><a href="javascript:;" class="fn-right close"><span class="iconfont">&#223;</span></a></div><div class="content">' + options.content + '</div><div class="bom"><input type="submit" value="保存" class="tpl-button-blue" /></div></form></div>';
-			$(this).trigger("overlay.deformationzoom.popup", function(){
-				var _this = this;
-				$(this).find(".close").on("click", function(){
-					$(_this).trigger("overlay.deformationzoom.drop");
-				});
-				$.isFunction(callback) && callback.call(this);
-			});
-		})
-		
-		.on("overlay.mid", function(){
-			$(this).css("height", "auto");
-			htmlElementHeight = $(this).outerHeight();
-			$(window).trigger("resize");
-		});
-		
-		return $overlayer;
-			
+		if ( ect[options.effect] !== undefined ){
+			ect[options.effect].call($overlayer, options.callback);
+		}else{
+			$overlayer.trigger("masker.close");
+		}	
 	}
+	
+	$.dialog = function( options ){
+		options.content = '<div class="dialog fn-clear" style="width:250px;"><div class="title fn-clear"><div class="fn-left mtitle">提示</div><a href="javascript:;" class="fn-right close">关闭</a></div><div class="content">' + options.content + '</div><div class="bom"><input type="button" value="确定" class="button close" /></div></div>';
+		$.overlay(options);
+	}
+	
+	$.dialogSet = function( options ){
+		options.content = '<div class="dialog fn-clear" style="width:300px;"><form action="' + options.action + '" method="post" style="margin:0; padding:0;"><div class="title fn-clear"><div class="fn-left mtitle">设置</div><a href="javascript:;" class="fn-right close">关闭</a></div><div class="content">' + options.content + '</div><div class="bom"><input type="submit" value="保存" class="button" /></div></form></div>';
+		$.overlay(options);
+	}
+	
+	$.updateBox = function(options){
+		options.content = '<div class="ui-updatebox ui-wrapshadow">' + options.content + '</div>';
+		$.overlay(options);
+	}
+	
+	$.loading = function(options){
+		options.content = '<div class="dialog fn-clear"><div class="close"></div><div id="postingbox" style="width:250px; text-align: center; color: #777; padding:10px;">' + options.word + '</div></div>';
+		$.overlay(options);
+	}
+	
+	$.openbox = function(options){
+		options.content = '<div class="dialog fn-clear"><div class="close"></div><div id="openboxes"><div class="title fn-clear"><div class="name fn-left">选取图片</div><div class="fn-right"><a href="javascript:;" class="close">关闭</a></div></div>' + options.word + '</div></div>';
+		$.overlay(options);
+	}
+	
+	return overlay;
 });

@@ -1,69 +1,131 @@
-<%include(config.params.themeFolder + "/header");%>
+﻿<%include(pageCustomParams.global.themeFolder + "/header");%>
+<%
+	var date = require("DATE");
+%>
+<div class="pj-wrapper fn-clear pj-bodyer">
+	<div class="pj-article-list fn-left">
+    
+<%
+;(function(lists, pages){		
+	for ( var i = 0 ; i < lists.length ; i++ ){
+%>
+<div class="pj-article-content">
+    <h1><a href="<%=lists[i].url%>"><%=lists[i].title%></a></h1>
+    <div class="pj-content"><%=lists[i].content%></div>
+    <div class="pj-article-infos">
+        <span class="more"><a href="<%=lists[i].url%>" title="详细阅读 <%=lists[i].title%>">阅读全文</a></span>
+        <span class="date">发布：<%=(date.format(lists[i].postDate, "y-m-d"))%></span>
+        <span class="date">分类：<a href="<%=lists[i].category.url%>"><%=lists[i].category.name%></a></span>
+        <span class="date">阅读：<%=lists[i].views%>次</span>
+        <span class="date">评论：<%=lists[i].comments%>条</span>
+    </div>
+</div>
+<%
+	}
+	if ( pages.length > 0 ){
+%>
+		<div class="pj-article-pagebar fn-clear"><div class="pagebar">
+<%
 
-    <div id="content-wrap">
-        <div id="sidebar">
-            <h3>Download</h3>
-            <p>
-            <div class="download" onclick="window.location.href='assets/system/javascript/sizzle.js'">Sizzle v4.0</div>
-            </p>
-            <h3>Wise Words</h3>
-            <div class="left-box">
-                <p>&quot;Manage your code, make it more perfect.&quot; </p>
-                <p class="align-right">- Evio Shen</p>
-            </div>
-            
-            
-            <%
-				var A = assetsPluginCustom.loadPlugin("hotarticle");
-				if ( A !== null ){
-					var _data = A.data();
-					if ( _data.length > 0 ){
-			%>
-					<h3>最新日志</h3>
-                    <ul class="sidemenu">
-            <%
-            		for ( var ai = 0 ; ai < _data.length ; ai++ ){
-			%>
-            		<li><a href="article.asp?id=<%=_data[ai].id%>" target="_blank"><%=_data[ai].log_title%></a></li>
-            <%
-					}		
-            %>
-                    </ul>
-            <%
-					}
-				}
-			%>
-            <h3>Link</h3>
-            <ul class="sidemenu">
-                <li><a href="http://bbs.pjhome.net" target="_blank">PJBlog BBS</a></li>
+		for ( i = 0 ; i < pages.length ; i++ ){
+			if ( pages[i].url === undefined ){
+%>
+			<a href="javascript:;"><span class="fn-left"><%=pages[i].key%></span></a>
+<%
+			}else{
+%>
+				<a href="<%=pages[i].url%>" class="fn-left"><span><%=pages[i].key%></span></a>
+<%			
+			}
+		}
+%>
+		</div></div>		
+<%
+}
+})(pageCustomParams.articles.lists, pageCustomParams.articles.pages);
+%>
+    </div>
+
+    <div class="pj-sidebar fn-right">
+    	<div class="pj-sidepannel">
+        	<h3>用户信息</h3>
+            <ul class="fn-clear">
+				<%
+                if ( config.user.login === true ){
+                %>
+                    <li><a href="server/logout.asp">注销登录</a></li>
+                <%
+                }else{
+                    LoadPluginsCacheModule("qqoauth", function(qq){
+                        console.log('<li><a href="' + qq.url() + '">腾讯账号登入</a></li>');
+                    });
+                }
+                %>
+    			<li><a href="control.asp">管理后台（需要权限）</a></li>
+    		</ul>
+    	</div>
+    	
+        <%
+			LoadPluginsCacheModule("newarticles", function(articles){
+				if ( articles ){
+					var datas = articles.datas();
+					if ( datas.length > 0 ){
+		%>
+        <div class="pj-sidepannel">
+        	<h3>最新日志</h3>
+            <ul class="fn-clear">
+        <%
+						for ( var i = 0 ; i < datas.length; i++ ){
+		%>
+            	<li><a href="<%=datas[i].url%>"><%=datas[i].title%></a></li>
+        <%
+						}
+		%>
             </ul>
         </div>
-        <div id="main">
-<%
-				var article = require("cache_article"),
-					date = require("DATE");
-				for ( var articles = 0 ; articles < article.length ; articles++ ){
-%>
-					<h2><a href="article.asp?id=<%=article[articles].id%>"><%=article[articles].log_title%></a></h2>
-                	<p><%=article[articles].log_content%></p>
-                    <div style="margin-left:30px;">Tags: 
-                    	<%
-							for ( var tagitems = 0 ; tagitems < article[articles].log_tags.length ; tagitems++ ){
-						%>
-                        		<a href="tags.asp?id=<%=article[articles].log_tags[tagitems].id%>"><%=article[articles].log_tags[tagitems].name%></a> 
-                        <%
-							}
-						%> | Category: <a href="default.asp?c=<%=article[articles].log_category%>" title="<%=article[articles].log_categoryInfo%>"><%=article[articles].log_categoryName%></a>
-                    </div>
-                    <p class="post-footer align-right">					
-                        <a href="index.html" class="readmore">Read more</a>
-                        <a href="index.html" class="comments">Views (<%=article[articles].log_views%>)</a>
-                        <span class="date"><%=date.format(article[articles].log_posttime, "y-m-d h:i:s")%> - <%=date.format(article[articles].log_updatetime, "y-m-d h:i:s")%></span>	
-                    </p>
-<%
+        <%
+					}
 				}
-%>
+			});
+			LoadPluginsCacheModule("newcomments", function(comments){
+				if ( comments ){
+					var datas = comments.datas();
+					if ( datas.length > 0 ){
+		%>
+        <div class="pj-sidepannel">
+        	<h3>最新评论</h3>
+            <ul class="fn-clear">
+        <%
+						for ( var i = 0 ; i < datas.length; i++ ){
+		%>
+            	<li><a href="<%=datas[i].url%>"><%=datas[i].content%></a></li>
+        <%
+						}
+		%>
+            </ul>
         </div>
-
+        <%
+					}
+				}
+			});
+		%>
+    	<div class="pj-sidepannel">
+        	<h3>网站统计</h3>
+            <ul class="fn-clear">
+    	    <li style="width:50%;">文章总数：<%=pageCustomParams.global.totalarticles%>篇</li>
+    	    <li style="width:50%;">评论总数：<%=pageCustomParams.global.totalcomments%>条</li>
+    	    </ul>
+        </div>
+    	<div class="pj-sidepannel">
+        	<h3>友情链接</h3>
+            <div>需要插件支持，暂无此插件</div>
+    	</div>
+   
     </div>
-<%include(config.params.themeFolder + "/footer")%>
+</div>
+<script language="javascript">
+	require("assets/js/config.js", function( route ){
+		route.load("<%=pageCustomParams.global.themeFolder%>/js/default");
+	});
+</script>
+<%include(pageCustomParams.global.themeFolder + "/footer")%>

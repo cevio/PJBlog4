@@ -1,0 +1,40 @@
+system.category.update.begin 分类更新开始 rets req
+system.category.info.begin  获取分类数据接口 rets rs
+
+system.article.add.begin 日志添加开始
+system.article.add.end 日志添加结束
+system.article.update.begin 日志更新开始
+system.article.update.end 日志更新结束
+system.article.destory.begin 日志删除开始
+system.article.destory.end 日志删除结束
+
+system.comment.reply.begin 后台评论回复开始
+system.comment.reply.end 后台评论回复结束
+system.comment.destory.begin 后台评论删除开始
+system.comment.destory.end 后台评论删除结束
+system.comment.pass.begin 后台评论通过开始
+system.comment.pass.end 后台评论通过结束
+system.comment.unpass.begin 后台评论不通过开始
+system.comment.unpass.end 后台评论不通过结束
+
+system.global.save.begin 后台全局变量修改开始 rets
+system.global.save.end 后台全局变量修改结束
+
+system.member.destory.begin 后台用户删除开始
+system.member.destory.end 后台用户删除结束
+system.member.force.begin  后台用户禁止登入开始
+system.member.force.end 后台用户禁止登入结束
+system.member.unforce.begin 后台用户恢复登入开始
+system.member.unforce.end 后台用户恢复登入结束
+system.member.admin.begin  后台用户提权开始
+system.member.admin.end 后台用户提权结束
+system.member.unadmin.begin 后台用户降阶开始
+system.member.unadmin.end 后台用户降阶结束
+system.member.search.begin 后台用户搜索开始
+system.member.search.end 后台用户搜索结束
+
+response.article.write.plugin 后台输出日志页面插件兼容接口
+response.global.save.plugin 后台输出全局设置页面插件兼容接口
+
+assets.comment.post.begin 前台评论开始
+assets.comment.post.end 前台评论结束

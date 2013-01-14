@@ -1,16 +1,62 @@
 @charset "utf-8";
 /* CSS Document */
 
-.plugin-zone{ padding:20px; }
-.tabs-content-items-area{ padding:20px 25px;}
+.setuped-list{}
+.setuped-list li{
+	margin:0px 0px 20px 0px;
+}
+.setuped-list li .pic{
+	padding:5px;
+	background:#fff;
+	width:80px;
+	height:80px;
+}
+.setuped-list li .pic img{
+	width:80px;
+	height:80px;
+}
+.setuped-list li .info{
+	padding-left:110px;
+}
 
-.tabs-content-items-area li{ margin-bottom:30px;}
-.tabs-content-items-area li .pic{ float:left; width:60px; margin-right:20px;}
-.tabs-content-items-area li .pic img{ width:60px; height:60px; border-radius:3px;}
-.tabs-content-items-area li .info{ float:left;}
-.tabs-content-items-area li .info .titles{ font-weight:bold; color:#000; height:20px; line-height:20px; margin-bottom:10px;}
-.tabs-content-items-area li .info .msg{ font-size:12px; color:#666; margin-bottom:5px;}
-.tabs-content-items-area li .info .author{ color:#ccc; margin-bottom:5px;}
-.tabs-content-items-area li .info .tools a{ margin-right:10px; float:left;}
-.tabs-content-items-area li .info .tools a span{ float:left; margin-right:3px; height:24px; line-height:24px;}
-.tabs-content-items-area li .info .tools a span .icontext{}
+.setuped-list li:hover .info{
+	background-color: #fff;
+	border-radius:3px;
+	box-shadow:1px 1px 5px rgba(0, 0, 0, .097);
+}
+.setuped-list li .info .titles{
+	height:30px;
+	line-height:30px;
+	font-size:14px;
+}
+.setuped-list li .info .msg{
+	width:500px;
+	height:20px;
+	line-height:20px;
+}
+.setuped-list li .info .author{
+	height:20px;
+	line-height:20px;
+}
+.setuped-list li .info .tools{
+	height:20px;
+	line-height:20px;
+}
+.setuped-list li .info .tools a{
+	margin-right:10px;
+}
+
+.activing:link,
+.activing:visited{
+	color:#CF4467!important;
+}
+
+.uploadnewtheme{
+	background-color:#fff;
+	padding:10px 30px;
+	margin-bottom:20px;
+}
+.uploadnewtheme .info{ line-height:20px; margin-bottom:10px;}
+.uploadnewtheme ul{ margin-bottom:10px;}
+.uploadnewtheme ul li{ height:20px; line-height:20px; padding-left:20px;}
+.uploadnewtheme .startupload{ margin-bottom:10px; padding-left:20px;}

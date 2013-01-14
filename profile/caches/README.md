@@ -1,4 +1,4 @@
-PJBlog4 cache
+PJBlog4 uploads
 =======
 
-系统自动生成cache文件存在的目录
+上传附件存放目录

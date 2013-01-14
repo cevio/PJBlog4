@@ -111,7 +111,7 @@ define(function(require, exports, module){
 		}
 		
 		if ( retHTML.length > 0 ) {
-			retHTML = '<table>' + retHTML + '</table>';
+			retHTML = '<div class="ui-table ui-table-custom"><table cellpadding="0" cellspacing="0">' + retHTML + '</table></div>';
 		}
 		
 		return retHTML;

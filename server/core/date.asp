@@ -32,8 +32,8 @@ define(function(require, exports, module){
 				.replace(/h/g, hour)
 				.replace(/i/g, miniter)
 				.replace(/s/g, second)
-				.replace(/M/g, dateArray[_month])
-				.replace(/D/g, _day);
+				.replace(/D/g, _day)
+				.replace(/M/g, dateArray[_month]);
 				
 	}
 	

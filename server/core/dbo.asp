@@ -76,38 +76,43 @@ define(function( require, exports, module ){
 	}
 
 	// 添加数据
-	// 数据结构 data{json}(true) table{string}(true) conn{object}(true) rs{object}(false) callback
+	// 数据结构 data{json}(true) table{string}(true) conn{object}(true) callback
 	exports.add = function( options ){
-
 		if ( options === undefined ){ options = {} };
-		if ( options.rs === undefined ){ options.rs = this.createRecordSet(); }
+		options.rs = this.createRecordSet();
 
 		try{
-			options.rs.Open( "Select * From " + options.table, options.conn, 3, 2 );
+			options.rs.Open( "Select * From " + options.table, options.conn, 1, 2 );
 			options.rs.AddNew();
-			(typeof options.callback === "function") && options.callback.call(options.rs);
 			for ( var items in options.data ){
 				console.push(items + ": " + options.data[items]);
 				options.rs(items) = options.data[items];
 			}
 			options.rs.Update();
+			(typeof options.callback === "function") && options.callback.call(options.rs);
 			options.rs.Close();
 		}catch(e){
 			console.push(e.message);
+			console.push("dbo.add:[Select * From " + options.table + "]");
+			try{
+				options.rs.Close();
+			}catch(e){
+				console.push(e.message);
+			}
 		}
-
+		
+		options.rs = null;
 		return this;
-
 	}
 	
 	// 更新数据
 	// 数据结构 data{json}(true) table{string}(true) key{string}(true) keyValue(string)(true) conn{object}(true) rs{object}(false)
-	exports.update = function( options ){
+	exports.update = function( options ){	
 		if ( options === undefined ){ options = {} };
-		if ( options.rs === undefined ){ options.rs = this.createRecordSet(); }
-
+		options.rs = this.createRecordSet(); 
+		
 		try{
-			options.rs.Open("Select * From " + options.table + " Where " + options.key + "=" + options.keyValue, options.conn, 3, 3);
+			options.rs.Open("Select * From " + options.table + " Where " + options.key + "=" + options.keyValue, options.conn, 1, 3);
 			for ( var items in options.data ){
 				options.rs(items) = options.data[items];
 			}
@@ -116,8 +121,15 @@ define(function( require, exports, module ){
 			options.rs.Close();
 		}catch(e){
 			console.push(e.message);
+			console.push("dbo.update:[Select * From " + options.table + " Where " + options.key + "=" + options.keyValue + "]");
+			try{
+				options.rs.Close();
+			}catch(e){
+				console.push(e.message);
+			}
 		}
-
+		
+		options.rs = null;
 		return this;
 	}
 	
@@ -125,42 +137,56 @@ define(function( require, exports, module ){
 	// 数据结构 data{json}(true) table{string}(true) conn{object}(true) rs{object}(false)
 	exports.destory = function( options ){
 		if ( options === undefined ){ options = {} };
-		if ( options.rs === undefined ){ options.rs = this.createRecordSet(); }
+		options.rs = this.createRecordSet(); 
 		
 		try{
 			for ( var items in options.data ){
-				options.rs.Open("Select * From " + options.table + " Where " + items + "=" + options.data[items], options.conn, 3, 3);
+				options.rs.Open("Select * From " + options.table + " Where " + items + "=" + options.data[items], options.conn, 1, 3);
 				options.rs.Delete();
 				options.Close();
 			}
 		}catch(e){
 			console.push(e.message);
+			console.push("dbo.destory:[Select * From " + options.table + "]");
+			try{
+				options.rs.Close();
+			}catch(e){
+				console.push(e.message);
+			}
 		}
-
+		
+		options.rs = null;
 		return this;
 	}
 
 	// 删除数据
 	// 数据结构 type{number}(false) sql{string}(true) conn{object}(true) rs{object}(false) callback{function}(false)
 	exports.trave = function( options ){
-		if ( options === undefined ){ options = {} };
-		if ( options.rs === undefined ){ options.rs = this.createRecordSet(); }
-		if ( options.type === undefined ){ options.type = 1; }
-
 		var ret;
+		
+		if ( options === undefined ){ options = {} };
+		options.rs = this.createRecordSet(); 
+		if ( options.type === undefined ){ options.type = 1; }
 
 		try{
 			if ( options.callback === undefined ){
 				ret = options.conn.Execute(options.sql);
 			}else{
-				options.rs.Open(options.sql, options.conn, 3, options.type);
+				options.rs.Open(options.sql, options.conn, 1, options.type);
 				ret = options.callback.call(new recordSetCoretions(options.rs), options.rs, options.conn);
 				options.rs.Close();
 			}
 		}catch(e){
 			console.push(e.message);
+			console.push("dbo.trave:[" + options.sql + "]");
+			try{
+				options.rs.Close();
+			}catch(e){
+				console.push(e.message);
+			}
 		}
-
+		
+		options.rs = null;
 		return ret;
 	}
 

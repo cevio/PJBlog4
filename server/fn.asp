@@ -23,6 +23,14 @@ define(function(require, exports, module){
 	}
 	
 	exports.SQLStr = function( str ){
+		if ( !str ){
+			return "";
+		}
+		try{
+			str = str + "";
+		}catch(e){
+			return "";
+		}
 		var reglist = [
 			[/(w)(here)/ig, "$1h&#101;re"],
 			[/(s)(elect)/ig, "$1el&#101;ct"],
@@ -43,13 +51,21 @@ define(function(require, exports, module){
 		];
 		
 		for ( var i = 0 ; i < reglist.length ; i++ ){
-			str = str.replace( reglist[0], reglist[1] );
+			str = str.replace( reglist[i][0], reglist[i][1] );
 		}
 		
 		return str;
 	}
 	
 	exports.unSQLStr = function( str ){
+		if ( !str ){
+			return "";
+		}
+		try{
+			str = str + "";
+		}catch(e){
+			return "";
+		}
 		var reglist = [
 			[/(w)(h&#101;re)/ig, "$1here"],
 			[/(s)(el&#101;ct)/ig, "$1elect"],
@@ -70,26 +86,44 @@ define(function(require, exports, module){
 		];
 		
 		for ( var i = 0 ; i < reglist.length ; i++ ){
-			str = str.replace( reglist[0], reglist[1] );
+			str = str.replace( reglist[i][0], reglist[i][1] );
 		}
 		
 		return str;
 	}
 	
 	exports.HTMLStr = function( str ){
+		if ( !str ){
+			return "";
+		}
+		try{
+			str = str + "";
+		}catch(e){
+			return "";
+		}
 		var reglist = [
 			[/\</g, "&#60;"],
-			[/\>/g, "&#62;"]
+			[/\>/g, "&#62;"],
+			[/\'/g, "&#39;"],
+			[/\"/g, "&#34;"]
 		];
 		
 		for ( var i = 0 ; i < reglist.length ; i++ ){
-			str = str.replace( reglist[0], reglist[1] );
+			str = str.replace( reglist[i][0], reglist[i][1] );
 		}
 		
 		return str;
 	}
 	
 	exports.removeHTML = function(html){
+		if ( !html ){
+			return "";
+		}
+		try{
+			html = html + "";
+		}catch(e){
+			return "";
+		}
 		html = html.replace(/\<(\w+?)([^\>]+)?\>([\s\S]+?)\<\/\1\>/g, "$3")
 				   .replace(/<(\w+?)(\s([^\/]+)?)?\/>/g, "");
 				
@@ -101,37 +135,63 @@ define(function(require, exports, module){
 	}
 	
 	exports.unHTMLStr = function( str ){
+		if ( !str ){
+			return "";
+		}
+		try{
+			str = str + "";
+		}catch(e){
+			return "";
+		}
 		var reglist = [
-			[/&#60;/g, "<"],
-			[/&#62;/g, ">"]
+			[/\&\#60\;/g, "<"],
+			[/\&\#62\;/g, ">"],
+			[/\&\#39\;/g, "'"],
+			[/\&\#34\;/g, '"']
 		];
 		
 		for ( var i = 0 ; i < reglist.length ; i++ ){
-			str = str.replace( reglist[0], reglist[1] );
+			str = str.replace( reglist[i][0], reglist[i][1] );
 		}
 		
 		return str;
 	}
 	
 	exports.textareaStr = function( str ){
+		if ( !str ){
+			return "";
+		}
+		try{
+			str = str + "";
+		}catch(e){
+			return "";
+		}
 		var reglist = [
 			[/textarea/ig, "t&#101;xtarea"]
 		];
 		
 		for ( var i = 0 ; i < reglist.length ; i++ ){
-			str = str.replace( reglist[0], reglist[1] );
+			str = str.replace( reglist[i][0], reglist[i][1] );
 		}
 		
 		return str;
 	}
 	
 	exports.unTextareaStr = function( str ){
+		if ( !str ){
+			return "";
+		}
+		try{
+			str = str + "";
+		}catch(e){
+			return "";
+		}
 		var reglist = [
 			[/t&#101;xtarea/ig, "textarea"]
 		];
 		
 		for ( var i = 0 ; i < reglist.length ; i++ ){
-			str = str.replace( reglist[0], reglist[1] );
+			str = str.replace( reglist[i][0], reglist[i][1] );
 		}
 		
 		return str;
@@ -144,6 +204,14 @@ define(function(require, exports, module){
 	 * r: 省略的符号
 	 */
 	exports.cutStr = function( s, n, c, r ){
+		if ( !s ){
+			return "";
+		}
+		try{
+			s = s + "";
+		}catch(e){
+			return "";
+		}
 		var _s = "", j = 0;
 		for ( var i = 0 ; i < s.length ; i++ ){
 			var t = s.charAt(i);
@@ -210,6 +278,83 @@ define(function(require, exports, module){
 				callback(i, i === options.current);
 			}
 		}
+	}
+	
+	exports.pageFormTo = function( page, perpage, total ){
+		var leftid = ( page - 1 ) * perpage + 1,
+			rightid = page * perpage;
+			
+		if ( leftid > total ){
+			leftid = total;
+			rightid = total;
+		}else{
+			if ( leftid < 1 ){
+				leftid = 1;
+			}
+			if ( rightid > total ){
+				rightid = total;
+			}
+		}
+		
+		leftid--; rightid--;
+		
+		return {
+			from: leftid,
+			to: rightid
+		}
+	}
+	
+	exports.getUserInfo = function(id, name, mail){
+		var userInfo = {},
+			cache = require.async("cache"),
+			global = cache.load("global"),
+			GRA = require.async("gra");
+			
+		id = Number(id);
+		
+		if ( id === -1 ){
+			if ( config.user.id === -1 ){
+				userInfo.photo = config.user.photo;
+				userInfo.name = config.user.name;
+				userInfo.website = config.user.website;
+			}else{
+				userInfo.photo = GRA(global.authoremail);
+				userInfo.name = global.nickname;
+				userInfo.website = global.website;
+			}
+			userInfo.poster = true;
+			userInfo.oauth = "system";
+			userInfo.login = config.user.login;
+			userInfo.logindate = "";
+			userInfo.loginip = "";
+		}
+		else if ( id === 0 ){
+			userInfo.photo = GRA(mail);
+			userInfo.name = name;
+			userInfo.poster = false;
+			userInfo.oauth = "";
+			userInfo.login = false;
+			userInfo.logindate = "";
+			userInfo.loginip = "";
+			userInfo.website = "";
+		}
+		else{
+			var userCache = cache.load("user", id),
+				userInfo = {};
+				
+			if (userCache.length === 1){
+				userInfo.photo = userCache[0][0];
+				userInfo.name = userCache[0][1];
+				userInfo.poster = userCache[0][2];
+				userInfo.oauth = userCache[0][3];
+				userInfo.login = userCache[0][4];
+				userInfo.logindate = userCache[0][5];
+				userInfo.loginip = userCache[0][6];
+				userInfo.loginip = userCache[0][7];
+			}
+		}
+		
+		return userInfo;
 	}
 });
 %>

@@ -1,71 +1,127 @@
-<!--#include file="config.asp" --><%
+﻿<!--#include file="config.asp" --><%
+try{
+	require("status")();
 	var page = http.get("p");
 	function checkStatusAndCustomPage(){
-		if ( Session("admin") !== true ){
+		if ( config.user.poster !== true ){
 			return "login";
-		}else if ( page.length === 0 ){
-			return "index";
 		}else{
-			return page;
+			return page.length === 0 ? "index" : page;
 		}
 	}
+	var __pages = checkStatusAndCustomPage();
 %><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<title>PJBlog4 管理后台</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="assets/css/control.css" media="all" />
+<link rel="stylesheet" href="assets/css/reset.css" type="text/css" />
+<link rel="stylesheet" href="assets/css/ui.css" type="text/css" />
+<link rel="stylesheet" href="assets/css/fn.css" type="text/css" />
+<link rel="stylesheet" href="assets/css/icon.css" type="text/css" />
 <link rel="stylesheet" href="assets/css/page-<%=checkStatusAndCustomPage()%>.css" media="all" />
 <script language="javascript" src="assets/js/core/sizzle.js"></script>
-<title>PJBlog4 管理后台</title>
+<script language="javascript" src="profile/handler/configure.js"></script>
+<script language="javascript" src="<%=config.platform%>/proxy/update.js"></script>
+<script language="javascript">
+var userid = '<%=config.user.id%>',
+	userhashkey = '<%=config.user.hashkey%>',
+	useroauth = '<%=config.user.oauth%>',
+	userphoto = '<%=config.user.photo%>';
+
+config.version = "<%=config.version%>";
+config.platform = "<%=config.platform%>";
+config.limits = {};
+config.limits.admin = <%=config.user.admin ? "true" : "false"%>;
+</script>
 </head>
 <body>
-<div id="navtion" class="tpl-navtion fn-black-opacity">
-	<div class="tpl-wrapper fn-clear">
-    	<div class="logo"></div>
-        <div class="nav-list">
-        	<ul>
-            	<li><a href="control.asp">首页</a></li>
-                <li><a href="?p=category">分类</a></li>
-                <li><a href="?p=article">日志</a></li>
-                <li><a href="?p=theme">主题</a></li>
-                <li><a href="?p=plugin">插件</a></li>
-                <li><a href="?p=documents">文档</a></li>
-            </ul>
+	<div class="ui-header fn-clear">
+		<div class="ui-user fn-right fn-clear">
+            <div class="icon-user fn-rightspace fn-left"><%=config.user.name%></div>
+			<%if ( config.user.admin === true ){%><a href="javascript:;" class="fn-rightspace fn-left modify-password">修改密码</a><%}%>
+			<%if ( config.user.poster === true ){%>
+				<a href="server/logout.asp" class="fn-left">注销</a>
+			<%}%>
+		</div>
+		<div class="ui-guide">
+			<a class="ui-logo fn-left fn-rightspace">PJBlog4</a>
+			<ul class="fn-clear">
+				<li><a href="default.asp" target="_blank">前台</a></li>
+				<li><a href="?p=documents">文档</a></li>
+				<li><a href="http://webkits.cn" target="_blank">官方</a></li>
+			</ul>
+		</div>
+        <div class="ui-updateArea">
+        	<div class="vers">升级版本：<span id="updateversionnumber"></span></div>
+            <div class="vers">当前版本： v <%=config.version%></div>
+            <div class="goupdate"><a href="javascript:;" id="hurryUpdate">马上升级？</a><a href="#" id="viewupdateinfo" target="_blank">详细</a><a href="javascript:;" id="updateclose">关闭</a></div>
         </div>
-        <div class="nav-user">
-        	<%if ( Session("admin") !== true ){ %><a href="default.asp">前台</a><%}%>
-        	<%if ( Session("admin") === true ){ %><span class="name">sevio</span><%}%>
-            <%if ( Session("admin") === true ){ %><a href="javascript:;" class="item">设置<ul><li class="sdk-globalconfigure"><span class="iconfont">&#355;</span> 全局设置</li><li><span class="iconfont">&#226;</span> 修改密码</li></ul></a><%}%>
-            <%if ( Session("admin") === true ){ %><a href="?p=writeArticle">写日志</a><%}%>
-            <a href="javascript:;">官方</a>
-            <%if ( Session("admin") === true ){ %><a href="server/logout.asp">退出</a><%}%>
-        </div>
-    </div>   
-</div>
-<div id="slogen" class="tpl-wrapper">
-	<div class="Alogo">创新技术、创新架构、创新分享<div class="Blogo">不能承受的重博客之轻！</div></div>
-    <div class="update">发现新版本 请点击升级</div>
-</div>
-<div id="content" class="tpl-wrapper">
-	<%
-		try{
-			include("server/web/page-" + checkStatusAndCustomPage());
-		}catch(e){
-			console.log("未找到模板。 [" + e.message + "]");
+	</div>
+    <%
+		if ( config.user.poster === true ){
+	%>
+    <div class="ui-body fn-clear">
+		<div class="ui-nav">
+			<div class="ui-nav-list">
+            	<ul>
+					<li><a href="?p=index" class="ui-customspace <%=(__pages === "index"?"active":"")%>"><span>后台首页</span><i></i></a></li>
+                </ul>
+            	<ul>
+					<li><a href="?p=system" class="ui-customspace <%=(__pages === "system"?"active":"")%>"><span>系统清理</span><i></i></a></li>
+                    <li><a href="?p=globalconfigure" class="ui-customspace <%=(__pages === "globalconfigure"?"active":"")%>"><span>系统设置</span><i></i></a></li>
+				</ul>
+				<ul>
+					<li><a href="?p=category" class="ui-customspace <%=(__pages === "category"?"active":"")%>"><span>分类管理</span><i></i></a></li>
+                    <li><a href="?p=writeArticle" class="ui-customspace <%=(__pages === "writeArticle"?"active":"")%>"><span>新建日志</span><i></i></a></li>
+					<li><a href="?p=article" class="ui-customspace <%=(__pages === "article"?"active":"")%>"><span>日志管理</span><i></i></a></li>
+					<li><a href="?p=comment" class="ui-customspace <%=(__pages === "comment"?"active":"")%>"><span>评论管理</span><i></i></a></li>
+					<li><a href="?p=member" class="ui-customspace <%=(__pages === "member"?"active":"")%>"><span>用户管理</span><i></i></a></li>
+				</ul>
+                <ul>
+					<li><a href="?p=theme" class="ui-customspace <%=(__pages === "theme"?"active":"")%>"><span>主题管理</span><i></i></a></li>
+					<li><a href="?p=plugin" class="ui-customspace <%=(__pages === "plugin"?"active":"")%>"><span>插件管理</span><i></i></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="ui-content">
+			<%
+                try{
+					if ( config.user.admin || ( config.user.poster && (__pages === "article" || __pages === "writeArticle") ) ){
+                    	include("server/web/page-" + __pages);
+					}else{
+						console.log("您无权进入该模块");
+					}
+                }catch(e){
+                    console.log("语法错误或者未找到模板。 [" + e.message + "]");
+                }
+            %>
+    		</div>
+		</div>
+	</div>
+   	<%
+		}else{
+			include("server/web/page-login");
 		}
 	%>
-</div>
-
-<div id="footer" class="tpl-wrapper">
-	<div class="foot-zone fn-clear">
-    	<div class="fn-left">&copy; 2012 <a href="http://pjhome.net" target="_blank">PJHome.net</a>. Valid <a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank">CSS</a> &amp; <a href="http://validator.w3.org/check?uri=referer" target="_blank">XHTML</a> Timer <%=config.timers()%></div>
-        <div class="fn-right">code by <a href="http://sizzle.cc" target="_blank">evio</a> . design by <a href="http://sizzle.cc" target="_blank">evio</a></div>
+    <div class="ui-footer">
+    	<div class="ui-wrapper fn-clear">
+            <div class="ui-copyright fn-left">PJBlog v<%=config.version%> Copyright @ 2004-2012 PJHome.Net. All Rights Reserved.<br />Code Design By <a href="http://webkits.cn" target="_blank">Evio</a>, Blog CopyRight For <a href="http://www.pjhome.net" target="_blank">PuterJam</a>. Run Time <%=config.timers()%></div>
+           <div class="ui-links fn-right">
+            	<a href="http://webkits.cn" target="_blank">Evio</a> - 
+                <a href="http://www.pjhome.net" target="_blank">PuterJam</a> - 
+                <a href="http://bbs.pjhome.net" target="_blank">BBS</a> - 
+                <a href="http://webkits.cn" target="_blank">Support</a>
+            </div>
+        </div>
     </div>
-</div>
+<%
+	if ( config.user.admin || ( config.user.poster && (__pages === "article" || __pages === "writeArticle") ) || (__pages === "login") ){
+%>
 <script language="javascript">
 require(['assets/js/config'], function( custom ){
 	if ( custom.status === true ){
-		custom.load('assets/js/page-<%=checkStatusAndCustomPage()%>');
+		custom.load(['assets/js/page-<%=checkStatusAndCustomPage()%>', 'tips', 'update', 'placeholder']);
 	}else{
 		if ( $.browser.msie ){
 			alert("Getting Config File Error.");
@@ -75,8 +131,14 @@ require(['assets/js/config'], function( custom ){
 	}
 });
 </script>
+<%
+	}
+%>
 </body>
 </html>
 <%
 	CloseConnect();
+}catch(e){
+	ConsoleClose(e.message);
+}
 %>

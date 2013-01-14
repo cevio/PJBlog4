@@ -1,0 +1,177 @@
+<p>内页数据源pageCustomParams.article</p>
+<div class="ui-table ui-table-custom">
+  <table width="100%" cellpadding="0" cellspacing="0">
+		<tr>
+        	<td>id</td>
+            <td colspan="2">日志ID</td>
+        </tr>
+        <tr>
+       	  <td>title</td>
+          <td colspan="2">日志标题</td>
+        </tr>
+        <tr>
+        	<td>category</td>
+            <td colspan="2">日志分类</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>id</td>
+            <td>分类ID</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>name</td>
+            <td>分类名</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>info</td>
+            <td>分类说明</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>icon</td>
+            <td>分类图标</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>url</td>
+            <td>分类连接地址</td>
+        </tr>
+        <tr>
+        	<td>content</td>
+            <td colspan="2">日志内容</td>
+        </tr>
+        <tr>
+        	<td>postDate</td>
+            <td colspan="2">日志发表日期</td>
+        </tr>
+        <tr>
+        	<td>editDate</td>
+            <td colspan="2">日志修改日期</td>
+        </tr>
+        <tr>
+        	<td>tags</td>
+            <td colspan="2">日志标签信息</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>id</td>
+            <td>标签ID</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>name</td>
+            <td>标签名</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>url</td>
+            <td>标签连接地址</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>count</td>
+            <td>标签数量</td>
+        </tr>
+        <tr>
+        	<td>user</td>
+            <td colspan="2">日志编写者信息</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>photo</td>
+            <td>用户头像</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>name</td>
+            <td>用户昵称</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>poster</td>
+            <td>是否为poster用户权限 true or false</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>oauth</td>
+            <td>登入方式</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>login</td>
+            <td>是否已经登入</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>logindate</td>
+            <td>最后登入日期</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>loginip</td>
+            <td>最后登入IP</td>
+        </tr>
+        <tr>
+        	<td>views</td>
+            <td colspan="2">日志查看次数</td>
+        </tr>
+        <tr>
+        	<td>other</td>
+            <td colspan="2">日志其他相关信息</td>
+        </tr>
+        <tr>
+        	<td>other.prev</td>
+            <td colspan="2">上一篇日志信息</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>id</td>
+            <td>日志ID</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>title</td>
+            <td>日志标题</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>url</td>
+            <td>日志连接地址</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>cover</td>
+            <td>日志封面</td>
+        </tr>
+        <tr>
+        	<td>other.next</td>
+            <td colspan="2">下一篇日志信息</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>id</td>
+            <td>日志ID</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>title</td>
+            <td>日志标题</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>url</td>
+            <td>日志连接地址</td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td>cover</td>
+            <td>日志封面</td>
+        </tr>
+  </table>
+</div>
+<p>实例代码如下：</p>
+<pre>
+&lt;div class=&quot;pj-article-content&quot;&gt;<br>    &lt;h1&gt;&lt;%=pageCustomParams.article.title%&gt;&lt;/a&gt;&lt;/h1&gt;<br>    &lt;div class=&quot;pj-article-infos&quot;&gt;<br>        &lt;span class=&quot;date&quot;&gt;&lt;%=date.format(pageCustomParams.article.postDate, &quot;M d y - h:i&quot;)%&gt;&lt;/span&gt;<br>    &lt;/div&gt;<br>    &lt;div class=&quot;pj-content&quot;&gt;&lt;%=pageCustomParams.article.content%&gt;&lt;/div&gt;<br>    &lt;div class=&quot;information&quot;&gt;<br>        &lt;div class=&quot;category&quot;&gt;Category: &lt;a href=&quot;&lt;%=pageCustomParams.article.category.url%&gt;&quot; title=&quot;&lt;%=pageCustomParams.article.category.info%&gt;&quot;&gt;&lt;%=pageCustomParams.article.category.name%&gt;&lt;/a&gt;&lt;/div&gt;<br>        &lt;%<br>            if ( pageCustomParams.article.tags.length &gt; 0 ){<br>        %&gt;<br>        &lt;div class=&quot;tags&quot;&gt;Tags: <br>        &lt;%<br>                for ( var tagitems = 0 ; tagitems &lt; pageCustomParams.article.tags.length ; tagitems++ ){<br>        %&gt;<br>            &lt;a href=&quot;&lt;%=pageCustomParams.article.tags[tagitems].url%&gt;&quot;&gt;&lt;%=pageCustomParams.article.tags[tagitems].name%&gt;&lt;/a&gt;<br>        &lt;%			<br>                }<br>        %&gt;<br>        &lt;/div&gt;<br>        &lt;%	<br>            }<br>        %&gt;<br>    &lt;/div&gt;<br>&lt;/div&gt;
+</pre>

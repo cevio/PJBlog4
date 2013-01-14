@@ -1,55 +1,56 @@
 // JavaScript Document
-define(['overlay'], function( require, exports, module ){
+define(['overlay', 'upload'], function( require, exports, module ){
 	
 	function popUpTips( words, callback ){
-		var $overlayer = $.overlay({
-			height: 120,
-			content: words
+		$.dialog({
+			content: words,
+			effect: "deformationZoom",
+			callback: callback
 		});
-				
-		$overlayer.trigger("overlay.dialog.popup", callback);
 	}
 	
 	function init_setup(){
 		var isSetuping = false;
-		$(".action-setup").on("click", function(){
-			if ( isSetuping === false ){
-				isSetuping = true;
-				var folder = $(this).attr("data-id"),
-					_this = this;
-				if ( folder.length > 0 ){
-					$(this).trigger("setup.start");
-					
-					$.getJSON(config.ajaxUrl.server.setupTheme, { id: folder }, function(jsons){
-						isSetuping = false;
-						if ( jsons && jsons.success ){
-							$(_this).trigger("setup.success");
-						}else{
-							$(_this).trigger("setup.fail", jsons.error);
-						}
-					});
-					
+		$(".action-setup")
+			.on("click", function(){
+				if ( isSetuping === false ){
+					isSetuping = true;
+					var folder = $(this).attr("data-id"),
+						_this = this;
+					if ( folder.length > 0 ){
+						$(this).trigger("setup.start");
+						$.getJSON(config.ajaxUrl.server.setupTheme, { id: folder }, function(jsons){
+							isSetuping = false;
+							if ( jsons && jsons.success ){
+								$(_this).trigger("setup.success");
+							}else{
+								$(_this).trigger("setup.fail", jsons.error);
+							}
+						});
+						
+					}
 				}
-			}
-		}).on("setup.start", function(){
-			$(this).find(".iconfont").addClass("sending");
-			$(this).find(".icontext").text("安装进行中..");
-		}).on("setup.success", function(){
-			$(this).find(".iconfont").removeClass("sending");
-			$(this).find(".icontext").text("安装成功");
-			setTimeout(function(){
-				window.location.reload();
-			}, 2000);
-		}).on("setup.fail", function(event, msg){
-			popUpTips(msg);
-			$(this).find(".iconfont").removeClass("sending");
-			$(this).find(".icontext").text("安装");
-		});
+			})
+			.on("setup.start", function(){
+				$(this).addClass("activing").text("安装进行中..");
+			})
+			.on("setup.success", function(){
+				$(this).removeClass("activing").text("安装成功");
+				setTimeout(function(){
+					if ( confirm("安装成功，是否刷新页面？") ){
+						window.location.href = "?p=theme";
+					}
+				}, 500);
+			})
+			.on("setup.fail", function(event, msg){
+				$(this).removeClass("activing").text("安装");
+				popUpTips(msg);
+			});
 	}
 	
 	function init_themeStyleSet(){
 		var setting = false;
-		$(".theme-style-list ul li").on("click", function(){
+		$(".current-theme-style .list li").on("click", function(){
 			var _this = this;
 			if ( setting === false ){
 				setting = true;
@@ -58,7 +59,7 @@ define(['overlay'], function( require, exports, module ){
 					$.getJSON(config.ajaxUrl.server.setupThemeStyle, { id: id }, function(jsons){
 						setting = false;
 						if ( jsons && jsons.success ){
-							$(".theme-style-list ul li").removeClass("current");
+							$(".current-theme-style .list li").removeClass("current");
 							$(_this).addClass("current");
 						}else{
 							popUpTips(jsons.error);
@@ -81,13 +82,11 @@ define(['overlay'], function( require, exports, module ){
 						_this = this;
 						
 					if ( id.length > 0 ){
-						$(this).find(".iconfont").addClass("sending");
-						$(this).find(".icontext").text("正在删除..");
+						$(this).addClass("activing").text("正在删除..");
 						$.getJSON(config.ajaxUrl.server.setupThemeDelete, { id: id }, function(jsons){
 							deling = false;
 							if ( jsons && jsons.success ){
-								$(_this).find(".iconfont").removeClass("sending");
-								$(_this).find(".icontext").text("删除成功");
+								$(_this).removeClass("activing").text("删除成功");
 								$(_this).parents("li:first").animate({
 									opacity: 0
 								}, "slow", function(){
@@ -95,8 +94,7 @@ define(['overlay'], function( require, exports, module ){
 								});
 							}else{
 								popUpTips(jsons.error);
-								$(_this).find(".iconfont").removeClass("sending");
-								$(_this).find(".icontext").text("删除");
+								$(_this).removeClass("activing").text("删除");
 							}
 						});
 					}else{
@@ -107,12 +105,37 @@ define(['overlay'], function( require, exports, module ){
 		});
 	}
 	
+	function init_uploadNewTheme(){
+		$("#uploadFile").upload({
+			auto: true,
+			buttonText: "上传新主题",
+			uploader: config.ajaxUrl.server.themeUpload,
+			multi: true,
+			fileTypeExts: "*.pbd;",
+			onUploadSuccess: function(file, data, response){
+				var data = $.parseJSON(data);
+				if ( data.err.length === 0 ){
+					if ( confirm("上传成功，是否刷新列表？") ){
+						window.location.reload();
+					}
+				}else{
+					popUpTips(data.err);
+				}
+			}
+		});
+		
+		$("#upload").on("click", function(){
+			$("#uploadFile").uploadify("upload", "*");
+		});
+	}
+	
 	return {
 		init: function(){
 			$(function(){
 				init_setup();
 				init_themeStyleSet();
 				init_themeDelete();
+				init_uploadNewTheme();
 			});
 		}
 	}

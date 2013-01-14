@@ -2,7 +2,7 @@
 <%
 require(["COOKIE"], function(cookie){
 	cookie.clear(config.cookie + "_user");
-	Session("admin") = false;
+	CloseConnect();
 	Response.Redirect(Request.ServerVariables("Http_Referer"));
 });
 %>

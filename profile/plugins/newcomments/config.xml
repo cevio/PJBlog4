@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<key name="top" value="10" type="text" des="调用数量"></key>
+	<key name="date" value="y-m-d h:i:s" type="text" des="日期格式"></key>
+	<key name="len" value="20" type="text" des="单条字符截取"></key>
+</config>

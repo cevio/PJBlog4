@@ -1,41 +1,125 @@
 @charset "utf-8";
 /* CSS Document */
+/*当前主题*/
+.currentTheme{
+	margin-bottom:20px;
+}
 
-.theme-zone{ padding:20px; }
-.theme-current{ padding:0px 0px 10px 0px; border-bottom:1px dashed #ddd;}
-.theme-current .theme-priview{ margin-right:20px;}
-.theme-current .theme-priview img{ padding:2px; border:1px solid #ddd; border-radius:4px;}
-.theme-current .theme-info{ width:400px; border-right: 1px solid #ddd; margin-right:20px;}
-.theme-current .theme-info .theme-title{ height:30px; line-height:30px; font-weight:bold; color:#666; }
-.theme-current .theme-info .theme-user{ color:#999; margin-bottom:5px;}
-.theme-current .theme-info .theme-info-items{ color:#666; margin-top:5px;}
-.theme-current .theme-info .theme-info-items span{ font-weight:bold}
-.theme-current .theme-info .theme-action a{ margin-right:10px;}
-.theme-current .theme-message{ width:360px; color:#666;}
-.theme-current .theme-message span.strong{ font-weight:bold;}
-.theme-style-list{}
-.theme-style-list ul{ padding:5px 10px; border-bottom:1px solid #ddd;}
-.theme-style-list ul li{ float:left; margin-right:10px; width:40px; height:40px; border:1px solid #fff; padding:1px; border-radius:3px; cursor:pointer; margin-bottom:8px;}
-.theme-style-list ul li img{ width:40px; height:40px; border-radius:3px;}
-.theme-style-list ul li.current{ border:1px solid #52A152;}
-.theme-style-list .theme-style-list-warn{ height:30px; line-height:30px; color:#666;}
-.theme-style-list .theme-style-list-warn span{ font-weight:bold;}
+.currentTheme .theme-preview{
+	background:#fff;
+	width:100px;
+	height:100px;
+	padding:5px;
+	margin-right:15px;
+}
 
-.theme-other{}
-.theme-other .theme-list{}
-.theme-other .theme-list li{ float:left; width:459px; margin-bottom:20px; height:106px; overflow:hidden;}
-.theme-other .theme-list li .list-area:hover{ background:#efefef; border-radius:4px; cursor:pointer;}
-.theme-other .theme-list li .list-area{ width:440px;}
-.theme-other .theme-list li .list-area .list-priview{ width:100px; height:100px; padding:2px; border:1px solid #ddd; border-radius:4px; float:left; margin-right:20px;}
-.theme-other .theme-list li .list-area .list-priview img{ width:100px; height:100px; border-radius:4px;}
-.theme-other .theme-list li .list-area .list-info{ width:310px; float:left; color:#666;}
-.theme-other .theme-list li .list-area .list-info .list-info-title{ height:30px; line-height:30px; width:270px; font-weight:bold;}
-.theme-other .theme-list li .list-area .list-info .list-info-msg{ width:310px; height:54px; overflow:hidden; color:#999;}
-.theme-other .theme-list li .list-area .list-info .list-info-action{}
-.theme-other .theme-list li .list-area .list-info .list-info-action a{ margin-right:10px; float:left;}
-.theme-other .theme-list li .list-area .list-info .list-info-action a span{ float:left;}
-.theme-other .theme-list li .list-area .list-info .list-info-action a span.iconfont{ display:block; margin-right:3px;}
-.theme-other .theme-list li .list-area .list-info .list-info-action a span.icontext{ height: 24px; line-height:24px;}
+.currentTheme .theme-preview img{
+	width:100px;
+	height:100px;
+	border-radius:3px;
+}
+.currentTheme .theme-info{}
+.currentTheme .theme-info .name{
+	height:30px;
+	line-height:30px;
+	font-size:14px;
+}
+.currentTheme .theme-info .version{
+	height:20px; line-height:20px;
+}
+.currentTheme .theme-info .url{
+	height:20px; line-height:20px;
+}
+.currentTheme .theme-info .infos{
+	line-height:20px;
+	margin-top:10px;
+}
 
-.themeStyleSetZone{ background:#fff;  border:1px solid #ddd; position:absolute;}
-.themeStyleSetZone .themeStyleSetZoneContent{padding:20px;}
+.current-theme-style{}
+.current-theme-style .title{
+	height:30px;
+	line-height:30px;
+	border-bottom:1px solid #ddd;
+}
+.current-theme-style .list{
+	margin-top:10px;
+}
+
+.current-theme-style .list li{
+	padding:5px;
+	background-color:#fff;
+	cursor:pointer;
+	margin:0px 10px 10px 0px;
+	width:45px;
+	height:45px;
+}
+
+.current-theme-style .list li img{
+	width:45px;
+	height:45px;
+}
+
+.current-theme-style .list li.current{
+	background-color:#CF4467;
+}
+
+/*主题列表*/
+.theme-list{}
+
+.theme-list li{
+	margin:0px 0px 20px 0px;
+	float:left;
+}
+.theme-list li .theme-list-preview{
+	width:100px;
+	height:100px;
+	padding:5px;
+	background:#fff;
+}
+.theme-list li .theme-list-preview img{
+	width:100px;
+	height:100px;
+}
+.theme-list li .theme-list-info{
+	line-height:18px;
+	padding-left:140px;
+}
+
+.theme-list li:hover .theme-list-info{
+}
+.theme-list li .theme-list-info .name{ 
+	font-size:14px;
+	font-weight:bold;
+	color:#777
+}
+.theme-list li .theme-list-info .name span{
+	font-size:12px;
+}
+.theme-list li .theme-list-info .date{ color:#999;}
+.theme-list li .theme-list-info .author{ color:#999;}
+.theme-list li .theme-list-info .info{
+	margin-top:0px;
+	height:18px;
+	width:500px;
+	color:#999;
+}
+.theme-list li .theme-list-info .action{color:#999;}
+.theme-list li .theme-list-info .action a{ margin-right:10px;}
+
+.activing:link,
+.activing:visited{
+	color:#CF4467;
+}
+.uploadnewtheme{
+	background-color:#fff;
+	padding:10px 30px;
+	margin-bottom:20px;
+}
+.uploadnewtheme .info{ line-height:20px; margin-bottom:10px;}
+.uploadnewtheme ul{ margin-bottom:10px;}
+.uploadnewtheme ul li{ height:20px; line-height:20px; padding-left:20px;}
+.uploadnewtheme .startupload{ margin-bottom:10px; padding-left:20px;}
+
+.otherThemes{ height:30px; line-height:30px; margin:0px 0px 20px 0px; border-bottom:1px solid #ddd}
+.otherThemes .fn-left{ font-weight:bold; background:url(../img/icon-geo-search.png) 0px 7px no-repeat; padding-left:20px;}
+.otherThemes .fn-right{ position:relative; top:12px;}

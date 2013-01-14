@@ -1,53 +1,74 @@
 // JavaScript Document
-define(['form'], function(require, exports, module){
-	
+define(['form', 'cookie'], function(require, exports, module){
 	function ajaxFormBind(){
-		var sending = false;
 		$('form').ajaxForm({
 			dataType: "json",
 			beforeSubmit: function(){
-				if ( sending === false ){
-					sending = true;
-					getSendingTip();
-				}else{
+				$(".infoText").empty();
+				$(".submitImageBtn").addClass("loading");
+				if ( $("input[name='username']").val().length === 0 ){
+					tips("用户名不能为空");
 					return false;
 				}
+				if ( $("input[name='password']").val().length === 0 ){
+					tips("密码不能为空");
+					return false;
+				}
+				$(".password .submitImageBtn, .password .passwordTextBox").attr("disabled", true);
 			},
 			success: function( jsons ){
-				sending = false;
 				if ( jsons && jsons.success ){
-					getSuccess();
-					$('form').resetForm();
+					tips("验证成功", function(){
+						$.cookie(config.cookie + "_login_username", $("input[name='username']").val(), {
+							expires: new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000)
+						});
+						setTimeout(function(){
+							window.location.reload();
+						}, 500);
+					});
 				}else{
-					getError(jsons.error);	
+					$(".password .submitImageBtn, .password .passwordTextBox").attr("disabled", false);
+					tips(jsons.error);	
 				}
+			},
+			error: function(){
+				$(".password .submitImageBtn, .password .passwordTextBox").attr("disabled", false);
+				tips("网络错误");
 			}
 		});
 	}
 	
-	function getCustomTip(){
-		$(".word-tip").html('<span class="iconfont">&#226;</span> 请输入密码后登入【第一次登入密码为"admin888"，请登入后修改！】');
+	function tips(word, callback){
+		$(".username .name").animate({
+			"margin-top" : "4px"
+		}, "slow", function(){
+			$(".infoText").text(word).fadeIn("fast", function(){
+				$(".submitImageBtn").removeClass("loading");
+				$.isFunction(callback) && callback();
+			});
+		});
 	}
 	
-	function getSendingTip(){
-		$(".word-tip").html('<span class="iconfont">&#316;</span> 正在验证密码，请稍后！');
+	function initBoxStatus(){
+		$(".login-box").show().css({
+			"top": (($(window).height() - 100) / 2) + "px",
+			"left": (($(window).width() - 200) / 2) + "px"
+		});
 	}
 	
-	function getSuccess(){
-		$(".word-tip").html('<span class="iconfont green">&#126;</span> 验证密码成功，3秒后跳转，或者<a href="control.asp">点击这里跳转</a>');
-		setTimeout(function(){
-			window.location.href = "control.asp";
-		}, 3000);
-	}
-	
-	function getError(error){
-		$(".word-tip").html('<span class="iconfont red">&#223;</span> ' + error);
+	function userName(){
+		var username = $.cookie(config.cookie + "_login_username");
+		if ( username && username.length > 0 ){
+			$("input[name='username']").val(username);
+		}
 	}
 	
 	exports.init = function(){
 		$(function(){
+			$(window).on("resize", initBoxStatus).trigger("resize");
+			$("input[name='username']").focus();
+			userName();
 			ajaxFormBind();
-			$("input[name='password']").focus();
 		});
 	}
 });

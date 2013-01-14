@@ -1,0 +1,51 @@
+html{color:#000;background:#FFF}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,select,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}address,button,caption,cite,code,dfn,em,input,optgroup,option,select,strong,textarea,th,var{font:inherit}del,ins{text-decoration:none}li{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}q:before,q:after{content:''}abbr,acronym{border:0;font-variant:normal}sup{vertical-align:baseline}sub{vertical-align:baseline}legend{color:#000}
+a img {
+	border:0;
+}
+button, input, select, textarea {
+	margin: 0;
+	font-size: 100%;
+	vertical-align: middle;
+}
+button, input {
+ 	*overflow: visible;
+	line-height: normal;
+}
+button::-moz-focus-inner, input::-moz-focus-inner {
+ 	padding: 0;
+ 	border: 0;
+}
+button, input[type="button"], input[type="reset"], input[type="submit"] {
+	cursor: pointer;
+	-webkit-appearance: button;
+}
+input[type="search"] {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	-webkit-appearance: textfield;
+}
+input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button {
+ 	-webkit-appearance: none;
+}
+textarea {
+	overflow: auto;
+	vertical-align: top;
+}
+html, body{
+	font-family: Tahoma,Microsoft YaHei,Verdana,Arial,Helvetica,sans-serif;
+	font-size: 12px;
+}
+html{
+	background-image: url('../img/bg.gif');
+	background-color: #f0f0f0;
+}
+
+a:link, a:visited{ 
+	text-decoration: none;
+	outline:none;
+};
+table {
+  	*border-collapse: collapse; /* IE7 and lower */
+  	border-spacing: 0;
+}

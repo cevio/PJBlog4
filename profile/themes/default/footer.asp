@@ -1,9 +1,6 @@
-    <!--footer starts here-->
-    <div id="footer">
-        <p> &copy; 2012 <strong>EA Studio</strong> &nbsp;&nbsp;&nbsp;&nbsp; <a href="http://www.cssmoban.com/" title="Website Templates">website templates</a> from <a href="http://sizzle.cc">sizzle.cc</a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="index.html">Home</a> | <a href="index.html">Sitemap</a> | <a href="index.html">RSS Feed</a> | <a href="http://validator.w3.org/check?uri=referer">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> </p>
+	<div class="pj-wrapper fn-clear pj-footer">
+    	<div class="fn-left">PJBlog v<%=config.version%> &copy; 2012-2013 <a href="default.asp"><%=pageCustomParams.global.title%></a>. Valid <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> &amp; <a href="http://validator.w3.org/check?uri=referer">XHTML</a>. Run Timer: <%=config.timers()%></div>
+        <div class="fn-right"><a href="<%=pageCustomParams.global.themeWebSite%>"><%=pageCustomParams.global.themeName%> <%=pageCustomParams.global.themeVersion%></a> by <a href="mailto:<%=pageCustomParams.global.themeEmail%>"><%=pageCustomParams.global.themeAuthor%></a></div>
     </div>
-    
-    <!-- wrap ends here --> 
-</div>
 </body>
 </html>

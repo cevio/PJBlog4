@@ -108,6 +108,23 @@ define(function(require, exports, module){
 		});
 	}
 	
+	exports.post = function(url, params, callback){
+		var _this = this;
+			
+		return this.ajax({
+			url : url,
+			data : params,
+			method: "POST",
+			success : function(binary){
+				if ( typeof callback === "function" ){
+					return callback.call(this, _this.bin(binary));
+				}else{
+					return _this.bin(binary);
+				}
+			}
+		});
+	}
+	
 	exports.getJSON = function(url, params, callback){
 		var _this = this;
 		

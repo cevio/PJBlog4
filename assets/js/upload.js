@@ -12,30 +12,25 @@ define(function(require,exports, module){
 		return tmp;
 	}
 	
-	$.fn.upload = function(events, callback){
-		this.on(events, function(){
-			
-			var id = $(this).attr("id");
-			
-			if ( id === undefined ){
-				$(this).attr("id", "id_" + randoms(10));
-			}
-			
-			var options = $(this).data("options") || {},
-				_this = this;
-				
-			options = $.extend({
-				auto: false, // if it can be auto that it must be setted true
-				swf : selector("assets/js/lib/uploadify/uploadify.swf", false)
-			}, options);
+	$.fn.upload = function(options, callback){
+		var id = $(this).attr("id");
 		
-			// require the root module from web if it is not exsit
-			require.async("assets/js/lib/uploadify/uploadify", function(){
-				$.isFunction(callback) && callback.call(_this);
-				$(_this).uploadify(options);
-				//selectButton.uploadify("upload", "*");
-			});
+		if ( id === undefined ){
+			$(this).attr("id", "id_" + randoms(10));
+		}
+		
+		var _this = this;
+			
+		options = $.extend({
+			auto: false, // if it can be auto that it must be setted true
+			swf : selector("assets/js/lib/uploadify/uploadify.swf", false)
+		}, options || {});
 	
+		// require the root module from web if it is not exsit
+		require.async("assets/js/lib/uploadify/uploadify", function(){
+			$.isFunction(callback) && callback.call(_this);
+			$(_this).uploadify(options);
+			//selectButton.uploadify("upload", "*");
 		});
 	}
 	

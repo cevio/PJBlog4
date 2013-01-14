@@ -17,33 +17,40 @@ define(function(require, exports, module){
 			count = 0;
 		
 		if ( connecte === true ){
-			dbo.trave({
-				type: 3,
-				conn: config.conn,
-				sql: "Select * From blog_tags Where tagname='" + tag + "'",
-				callback: function(rs){
-					if ( rs.Bof || rs.Eof ){
-						rs.AddNew();
-						id = rs("id").value;
-						rs("tagname") = tag;
-						rs("tagcount") = 1;
-						rs.Update();
-					}else{
-						id = rs("id").value;
-						count = rs("tagcount").value;
-						rs("tagcount") = count + 1;
-						rs.Update();
+			if ( tag.length > 0 ){
+				dbo.trave({
+					type: 3,
+					conn: config.conn,
+					sql: "Select * From blog_tags Where tagname='" + tag + "'",
+					callback: function(rs){
+						if ( rs.Bof || rs.Eof ){
+							rs.AddNew();
+							id = rs("id").value;
+							rs("tagname") = tag;
+							rs("tagcount") = 1;
+							rs.Update();
+						}else{
+							id = rs("id").value;
+							count = rs("tagcount").value;
+							rs("tagcount") = count + 1;
+							rs.Update();
+						}
+					}
+				});
+				
+				var cache = require.async("cache");
+					cache.build("tags");
+				
+				return {
+					success: true,
+					data: {
+						id: id
 					}
 				}
-			});
-			
-			var cache = require.async("cache");
-				cache.build("tags");
-			
-			return {
-				success: true,
-				data: {
-					id: id
+			}else{
+				return {
+					success: false,
+					error: "tag is empty"
 				}
 			}
 		}else{
@@ -62,17 +69,9 @@ define(function(require, exports, module){
 	
 	exports.readTagFromCache = function( id ){
 		var cache = require.async("cache"),
-			tagsDatas = cache.load("tags"),
-			name = "";
-			
-		for ( var i = 0 ; i < tagsDatas.length ; i++ ){
-			var value = tagsDatas[i];
-			if ( value[0] === id ){
-				name = value[1];
-			}
-		}
+			tagsDatas = cache.load("tags");
 		
-		return name;
+		return tagsDatas[id + ""];
 	}
 	
 	exports.readTag = function( id ){

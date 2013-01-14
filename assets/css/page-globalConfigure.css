@@ -1,6 +1,32 @@
 @charset "utf-8";
 /* CSS Document */
+.long{ width:400px;}
+.longer{ width:500px;}
+.short{ width:200px;}
+.shorter{ width:50px;}
 
-.globalconfigure-zone{ padding:20px 30px;}
-.globalconfigure-zone .submit-area{ padding:0px 20px;}
-.globalconfigure-zone .submit-area .tpl-button-blue{ padding:5px 20px; color:#fff;}
+.configure-list{ 
+	margin-bottom:20px;
+}
+.configure-list legend{ 
+	font-size:14px;
+	height:30px;
+	font-size:14px;
+}
+
+.configure-list table td{ padding:10px;}
+.configure-list .info{ color:#999; }
+
+.con-name{ width:100px; padding:10px; background:#fff; text-align:center; position:relative;}
+.configs{ margin-right:150px; background:#fff; padding:10px;}
+.con-name:before{
+	content:"";
+	position: absolute;
+	left: -6px;
+	width: 0;
+	height: 0;
+	border-top: 5px solid transparent;
+	border-right: 6px solid #fff;
+	border-bottom: 5px solid transparent;
+
+}

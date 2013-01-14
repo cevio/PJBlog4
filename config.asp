@@ -1,4 +1,5 @@
 <!--#include file="server/core/obay.asp" -->
+<!--#include file="profile/handler/config.asp" -->
 <%
 /* 
  * version V4.0 ( 2012-08-10 )
@@ -7,19 +8,11 @@
  * 可以通过这里的设置对全局网站有关功能开启和关闭以及数据库路径的修改。
  * 具体参见各项说明。
  */
-	config.debug = true; // 是否开启DEBUG模式
-	config.base = "/"; // obay 基址
+	config.debug = false; // 是否开启DEBUG模式
 	config.useApp = true; // 是否使用APP
-	config.appName = "PJBlog4"; // APP 统一名称
-	config.access = "profile/PBlog4/PJBlog4.asp"; // 数据库路径
-	config.cookie = "PJBlog4"; // cookie 名称
 	config.cacheAccess = "profile/caches"; // 缓存文件夹名
 	config.platform = "http://platform.pjhome.net";
-	
-/*
- * 配置debug调用模块智能选择函数
- */
- 	function debugMode( exps ){ return config.debug ? exps : exps + "-min"; }
+	config.version = "4.0.0.400";
 	
 /*
  * 网站模块映射
@@ -29,36 +22,37 @@
  */
  
  	// 通用模块映射
- 	map["DBO"] = debugMode("server/core/dbo");
-	map["FSO"] = debugMode("server/core/fso");
-	map["STREAM"] = debugMode("server/core/stream");
-	map["XML"] = debugMode("server/core/xml");
-	map["XMLHTTP"] = debugMode("server/core/xmlhttp");
-	map["WINHTTP"] = debugMode("server/core/winhttp");
-	map["UPLOAD"] = debugMode("server/core/upload");
-	map["COOKIE"] = debugMode("server/core/cookie");
-	map["DATE"] = debugMode("server/core/date");
-	map["MD5"] = debugMode("server/core/md5");
-	map["SHA1"] = debugMode("server/core/sha1");
-	map["PACKAGE"] = debugMode("server/core/package");
-	map["SPKPACKAGE"] = debugMode("server/core/spkPckage");
+ 	map["DBO"] = "server/core/dbo";
+	map["FSO"] = "server/core/fso";
+	map["STREAM"] = "server/core/stream";
+	map["XML"] = "server/core/xml";
+	map["XMLHTTP"] = "server/core/xmlhttp";
+	map["WINHTTP"] = "server/core/winhttp";
+	map["UPLOAD"] = "server/core/upload";
+	map["COOKIE"] = "server/core/cookie";
+	map["DATE"] = "server/core/date";
+	map["MD5"] = "server/core/md5";
+	map["SHA1"] = "server/core/sha1";
+	map["PACKAGE"] = "server/core/package";
+	map["SPKPACKAGE"] = "server/core/spkPackage";
+	map["SQL"] = "server/core/sql";
 	
 	// 逻辑模块映射
 	map["fn"] = "server/fn";
+	map["gra"] = "server/gravatar";
 	map["openDataBase"] = "server/dataBaseOperation";
 	map["cache"] = "server/cache";
 	map["icon"] = "server/getIcons";
 	map["tags"] = "server/tags";
 	map["xmltable"] = "server/xmltable";
 	map["pluginCustom"] = "server/pluginCustom";
-	
+	map["sap"] = "server/SystemActionProxy";
 	map["member"] = "server/member";
 	map["article"] = "server/article";
 	map["comment"] = "server/comment";
 	map["guestbook"] = "server/guestbook";
 	map["theme"] = "server/theme";
 	map["plugin"] = "server/plugin";
-	
 	map["status"] = "server/status";
 	
 	// handler处理模块映射
@@ -70,6 +64,48 @@
 	map["cache_article"] = "server/module/article";
 	map["cache_article_detail"] = "server/module/article-detail";
 	map["cache_comment"] = "server/module/comment";
+	
+	http.service = function( callback, isposter ){
+		http.async(function(req){
+			try{
+				require("status")();
+				var j = req.query.j, callbacks = {};
+				if ( config.user.admin === true || ( (isposter === true) && (config.user.poster === true) ) ){
+					var dbo = require("DBO"),
+						connecte = require("openDataBase"),
+						sap = require("sap");
+								
+					if ( connecte === true ){
+						callback.call(callbacks, req, dbo, sap);
+						if ( callbacks[j] !== undefined ){
+							return callbacks[j]();
+						}else{
+							return {
+								success: false,
+								error: "未找到对应处理模块"
+							}
+						}
+					}else{
+						return {
+							success: false,
+							error: "数据库连接失败"
+						}
+					}
+				}else{
+					return {
+						success: false,
+						error: "非法权限操作"
+					}
+				}
+			}catch(e){
+				return {
+					success: false,
+					error: e.message
+				}
+			}
+		});
+		CloseConnect();
+	}
 	
 /*
  * 系统默认变量
@@ -98,13 +134,21 @@
  */	
 	function CloseConnect(){
 		try{
-			if ( config.conn !== null ){
-				config.conn.Close();
-				config.conn = null;
-			}
+			config.conn.Close();
+			config.conn = null;
 		}catch(error){
 			console.push(error.message);
 		}
+	}
+	
+	function ConsoleClose( word ){
+		CloseConnect();
+		console.end(word);
+	}
+	
+	function ConsoleDisAble( word ){
+		CloseConnect();
+		console.log(word);
 	}
 
 /*
@@ -120,9 +164,22 @@
 	}
 	
 	function LoadPluginsCacheModule( ModuleName, ModuleCallback ){
-		var ModuleCacheDatas = assetsPluginCustom.loadPlugin( ModuleName );
-		if ( typeof ModuleCallback === "function" ){
-			ModuleCallback( ModuleCacheDatas );
+		if ( config.pluginModen === undefined ){
+			config.pluginModen = require("pluginCustom");
+		}
+		var ModuleCacheDatas = config.pluginModen.loadPlugin( ModuleName );
+		if ( ModuleCacheDatas !== null ){
+			if ( typeof ModuleCallback === "function" ){
+				ModuleCallback( ModuleCacheDatas );
+			}else{
+				return ModuleCacheDatas;
+			}
 		}
 	}
+	
+	var pageCustomParams = {
+		tempCaches: {},
+		tempParams: {},
+		tempModules: {}
+	};
 %>

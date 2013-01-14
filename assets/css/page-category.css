@@ -1,78 +1,31 @@
 @charset "utf-8";
 /* CSS Document */
 
-.cate-zone{ padding:30px 20px;}
-.list{ color:#888; padding:5px 15px;}
-.list .items{ overflow:hidden;}
-.list .items .scroll-wrap{display:block;}
-.list .one{ line-height:31px; margin-bottom:10px; }
-.list .two{ line-height:31px; margin-left:150px; margin-bottom:10px; }
-.list .items .view, .list .items .editzone{ }
+.categorylist{}
+.categorylist li{ margin-bottom:10px;}
+.categorylist li .icon{ width:16px; height:16px; padding:5px; background:#fff; cursor:pointer;}
+.categorylist li .icon img{ width:16px; height:16px;}
 
-.list .one .view{ background:#eee; border-radius:3px; }
-.list .two .view{ background:#EDF9D7; border-radius:3px; }
+.categorylist li .info{ line-height:26px; margin-left:36px; background:#fff; padding:0px 10px;}
+.categorylist li .info .action a{ margin-left:5px;}
+.categorylist li ul li{ margin-top:10px;}
+.categorylist li ul{ margin-left:36px;}
+li.updating{}
+li.updating .icon, li.updating .info{ background:#009CD8;}
+li.updating .info .action{ display:none;}
+li.updating .info input.text{ background:none; box-shadow:none; border:none; height:26px; line-height:26px; color:#fff; padding:0; margin:0; width:300px;}
+li.updating button{margin-top:2px; margin-left:5px;}
+.editbox .edit-area{ padding:5px 10px 10px 10px;}
+.editbox .edit-area .edit-zone{ border:1px solid #eee; border-radius:3px}
+.editbox .edit-area .edit-zone .title{ height:24px; line-height:24px;}
+.editbox .edit-area .edit-zone .title span{ padding:0px 15px; background:#eee; color:#fff; border-radius:3px 0px 3px 0px;}
+.editbox .edit-area .edit-zone .context{ padding:5px 15px;}
+.editbox .edit-area .edit-zone .context form{ padding:0; margin:0;}
+.editbox .edit-area .edit-zone .context form td{ padding:3px 10px;}
+.editbox .edit-area .edit-zone .context form td .long{ width:400px;}
+.editbox .edit-area .edit-zone .context form td .longer{ width:500px;}
+.editbox .edit-area .edit-zone .context form td .short{ width:200px;}
+.editbox .edit-area .edit-zone .context form td .shorter{ width: 50px;}
 
-.list .items .view .action a:link, .list .items .view .action a:visited{ color:#ccc;}
-.list .items .view .action a:hover{ color:#8CAC52;}
-.list .items .view .action .action-del:hover{ color:#ff0000;}
-
-.label{ display:block; float:left; color:#fff; width:150px; height:30px; border-radius:4px 0px 0px 4px;}
-.list .items .view .action{ float:right; margin-right:10px; opacity:0;}
-.list .items:hover .view .action{
-	-webkit-transition-duration:.3s;
-	-webkit-transition-property:all;
-	-webkit-transition-timing-function:ease-in-out;
-	-ms-transition-duration:.3s;
-	-ms-transition-property:all;
-	-ms-transition-timing-function:ease-in-out;
-	-moz-transition-duration:.3s;
-	-moz-transition-property:all;
-	-moz-transition-timing-function:ease-in-out;
-	-o-transition-duration:.3s;
-	-o-transition-property:all;
-	-o-transition-timing-function:ease-in-out;
-	opacity:1;
-}
-
-.list .items .view .edit-info{ float:left; margin-left:20px;height:31px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; color:#eee; text-shadow:0px 1px 1px #ddd;}
-.list .one .view .edit-info{ width:580px; color:#999; }
-.list .two .view .edit-info{ width:430px; color:#7BAB2E; }
-
-
-.list .items .editzone{}
-.list .items .editzone form{ margin:0; padding:0;}
-.list .items .editzone .cateName{ width:150px; float:left;}
-.list .items .editzone .cateName input{ width:136px;}
-.list .items .editzone .cateInfo{ margin-left:20px; float:left}
-.list .one .editzone .cateInfo input{ width:600px;}
-.list .two .editzone .cateInfo input{ width:450px;}
-.list .items .editzone .cateMore{ margin-left:20px; float:left;}
-.list .items .editzone .cateMore input{ color:#fff; padding:5px 18px;}
-
-.label .box{ padding:0px 10px;}
-.label .box i{ float:left; display:block; width:24px; height:31px;}
-.label .box span{ float:left; display:block; width: 100px; height:31px; overflow: hidden;white-space: nowrap;text-overflow: ellipsis; text-align:center;}
-
-
-.tools{ padding:0px 20px; line-height:30px; color:#666; height:30px; border-bottom:1px solid #efefef; margin-bottom:10px;}
-.tools a{ margin-left:5px;}
-.tools .fn-left{ color:#999;}
-
-.updateCategoryInfo .chooseIconImg, .updateCategoryInfo .iconChooseItem{ width:16px; height:16px; padding:5px; border:1px solid #ddd; border-radius:3px; overflow:hidden;}
-.updateCategoryInfo .iconChooseArea{ width:590px;}
-.updateCategoryInfo .iconChooseArea .iconChooseItem{ display:block; padding:5px; border:1px solid #ddd; margin-right:5px; border-radius:3px; overflow:hidden; width:16px; height:16px; margin-bottom:5px;}
-.updateCategoryInfo{ background:#fff;border:1px solid #ccc;box-shadow:1px 1px 5px #ccc; margin-bottom:10px; margin-top:2px;}
-.updateCategoryInfo .close{ height:30px; line-height:30px; text-align:right; padding:0px 10px; color:#ddd;}
-.updateCategoryInfo a.updateCategoryInfoClose:link, .updateCategoryInfo a.updateCategoryInfoClose:visited{ color:#ddd;}
-.updateCategoryInfo a.updateCategoryInfoClose:hover{ color:#ff5577;}
-.updateCategoryInfo .app{ padding: 5px 10px 10px 10px; color:#666;}
-.updateCategoryInfo .app td{ padding:5px 10px;}
-.updateCategoryInfo .app td.name{ text-align:right;}
-.updateCategoryInfo .app h1{ height:30px; line-height:30px; border-bottom:1px solid #ddd; margin-bottom:10px;}
-.infoTwo{ margin-left:150px;}
-
-.cate-add-button{ padding:5px 20px; margin:10px 15px;}
-.cate-add-button:link, .cate-add-button:visited{ color:#fff;}
-.cate-add-button:hover{ color:#fff;}
-
-.action-tools{ clear:both; *zoom:1; padding:30px 0px 10px 0px; border-top:1px solid #eee;}
+.iconlistbox{ background:#009CD8; border-radius:3px; padding:5px 0px 0px 5px; position:absolute; width:186px;}
+.iconlistbox li{ float:left; margin-right:5px; background:#fff; margin-bottom:5px; padding:5px; width:16px; height:16px; cursor:pointer;}

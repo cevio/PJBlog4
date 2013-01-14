@@ -1,16 +1,12 @@
 <!--#include file="../config.asp" -->
 <%
-http.async(function(req){
-	var j = req.query.j, callbacks = {};
-	
-	callbacks.normal = function(){
+http.service(function( req, dbo, sap ){
+	this.normal = function(){
 		var title = req.form.title,
 			description = req.form.description,
 			nickname = req.form.nickname,
 			website = req.form.website,
 			webstatus = req.form.webstatus,
-			qq_appid = req.form.qq_appid,
-			qq_appkey = req.form.qq_appkey,
 			articleprivewlength = req.form.articleprivewlength,
 			articleperpagecount = req.form.articleperpagecount,
 			webdescription = req.form.webdescription,
@@ -19,28 +15,70 @@ http.async(function(req){
 			seotitle = req.form.seotitle,
 			commentaduit = req.form.commentaduit,
 			commentperpagecount = req.form.commentperpagecount,
+			gravatarS = req.form.gravatarS,
+			gravatarR = req.form.gravatarR,
+			gravatarD = req.form.gravatarD,
+			uploadimagetype = req.form.uploadimagetype,
+			uploadlinktype = req.form.uploadlinktype,
+			uploadswftype = req.form.uploadswftype,
+			uploadmediatype = req.form.uploadmediatype,
+			binarywhitelist = req.form.binarywhitelist,
+			canregister = req.form.canregister,
+			commentvaildor = req.form.commentvaildor,
+			commentdelaytimer = req.form.commentdelaytimer,
+			commentmaxlength = req.form.commentmaxlength,
 			error = "处理过程中发生错误。";
 			
-		if ( webstatus === "1" ){
-			webstatus = true;
-		}else{
-			webstatus = false;
-		}
-		
 		if ( commentaduit === "1" ){
 			commentaduit = true;
 		}else{
 			commentaduit = false;
 		}
+		
+		if ( commentvaildor === "1" ){
+			commentvaildor = true;
+		}else{
+			commentvaildor = false;
+		}
+		
+		if ( isNaN(commentdelaytimer) ){
+			return {
+				success: false,
+				error: "评论延迟时长必须为数字"
+			}
+		}
+		
+		commentdelaytimer = Number(commentdelaytimer);
+		
+		if ( commentdelaytimer <= 0 ){
+			return {
+				success: false,
+				error: "评论延迟时长必须大于零"
+			}
+		}
+		
+		if ( isNaN(commentmaxlength) ){
+			return {
+				success: false,
+				error: "评论字数限制必须为数字"
+			}
+		}
+		
+		commentmaxlength = Number(commentmaxlength);
+		
+		if ( commentmaxlength <= 0 ){
+			return {
+				success: false,
+				error: "评论字数限制必须大于零"
+			}
+		}
 			
-		var ret = this.saveNormal({
+		var insSQLData = {
 			title: title,
 			description: description,
 			nickname: nickname,
 			website: website,
 			webstatus: webstatus,
-			qq_appid: qq_appid,
-			qq_appkey: qq_appkey,
 			articleprivewlength: articleprivewlength,
 			articleperpagecount: articleperpagecount,
 			webdescription: webdescription,
@@ -48,49 +86,84 @@ http.async(function(req){
 			authoremail: authoremail,
 			seotitle: seotitle,
 			commentaduit: commentaduit,
-			commentperpagecount: commentperpagecount
+			commentperpagecount: commentperpagecount,
+			gravatarS: gravatarS,
+			gravatarR: gravatarR,
+			gravatarD: gravatarD,
+			uploadimagetype: uploadimagetype,
+			uploadlinktype: uploadlinktype,
+			uploadswftype: uploadswftype,
+			uploadmediatype: uploadmediatype,
+			binarywhitelist: binarywhitelist,
+			canregister: canregister,
+			commentvaildor: commentvaildor,
+			commentdelaytimer: commentdelaytimer,
+			commentmaxlength: commentmaxlength
+		}
+			
+		sap.proxy("system.global.save.begin", insSQLData);
+		
+		dbo.update({
+			table: "blog_global", 
+			conn: config.conn, 
+			key: "id", 
+			keyValue: "1",
+			data: insSQLData
 		});
 		
-		if ( ret === true ){
-			error = "";
-			var cache = require.async("cache");
-				cache.build("global");
-		}
+		var cache = require.async("cache");
+			cache.build("global");
+				
+		sap.proxy("system.global.save.end");
 		
 		return {
-			success: ret,
+			success: true,
 			error: error
 		}
 	}
 	
-	callbacks.saveNormal = function(options){
-		var dbo = require("DBO"),
-			connecte = require("openDataBase");
+	this.password = function(){
+		var oldpass = req.form.oldpass,
+			newpass = req.form.newpass,
+			repass = req.form.repass,
+			checked = false,
+			fns = require("fn"),
+			SHA1 = require("SHA1");
 			
-		if ( connecte === true ){
-			dbo.update({ data: options, table: "blog_global", conn: config.conn, key: "id", keyValue: "1" });
-			return true;
-		}else{
-			return false;
-		}
-	}
-	
-	if ( Session("admin") === true ){
-		if ( callbacks[j] !== undefined ){
-			return callbacks[j]();
-		}else{
+		dbo.trave({
+			conn: config.conn,
+			sql: "Select * From blog_global Where id=1",
+			callback: function(rs){
+				if ( SHA1(oldpass + rs("salt").value) === rs("hashkey").value ){
+					checked = true;
+				}
+			}
+		});
+		
+		if ( checked === false ){
 			return {
 				success: false,
-				error: "未找到对应处理模块"
+				error: "旧密码验证不正确"
 			}
 		}
-	}else{
-		return {
-			success: false,
-			error: "非法权限操作"
+		
+		if ( newpass !== repass ){
+			return {
+				success: false,
+				error: "两次密码输入不相同"
+			}
 		}
+		
+		var salt = fns.randoms(6);
+	
+		dbo.update({ data: {
+			hashkey: SHA1(newpass + salt),
+			salt: salt
+		}, table: "blog_global", conn: config.conn, key: "id", keyValue: "1" });
+		
+		return {
+			success: true
+		};
 	}
 });
-
-CloseConnect();
 %>

@@ -1,11 +1,16 @@
 @charset "utf-8";
 /* CSS Document */
 
-.article-zone{ padding:20px;}
-.lsit-area{ width:918px;}
-.lsit-area table{ width:100%;}
-.pagebar{ margin:15px 0px; height:20px; line-height:20px; float:right;}
-.pagebar span{ display:block; float:left; padding:0px 8px; border:1px solid #fff;}
-.pagebar a{ display:block; float:left; padding:0px 8px; border:1px solid #ddd; background:#efefef; border-radius:3px;}
-.filter{ height:30px; line-height:30px; float:right;}
-.filter li{ float:left; margin-left:8px;}
+.ui-table table td a:link,
+.ui-table table td a:visited{
+	 color:#000;
+}
+
+.ui-table table td a:hover{
+	color:#2ba09e;
+}
+
+.categoryList li{ background:#fff; padding:5px 10px; margin:0px 10px 10px 0px;}
+td.action a{ margin-right:5px;}
+td.action{ text-align:center;}
+td.action a:last-child{ margin-right:0px;}

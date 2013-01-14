@@ -1,212 +1,209 @@
 <!--#include file="../config.asp" -->
 <%
-	http.async(function(req){
-		var j = req.query.j, callbacks = {};
+http.service(function( req, dbo, sap ){
+	this.getcateinfo = function(){
+		var id = req.query.id,
+			rets = {};
 		
-		callbacks.getcateinfo = function(){
-			var id = req.query.id,
-				dbo = require("DBO"),
-				connecte = require("openDataBase");
-				
-			var cateName, cateInfo, cateOrder, cateRoot, cateCount, cateIcon, cateIsShow, cateOutLink, cateOutLinkText;
+		dbo.trave({
+			conn: config.conn,
+			sql: "Select * From blog_category Where id=" + id,
+			callback: function(rs){
+				rets.cateName = rs("cate_name").value;
+				rets.cateInfo = rs("cate_info").value;
+				if ( rets.cateInfo === null ){ rets.cateInfo = ""; }
+				rets.cateOrder = rs("cate_order").value;
+				if ( rets.cateOrder === null ){ rets.cateOrder = 99; }
+				rets.cateRoot = rs("cate_root").value;
+				rets.cateCount = rs("cate_count").value;
+				if ( rets.cateCount === null ){ rets.cateCount = 0; }
+				rets.cateIcon = rs("cate_icon").value;
+				rets.cateIsShow = rs("cate_show").value;
+				rets.cateOutLink = rs("cate_outlink").value;
+				rets.cateOutLinkText = rs("cate_outlinktext").value;
+				if ( rets.cateOutLinkText === null ){ rets.cateOutLinkText = ""; }
+				rets.id = id;
+				sap.proxy("system.category.info.begin", [rets, rs]);
+			}
+		});
+		
+		return {
+			success: true,
+			data: rets
+		}
+	}
+	
+	this.updatecate = function(){
+		var rets = {},
+			id = req.form.id;
 			
-			if ( connecte === true ){
+			rets.cate_name = req.form.cateName;
+			rets.cate_info = req.form.cateInfo;
+			rets.cate_order = req.form.cateOrder;
+			if ( !rets.cate_order || rets.cate_order.length === 0 ){
+				rets.cate_order = 99;
+			}
+			rets.cate_root = req.form.cateRoot;
+			if ( !rets.cate_root || rets.cate_root.length === 0 ){
+				rets.cate_root = 0;
+			}
+			rets.cate_count = req.form.cateCount;
+			if ( !rets.cate_count || rets.cate_count.length === 0 ){
+				rets.cate_count = 0;
+			}
+			rets.cate_icon = req.form.cateIcon;
+			rets.cate_show = req.form.cateIsShow;
+			if ( rets.cate_show === "1" ){
+				rets.cate_show = true;
+			}else{
+				rets.cate_show = false;
+			}
+			rets.cate_outlink = req.form.cateOutLink;
+			if (rets.cate_outlink === "1"){
+				rets.cate_outlink === 1;
+			}else{
+				rets.cate_outlink = 0;
+			}
+			rets.cate_outlinktext = req.form.cateOutLinkText;
+
+		sap.proxy("system.category.update.begin", [rets, req]);
+		
+		dbo.update({
+			data: rets,
+			table: "blog_category",
+			conn: config.conn,
+			key: "id",
+			keyValue: id
+		});
+		
+		var cache = require.async("cache");	
+			cache.build("category");
+
+		return {
+			success: true,
+			data: {
+				id: Number(id)
+			}
+		}
+	}
+	
+	this.destorycates = function(){
+		var id = req.query.id,
+			len = String(config.conn.Execute("Select Count(*) From blog_category Where cate_root=" + id)(0));
+			
+		if ( len === "0" ){
+			try{
+				config.conn.Execute("Delete From blog_category Where id=" + id);
+				
+				var ids = [],
+					articlelength = 0,
+					commentlength = 0;
+					
 				dbo.trave({
 					conn: config.conn,
-					sql: "Select * From blog_category Where id=" + id,
-					callback: function(rs){
-						cateName = rs("cate_name").value;
-						cateInfo = rs("cate_info").value;
-						cateOrder = rs("cate_order").value;
-						cateRoot = rs("cate_root").value;
-						cateCount = rs("cate_count").value;
-						cateIcon = rs("cate_icon").value;
-						cateIsShow = rs("cate_show").value;
-						cateOutLink = rs("cate_outlink").value;
-						cateOutLinkText = rs("cate_outlinktext").value
-					}
-				});
-				
-				return {
-					success: true,
-					data: {
-						cateName: cateName,
-						cateInfo: cateInfo,
-						cateOrder: cateOrder,
-						cateRoot: cateRoot,
-						cateCount: cateCount,
-						cateIcon: cateIcon,
-						cateIsShow: cateIsShow,
-						cateOutLink: cateOutLink,
-						cateOutLinkText: cateOutLinkText
-					}
-				}
-			}else{
-				return {
-					success: false,
-					error: "打开数据库失败"
-				}
-			}
-		};
-		
-		callbacks.addcates = function(){
-			var cate_name = req.form.cateName,
-				cate_info = req.form.cateInfo,
-				cate_order = req.form.cateOrder,
-				cate_root = req.form.cateRoot,
-				cate_count = req.form.cateCount,
-				cate_icon = req.form.cateIcon,
-				cate_isshow = req.form.cateIsShow,
-				cate_outlink = req.form.cateOutLink,
-				cate_outlinktext = req.form.cateOutLinkText;
-				
-			var status = this.addCategory({
-				cate_name: cate_name,
-				cate_info: cate_info,
-				cate_order: Number(cate_order) || 0,
-				cate_root: Number(cate_root) || 0,
-				cate_count: Number(cate_count) || 0,
-				cate_icon: cate_icon,
-				cate_show: cate_isshow === "1" ? true : false,
-				cate_outlink: cate_outlink === "1" ? true : false,
-				cate_outlinktext: cate_outlinktext
-			});
-			
-			var cache = require.async("cache");	
-				cache.build("category");
-			
-			return {
-				success: true,
-				data: {
-					id: status
-				}
-			}
-		};
-		
-		callbacks.addCategory = function(options){
-			var dbo = require("DBO"),
-				connecte = require("openDataBase"),
-				id = 0;
-				
-			if ( connecte === true ){
-				dbo.add({
-					data: options,
-					table: "blog_category",
-					conn: config.conn,
+					sql: "Select id From blog_article Where log_category=" + id,
 					callback: function(){
-						id = this("id").value;
+						this.each(function(){
+							ids.push(this("id").value);
+						});
 					}
 				});
-			}
-			
-			return id;
-		};
-		
-		callbacks.updateCategory = function(id, options){
-			var dbo = require("DBO"),
-				connecte = require("openDataBase");
 				
-			if ( connecte === true ){
-				dbo.update({
-					data: options,
-					table: "blog_category",
-					conn: config.conn,
-					key: "id",
-					keyValue: id
-				});
+				articlelength = ids.length;
 				
-				return true;
-			}else{
-				return false;
-			}
-		};
-		
-		callbacks.updatecate = function(){
-			var id = req.form.id,
-				cate_name = req.form.cateName,
-				cate_info = req.form.cateInfo,
-				cate_order = req.form.cateOrder,
-				cate_root = req.form.cateRoot,
-				cate_count = req.form.cateCount,
-				cate_icon = req.form.cateIcon,
-				cate_isshow = req.form.cateIsShow,
-				cate_outlink = req.form.cateOutLink,
-				cate_outlinktext = req.form.cateOutLinkText;
-			
-			var status = this.updateCategory(id, {
-				cate_name: cate_name,
-				cate_info: cate_info,
-				cate_order: Number(cate_order) || 0,
-				cate_root: Number(cate_root) || 0,
-				cate_count: Number(cate_count) || 0,
-				cate_icon: cate_icon,
-				cate_show: cate_isshow === "1" ? true : false,
-				cate_outlink: cate_outlink === "1" ? 1 : 0,
-				cate_outlinktext: cate_outlinktext
-			});
-			
-			var cache = require.async("cache");	
-				cache.build("category");
-			
-			return { success: status, data: { id: id }, error: "数据库打开失败" }
-				
-		};
-		
-		callbacks.destorycates = function(){
-			var id = req.query.id,
-				connecte = require("openDataBase");
-				
-			if ( connecte === true ){
-				var len = String(config.conn.Execute("Select Count(*) From blog_category Where cate_root=" + id)(0));
-
-				if ( len === "0" ){
-					try{
-						config.conn.Execute("Delete From blog_category Where id=" + id);
-						var cache = require.async("cache");	
-							cache.build("category");
-						return {
-							success: true
-						}
-					}catch(e){
-						return {
-							success: false,
-							error: e.message
-						}
-					}
-				}else{
-					return {
-						success: false,
-						error: "存在二级分类，不能删除。"
-					}
+				for ( var i = 0 ; i < ids.length ; i++ ){
+					commentlength += Number(String(config.conn.Execute("Select count(id) From blog_comment Where commentlogid=" + ids[i])(0)));
+					config.conn.Execute("Delete From blog_comment Where commentlogid=" + ids[i]);
+					config.conn.Execute("Delete From blog_article Where id=" + ids[i]);
 				}
 				
-			}else{
+				config.conn.Execute("Update blog_global Set totalarticles=totalarticles-" + articlelength + ", totalcomments=totalcomments-" + commentlength + " Where id=1");
+				
+				var cache = require.async("cache");	
+					cache.build("category");
+					cache.build("global");
+				
 				return {
-					success: false,
-					error: "数据库打开失败"
+					success: true
 				}
-			}
-		}
-		
-		callbacks.iconlist = function(){
-			return require.async("icon");
-		}
-		
-		if ( Session("admin") === true ){
-			if ( callbacks[j] !== undefined ){
-				return callbacks[j]();
-			}else{
+			}catch(e){
 				return {
 					success: false,
-					error: "未找到对应处理模块"
+					error: e.message
 				}
 			}
 		}else{
 			return {
 				success: false,
-				error: "非法权限操作"
+				error: "存在二级分类，不能删除。"
 			}
 		}
-	});
-	CloseConnect();
+	}
+	
+	this.iconlist = function(){
+		return require.async("icon");
+	}
+	
+	this.addnewcategorybyname = function(){
+		var root = req.query.root,
+			name = req.query.name,
+			icon = req.query.icon,
+			_id = 0;
+			
+		dbo.add({
+			data: {
+				cate_name: name,
+				cate_root: Number(root),
+				cate_icon: icon,
+				cate_show: false,
+				cate_info: "这家伙很懒，没有留下分类介绍。",
+				cate_order: 99
+			},
+			table: "blog_category",
+			conn: config.conn,
+			callback: function(){
+				_id = this("id").value;
+			}
+		});
+		
+		if ( _id > 0 ){
+			var cache = require.async("cache");	
+				cache.build("category");
+				
+			return {
+				success: true,
+				data: {
+					id: _id
+				}
+			}
+		}else{
+			return {
+				success: false,
+				error: "新建分类失败"
+			}
+		}
+	}
+	
+	this.seticon = function(){
+		var id = req.query.id,
+			icon = req.query.icon;
+	
+		dbo.update({
+			conn: config.conn,
+			table: "blog_category",
+			data: {
+				cate_icon: icon
+			},
+			key: "id",
+			keyValue: id
+		});
+		
+		var cache = require.async("cache");	
+			cache.build("category");
+		
+		return {
+			success: true
+		}
+	}
+});
 %>
