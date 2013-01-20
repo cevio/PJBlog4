@@ -12,7 +12,7 @@
 	config.useApp = true; // 是否使用APP
 	config.cacheAccess = "profile/caches"; // 缓存文件夹名
 	config.platform = "http://platform.pjhome.net";
-	config.version = "4.0.0.400";
+	config.version = "4.0.0.405";
 	
 /*
  * 网站模块映射
@@ -36,6 +36,7 @@
 	map["PACKAGE"] = "server/core/package";
 	map["SPKPACKAGE"] = "server/core/spkPackage";
 	map["SQL"] = "server/core/sql";
+	map["DOWN"] = "server/core/download";
 	
 	// 逻辑模块映射
 	map["fn"] = "server/fn";
@@ -61,9 +62,9 @@
 	// 缓存模块
 	map["cache_global"] = "server/module/global";
 	map["cache_category"] = "server/module/category";
-	map["cache_article"] = "server/module/article";
-	map["cache_article_detail"] = "server/module/article-detail";
-	map["cache_comment"] = "server/module/comment";
+	
+	// cms模块
+	map["cms"] = "server/proxy/cms";
 	
 	http.service = function( callback, isposter ){
 		http.async(function(req){
