@@ -153,12 +153,12 @@ try{
 			( (pageCustomParams.tempParams.pages.to - pageCustomParams.tempParams.pages.from) > 0 ) 
 		){
 			for ( i = pageCustomParams.tempParams.pages.from ; i <= pageCustomParams.tempParams.pages.to ; i++ ){
-				var url = "article.asp?id=" + pageCustomParams.id + "&page=" + i;
+				var url = "tags.asp?id=" + pageCustomParams.id + "&page=" + i;
 								
 				if ( pageCustomParams.tempParams.pages.current === i ){
-					pageCustomParams.tags.pages.push({ key: n });
+					pageCustomParams.tags.pages.push({ key: i });
 				}else{
-					pageCustomParams.tags.pages.push({ key: n, url : url });
+					pageCustomParams.tags.pages.push({ key: i, url : url });
 				}				
 			}
 		}

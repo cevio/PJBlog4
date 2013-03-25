@@ -8,7 +8,7 @@ http.service(function( req, dbo, sap ){
 			
 		rets.log_title = req.form.log_title,
 		rets.log_category = req.form.log_category,
-		rets.log_content = req.form.log_content,
+		rets.log_content = req.form.log_content.replace(/\&/g, "&amp;"),
 		rets.log_tags = this.addTags(req.form.log_tags).join(""),
 		rets.log_shortcontent = req.form.log_shortcontent,
 		rets.log_cover = req.form.log_cover;
@@ -113,7 +113,7 @@ http.service(function( req, dbo, sap ){
 		
 		rets.log_title = req.form.log_title;
 		rets.log_category = req.form.log_category;
-		rets.log_content = req.form.log_content;
+		rets.log_content = req.form.log_content.replace(/\&/g, "&amp;");
 		rets.log_tags = this.updateTags(id, req.form.log_tags).join("");
 		rets.log_shortcontent = req.form.log_shortcontent;
 		rets.log_cover = req.form.log_cover;

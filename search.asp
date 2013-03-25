@@ -33,6 +33,9 @@ try{
 	};
 	
 	pageCustomParams.keyword = pageCustomParams.tempModules.fns.HTMLStr(pageCustomParams.tempModules.fns.SQLStr(http.form("keyword")));
+	if (pageCustomParams.keyword.length === 0) {
+		pageCustomParams.keyword = pageCustomParams.tempModules.fns.HTMLStr(pageCustomParams.tempModules.fns.SQLStr(http.get("keyword")));
+	}
 	pageCustomParams.keytype = pageCustomParams.tempModules.fns.HTMLStr(pageCustomParams.tempModules.fns.SQLStr(http.form("keytype") || "all")); //' all | title | content | tag
 	
 	if ( pageCustomParams.keyword.length === 0 ){
@@ -164,12 +167,12 @@ try{
 			( (pageCustomParams.tempParams.pages.to - pageCustomParams.tempParams.pages.from) > 0 ) 
 		){
 			for ( i = pageCustomParams.tempParams.pages.from ; i <= pageCustomParams.tempParams.pages.to ; i++ ){
-				var url = "article.asp?id=" + pageCustomParams.id + "&page=" + i;
+				var url = "search.asp?keyword=" + escape(pageCustomParams.keyword) + "&page=" + i;
 								
 				if ( pageCustomParams.tempParams.pages.current === i ){
-					pageCustomParams.tags.pages.push({ key: n });
+					pageCustomParams.found.pages.push({ key: i });
 				}else{
-					pageCustomParams.tags.pages.push({ key: n, url : url });
+					pageCustomParams.found.pages.push({ key: i, url : url });
 				}				
 			}
 		}

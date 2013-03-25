@@ -107,7 +107,7 @@ try{
 					pageCustomParams.article.id = pageCustomParams.id;
 					pageCustomParams.article.title = rs("log_title").value;
 					pageCustomParams.article.category = getCategoryName(rs("log_category").value);
-					pageCustomParams.article.content = rs("log_content").value;
+					pageCustomParams.article.content = rs("log_content").value.replace(/&amp;/g, "&");
 					pageCustomParams.article.tags = getTags(rs("log_tags").value);
 					pageCustomParams.article.postDate = rs("log_posttime").value;
 					pageCustomParams.article.editDate = rs("log_updatetime").value;
