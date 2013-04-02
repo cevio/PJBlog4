@@ -182,13 +182,15 @@ try{
 		if ( pageCustomParams.page > totalPages ){ pageCustomParams.page = totalPages;}	
 		
 		if ( pageCustomParams.page > _pages ){
-			sql = "Select top " + _mod + " * From blog_comment Where commentid=0 And commentlogid=" + pageCustomParams.article.id + " Order By id ASC";
-			sql = "Select * From (" + sql + ") Order By id DESC";
+			sql = "Select top " 
+				+ (pageCustomParams.page * perpage) 
+				+ " * From blog_comment Where commentid=0 And commentlogid=" + pageCustomParams.article.id + " Order By commentpostdate DESC";
+			sql = "Select * From (Select top " + _mod + " * From (" + sql + ")) Order By commentpostdate ASC";
 		}else{
 			sql = "Select top " 
 				+ (pageCustomParams.page * perpage) 
-				+ " * From blog_comment Where commentid=0 And commentlogid=" + pageCustomParams.article.id + " Order By id DESC";
-			sql = "Select * From (Select top " + perpage + " * From (" + sql + ") Order By id) Order By id DESC";
+				+ " * From blog_comment Where commentid=0 And commentlogid=" + pageCustomParams.article.id + " Order By commentpostdate ASC";
+			sql = "Select * From (Select top " + perpage + " * From (" + sql + ") Order By commentpostdate DESC) Order By commentpostdate ASC";
 		}
 
 		function getCommentReplyList(root){

@@ -22,6 +22,8 @@ define(function(require, exports, module){
 		pageCustomParams.global.themeVersion = sys_cache_global.themeversion; // '主题版本
 		pageCustomParams.global.totalarticles = sys_cache_global.totalarticles; // '日志总数
 		pageCustomParams.global.totalcomments = sys_cache_global.totalcomments; // '评论总数
+		pageCustomParams.global.articleperpagecount = sys_cache_global.articleperpagecount; // '每页日志数
+		pageCustomParams.global.commentperpagecount = sys_cache_global.commentperpagecount; // '每页评论数
 	
 	return sys_cache_global;
 });
