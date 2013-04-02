@@ -70,7 +70,7 @@ try{
 			rets.id = id;
 			rets.name = categoryJSON[id + ""].name;
 			rets.info = categoryJSON[id + ""].info;
-			rets.icon = "profile/icons/" + categoryJSON[id + ""].icon;
+			rets.icon = categoryJSON[id + ""].icon;
 			rets.url = "default.asp?c=" + id;
 		}
 		
