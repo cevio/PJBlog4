@@ -23,6 +23,38 @@ define(function(require, exports, module){
 		}
 	}
 	
+	xmlSelectorFunctions.HTMLpassword = function(des, id, name){
+		if ( connecte === true ){
+			var value = "";
+			dbo.trave({
+				conn: config.conn,
+				sql: "Select * From blog_moden Where modemark=" + id + " And modekey='" + name + "'",
+				callback: function(rs){
+					value = rs("modevalue").value;
+				}
+			});
+			return '<tr><td>' + des + '</td><td><input type="password" name="' + name + '" value="' + value + '" /></td></tr>';
+		}else{
+			return "";
+		}
+	}
+	
+	xmlSelectorFunctions.HTMLtextarea = function(des, id, name){
+		if ( connecte === true ){
+			var value = "";
+			dbo.trave({
+				conn: config.conn,
+				sql: "Select * From blog_moden Where modemark=" + id + " And modekey='" + name + "'",
+				callback: function(rs){
+					value = rs("modevalue").value;
+				}
+			});
+			return '<tr><td>' + des + '</td><td><textarea name="' + name + '">' + value + '</textarea></td></tr>';
+		}else{
+			return "";
+		}
+	}
+	
 	xmlSelectorFunctions.HTMLselect = function(des, id, name){
 		if ( connecte === true ){
 			var value = "",
