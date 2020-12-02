@@ -4,8 +4,7 @@
 PJBLOG4轻博客系统
 
 
-----
-<%
+```js
 require("status");
 
 if ( config.user.login === true ){
@@ -48,11 +47,13 @@ require(["openDataBase", "cache"], function(base, cache){
         console.debug();
     }
 });
+```
 
-%>
+```html
 <form action="server/upload.asp" method="post" enctype="multipart/form-data" accept-charset="ascii" onsubmit="document.charset='ascii';">
 <input type="file" name="file" value="" />
 <input type="file" name="file2" value="" />
 <input type="text" name="file3" value="沈赟杰" />
 <input type="submit" value="submit" />
 </form>
+```
